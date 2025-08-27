@@ -1,15 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://sta-363-s23.github.io/website/syllabus.html</loc>
-    <lastmod>2025-08-25T17:32:36.619Z</lastmod>
-  </url>
-  <url>
-    <loc>https://sta-363-s23.github.io/website/index.html</loc>
-    <lastmod>2025-08-25T17:32:15.379Z</lastmod>
+    <loc>https://sta-363-s23.github.io/website/troubleshooting.html</loc>
+    <lastmod>2025-08-25T14:00:31.008Z</lastmod>
   </url>
   <url>
     <loc>https://sta-363-s23.github.io/website/schedule.html</loc>
     <lastmod>2025-08-25T17:55:05.208Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sta-363-s23.github.io/website/quarto-quick-guide.html</loc>
+    <lastmod>2025-08-25T15:01:56.199Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sta-363-s23.github.io/website/help.html</loc>
+    <lastmod>2025-08-25T14:29:37.164Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sta-363-s23.github.io/website/help-project.html</loc>
+    <lastmod>2025-08-25T14:31:36.772Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sta-363-s23.github.io/website/ex/ex-1.html</loc>
+    <lastmod>2025-08-27T13:13:09.327Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sta-363-s23.github.io/website/help-quarto.html</loc>
+    <lastmod>2025-08-25T14:33:13.576Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sta-363-s23.github.io/website/index.html</loc>
+    <lastmod>2025-08-27T13:11:46.370Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sta-363-s23.github.io/website/rstudio-pro.html</loc>
+    <lastmod>2025-08-27T12:41:18.980Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sta-363-s23.github.io/website/syllabus.html</loc>
+    <lastmod>2025-08-27T12:52:52.174Z</lastmod>
   </url>
 </urlset>

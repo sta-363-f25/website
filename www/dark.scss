@@ -1,0 +1,31 @@
+/*-- scss:defaults --*/
+
+$body-bg: #181818;
+$body-color: #f2f2f1;
+$link-color: #eec8e1;
+
+$dark-grey: #303030;
+$light: #595959;
+
+$footer-bg: #181818;
+$navbar-bg: #303030;
+$sidebar-bg: #303030;
+
+.title {
+  font-family: Sans-Serif !important;
+  color: $dark-grey !important;
+  font-size: 3em;
+}
+
+
+h2 {
+  color: white !important;
+  background: $light !important;
+  padding: 0.5em;
+}
+
+#title-block-header.quarto-title-block.default .quarto-title .subtitle {
+  color: $dark-grey !important;
+  display: inline-block;
+  padding: 0.3em 0.6em;
+}

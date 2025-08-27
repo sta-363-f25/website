@@ -36,10 +36,14 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-3f3f9919b3835604a26bc531ace6acdb.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-0815c480559380816a4d1ea211a47e91.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-748b535e376f14d4692bf2b2e5fd6380.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-0815c480559380816a4d1ea211a47e91.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-7cfca115fceb028de24b736a8c4cfcd6.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-d1c41842694f601e9bb1466710982903.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-916d94b0f477a71f2fb4ba844bf13ea9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-d1c41842694f601e9bb1466710982903.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -87,7 +91,168 @@ ul.task-list li input[type="checkbox"] {
 <meta name="twitter:image-width" content="1200">
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-sidebar floating nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -113,19 +278,122 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text"><i class="fa-solid fa-gavel" aria-hidden="true"></i> Policies</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="https://rstudio.deac.wfu.edu"> 
+    <a class="nav-link" href="./help.html"> 
+<span class="menu-text"><i class="fa-solid fa-question-circle" aria-hidden="true"></i> Help</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://login.deac.wfu.edu"> 
 <span class="menu-text"><i class="fa-solid fa-cloud" aria-hidden="true"></i> RStudio Pro</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./schedule.html">Course Details</a></li><li class="breadcrumb-item"><a href="./schedule.html">Schedule</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Course Details</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./schedule.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Schedule</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./syllabus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Course Policies</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Computing</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./rstudio-pro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Using the RStudio Pro Server</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./help-project.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Creating an RStudio Project</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./help-quarto.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Creating a Quarto Document</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./quarto-quick-guide.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Quarto Quick Guide</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./troubleshooting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Troubleshooting</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Exercises</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ex/ex-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercise 1</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
         
@@ -133,7 +401,8 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./schedule.html">Course Details</a></li><li class="breadcrumb-item"><a href="./schedule.html">Schedule</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title"><i class="fa-solid fa-calendar" aria-hidden="true"></i> Schedule</h1>
 </div>
@@ -155,23 +424,23 @@ ul.task-list li input[type="checkbox"] {
 <p><strong>Note</strong>: The timeline of topics and assignments might be updated throughout the semester.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="cmtnqpobcq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#cmtnqpobcq table {
+<div id="awlozdjtph" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#awlozdjtph table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#cmtnqpobcq thead, #cmtnqpobcq tbody, #cmtnqpobcq tfoot, #cmtnqpobcq tr, #cmtnqpobcq td, #cmtnqpobcq th {
+#awlozdjtph thead, #awlozdjtph tbody, #awlozdjtph tfoot, #awlozdjtph tr, #awlozdjtph td, #awlozdjtph th {
   border-style: none;
 }
 
-#cmtnqpobcq p {
+#awlozdjtph p {
   margin: 0;
   padding: 0;
 }
 
-#cmtnqpobcq .gt_table {
+#awlozdjtph .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -197,12 +466,12 @@ ul.task-list li input[type="checkbox"] {
   border-left-color: #D3D3D3;
 }
 
-#cmtnqpobcq .gt_caption {
+#awlozdjtph .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#cmtnqpobcq .gt_title {
+#awlozdjtph .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -214,7 +483,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-width: 0;
 }
 
-#cmtnqpobcq .gt_subtitle {
+#awlozdjtph .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -226,7 +495,7 @@ ul.task-list li input[type="checkbox"] {
   border-top-width: 0;
 }
 
-#cmtnqpobcq .gt_heading {
+#awlozdjtph .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -238,13 +507,13 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#cmtnqpobcq .gt_bottom_border {
+#awlozdjtph .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#cmtnqpobcq .gt_col_headings {
+#awlozdjtph .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -259,7 +528,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#cmtnqpobcq .gt_col_heading {
+#awlozdjtph .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -279,7 +548,7 @@ ul.task-list li input[type="checkbox"] {
   overflow-x: hidden;
 }
 
-#cmtnqpobcq .gt_column_spanner_outer {
+#awlozdjtph .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -291,15 +560,15 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 4px;
 }
 
-#cmtnqpobcq .gt_column_spanner_outer:first-child {
+#awlozdjtph .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#cmtnqpobcq .gt_column_spanner_outer:last-child {
+#awlozdjtph .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#cmtnqpobcq .gt_column_spanner {
+#awlozdjtph .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -311,11 +580,11 @@ ul.task-list li input[type="checkbox"] {
   width: 100%;
 }
 
-#cmtnqpobcq .gt_spanner_row {
+#awlozdjtph .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#cmtnqpobcq .gt_group_heading {
+#awlozdjtph .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -341,7 +610,7 @@ ul.task-list li input[type="checkbox"] {
   text-align: left;
 }
 
-#cmtnqpobcq .gt_empty_group_heading {
+#awlozdjtph .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -356,15 +625,15 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 
-#cmtnqpobcq .gt_from_md > :first-child {
+#awlozdjtph .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#cmtnqpobcq .gt_from_md > :last-child {
+#awlozdjtph .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#cmtnqpobcq .gt_row {
+#awlozdjtph .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -383,7 +652,7 @@ ul.task-list li input[type="checkbox"] {
   overflow-x: hidden;
 }
 
-#cmtnqpobcq .gt_stub {
+#awlozdjtph .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -396,7 +665,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#cmtnqpobcq .gt_stub_row_group {
+#awlozdjtph .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -410,15 +679,15 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: top;
 }
 
-#cmtnqpobcq .gt_row_group_first td {
+#awlozdjtph .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#cmtnqpobcq .gt_row_group_first th {
+#awlozdjtph .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#cmtnqpobcq .gt_summary_row {
+#awlozdjtph .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -428,16 +697,16 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#cmtnqpobcq .gt_first_summary_row {
+#awlozdjtph .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#cmtnqpobcq .gt_first_summary_row.thick {
+#awlozdjtph .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#cmtnqpobcq .gt_last_summary_row {
+#awlozdjtph .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -447,7 +716,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#cmtnqpobcq .gt_grand_summary_row {
+#awlozdjtph .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -457,7 +726,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#cmtnqpobcq .gt_first_grand_summary_row {
+#awlozdjtph .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -467,7 +736,7 @@ ul.task-list li input[type="checkbox"] {
   border-top-color: #D3D3D3;
 }
 
-#cmtnqpobcq .gt_last_grand_summary_row_top {
+#awlozdjtph .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -477,11 +746,11 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#cmtnqpobcq .gt_striped {
+#awlozdjtph .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#cmtnqpobcq .gt_table_body {
+#awlozdjtph .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -490,7 +759,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#cmtnqpobcq .gt_footnotes {
+#awlozdjtph .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -504,7 +773,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#cmtnqpobcq .gt_footnote {
+#awlozdjtph .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -513,7 +782,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#cmtnqpobcq .gt_sourcenotes {
+#awlozdjtph .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -527,7 +796,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#cmtnqpobcq .gt_sourcenote {
+#awlozdjtph .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -535,72 +804,72 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#cmtnqpobcq .gt_left {
+#awlozdjtph .gt_left {
   text-align: left;
 }
 
-#cmtnqpobcq .gt_center {
+#awlozdjtph .gt_center {
   text-align: center;
 }
 
-#cmtnqpobcq .gt_right {
+#awlozdjtph .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#cmtnqpobcq .gt_font_normal {
+#awlozdjtph .gt_font_normal {
   font-weight: normal;
 }
 
-#cmtnqpobcq .gt_font_bold {
+#awlozdjtph .gt_font_bold {
   font-weight: bold;
 }
 
-#cmtnqpobcq .gt_font_italic {
+#awlozdjtph .gt_font_italic {
   font-style: italic;
 }
 
-#cmtnqpobcq .gt_super {
+#awlozdjtph .gt_super {
   font-size: 65%;
 }
 
-#cmtnqpobcq .gt_footnote_marks {
+#awlozdjtph .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#cmtnqpobcq .gt_asterisk {
+#awlozdjtph .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#cmtnqpobcq .gt_indent_1 {
+#awlozdjtph .gt_indent_1 {
   text-indent: 5px;
 }
 
-#cmtnqpobcq .gt_indent_2 {
+#awlozdjtph .gt_indent_2 {
   text-indent: 10px;
 }
 
-#cmtnqpobcq .gt_indent_3 {
+#awlozdjtph .gt_indent_3 {
   text-indent: 15px;
 }
 
-#cmtnqpobcq .gt_indent_4 {
+#awlozdjtph .gt_indent_4 {
   text-indent: 20px;
 }
 
-#cmtnqpobcq .gt_indent_5 {
+#awlozdjtph .gt_indent_5 {
   text-indent: 25px;
 }
 
-#cmtnqpobcq .katex-display {
+#awlozdjtph .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#cmtnqpobcq div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#awlozdjtph div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -633,14 +902,16 @@ ul.task-list li input[type="checkbox"] {
 <td class="gt_row gt_right" headers="week">1</td>
 <td class="gt_row gt_right" headers="date">27 August</td>
 <td class="gt_row gt_left" headers="topic">Welcome</td>
-<td class="gt_row gt_left" headers="slides"><a href="https://sta-363-s23.github.io/slides/01-welcome.html">
+<td class="gt_row gt_left" headers="slides"><a href="https://sta-363-f25.github.io/slides/01-welcome.html">
 <svg aria-hidden="true" role="img" viewbox="0 0 640 512" style="height:1em;width:1.25em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;">
 <path d="M128 32C92.7 32 64 60.7 64 96V352h64V96H512V352h64V96c0-35.3-28.7-64-64-64H128zM19.2 384C8.6 384 0 392.6 0 403.2C0 445.6 34.4 480 76.8 480H563.2c42.4 0 76.8-34.4 76.8-76.8c0-10.6-8.6-19.2-19.2-19.2H19.2z"></path>
 </svg>
 </a></td>
-<td class="gt_row gt_left" headers="appex"><svg aria-hidden="true" role="img" viewbox="0 0 640 512" style="height:1em;width:1.25em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;fill-opacity:0.1;position:relative;">
+<td class="gt_row gt_left" headers="appex"><a href="./ex/ex-1.html">
+<svg aria-hidden="true" role="img" viewbox="0 0 640 512" style="height:1em;width:1.25em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;">
 <path d="M144 0a80 80 0 1 1 0 160A80 80 0 1 1 144 0zM512 0a80 80 0 1 1 0 160A80 80 0 1 1 512 0zM0 298.7C0 239.8 47.8 192 106.7 192h42.7c15.9 0 31 3.5 44.6 9.7c-1.3 7.2-1.9 14.7-1.9 22.3c0 38.2 16.8 72.5 43.3 96c-.2 0-.4 0-.7 0H21.3C9.6 320 0 310.4 0 298.7zM405.3 320c-.2 0-.4 0-.7 0c26.6-23.5 43.3-57.8 43.3-96c0-7.6-.7-15-1.9-22.3c13.6-6.3 28.7-9.7 44.6-9.7h42.7C592.2 192 640 239.8 640 298.7c0 11.8-9.6 21.3-21.3 21.3H405.3zM224 224a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zM128 485.3C128 411.7 187.7 352 261.3 352H378.7C452.3 352 512 411.7 512 485.3c0 14.7-11.9 26.7-26.7 26.7H154.7c-14.7 0-26.7-11.9-26.7-26.7z"></path>
-</svg></td>
+</svg>
+</a></td>
 <td class="gt_row gt_left" headers="assignment"><svg aria-hidden="true" role="img" viewbox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;fill-opacity:0.1;position:relative;">
 <path d="M64 80c-8.8 0-16 7.2-16 16V416c0 8.8 7.2 16 16 16H288V352c0-17.7 14.3-32 32-32h80V96c0-8.8-7.2-16-16-16H64zM288 480H64c-35.3 0-64-28.7-64-64V96C0 60.7 28.7 32 64 32H384c35.3 0 64 28.7 64 64V320v5.5c0 17-6.7 33.3-18.7 45.3l-90.5 90.5c-12 12-28.3 18.7-45.3 18.7H288z"></path>
 </svg></td>
@@ -1445,6 +1716,19 @@ ul.task-list li input[type="checkbox"] {
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
     const icon = "";
     const anchorJS = new window.AnchorJS();
     anchorJS.options = {
@@ -1850,7 +2134,7 @@ ul.task-list li input[type="checkbox"] {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    </div>
+    <div class="toc-actions"><ul><li><a href="https://github.com/sta-363-f25/website/edit/main/schedule.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta-363-f25/website/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>Made with <i class="fa-brands fa-r-project" aria-hidden="true"></i> and <a href="https://quarto.org/">Quarto</a><br> <a href="https://github.com/sta-363-f25/website">View the source at <i class="fa-brands fa-github" aria-hidden="true"></i> GitHub</a></p>
 </div>

@@ -1,10 +1,66 @@
-/*-- scss:rules --*/
+/*-- scss:defaults --*/
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Fira+Sans:wght@300;400;500;700&display=swap');
 
-.icon h1 {
-  text-align: center;
-  color: #BB2649;
+$magenta: #d5008f;
+$light-pink: #eec8e1;
+$dark-grey: #595959;
+$light-grey: #f2f2f1;
+
+$body-bg: $light-grey;
+$body-color: $dark-grey;
+$link-color: $magenta;
+$sidebar-bg: $light-pink;
+
+/*-- scss:rules --*/
+.fancy {
+  font-family: 'Lobster', cursive;
+  font-size: 1.2em;
 }
 
-.center h5 {
-  text-align: center;
+.transparent h2 {
+  background-color: transparent;
+}
+
+
+
+
+
+.highlight, .reveal .highlight, .hl, .reveal .hl {
+  background-color: $light-pink;
+  padding: 0.1em 0.3em;
+  border-radius: 3px;
+}
+
+
+
+.small, .reveal .small {
+  font-size: 0.75em;
+}
+
+.smaller, .reveal .smaller {
+  font-size: 0.5em;
+}
+
+.smallest, .reveal .smallest {
+  font-size: 0.25em;
+}
+
+.title {
+  font-family: 'Lobster', cursive;
+  color: $magenta;
+  font-size: 3em;
+}
+
+
+h2 {
+  color: white;
+  background: $magenta;
+  padding: 0.5em;
+}
+
+#title-block-header.quarto-title-block.default .quarto-title .subtitle {
+  color: $magenta;
+  background: rgba(238, 200, 225, 0.7);
+  display: inline-block;
+  padding: 0.3em 0.6em;
 }
