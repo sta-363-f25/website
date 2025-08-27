@@ -1,0 +1,146 @@
+/*-- scss:defaults --*/
+
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Fira+Sans:wght@300;400;500;700&display=swap');
+
+$magenta: #d5008f;
+$light-pink: #eec8e1;
+$dark-grey: #595959;
+$light-grey: #f2f2f1;
+
+$body-bg: $light-grey;
+$body-color: $dark-grey;
+$link-color: $magenta;
+
+$presentation-font-family: 'Fira Sans', sans-serif;
+$presentation-heading-color: $magenta;
+$presentation-slide-bg: $light-grey;
+
+/*-- scss:rules --*/
+
+
+
+
+section.has-dark-background h1  {
+  color: $magenta;
+  font-weight: 500;
+}
+
+.title h1 {
+  color: $magenta;
+  font-size: 72px;
+  text-shadow: none;
+  vertical-align: bottom;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: $light-grey;
+}
+
+strong {
+  color: $magenta;
+  font-weight: 900;
+}
+
+em {
+  color: $magenta;  
+  font-style: normal;
+}
+
+.small {
+  font-size: 0.75em;
+}
+
+.smaller {
+  font-size: 0.5em;
+}
+
+.smallest {
+  font-size: 0.25em;
+}
+
+.large {
+  font-size: 1.25em;
+}
+
+.larger {
+  font-size: 1.5em;
+}
+
+.largest {
+  font-size: 3em;
+}
+
+.inverse {
+  background-color: $magenta;
+  color: #ffffff;
+}
+.inverse h1, .inverse h2, .inverse h3 {
+  color: $light-grey;
+}
+
+ul li {
+  padding-bottom: 10px;
+}
+
+
+.reveal pre code {
+  word-wrap: normal;
+}
+
+.reveal .slide .question {
+  border: 5px solid #404040;
+  border-left: 50px solid #404040;
+  padding: 0.5em;
+  background: $magenta;
+  border-radius: 25px;
+  margin-top: 10px;
+  color: #fff;
+}
+
+.reveal .slide .question strong {
+  color: #fff;
+  font-weight: 1200px;
+}
+
+.reveal .slide .question code {
+  color: #fff;
+}
+
+.reveal .slide .definition {
+  border: 5px solid #404040;
+  border-left: 50px solid #404040;
+  padding: 0.5em;
+  background: #404040;
+  border-radius: 25px;
+  margin-top: 10px;
+  color: #fff;
+}
+
+.reveal .slide .definition strong {
+  color: #fff;
+  font-weight: 1200;
+}
+
+.question::after {
+    content: '';
+    position: absolute;
+    bottom: 100px;
+}
+
+.definition::after {
+    content: '';
+    position: absolute;
+    bottom: 100px;
+}
+
+details>summary {
+  font-size: 0.5em;
+}
+
+.v-center-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90%;
+}
+
