@@ -30,7 +30,7 @@
     "href": "slides/02-toolkit.html#login-to-rstudio-pro",
     "title": "Meet the toolkit",
     "section": "Login to RStudio Pro",
-    "text": "Login to RStudio Pro\n\nNote: if you are off campus, you will need to use a VPN to connect\nGo to https://rstudio.deac.wfu.edu/"
+    "text": "Login to RStudio Pro\n\nNote: if you are off campus, you will need to use a VPN to connect\nGo to https://login.deac.wfu.edu/"
   },
   {
     "objectID": "slides/02-toolkit.html#rstudio-pro-setup",
@@ -58,14 +58,14 @@
     "href": "slides/02-toolkit.html#rstudio-pro-setup-3",
     "title": "Meet the toolkit",
     "section": "RStudio Pro Setup",
-    "text": "RStudio Pro Setup\nStep 4: Copy my starter files\nPaste this link in the top box (Repository url):\nhttps://github.com/sta-363-s23/appex-01-welcome-penguins.git"
+    "text": "RStudio Pro Setup\nStep 4: Copy my starter files\nPaste this link in the top box (Repository url):\nhttps://github.com/sta-363-f25/appex-01-welcome-penguins.git"
   },
   {
     "objectID": "slides/02-toolkit.html#penguin-fun",
     "href": "slides/02-toolkit.html#penguin-fun",
     "title": "Meet the toolkit",
     "section": " Penguin fun!",
-    "text": "Penguin fun!\n\nOnce you log on to RStudio Pro, create a new project from version control (Git)\nPaste https://github.com/sta-363-s23/appex-01-welcome-penguins.git in the Repository url box\nFind the file pane (on the bottom right). Click the welcome-penguins.qmd file\nClick the “Render” button\nGo back to the file and change your name on top (in the yaml – we’ll talk about what this means later) and render again.\nThen, scroll to the plot chunk, below Palmer Penguins. Instead of looking at the relationship between flipper length and bill length, plot the relationship between flipper length and bill depth. Hint, look at the full dataset at the bottom of the document for variable names, update the captions to match your new plot.\nRender again & voila!\n\n\n\n\n−+\n08:00"
+    "text": "Penguin fun!\n\nOnce you log on to RStudio Pro, create a new project from version control (Git)\nPaste https://github.com/sta-363-f25/appex-01-welcome-penguins.git in the Repository url box\nFind the file pane (on the bottom right). Click the welcome-penguins.qmd file\nClick the “Render” button\nGo back to the file and change your name on top (in the yaml – we’ll talk about what this means later) and render again.\nThen, scroll to the plot chunk, below Palmer Penguins. Instead of looking at the relationship between flipper length and bill length, plot the relationship between flipper length and bill depth. Hint, look at the full dataset at the bottom of the document for variable names, update the captions to match your new plot.\nRender again & voila!\n\n\n\n\n−+\n08:00"
   },
   {
     "objectID": "slides/02-toolkit.html#what-is-r",
@@ -170,7 +170,7 @@
     "href": "slides/02-toolkit.html#lab-01",
     "title": "Meet the toolkit",
     "section": "Lab 01",
-    "text": "Lab 01\n\nLab instructions are posted on the course website under assignment\n\nLet’s go find today’s!\n\n\n\nbit.ly/sta-363-s23"
+    "text": "Lab 01\n\nLab instructions are posted on the course website under assignment\n\nLet’s go find today’s!\n\n\n\nsta-363-f25.github.io/website"
   },
   {
     "objectID": "schedule.html",
@@ -329,6 +329,120 @@
     ]
   },
   {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Statistical Learning",
+    "section": "",
+    "text": "Course Info\nLocation: Carswell 208\nTime: Wed/Fri 11a\n\n\n Office Hours\nInstructor: Dr. Lucy D’Agostino McGowan\nEmail: mcgowald@wfu.edu\nOffice Hours: Book Online\nOffice: Manchester 342\nTA: Joe Zhu\nMath & Stats Center: mathandstatscenter@wfu.edu\nLocation: Math & Stats Center\n\n\n\n\n\n\n\n\nCarswell 208\n\n\n\n\n\n\n\n\nWed/Fri 11a\n\n\n\n\n\nTexts\nThe main text book is: An Introduction to Statistical Learning with Applications in R by Gareth James, Daniela Witten, Trevor Hastie, and Robert Tibshirani – it is freely available online.\n\n\nMaterials\nThis class is very hands on; be sure to bring a fully charged laptop to every class."
+  },
+  {
+    "objectID": "help-quarto.html",
+    "href": "help-quarto.html",
+    "title": "Creating a New Quarto Document in RStudio",
+    "section": "",
+    "text": "To create a new Quarto document:\n\nBe sure that you are in the correct project for the exercise or assignment. If you need help creating a new project here are some tips.\nIn RStudio, go to the menu bar and select File &gt; New File &gt; Quarto Document.\nEnter a title for your document and select the output format (e.g., HTML, PDF, Word).\nClick Create. A new Quarto file (.qmd) will open.\nSave the file to your project directory\nUse the toolbar or the Render button to build your document.",
+    "crumbs": [
+      "{{< fa calendar >}} Schedule",
+      "Computing",
+      "Creating a Quarto Document"
+    ]
+  },
+  {
+    "objectID": "ex/02-welcome-penguins.html",
+    "href": "ex/02-welcome-penguins.html",
+    "title": "Welcome Penguins!",
+    "section": "",
+    "text": "Note: if you are off campus, you will need to use a VPN to connect\nGo to login.deac.wfu.edu\n\n\n\n\nClick File &gt; New Project\n\n\n\n\nClick the third option.\n\n\n\n\nClick the first option\n\n\n\n\nPaste this link in the top box (Repository url):\nhttps://github.com/sta-363-f25/appex-01-welcome-penguins.git",
+    "crumbs": [
+      "{{< fa calendar >}} Schedule",
+      "Exercises",
+      "Welcome Penguins"
+    ]
+  },
+  {
+    "objectID": "ex/02-welcome-penguins.html#set-up",
+    "href": "ex/02-welcome-penguins.html#set-up",
+    "title": "Welcome Penguins!",
+    "section": "",
+    "text": "Note: if you are off campus, you will need to use a VPN to connect\nGo to login.deac.wfu.edu\n\n\n\n\nClick File &gt; New Project\n\n\n\n\nClick the third option.\n\n\n\n\nClick the first option\n\n\n\n\nPaste this link in the top box (Repository url):\nhttps://github.com/sta-363-f25/appex-01-welcome-penguins.git",
+    "crumbs": [
+      "{{< fa calendar >}} Schedule",
+      "Exercises",
+      "Welcome Penguins"
+    ]
+  },
+  {
+    "objectID": "ex/02-welcome-penguins.html#your-turn",
+    "href": "ex/02-welcome-penguins.html#your-turn",
+    "title": "Welcome Penguins!",
+    "section": "Your Turn",
+    "text": "Your Turn\n\nOnce you log on to RStudio Pro, create a new project from version control (Git)\nPaste https://github.com/sta-363-f25/appex-01-welcome-penguins.git in the Repository url box\nFind the file pane (on the bottom right). Click the welcome-penguins.qmd file\nClick the “Render” button\nGo back to the file and change your name on top (in the yaml – we’ll talk about what this means later) and render again.\nThen, scroll to the plot chunk, below Palmer Penguins. Instead of looking at the relationship between flipper length and bill length, plot the relationship between flipper length and bill depth. Hint, look at the full dataset at the bottom of the document for variable names, update the captions to match your new plot.\nRender again & voila!",
+    "crumbs": [
+      "{{< fa calendar >}} Schedule",
+      "Exercises",
+      "Welcome Penguins"
+    ]
+  },
+  {
+    "objectID": "demo-zipcodes/zipcodes.html",
+    "href": "demo-zipcodes/zipcodes.html",
+    "title": "Predicting handwritten numbers",
+    "section": "",
+    "text": "library(tidyverse)\nlibrary(tidymodels)\nload(\"data/zip.train.Rdata\")\nload(\"data/zip.test.Rdata\")\nThis dataset consists of normalized handwritten digits, automatically scanned from envelopes by the U.S. Postal Service. The ultimate objective is to be able to predict which number is written so that the zip code can be automatically determined. The original scanned digits are binary and of different sizes and orientations; the images here have been deslanted and size normalized, resulting in 16 x 16 grayscale images (Le Cun et al., 1990). This data is obtained from the ElemStatLearn package.\nLet’s see what kind of data this is.\nclass(zip.train)\n\n[1] \"matrix\" \"array\"\nIt looks like this is a matrix. Let’s look at the the first 5 rows and 5 columns.\nzip.train[1:5, 1:5]\n\n     [,1] [,2] [,3] [,4]   [,5]\n[1,]    6   -1   -1   -1 -1.000\n[2,]    5   -1   -1   -1 -0.813\n[3,]    4   -1   -1   -1 -1.000\n[4,]    7   -1   -1   -1 -1.000\n[5,]    3   -1   -1   -1 -1.000\nIt looks like the first column contains the digit and the subsequent columns indicate values for the 256 pixels. Let’s tidy this up a bit.\nzip_train &lt;- zip.train %&gt;%\n  as_tibble(.name_repair = ~ c(\"label\", glue::glue(\"pix_{1:256}\")))\n\nzip_test &lt;- zip.test %&gt;%\n    as_tibble(.name_repair = ~ c(\"label\", glue::glue(\"pix_{1:256}\")))\nLet’s plot a few. This code is adapted from a blog post by David Robinson.\npixels_gathered &lt;- zip_train %&gt;%\n  slice(1:25) %&gt;%\n  mutate(instance = row_number()) %&gt;%\n  gather(pixel, value, -label, -instance) %&gt;%\n  tidyr::extract(pixel, \"pixel\", \"(\\\\d+)\", convert = TRUE) %&gt;%\n  mutate(pixel = pixel - 1,\n         x = pixel %% 16,\n         y = 16 - pixel %/% 16)\n\nggplot(pixels_gathered, aes(x, y, fill = value)) +\n  geom_tile() +\n  facet_wrap(~ instance + label)"
+  },
+  {
+    "objectID": "demo-zipcodes/zipcodes.html#predict-0",
+    "href": "demo-zipcodes/zipcodes.html#predict-0",
+    "title": "Predicting handwritten numbers",
+    "section": "Predict 0",
+    "text": "Predict 0\nWe are interested in creating a prediction model to determine whether the handwritten number is a 0.\n\nFirst we create a recipe\n\nrecip &lt;- zip_train %&gt;% \n    recipe() %&gt;% \n    update_role(starts_with(\"pix\"), new_role = \"predictor\") %&gt;%\n    update_role(label, new_role = \"outcome\") %&gt;%\n    step_mutate(label = as.factor(label == 0)) ## Set the outcome to when the written number is equal to 0\n\n\n\nThen we prep our recipe.\n\nprepped &lt;- recip %&gt;% \n    prep(retain = TRUE)\n\n\n\nThen we create our training data and testing data\n\ntrain &lt;- prepped %&gt;% \n    juice()\n\ntest &lt;- prepped %&gt;% \n    bake(new_data = zip_test)\n\n\n\nNow we specify our model\nWe are fitting a decision tree.\n\ntree_fit &lt;- fit(\n    decision_tree(mode = \"classification\", tree_depth = 3),\n    formula = formula(prepped),\n    data = train,\n    engine = \"rpart\")\n\n\n\nAssess the model\n\nresults &lt;- tibble(\n    truth = test$label,\n    estimate = predict(tree_fit, test) %&gt;% \n      pull(.pred_class)\n  )\n\nmetrics(results, truth = truth, estimate = estimate) %&gt;% \n  knitr::kable()\n\n\n\n\n.metric\n.estimator\n.estimate\n\n\n\n\naccuracy\nbinary\n0.9362232\n\n\nkap\nbinary\n0.7861534\n\n\n\n\n\n\n\nCreate a confusion matrix\nWhat is the false positive rate? What is the false negative rate?\n\nconf_mat(results, truth = truth, estimate = estimate)[[1]] %&gt;% \n  as_tibble() %&gt;% \n  ggplot(aes(Prediction, Truth, alpha = n)) + \n  geom_text(aes(label = n), alpha = 1, size = 10) +\n  labs(title = \"Confusion matrix\")\n\n\n\n\n\n\n\n\n\n\nPlot the tree\nWhich pixels are involved in this prediction?\n\nlibrary(rpart.plot)\nrpart.plot(tree_fit$fit, roundint = FALSE)"
+  },
+  {
+    "objectID": "demo-zipcodes/zipcodes.html#lets-plot-some-zeros-that-we-missed",
+    "href": "demo-zipcodes/zipcodes.html#lets-plot-some-zeros-that-we-missed",
+    "title": "Predicting handwritten numbers",
+    "section": "Let’s plot some zeros that we missed",
+    "text": "Let’s plot some zeros that we missed\n\nzip_test %&gt;%\n  bind_cols(results) %&gt;%\n  filter(truth == \"TRUE\", estimate == \"FALSE\") %&gt;%\n  select(-truth, -estimate) %&gt;%\n  sample_n(25) %&gt;%\n  mutate(instance = row_number()) %&gt;%\n  gather(pixel, value, -label, -instance) %&gt;%\n  tidyr::extract(pixel, \"pixel\", \"(\\\\d+)\", convert = TRUE) %&gt;%\n  mutate(pixel = pixel - 1,\n         x = pixel %% 16,\n         y = 16 - pixel %/% 16) %&gt;%\n  ggplot(aes(x, y, fill = value)) +\n  geom_tile() +\n  facet_wrap(~ instance)"
+  },
+  {
+    "objectID": "demo-zipcodes/zipcodes.html#lets-plot-some-numbers-that-we-misclassified-as-zeros",
+    "href": "demo-zipcodes/zipcodes.html#lets-plot-some-numbers-that-we-misclassified-as-zeros",
+    "title": "Predicting handwritten numbers",
+    "section": "Let’s plot some numbers that we misclassified as zeros",
+    "text": "Let’s plot some numbers that we misclassified as zeros\n\nzip_test %&gt;%\n  bind_cols(results) %&gt;%\n  filter(truth == \"FALSE\", estimate == \"TRUE\") %&gt;%\n  select(-truth, -estimate) %&gt;%\n  sample_n(25) %&gt;%\n  mutate(instance = row_number()) %&gt;%\n  gather(pixel, value, -label, -instance) %&gt;%\n  tidyr::extract(pixel, \"pixel\", \"(\\\\d+)\", convert = TRUE) %&gt;%\n  mutate(pixel = pixel - 1,\n         x = pixel %% 16,\n         y = 16 - pixel %/% 16) %&gt;%\n  ggplot(aes(x, y, fill = value)) +\n  geom_tile() +\n  facet_wrap(~ label + instance)"
+  },
+  {
+    "objectID": "demo-zipcodes/zipcodes.html#references",
+    "href": "demo-zipcodes/zipcodes.html#references",
+    "title": "Predicting handwritten numbers",
+    "section": "References",
+    "text": "References\n\nhttp://varianceexplained.org/r/digit-eda/\nhttps://www.benjaminsorensen.me/post/modeling-with-parsnip-and-tidymodels/"
+  },
+  {
+    "objectID": "ex/01-ex.html",
+    "href": "ex/01-ex.html",
+    "title": "Exercise 1",
+    "section": "",
+    "text": "Exercise 1: Login to RStudio Pro\n\nGo to course website → Computing → Using the RStudio Server\nFollow login instructions\nLog in with your credentials\n\nCheck: You should see the RStudio interface with 4 panes.\n\n\n\nExercise 2: Create RStudio Project\n\nFile → New Project → New Directory → New Project\nName: ex-1\nClick Create Project\n\nCheck: Project name appears in top-right corner.\n\n\n\nExercise 3: Create Quarto Document\n\nFile → New File → Quarto Document\nTitle: “My First Analysis”\nSave as analysis.qmd\n\nCheck: New .qmd file is open and saved.\n\n\n\nExercise 4: Install ISLR Package and Load Data\nRun this code in the console ONCE:\n\ninstall.packages(\"ISLR\")\n\nThen run this:\n\nlibrary(ISLR)\nlibrary(ggplot2)\n# Test it works\ndata(Auto)\nhead(Auto)\n\n  mpg cylinders displacement horsepower weight acceleration year origin\n1  18         8          307        130   3504         12.0   70      1\n2  15         8          350        165   3693         11.5   70      1\n3  18         8          318        150   3436         11.0   70      1\n4  16         8          304        150   3433         12.0   70      1\n5  17         8          302        140   3449         10.5   70      1\n6  15         8          429        198   4341         10.0   70      1\n                       name\n1 chevrolet chevelle malibu\n2         buick skylark 320\n3        plymouth satellite\n4             amc rebel sst\n5               ford torino\n6          ford galaxie 500\n\n\nCheck: You see the Auto dataset.\nNow run this in the console:\n\n?Auto\n\nQuestion: What is in this dataset?\nAction: Add the code below to your .qmd file along with a short description of the data.\n\nlibrary(ISLR)\nlibrary(ggplot2)\ndata(Auto)\n\n\n\n\nExercise 5: Linear Model and Plot\nAdd the following code to your .qmd file. Try running it.\n\n# Fit linear model\nmodel1 &lt;- lm(mpg ~ horsepower, data = Auto)\nsummary(model1)\n\n\nCall:\nlm(formula = mpg ~ horsepower, data = Auto)\n\nResiduals:\n     Min       1Q   Median       3Q      Max \n-13.5710  -3.2592  -0.3435   2.7630  16.9240 \n\nCoefficients:\n             Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) 39.935861   0.717499   55.66   &lt;2e-16 ***\nhorsepower  -0.157845   0.006446  -24.49   &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 4.906 on 390 degrees of freedom\nMultiple R-squared:  0.6059,    Adjusted R-squared:  0.6049 \nF-statistic: 599.7 on 1 and 390 DF,  p-value: &lt; 2.2e-16\n\n# Create plot\nggplot(Auto, aes(x = horsepower, y = mpg)) +\n  geom_point() +\n  geom_smooth(method = \"lm\", formula = \"y ~ x\") +\n  labs(title = \"Horsepower vs MPG\",\n       x = \"Horsepower\", \n       y = \"Miles per Gallon\")\n\n\n\n\n\n\n\n\nCheck: You have model output and a scatter plot with trend line.\n\n\n\nFinish\nClick “Render” to create your HTML report. Upload your .html file in Canvas under Exercise 1",
+    "crumbs": [
+      "{{< fa calendar >}} Schedule",
+      "Exercises",
+      "Exercise 1"
+    ]
+  },
+  {
+    "objectID": "help-project.html",
+    "href": "help-project.html",
+    "title": "Creating or Opening a Project",
+    "section": "",
+    "text": "Before starting an assignment or exercise, always create or open a project:\n\nTo create a new project:\n\nIn RStudio, go to File &gt; New Project.\nChoose whether to create a project in a new directory or within an existing directory.\nNavigate to the folder where you want your project\nClick Create Project.\n\nTo open an existing project:\n\nIn RStudio, go to File &gt; Open Project.\nBrowse to the .Rproj file of the project you want to open.\nSelect it and click Open.\n\n\nThis ensures all your files and settings are organized within the correct project environment.",
+    "crumbs": [
+      "{{< fa calendar >}} Schedule",
+      "Computing",
+      "Creating an RStudio Project"
+    ]
+  },
+  {
     "objectID": "help.html",
     "href": "help.html",
     "title": "Help",
@@ -357,47 +471,28 @@
     "text": "Need Additional Help?\nIf you can’t find what you’re looking for in our guides, don’t hesitate to reach out."
   },
   {
-    "objectID": "help-project.html",
-    "href": "help-project.html",
-    "title": "Creating or Opening a Project",
+    "objectID": "lab/01-lab.html",
+    "href": "lab/01-lab.html",
+    "title": "Lab 01 - Hello R!",
     "section": "",
-    "text": "Before starting an assignment or exercise, always create or open a project:\n\nTo create a new project:\n\nIn RStudio, go to File &gt; New Project.\nChoose whether to create a project in a new directory or within an existing directory.\nNavigate to the folder where you want your project\nClick Create Project.\n\nTo open an existing project:\n\nIn RStudio, go to File &gt; Open Project.\nBrowse to the .Rproj file of the project you want to open.\nSelect it and click Open.\n\n\nThis ensures all your files and settings are organized within the correct project environment.",
+    "text": "Due: Wednesday 2025-09-03 at 11:59pm",
     "crumbs": [
       "{{< fa calendar >}} Schedule",
-      "Computing",
-      "Creating an RStudio Project"
+      "Labs",
+      "Lab 01"
     ]
   },
   {
-    "objectID": "ex/ex-1.html",
-    "href": "ex/ex-1.html",
-    "title": "Exercise 1",
-    "section": "",
-    "text": "Exercise 1: Login to RStudio Pro\n\nGo to course website → Computing → Using the RStudio Server\nFollow login instructions\nLog in with your credentials\n\nCheck: You should see the RStudio interface with 4 panes.\n\n\n\nExercise 2: Create RStudio Project\n\nFile → New Project → New Directory → New Project\nName: ex-1\nClick Create Project\n\nCheck: Project name appears in top-right corner.\n\n\n\nExercise 3: Create Quarto Document\n\nFile → New File → Quarto Document\nTitle: “My First Analysis”\nSave as analysis.qmd\n\nCheck: New .qmd file is open and saved.\n\n\n\nExercise 4: Install ISLR Package and Load Data\nRun this code in the console ONCE:\n\ninstall.packages(\"ISLR\")\n\nThen run this:\n\nlibrary(ISLR)\nlibrary(ggplot2)\n# Test it works\ndata(Auto)\nhead(Auto)\n\n  mpg cylinders displacement horsepower weight acceleration year origin\n1  18         8          307        130   3504         12.0   70      1\n2  15         8          350        165   3693         11.5   70      1\n3  18         8          318        150   3436         11.0   70      1\n4  16         8          304        150   3433         12.0   70      1\n5  17         8          302        140   3449         10.5   70      1\n6  15         8          429        198   4341         10.0   70      1\n                       name\n1 chevrolet chevelle malibu\n2         buick skylark 320\n3        plymouth satellite\n4             amc rebel sst\n5               ford torino\n6          ford galaxie 500\n\n\nCheck: You see the Auto dataset.\nNow run this in the console:\n\n?Auto\n\nQuestion: What is in this dataset?\nAction: Add the code below to your .qmd file along with a short description of the data.\n\nlibrary(ISLR)\nlibrary(ggplot2)\ndata(Auto)\n\n\n\n\nExercise 5: Linear Model and Plot\nAdd the following code to your .qmd file. Try running it.\n\n# Fit linear model\nmodel1 &lt;- lm(mpg ~ horsepower, data = Auto)\nsummary(model1)\n\n\nCall:\nlm(formula = mpg ~ horsepower, data = Auto)\n\nResiduals:\n     Min       1Q   Median       3Q      Max \n-13.5710  -3.2592  -0.3435   2.7630  16.9240 \n\nCoefficients:\n             Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) 39.935861   0.717499   55.66   &lt;2e-16 ***\nhorsepower  -0.157845   0.006446  -24.49   &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 4.906 on 390 degrees of freedom\nMultiple R-squared:  0.6059,    Adjusted R-squared:  0.6049 \nF-statistic: 599.7 on 1 and 390 DF,  p-value: &lt; 2.2e-16\n\n# Create plot\nggplot(Auto, aes(x = horsepower, y = mpg)) +\n  geom_point() +\n  geom_smooth(method = \"lm\", formula = \"y ~ x\") +\n  labs(title = \"Horsepower vs MPG\",\n       x = \"Horsepower\", \n       y = \"Miles per Gallon\")\n\n\n\n\n\n\n\n\nCheck: You have model output and a scatter plot with trend line.\n\n\n\nFinish\nClick “Render” to create your HTML report. Upload your .html file in Canvas under Exercise 1",
+    "objectID": "lab/01-lab.html#yaml",
+    "href": "lab/01-lab.html#yaml",
+    "title": "Lab 01 - Hello R!",
+    "section": "YAML:",
+    "text": "YAML:\nOpen the Quarto (qmd) file in your project, change the author name to your name, and render the document.",
     "crumbs": [
       "{{< fa calendar >}} Schedule",
-      "Exercises",
-      "Exercise 1"
+      "Labs",
+      "Lab 01"
     ]
-  },
-  {
-    "objectID": "help-quarto.html",
-    "href": "help-quarto.html",
-    "title": "Creating a New Quarto Document in RStudio",
-    "section": "",
-    "text": "To create a new Quarto document:\n\nBe sure that you are in the correct project for the exercise or assignment. If you need help creating a new project here are some tips.\nIn RStudio, go to the menu bar and select File &gt; New File &gt; Quarto Document.\nEnter a title for your document and select the output format (e.g., HTML, PDF, Word).\nClick Create. A new Quarto file (.qmd) will open.\nSave the file to your project directory\nUse the toolbar or the Render button to build your document.",
-    "crumbs": [
-      "{{< fa calendar >}} Schedule",
-      "Computing",
-      "Creating a Quarto Document"
-    ]
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Statistical Learning",
-    "section": "",
-    "text": "Course Info\nLocation: Carswell 208\nTime: Wed/Fri 11a\n\n\n Office Hours\nInstructor: Dr. Lucy D’Agostino McGowan\nEmail: mcgowald@wfu.edu\nOffice Hours: Book Online\nOffice: Manchester 342\nTA: Joe Zhu\nMath & Stats Center: mathandstatscenter@wfu.edu\nLocation: Math & Stats Center\n\n\n\n\n\n\n\n\nCarswell 208\n\n\n\n\n\n\n\n\nWed/Fri 11a\n\n\n\n\n\nTexts\nThe main text book is: An Introduction to Statistical Learning with Applications in R by Gareth James, Daniela Witten, Trevor Hastie, and Robert Tibshirani – it is freely available online.\n\n\nMaterials\nThis class is very hands on; be sure to bring a fully charged laptop to every class."
   },
   {
     "objectID": "rstudio-pro.html",
