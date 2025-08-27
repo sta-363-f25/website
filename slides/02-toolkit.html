@@ -7,11 +7,13 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-0815c480559380816a4d1ea211a47e91.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-0815c480559380816a4d1ea211a47e91.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.7.29">
 
   <meta name="author" content="Dr.&nbsp;D’Agostino McGowan">
-  <title>Statistical Learning – Welcome to Statistical Learning</title>
+  <title>Statistical Learning – Meet the toolkit</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -29,8 +31,74 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-375959f61c09a32b9f00afdc644bc626.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-66fdcd22e230d45fe07e143445171b0f.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -124,13 +192,15 @@
       margin-right: 0; 
     }
   </style>
-<meta property="og:title" content="Welcome to Statistical Learning – Statistical Learning">
+  <link href="../site_libs/countdown-0.4.0/countdown.css" rel="stylesheet">
+  <script src="../site_libs/countdown-0.4.0/countdown.js"></script>
+<meta property="og:title" content="Meet the toolkit – Statistical Learning">
 <meta property="og:image" content="https://sta-363-s23.github.io/website/img/twitter.png">
 <meta property="og:site_name" content="Statistical Learning">
 <meta property="og:locale" content="en_US">
 <meta property="og:image:height" content="670">
 <meta property="og:image:width" content="1200">
-<meta name="twitter:title" content="Welcome to Statistical Learning – Statistical Learning">
+<meta name="twitter:title" content="Meet the toolkit – Statistical Learning">
 <meta name="twitter:image" content="https://sta-363-s23.github.io/website/img/twitter.png">
 <meta name="twitter:creator" content="@LucyStats">
 <meta name="twitter:card" content="summary_large_image">
@@ -141,8 +211,8 @@
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" data-background-color="#23373B" data-color="#EDEEF" class="quarto-title-block center">
-  <h1 class="title">Welcome to Statistical Learning</h1>
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Meet the toolkit</h1>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -153,225 +223,314 @@ Dr.&nbsp;D’Agostino McGowan
 </div>
 
 </section>
-<section id="section" class="slide level2">
-<h2>👋</h2>
-<h3 id="lucy-dagostino-mcgowan">Lucy D’Agostino McGowan</h3>
-<p><i class="fa fa-envelope"></i> &nbsp; <a href="mailto:mcgowald@wfu.edu">mcgowald@wfu.edu</a> <br></p>
+<section id="agenda" class="slide level2">
+<h2>Agenda</h2>
+<ul>
+<li>Demo: Penguin Study</li>
+<li>R and RStudio</li>
+<li>Quarto</li>
+</ul>
 </section>
 <section>
-<section id="sta-363-f25.github.iowebsite" class="title-slide slide level1 center">
-<h1><a href="https://sta-363-f25.github.io/website">sta-363-f25.github.io/website</a></h1>
+<section id="a-penguin-study" class="title-slide slide level1 center">
+<h1>A Penguin Study</h1>
 
 </section>
-<section id="intros" class="slide level2">
-<h2>Intros</h2>
+<section id="recap-what-did-we-just-do" class="slide level2">
+<h2>Recap: What did we just do?</h2>
 <ul>
-<li>Name</li>
-<li>Major</li>
-<li>Fun OR boring fact</li>
+<li>Create a project in <strong>RStudio</strong></li>
+<li>Open a .qmd file in <strong>RStudio</strong></li>
+<li>Render the analysis</li>
+<li>Edit the analysis</li>
+<li>Re-render the analysis</li>
 </ul>
 </section>
-<section id="statistical-learning-problems" class="slide level2 small">
-<h2>Statistical Learning Problems</h2>
-<div class="columns">
-<div class="column">
+<section id="login-to-rstudio-pro" class="slide level2 smaller">
+<h2>Login to RStudio Pro</h2>
 <ul>
-<li>Identify risk factors for breast cancer</li>
+<li><strong>Note:</strong> if you are off campus, you will need to use a <a href="https://is.wfu.edu/services/vpn/">VPN to connect</a></li>
+<li>Go to <a href="https://rstudio.deac.wfu.edu/">https://rstudio.deac.wfu.edu/</a></li>
 </ul>
-</div><div class="column">
-<p><img data-src="img/01/breast-cancer.jpg"></p>
-</div></div>
-<div class="footer">
-<p>Dr.&nbsp;Lucy D’Agostino McGowan <em>adapted from slides by Hastie &amp; Tibshirani</em></p>
+<p><img data-src="img/01/rstudio-pro.png" width="1000" height="350"></p>
+</section>
+<section id="rstudio-pro-setup" class="slide level2">
+<h2>RStudio Pro Setup</h2>
+<p><strong>Step 1: Create a New Project</strong></p>
+<p>Click File &gt; New Project</p>
+
+<img data-src="img/01/new-project.png" class="r-stretch"></section>
+<section id="rstudio-pro-setup-1" class="slide level2">
+<h2>RStudio Pro Setup</h2>
+<p><strong>Step 2: Click “Version Control”</strong></p>
+<p>Click the third option.</p>
+
+<img data-src="img/01/version-control.png" class="r-stretch"></section>
+<section id="rstudio-pro-setup-2" class="slide level2">
+<h2>RStudio Pro Setup</h2>
+<p><strong>Step 3: Click Git</strong></p>
+<p>Click the first option</p>
+
+<img data-src="img/01/git.png" class="r-stretch"></section>
+<section id="rstudio-pro-setup-3" class="slide level2">
+<h2>RStudio Pro Setup</h2>
+<p><strong>Step 4: Copy my starter files</strong></p>
+<p>Paste this link in the top box (<code>Repository url</code>):</p>
+<p><code>https://github.com/sta-363-s23/appex-01-welcome-penguins.git</code></p>
+
+<img data-src="img/01/paste-link.png" class="r-stretch"></section>
+<section id="penguin-fun" class="slide level2 smaller">
+<h2><i class="fa-solid fa-laptop" aria-hidden="true"></i> <code>Penguin fun!</code></h2>
+<ul>
+<li>Once you log on to RStudio Pro, create a new project from version control (Git)</li>
+<li>Paste <code>https://github.com/sta-363-s23/appex-01-welcome-penguins.git</code> in the Repository url box</li>
+<li>Find the file pane (on the bottom right). Click the <code>welcome-penguins.qmd</code> file</li>
+<li>Click the “Render” button</li>
+<li>Go back to the file and change your name on top (in the <code>yaml</code> – we’ll talk about what this means later) and render again.</li>
+<li>Then, scroll to the <code>plot</code> chunk, below <strong>Palmer Penguins</strong>. Instead of looking at the relationship between flipper length and bill length, plot the relationship between flipper length and bill <strong>depth</strong>. <em>Hint, look at the full dataset at the bottom of the document for variable names, update the captions to match your new plot</em>.</li>
+<li>Render again &amp; voila!</li>
+</ul>
+<div class="cell">
+<div class="cell-output-display">
+<div class="countdown" id="timer_fabf1c94" data-update-every="1" tabindex="0" style="right:0;bottom:0;font-size:1.5em;">
+<div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">08</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+</div>
 </div>
 </section>
-<section id="statistical-learning-problems-1" class="slide level2 small">
-<h2>Statistical Learning Problems</h2>
-<div class="columns">
-<div class="column">
+<section id="what-is-r" class="slide level2">
+<h2>What is R?</h2>
 <ul>
-<li>Identify risk factors for breast cancer</li>
-<li>Customize an email spam detection system</li>
+<li class="fragment">scripting language</li>
+<li class="fragment">statistical software</li>
+<li class="fragment">like a car’s “engine”</li>
 </ul>
-</div><div class="column">
-<ul>
-<li><strong>Data</strong>: 4601 labeled emails sent to <em>George</em> who works at <em>HP Labs</em></li>
-<li><strong>Input features</strong>: frequencies of words and punctuation</li>
-</ul>
-</div></div>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th>—</th>
-<th>george</th>
-<th>you</th>
-<th>hp</th>
-<th>free</th>
-<th>!</th>
-<th>edu</th>
-<th>remove</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>spam</strong></td>
-<td>0.00</td>
-<td>2.26</td>
-<td>0.02</td>
-<td>0.52</td>
-<td>0.51</td>
-<td>0.01</td>
-<td>0.28</td>
-</tr>
-<tr class="even">
-<td><strong>email</strong></td>
-<td>2.27</td>
-<td>1.27</td>
-<td>0.90</td>
-<td>0.07</td>
-<td>0.11</td>
-<td>0.29</td>
-<td>0.01</td>
-</tr>
-</tbody>
-</table>
-<div class="footer">
-<p>Dr.&nbsp;Lucy D’Agostino McGowan <em>adapted from slides by Hastie &amp; Tibshirani</em></p>
-</div>
 </section>
-<section id="statistical-learning-problems-2" class="slide level2 small">
-<h2>Statistical Learning Problems</h2>
-<div class="columns">
-<div class="column">
+<section id="what-is-rstudio" class="slide level2">
+<h2>What is RStudio?</h2>
 <ul>
-<li>Identify risk factors for breast cancer<br>
-</li>
-<li>Customize an email spam detection system<br>
-</li>
-<li>Identify numbers in handwritten zip code<br>
-</li>
+<li class="fragment">IDE (integrated development environment)</li>
+<li class="fragment">like a car’s “dashboard”</li>
 </ul>
-</div><div class="column">
-<p><img data-src="img/01/zipcode.png"></p>
-</div></div>
-<div class="footer">
-<p>Dr.&nbsp;Lucy D’Agostino McGowan <em>adapted from slides by Hastie &amp; Tibshirani</em></p>
-</div>
 </section></section>
 <section>
-<section id="demo" class="title-slide slide level1 center">
-<h1>DEMO</h1>
+<section id="lets-take-a-tour-r-rstudio" class="title-slide slide level1 center">
+<h1>Let’s take a tour – R / RStudio</h1>
 
 </section>
-<section id="statistical-learning-problems-3" class="slide level2 small">
-<h2>Statistical Learning Problems</h2>
-<div class="columns">
-<div class="column">
+<section id="what-did-we-learn" class="slide level2">
+<h2>What did we learn?</h2>
 <ul>
-<li>Identify risk factors for breast cancer<br>
-</li>
-<li>Customize an email spam detection system<br>
-</li>
-<li>Identify numbers in handwritten zip code<br>
-</li>
-<li>Establish the relationship between variables in population survey data<br>
-</li>
-</ul>
-</div><div class="column">
-<p>Income survey data for males from the central Atlantic region of US, 2009</p>
-<p><img src="img/01/wage1.png" height="350"></p>
-</div></div>
-<div class="footer">
-<p>Dr.&nbsp;Lucy D’Agostino McGowan <em>adapted from slides by Hastie &amp; Tibshirani</em></p>
-</div>
-</section>
-<section class="slide level2">
-
-</section></section>
-<section>
-<section id="statistical-learning-problems-4" class="title-slide slide level1 small center">
-<h1>Statistical Learning Problems</h1>
-<div class="columns">
-<div class="column">
-<ul>
-<li>Identify risk factors for breast cancer<br>
-</li>
-<li>Customize an email spam detection system<br>
-</li>
-<li>Identify numbers in handwritten zip code<br>
-</li>
-<li>Establish the relationship between variables in population survey data<br>
-</li>
-<li>Classify pixels of an image</li>
-</ul>
-</div><div class="column">
-<p><img src="img/01/land-use.png" height="300"></p>
-<p>Usage <span class="math inline">\(\in\)</span> {red soil, cotton, vegetation stubble, mixture, gray soil, damp gray soil}</p>
-</div></div>
-<div class="footer">
-<p>Dr.&nbsp;Lucy D’Agostino McGowan <em>adapted from slides by Hastie &amp; Tibshirani</em></p>
-</div>
-</section>
-<section id="types-of-statistical-learning" class="slide level2">
-<h2>✌️ types of statistical learning</h2>
-<ul>
-<li>Supervised Learning</li>
-<li>Unsupervised Learning</li>
+<li>Using the console</li>
+<li>Using R as a calculator</li>
+<li>Environment</li>
+<li>Loading and viewing a data frame</li>
+<li>Creating a Project</li>
 </ul>
 </section>
-<section id="supervised-learning" class="slide level2 small incremental">
-<h2>Supervised Learning</h2>
-<div class="footer">
-<p>Dr.&nbsp;Lucy D’Agostino McGowan <em>adapted from slides by Hastie &amp; Tibshirani</em></p>
-</div>
+<section id="r-essentials" class="slide level2 smaller">
+<h2>R essentials</h2>
+<p>A short list (for now):</p>
 <ul>
-<li><strong>outcome variable</strong>: <span class="math inline">\(Y\)</span>, (dependent variable, response, target)</li>
-<li><strong>predictors</strong>: vector of <span class="math inline">\(p\)</span> predictors, <span class="math inline">\(X\)</span>, (inputs, regressors, covariates, features, independent variables)</li>
-<li>In the <strong>regression problem</strong>, <span class="math inline">\(Y\)</span> is quantitative (e.g price, blood pressure)</li>
-<li>In the <strong>classification</strong> problem, <span class="math inline">\(Y\)</span> takes values in a finite, unordered set (survived/died, digit 0-9, cancer class of tissue sample)</li>
-<li>We have <strong>training data</strong> <span class="math inline">\((x_1, y_1), \dots, (x_N, y_N)\)</span>. These are observations (examples, instances) of these measurements</li>
+<li>Functions are (most often) verbs, followed by what they will be applied to in parentheses:</li>
 </ul>
-</section>
-<section id="supervised-learning-1" class="slide level2">
-<h2>Supervised Learning</h2>
-<div class=".question">
-<p>What do you think are some objectives here?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">do_this</span>(to_this)</span>
+<span id="cb1-2"><a></a><span class="fu">do_that</span>(to_this, to_that, with_those)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
-<h3 id="objectives">Objectives</h3>
 <ul>
-<li>Accurately predict unseen test cases</li>
-<li>Understand which inputs affect the outcome, and how</li>
-<li>Assess the quality of our predictions and inferences</li>
+<li>Columns (variables) in data frames are accessed with <code>$</code>:</li>
 </ul>
-<div class="footer">
-<p>Dr.&nbsp;Lucy D’Agostino McGowan <em>adapted from slides by Hastie &amp; Tibshirani</em></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>dataframe<span class="sc">$</span>var_name</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="fragment">
+<ul>
+<li>Packages are installed with the <code>install.packages</code> function and loaded with the <code>library</code> function, once per session:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">install.packages</span>(<span class="st">"package_name"</span>)</span>
+<span id="cb3-2"><a></a><span class="fu">library</span>(package_name)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
-<section id="unsupervised-learning" class="slide level2 small incremental">
-<h2>Unsupervised Learning</h2>
-<div class="footer">
-<p>Dr.&nbsp;Lucy D’Agostino McGowan <em>adapted from slides by Hastie &amp; Tibshirani</em></p>
+<section id="tidyverse" class="slide level2">
+<h2>tidyverse</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><img data-src="img/02/tidyverse.png"></p>
+</div><div class="column" style="width:50%;">
+<p><strong>R packages for data science</strong></p>
+<div class="small">
+<p>The <a href="https://www.tidyverse.org/">tidyverse</a> is an opinionated collection of R packages designed for data science. All packages share an underlying design philosophy, grammar, and data structures.</p>
 </div>
+</div></div>
+</section></section>
+<section>
+<section id="quarto" class="title-slide slide level1 center">
+<h1>Quarto</h1>
+
+</section>
+<section id="quarto-1" class="slide level2">
+<h2>Quarto</h2>
 <ul>
-<li>No outcome variable, just a set of predictors (features) measured on a set of samples</li>
-<li>objective is more fuzzy – find groups of samples that behave similarly, find features that behave similarly, find linear combinations of features with the most variation</li>
-<li>difficult to know how well your are doing</li>
-<li>different from supervised learning, but can be useful as a pre-processing step for supervised learning</li>
+<li class="fragment">Fully reproducible reports – each time you render the document the analysis is run from the beginning</li>
+<li class="fragment">Simple markdown syntax for text</li>
+<li class="fragment">Code goes in chunks, defined by three backticks, narrative goes outside of chunks</li>
+</ul>
+</section></section>
+<section>
+<section id="lets-take-a-tour---quarto" class="title-slide slide level1 center">
+<h1>Let’s take a tour - Quarto</h1>
+
+</section>
+<section id="what-did-we-learn-1" class="slide level2">
+<h2>What did we learn?</h2>
+<ul>
+<li>Creating a project</li>
+<li>Creating a <code>.qmd</code> file</li>
+<li>Rendering documents</li>
+<li>Visual Editor</li>
+<li>The YAML</li>
+<li>Markdown and (some) R syntax</li>
 </ul>
 </section>
-<section id="lets-take-a-tour---class-website" class="slide level2 small">
-<h2>Let’s take a tour - class website</h2>
+<section id="rendering" class="slide level2 smaller">
+<h2>Rendering</h2>
+<p>Use the <kbd><img data-src="img/02/rstudio-render-button.png" width="25" height="20"></kbd> <strong>Render</strong> button in the RStudio IDE to render the file and preview the output with a single click or keyboard shortcut (⇧⌘K).</p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="img/02/rstudio-render.png" class="border quarto-figure quarto-figure-center"></p>
+</figure>
+</div>
+<div class="fragment">
+<p>If you prefer to automatically render whenever you save, you can check the Render on Save option on the editor toolbar.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="img/02/rstudio-render-on-save.png" class="border quarto-figure quarto-figure-center"></p>
+</figure>
+</div>
+<div class="footer">
+<p><a href="https://quarto.org/docs/get-started/hello/rstudio.html">Getting Started with Quarto</a></p>
+</div>
+</div>
+</section>
+<section id="yaml-header" class="slide level2">
+<h2>YAML header</h2>
+<p>The YAML header starts and ends with three dashes</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><a></a><span class="pp">---</span></span>
+<span id="cb4-2"><a></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"This is a title"</span></span>
+<span id="cb4-3"><a></a><span class="fu">format</span><span class="kw">:</span><span class="at"> html</span></span>
+<span id="cb4-4"><a></a><span class="fu">editor</span><span class="kw">:</span><span class="at"> visual</span></span>
+<span id="cb4-5"><a></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="footer">
+<p><a href="https://quarto.org/docs/get-started/hello/rstudio.html">Getting Started with Quarto</a></p>
+</div>
+</section>
+<section id="code-chunks" class="slide level2">
+<h2>Code chunks</h2>
+<p>R code chunks identified with <code>{r}</code> with (optional) chunk options, in YAML style, identified by <code>#|</code> at the beginning of the line.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a></a><span class="in">```{r}</span></span>
+<span id="cb5-2"><a></a><span class="co">#| label: load-packages</span></span>
+<span id="cb5-3"><a></a><span class="co">#| include: false</span></span>
+<span id="cb5-4"><a></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb5-5"><a></a><span class="fu">library</span>(palmerpenguins)</span>
+<span id="cb5-6"><a></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="fragment">
+<div class="question">
+<p>Would this code chunk be “included” in the final report?</p>
+</div>
+<div class="footer">
+<p><a href="https://quarto.org/docs/get-started/hello/rstudio.html">Getting Started with Quarto</a></p>
+</div>
+</div>
+</section>
+<section id="markdown-text" class="slide level2">
+<h2>Markdown text</h2>
+<ul>
+<li class="fragment">Quarto uses markdown for formatting text, including section headers, hyperlinks, an embedded image, and an inline code chunk.</li>
+<li class="fragment">If you use the “visual” editor, you don’t need to learn much of this</li>
+</ul>
+<div class="footer">
+<p><a href="https://quarto.org/docs/get-started/hello/rstudio.html">Getting Started with Quarto</a></p>
+</div>
+</section>
+<section id="your-turn" class="slide level2">
+<h2><i class="fa-solid fa-laptop" aria-hidden="true"></i> <code>Your turn</code></h2>
+<ul>
+<li>Log into RStudio Pro</li>
+<li>Open the project you created in the last class</li>
+<li>Explore the visual editor – try adding some <strong>bold</strong> text to the document</li>
+</ul>
+<div class="cell">
+<div class="cell-output-display">
+<div class="countdown" id="timer_262d2af2" data-update-every="1" tabindex="0" style="right:0;bottom:0;font-size:3em;">
+<div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">04</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+</div>
+</div>
+</section>
+<section id="workspaces" class="slide level2 smaller">
+<h2>Workspaces</h2>
+<p>Remember this, and expect it to bite you a few times as you’re learning to work with Quarto: The workspace of your Quarto document is separate from the Console!</p>
+<ul>
+<li>Run the following in the console</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>x <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb6-2"><a></a>x <span class="sc">*</span> <span class="dv">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment">
+<div class="question">
+<p>All looks good, eh?</p>
+</div>
+</div>
+<div class="fragment">
+<ul>
+<li>Then, add the following chunk in your Quarto document</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>x <span class="sc">*</span> <span class="dv">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="fragment">
+<div class="question">
+<p>What happens? Why the error?</p>
+</div>
+</div>
+</section>
+<section id="how-will-we-use-quarto" class="slide level2">
+<h2>How will we use Quarto?</h2>
+<ul>
+<li>Every assignment / report / project / etc. is a Quarto document</li>
+<li>You’ll often have a template Quarto document to start with</li>
+<li>The amount of scaffolding in the template will decrease over the semester</li>
+<li>You will turn in the .html file on Canvas</li>
+</ul>
+</section>
+<section id="lab-01" class="slide level2">
+<h2>Lab 01</h2>
+<ul>
+<li>Lab instructions are posted on the course website under <code>assignment</code>
+<ul>
+<li>Let’s go find today’s!</li>
+</ul></li>
+</ul>
+<div class="center larger">
+<p><a href="https://bit.ly/sta-363-s23">bit.ly/sta-363-s23</a></p>
+</div>
 
 
-
-<img data-src="img/demo.png" class="center r-stretch"></section></section>
+</section></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <p><img src="img/icon.png" class="slide-logo"></p>
 <div class="footer footer-default">
-<p><a href="https://lucymcgowan.com">Dr.&nbsp;Lucy D’Agostino McGowan</a></p>
+<p>Slides adapted from <a href="https://datasciencebox.org" target="_blank">datasciencebox.org</a> by Dr.&nbsp;Lucy D’Agostino McGowan</p>
 </div>
 </div></div>
 
@@ -404,7 +563,7 @@ Dr.&nbsp;D’Agostino McGowan
 'autoAnimateDuration': 1,
 'autoAnimateUnmatched': true,
 'jumpToSlide': true,
-'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":false},
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
 'chalkboard': {"buttons":true},
 'smaller': false,
  
@@ -528,7 +687,7 @@ Dr.&nbsp;D’Agostino McGowan
         hideCursorTime: 5000,
 
         // Opens links in an iframe preview overlay
-        previewLinks: true,
+        previewLinks: false,
 
         // Transition style (none/fade/slide/convex/concave/zoom)
         transition: 'none',

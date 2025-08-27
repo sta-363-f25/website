@@ -12,164 +12,177 @@
     ]
   },
   {
-    "objectID": "slides/01-welcome.html#section",
-    "href": "slides/01-welcome.html#section",
-    "title": "Welcome to Statistical Learning",
-    "section": "👋",
-    "text": "👋\nLucy D’Agostino McGowan\n   mcgowald@wfu.edu     Thurs 10a-11a"
+    "objectID": "slides/02-toolkit.html#agenda",
+    "href": "slides/02-toolkit.html#agenda",
+    "title": "Meet the toolkit",
+    "section": "Agenda",
+    "text": "Agenda\n\nDemo: Penguin Study\nR and RStudio\nQuarto"
   },
   {
-    "objectID": "slides/01-welcome.html#intros",
-    "href": "slides/01-welcome.html#intros",
-    "title": "Welcome to Statistical Learning",
-    "section": "Intros",
-    "text": "Intros\n\nName\nMajor\nFun OR boring fact"
+    "objectID": "slides/02-toolkit.html#recap-what-did-we-just-do",
+    "href": "slides/02-toolkit.html#recap-what-did-we-just-do",
+    "title": "Meet the toolkit",
+    "section": "Recap: What did we just do?",
+    "text": "Recap: What did we just do?\n\nCreate a project in RStudio\nOpen a .qmd file in RStudio\nRender the analysis\nEdit the analysis\nRe-render the analysis"
   },
   {
-    "objectID": "slides/01-welcome.html#statistical-learning-problems",
-    "href": "slides/01-welcome.html#statistical-learning-problems",
-    "title": "Welcome to Statistical Learning",
-    "section": "Statistical Learning Problems",
-    "text": "Statistical Learning Problems\n\n\n\nIdentify risk factors for breast cancer\n\n\n\n\n\nDr. Lucy D’Agostino McGowan adapted from slides by Hastie & Tibshirani"
+    "objectID": "slides/02-toolkit.html#login-to-rstudio-pro",
+    "href": "slides/02-toolkit.html#login-to-rstudio-pro",
+    "title": "Meet the toolkit",
+    "section": "Login to RStudio Pro",
+    "text": "Login to RStudio Pro\n\nNote: if you are off campus, you will need to use a VPN to connect\nGo to https://rstudio.deac.wfu.edu/"
   },
   {
-    "objectID": "slides/01-welcome.html#statistical-learning-problems-1",
-    "href": "slides/01-welcome.html#statistical-learning-problems-1",
-    "title": "Welcome to Statistical Learning",
-    "section": "Statistical Learning Problems",
-    "text": "Statistical Learning Problems\n\n\n\nIdentify risk factors for breast cancer\nCustomize an email spam detection system\n\n\n\nData: 4601 labeled emails sent to George who works at HP Labs\nInput features: frequencies of words and punctuation\n\n\n\n\n\n—\ngeorge\nyou\nhp\nfree\n!\nedu\nremove\n\n\n\n\nspam\n0.00\n2.26\n0.02\n0.52\n0.51\n0.01\n0.28\n\n\nemail\n2.27\n1.27\n0.90\n0.07\n0.11\n0.29\n0.01\n\n\n\n\nDr. Lucy D’Agostino McGowan adapted from slides by Hastie & Tibshirani"
+    "objectID": "slides/02-toolkit.html#rstudio-pro-setup",
+    "href": "slides/02-toolkit.html#rstudio-pro-setup",
+    "title": "Meet the toolkit",
+    "section": "RStudio Pro Setup",
+    "text": "RStudio Pro Setup\nStep 1: Create a New Project\nClick File &gt; New Project"
   },
   {
-    "objectID": "slides/01-welcome.html#statistical-learning-problems-2",
-    "href": "slides/01-welcome.html#statistical-learning-problems-2",
-    "title": "Welcome to Statistical Learning",
-    "section": "Statistical Learning Problems",
-    "text": "Statistical Learning Problems\n\n\n\nIdentify risk factors for breast cancer\n\nCustomize an email spam detection system\n\nIdentify numbers in handwritten zip code\n\n\n\n\n\n\nDr. Lucy D’Agostino McGowan adapted from slides by Hastie & Tibshirani"
+    "objectID": "slides/02-toolkit.html#rstudio-pro-setup-1",
+    "href": "slides/02-toolkit.html#rstudio-pro-setup-1",
+    "title": "Meet the toolkit",
+    "section": "RStudio Pro Setup",
+    "text": "RStudio Pro Setup\nStep 2: Click “Version Control”\nClick the third option."
   },
   {
-    "objectID": "slides/01-welcome.html#statistical-learning-problems-3",
-    "href": "slides/01-welcome.html#statistical-learning-problems-3",
-    "title": "Welcome to Statistical Learning",
-    "section": "Statistical Learning Problems",
-    "text": "Statistical Learning Problems\n\n\n\nIdentify risk factors for breast cancer\n\nCustomize an email spam detection system\n\nIdentify numbers in handwritten zip code\n\nEstablish the relationship between variables in population survey data\n\n\n\nIncome survey data for males from the central Atlantic region of US, 2009\n\n\n\nDr. Lucy D’Agostino McGowan adapted from slides by Hastie & Tibshirani"
+    "objectID": "slides/02-toolkit.html#rstudio-pro-setup-2",
+    "href": "slides/02-toolkit.html#rstudio-pro-setup-2",
+    "title": "Meet the toolkit",
+    "section": "RStudio Pro Setup",
+    "text": "RStudio Pro Setup\nStep 3: Click Git\nClick the first option"
   },
   {
-    "objectID": "slides/01-welcome.html#types-of-statistical-learning",
-    "href": "slides/01-welcome.html#types-of-statistical-learning",
-    "title": "Welcome to Statistical Learning",
-    "section": "✌️ types of statistical learning",
-    "text": "✌️ types of statistical learning\n\nSupervised Learning\nUnsupervised Learning"
+    "objectID": "slides/02-toolkit.html#rstudio-pro-setup-3",
+    "href": "slides/02-toolkit.html#rstudio-pro-setup-3",
+    "title": "Meet the toolkit",
+    "section": "RStudio Pro Setup",
+    "text": "RStudio Pro Setup\nStep 4: Copy my starter files\nPaste this link in the top box (Repository url):\nhttps://github.com/sta-363-s23/appex-01-welcome-penguins.git"
   },
   {
-    "objectID": "slides/01-welcome.html#supervised-learning",
-    "href": "slides/01-welcome.html#supervised-learning",
-    "title": "Welcome to Statistical Learning",
-    "section": "Supervised Learning",
-    "text": "Supervised Learning\n\nDr. Lucy D’Agostino McGowan adapted from slides by Hastie & Tibshirani\n\n\n\n\noutcome variable: \\(Y\\), (dependent variable, response, target)\npredictors: vector of \\(p\\) predictors, \\(X\\), (inputs, regressors, covariates, features, independent variables)\nIn the regression problem, \\(Y\\) is quantitative (e.g price, blood pressure)\nIn the classification problem, \\(Y\\) takes values in a finite, unordered set (survived/died, digit 0-9, cancer class of tissue sample)\nWe have training data \\((x_1, y_1), \\dots, (x_N, y_N)\\). These are observations (examples, instances) of these measurements"
+    "objectID": "slides/02-toolkit.html#penguin-fun",
+    "href": "slides/02-toolkit.html#penguin-fun",
+    "title": "Meet the toolkit",
+    "section": " Penguin fun!",
+    "text": "Penguin fun!\n\nOnce you log on to RStudio Pro, create a new project from version control (Git)\nPaste https://github.com/sta-363-s23/appex-01-welcome-penguins.git in the Repository url box\nFind the file pane (on the bottom right). Click the welcome-penguins.qmd file\nClick the “Render” button\nGo back to the file and change your name on top (in the yaml – we’ll talk about what this means later) and render again.\nThen, scroll to the plot chunk, below Palmer Penguins. Instead of looking at the relationship between flipper length and bill length, plot the relationship between flipper length and bill depth. Hint, look at the full dataset at the bottom of the document for variable names, update the captions to match your new plot.\nRender again & voila!\n\n\n\n\n−+\n08:00"
   },
   {
-    "objectID": "slides/01-welcome.html#supervised-learning-1",
-    "href": "slides/01-welcome.html#supervised-learning-1",
-    "title": "Welcome to Statistical Learning",
-    "section": "Supervised Learning",
-    "text": "Supervised Learning\n\nWhat do you think are some objectives here?\n\n\nObjectives\n\nAccurately predict unseen test cases\nUnderstand which inputs affect the outcome, and how\nAssess the quality of our predictions and inferences\n\n\nDr. Lucy D’Agostino McGowan adapted from slides by Hastie & Tibshirani"
+    "objectID": "slides/02-toolkit.html#what-is-r",
+    "href": "slides/02-toolkit.html#what-is-r",
+    "title": "Meet the toolkit",
+    "section": "What is R?",
+    "text": "What is R?\n\nscripting language\nstatistical software\nlike a car’s “engine”"
   },
   {
-    "objectID": "slides/01-welcome.html#unsupervised-learning",
-    "href": "slides/01-welcome.html#unsupervised-learning",
-    "title": "Welcome to Statistical Learning",
-    "section": "Unsupervised Learning",
-    "text": "Unsupervised Learning\n\nDr. Lucy D’Agostino McGowan adapted from slides by Hastie & Tibshirani\n\n\n\n\nNo outcome variable, just a set of predictors (features) measured on a set of samples\nobjective is more fuzzy – find groups of samples that behave similarly, find features that behave similarly, find linear combinations of features with the most variation\ndifficult to know how well your are doing\ndifferent from supervised learning, but can be useful as a pre-processing step for supervised learning"
+    "objectID": "slides/02-toolkit.html#what-is-rstudio",
+    "href": "slides/02-toolkit.html#what-is-rstudio",
+    "title": "Meet the toolkit",
+    "section": "What is RStudio?",
+    "text": "What is RStudio?\n\nIDE (integrated development environment)\nlike a car’s “dashboard”"
   },
   {
-    "objectID": "slides/01-welcome.html#lets-take-a-tour---class-website",
-    "href": "slides/01-welcome.html#lets-take-a-tour---class-website",
-    "title": "Welcome to Statistical Learning",
-    "section": "Let’s take a tour - class website",
-    "text": "Let’s take a tour - class website\n\n\n\n\n\nConcepts introduced:\n\nHow to find slides\nHow to find assignments\nHow to find RStudio Cloud\nHow to get help\nHow to find policies"
+    "objectID": "slides/02-toolkit.html#what-did-we-learn",
+    "href": "slides/02-toolkit.html#what-did-we-learn",
+    "title": "Meet the toolkit",
+    "section": "What did we learn?",
+    "text": "What did we learn?\n\nUsing the console\nUsing R as a calculator\nEnvironment\nLoading and viewing a data frame\nCreating a Project"
   },
   {
-    "objectID": "rstudio-pro.html",
-    "href": "rstudio-pro.html",
-    "title": "Logging into RStudio Pro",
+    "objectID": "slides/02-toolkit.html#r-essentials",
+    "href": "slides/02-toolkit.html#r-essentials",
+    "title": "Meet the toolkit",
+    "section": "R essentials",
+    "text": "R essentials\nA short list (for now):\n\nFunctions are (most often) verbs, followed by what they will be applied to in parentheses:\n\n\ndo_this(to_this)\ndo_that(to_this, to_that, with_those)\n\n\n\nColumns (variables) in data frames are accessed with $:\n\n\ndataframe$var_name\n\n\n\n\nPackages are installed with the install.packages function and loaded with the library function, once per session:\n\n\ninstall.packages(\"package_name\")\nlibrary(package_name)"
+  },
+  {
+    "objectID": "slides/02-toolkit.html#tidyverse",
+    "href": "slides/02-toolkit.html#tidyverse",
+    "title": "Meet the toolkit",
+    "section": "tidyverse",
+    "text": "tidyverse\n\n\n\n\nR packages for data science\n\nThe tidyverse is an opinionated collection of R packages designed for data science. All packages share an underlying design philosophy, grammar, and data structures."
+  },
+  {
+    "objectID": "slides/02-toolkit.html#quarto-1",
+    "href": "slides/02-toolkit.html#quarto-1",
+    "title": "Meet the toolkit",
+    "section": "Quarto",
+    "text": "Quarto\n\nFully reproducible reports – each time you render the document the analysis is run from the beginning\nSimple markdown syntax for text\nCode goes in chunks, defined by three backticks, narrative goes outside of chunks"
+  },
+  {
+    "objectID": "slides/02-toolkit.html#what-did-we-learn-1",
+    "href": "slides/02-toolkit.html#what-did-we-learn-1",
+    "title": "Meet the toolkit",
+    "section": "What did we learn?",
+    "text": "What did we learn?\n\nCreating a project\nCreating a .qmd file\nRendering documents\nVisual Editor\nThe YAML\nMarkdown and (some) R syntax"
+  },
+  {
+    "objectID": "slides/02-toolkit.html#rendering",
+    "href": "slides/02-toolkit.html#rendering",
+    "title": "Meet the toolkit",
+    "section": "Rendering",
+    "text": "Rendering\nUse the  Render button in the RStudio IDE to render the file and preview the output with a single click or keyboard shortcut (⇧⌘K).\n\n\n\n\n\n\nIf you prefer to automatically render whenever you save, you can check the Render on Save option on the editor toolbar.\n\n\n\n\n\n\nGetting Started with Quarto"
+  },
+  {
+    "objectID": "slides/02-toolkit.html#yaml-header",
+    "href": "slides/02-toolkit.html#yaml-header",
+    "title": "Meet the toolkit",
+    "section": "YAML header",
+    "text": "YAML header\nThe YAML header starts and ends with three dashes\n---\ntitle: \"This is a title\"\nformat: html\neditor: visual\n---\n\nGetting Started with Quarto"
+  },
+  {
+    "objectID": "slides/02-toolkit.html#code-chunks",
+    "href": "slides/02-toolkit.html#code-chunks",
+    "title": "Meet the toolkit",
+    "section": "Code chunks",
+    "text": "Code chunks\nR code chunks identified with {r} with (optional) chunk options, in YAML style, identified by #| at the beginning of the line.\n```{r}\n#| label: load-packages\n#| include: false\nlibrary(tidyverse)\nlibrary(palmerpenguins)\n```\n\n\nWould this code chunk be “included” in the final report?\n\n\nGetting Started with Quarto"
+  },
+  {
+    "objectID": "slides/02-toolkit.html#markdown-text",
+    "href": "slides/02-toolkit.html#markdown-text",
+    "title": "Meet the toolkit",
+    "section": "Markdown text",
+    "text": "Markdown text\n\nQuarto uses markdown for formatting text, including section headers, hyperlinks, an embedded image, and an inline code chunk.\nIf you use the “visual” editor, you don’t need to learn much of this\n\n\nGetting Started with Quarto"
+  },
+  {
+    "objectID": "slides/02-toolkit.html#your-turn",
+    "href": "slides/02-toolkit.html#your-turn",
+    "title": "Meet the toolkit",
+    "section": " Your turn",
+    "text": "Your turn\n\nLog into RStudio Pro\nOpen the project you created in the last class\nExplore the visual editor – try adding some bold text to the document\n\n\n\n\n−+\n04:00"
+  },
+  {
+    "objectID": "slides/02-toolkit.html#workspaces",
+    "href": "slides/02-toolkit.html#workspaces",
+    "title": "Meet the toolkit",
+    "section": "Workspaces",
+    "text": "Workspaces\nRemember this, and expect it to bite you a few times as you’re learning to work with Quarto: The workspace of your Quarto document is separate from the Console!\n\nRun the following in the console\n\n\nx &lt;- 2\nx * 3\n\n\n\nAll looks good, eh?\n\n\n\n\nThen, add the following chunk in your Quarto document\n\n\nx * 3\n\n\n\n\nWhat happens? Why the error?"
+  },
+  {
+    "objectID": "slides/02-toolkit.html#how-will-we-use-quarto",
+    "href": "slides/02-toolkit.html#how-will-we-use-quarto",
+    "title": "Meet the toolkit",
+    "section": "How will we use Quarto?",
+    "text": "How will we use Quarto?\n\nEvery assignment / report / project / etc. is a Quarto document\nYou’ll often have a template Quarto document to start with\nThe amount of scaffolding in the template will decrease over the semester\nYou will turn in the .html file on Canvas"
+  },
+  {
+    "objectID": "slides/02-toolkit.html#lab-01",
+    "href": "slides/02-toolkit.html#lab-01",
+    "title": "Meet the toolkit",
+    "section": "Lab 01",
+    "text": "Lab 01\n\nLab instructions are posted on the course website under assignment\n\nLet’s go find today’s!\n\n\n\nbit.ly/sta-363-s23"
+  },
+  {
+    "objectID": "schedule.html",
+    "href": "schedule.html",
+    "title": " Schedule",
     "section": "",
-    "text": "Follow these steps to access RStudio Pro:\n\nMake sure you are connected to the WFU Network. This means you must be on the eduroam wireless network, or connected through the VPN if you are off-campus.\n\nIf you are off-campus, go through the VPN first: WFU VPN Instructions.\n\nGo to login.deac.wfu.edu and sign in with your school email and password.\nOnce logged in, click the RStudio icon.\nSet your working directory to /deac/sta/classes/sta363/YOUR-USERNAME where YOUR-USERNAME is replaced by the first part of your email address, i.e., mine is mcgowald because my email is mcgowald@wfu.edu\nSet the number of hours to how long you plan to work on the project (I usually enter 4).\nClick Launch.\nThe session will show as Queued for a moment. Once it is ready, the status will turn green and say Ready.\nClick the Connect to RStudio Server button. You should now be in RStudio Pro.\n\n\nNote: You are not required to use this setup (i.e., you can download RStudio and all the necessary packages locally). However, the focus of this class is not on technical setup, so we will not be able to spend time troubleshooting issues if you are not using the official setup described here.",
+    "text": "Note: The timeline of topics and assignments might be updated throughout the semester.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nweek\ndate\ntopic\nslides\nappex\nassignment\nassessment\nprepare\n\n\n\n\n1\n27 August\nWelcome\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n1\n29 August\nLab 01: Welcome to R\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n2\n3 September\nTrade-offs: Accuracy and interpretability, bias and variance\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n2\n5 September\nDesign Principles of Data Analysis\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n3\n10 September\nData Visualization in R\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n3\n10 September\nExploratory Data Analysis\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n3\n12 September\nCross-validation\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n3\n12 September\nIntroduction to tidymodels\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n4\n17 September\nLab 02: Cross-validation\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n4\n19 September\nIntroduction to Linear Regression\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n5\n24 September\nLinear Regression in R\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n5\n26 September\nLogistic Regression Part 1\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n6\n1 October\nLab 03: Logistic Regression\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n6\n3 October\nRidge Regression\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n6\n3 October\nLasso & Elastic Net\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n6\n3 October\nPenalized Regression in R\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n7\n8 October\nLab 04: Ridge, Lasso, Elastic Net (Out of Class)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n7\n10 October\n[No Class]\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n7\n15 October\nMissing Data\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n8\n17 October\nReview\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n8\n22 October\nMidterm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n9\n24 October\nPolynomial Regression and Splines\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n10\n29 October\nNon-linear Models in R\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n10\n29 October\nLab 05: Non-linear models\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n10\n31 October\nDecision Trees (Regression)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n1\n5 November\nDecision Trees\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n11\n7 November\nDecision Trees (Classification)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n12\n12 November\nBagging\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n12\n14 November\nRandom Forests\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n13\n19 November\nBoosted Decision Trees\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n13\n21 November\nNeural Networks\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n14\n26 November\nThanksgiving [No Class]\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n14\n28 November\nThanksgiving [No Class]\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n15\n3 December\nLab 06: Ensemble Models\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n15\n5 December\nCommunicating with Statistics",
     "crumbs": [
       "{{< fa calendar >}} Schedule",
-      "Computing",
-      "Using the RStudio Pro Server"
+      "Course Details",
+      "Schedule"
     ]
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Statistical Learning",
-    "section": "",
-    "text": "Course Info\nLocation: Carswell 208\nTime: Wed/Fri 11a\n\n\n Office Hours\nInstructor: Dr. Lucy D’Agostino McGowan\nEmail: mcgowald@wfu.edu\nOffice Hours: Book Online\nOffice: Manchester 342\nTA: Joe Zhu\nMath & Stats Center: mathandstatscenter@wfu.edu\nLocation: Math & Stats Center\n\n\n\n\n\n\n\n\nCarswell 208\n\n\n\n\n\n\n\n\nWed/Fri 11a\n\n\n\n\n\nTexts\nThe main text book is: An Introduction to Statistical Learning with Applications in R by Gareth James, Daniela Witten, Trevor Hastie, and Robert Tibshirani – it is freely available online.\n\n\nMaterials\nThis class is very hands on; be sure to bring a fully charged laptop to every class."
-  },
-  {
-    "objectID": "help-quarto.html",
-    "href": "help-quarto.html",
-    "title": "Creating a New Quarto Document in RStudio",
-    "section": "",
-    "text": "To create a new Quarto document:\n\nBe sure that you are in the correct project for the exercise or assignment. If you need help creating a new project here are some tips.\nIn RStudio, go to the menu bar and select File &gt; New File &gt; Quarto Document.\nEnter a title for your document and select the output format (e.g., HTML, PDF, Word).\nClick Create. A new Quarto file (.qmd) will open.\nSave the file to your project directory\nUse the toolbar or the Render button to build your document.",
-    "crumbs": [
-      "{{< fa calendar >}} Schedule",
-      "Computing",
-      "Creating a Quarto Document"
-    ]
-  },
-  {
-    "objectID": "ex/ex-1.html",
-    "href": "ex/ex-1.html",
-    "title": "Exercise 1",
-    "section": "",
-    "text": "Exercise 1: Login to RStudio Pro\n\nGo to course website → Computing → Using the RStudio Server\nFollow login instructions\nLog in with your credentials\n\nCheck: You should see the RStudio interface with 4 panes.\n\n\n\nExercise 2: Create RStudio Project\n\nFile → New Project → New Directory → New Project\nName: ex-1\nClick Create Project\n\nCheck: Project name appears in top-right corner.\n\n\n\nExercise 3: Create Quarto Document\n\nFile → New File → Quarto Document\nTitle: “My First Analysis”\nSave as analysis.qmd\n\nCheck: New .qmd file is open and saved.\n\n\n\nExercise 4: Install ISLR Package and Load Data\nRun this code in the console ONCE:\n\ninstall.packages(\"ISLR\")\n\nThen run this:\n\nlibrary(ISLR)\nlibrary(ggplot2)\n# Test it works\ndata(Auto)\nhead(Auto)\n\n  mpg cylinders displacement horsepower weight acceleration year origin\n1  18         8          307        130   3504         12.0   70      1\n2  15         8          350        165   3693         11.5   70      1\n3  18         8          318        150   3436         11.0   70      1\n4  16         8          304        150   3433         12.0   70      1\n5  17         8          302        140   3449         10.5   70      1\n6  15         8          429        198   4341         10.0   70      1\n                       name\n1 chevrolet chevelle malibu\n2         buick skylark 320\n3        plymouth satellite\n4             amc rebel sst\n5               ford torino\n6          ford galaxie 500\n\n\nCheck: You see the Auto dataset.\nNow run this in the console:\n\n?Auto\n\nQuestion: What is in this dataset?\nAction: Add the code below to your .qmd file along with a short description of the data.\n\nlibrary(ISLR)\nlibrary(ggplot2)\ndata(Auto)\n\n\n\n\nExercise 5: Linear Model and Plot\nAdd the following code to your .qmd file. Try running it.\n\n# Fit linear model\nmodel1 &lt;- lm(mpg ~ horsepower, data = Auto)\nsummary(model1)\n\n\nCall:\nlm(formula = mpg ~ horsepower, data = Auto)\n\nResiduals:\n     Min       1Q   Median       3Q      Max \n-13.5710  -3.2592  -0.3435   2.7630  16.9240 \n\nCoefficients:\n             Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) 39.935861   0.717499   55.66   &lt;2e-16 ***\nhorsepower  -0.157845   0.006446  -24.49   &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 4.906 on 390 degrees of freedom\nMultiple R-squared:  0.6059,    Adjusted R-squared:  0.6049 \nF-statistic: 599.7 on 1 and 390 DF,  p-value: &lt; 2.2e-16\n\n# Create plot\nggplot(Auto, aes(x = horsepower, y = mpg)) +\n  geom_point() +\n  geom_smooth(method = \"lm\", formula = \"y ~ x\") +\n  labs(title = \"Horsepower vs MPG\",\n       x = \"Horsepower\", \n       y = \"Miles per Gallon\")\n\n\n\n\n\n\n\n\nCheck: You have model output and a scatter plot with trend line.\n\n\n\nFinish\nClick “Render” to create your HTML report. Upload your .html file in Canvas under Exercise 1",
-    "crumbs": [
-      "{{< fa calendar >}} Schedule",
-      "Exercises",
-      "Exercise 1"
-    ]
-  },
-  {
-    "objectID": "help-project.html",
-    "href": "help-project.html",
-    "title": "Creating or Opening a Project",
-    "section": "",
-    "text": "Before starting an assignment or exercise, always create or open a project:\n\nTo create a new project:\n\nIn RStudio, go to File &gt; New Project.\nChoose whether to create a project in a new directory or within an existing directory.\nNavigate to the folder where you want your project\nClick Create Project.\n\nTo open an existing project:\n\nIn RStudio, go to File &gt; Open Project.\nBrowse to the .Rproj file of the project you want to open.\nSelect it and click Open.\n\n\nThis ensures all your files and settings are organized within the correct project environment.",
-    "crumbs": [
-      "{{< fa calendar >}} Schedule",
-      "Computing",
-      "Creating an RStudio Project"
-    ]
-  },
-  {
-    "objectID": "help.html",
-    "href": "help.html",
-    "title": "Help",
-    "section": "",
-    "text": "Welcome to the help section! This page contains resources to help you succeed in the course, from technical setup to troubleshooting common issues. Click through the sidebar on the left."
-  },
-  {
-    "objectID": "help.html#getting-started-with-rstudio-and-quarto",
-    "href": "help.html#getting-started-with-rstudio-and-quarto",
-    "title": "Help",
-    "section": "Getting Started with RStudio and Quarto",
-    "text": "Getting Started with RStudio and Quarto\nIf you’re new to using RStudio Pro or working with Quarto documents, check out our getting started guides.\nGetting Started Guide with RStudio Pro →\nGetting Started Guide with Quarto →"
-  },
-  {
-    "objectID": "help.html#quick-links",
-    "href": "help.html#quick-links",
-    "title": "Help",
-    "section": "Quick Links",
-    "text": "Quick Links\n\nRStudio Pro Server: Access your computing environment at login.deac.wfu.edu\nCourse Schedule: Check the schedule for upcoming assignments and due dates"
-  },
-  {
-    "objectID": "help.html#need-additional-help",
-    "href": "help.html#need-additional-help",
-    "title": "Help",
-    "section": "Need Additional Help?",
-    "text": "Need Additional Help?\nIf you can’t find what you’re looking for in our guides, don’t hesitate to reach out."
   },
   {
     "objectID": "quarto-quick-guide.html",
@@ -316,16 +329,164 @@
     ]
   },
   {
-    "objectID": "schedule.html",
-    "href": "schedule.html",
-    "title": " Schedule",
+    "objectID": "help.html",
+    "href": "help.html",
+    "title": "Help",
     "section": "",
-    "text": "Note: The timeline of topics and assignments might be updated throughout the semester.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nweek\ndate\ntopic\nslides\nappex\nassignment\nassessment\nprepare\n\n\n\n\n1\n27 August\nWelcome\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n1\n29 August\nLab 01: Welcome to R\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n2\n3 September\nTrade-offs: Accuracy and interpretability, bias and variance\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n2\n5 September\nDesign Principles of Data Analysis\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n3\n10 September\nData Visualization in R\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n3\n10 September\nExploratory Data Analysis\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n3\n12 September\nCross-validation\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n3\n12 September\nIntroduction to tidymodels\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n4\n17 September\nLab 02: Cross-validation\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n4\n19 September\nIntroduction to Linear Regression\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n5\n24 September\nLinear Regression in R\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n5\n26 September\nLogistic Regression Part 1\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n6\n1 October\nLab 03: Logistic Regression\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n6\n3 October\nRidge Regression\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n6\n3 October\nLasso & Elastic Net\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n6\n3 October\nPenalized Regression in R\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n7\n8 October\nLab 04: Ridge, Lasso, Elastic Net (Out of Class)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n7\n10 October\n[No Class]\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n7\n15 October\nMissing Data\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n8\n17 October\nReview\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n8\n22 October\nMidterm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n9\n24 October\nPolynomial Regression and Splines\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n10\n29 October\nNon-linear Models in R\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n10\n29 October\nLab 05: Non-linear models\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n10\n31 October\nDecision Trees (Regression)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n1\n5 November\nDecision Trees\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n11\n7 November\nDecision Trees (Classification)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n12\n12 November\nBagging\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n12\n14 November\nRandom Forests\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n13\n19 November\nBoosted Decision Trees\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n13\n21 November\nNeural Networks\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n14\n26 November\nThanksgiving [No Class]\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n14\n28 November\nThanksgiving [No Class]\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n15\n3 December\nLab 06: Ensemble Models\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n15\n5 December\nCommunicating with Statistics",
+    "text": "Welcome to the help section! This page contains resources to help you succeed in the course, from technical setup to troubleshooting common issues. Click through the sidebar on the left."
+  },
+  {
+    "objectID": "help.html#getting-started-with-rstudio-and-quarto",
+    "href": "help.html#getting-started-with-rstudio-and-quarto",
+    "title": "Help",
+    "section": "Getting Started with RStudio and Quarto",
+    "text": "Getting Started with RStudio and Quarto\nIf you’re new to using RStudio Pro or working with Quarto documents, check out our getting started guides.\nGetting Started Guide with RStudio Pro →\nGetting Started Guide with Quarto →"
+  },
+  {
+    "objectID": "help.html#quick-links",
+    "href": "help.html#quick-links",
+    "title": "Help",
+    "section": "Quick Links",
+    "text": "Quick Links\n\nRStudio Pro Server: Access your computing environment at login.deac.wfu.edu\nCourse Schedule: Check the schedule for upcoming assignments and due dates"
+  },
+  {
+    "objectID": "help.html#need-additional-help",
+    "href": "help.html#need-additional-help",
+    "title": "Help",
+    "section": "Need Additional Help?",
+    "text": "Need Additional Help?\nIf you can’t find what you’re looking for in our guides, don’t hesitate to reach out."
+  },
+  {
+    "objectID": "help-project.html",
+    "href": "help-project.html",
+    "title": "Creating or Opening a Project",
+    "section": "",
+    "text": "Before starting an assignment or exercise, always create or open a project:\n\nTo create a new project:\n\nIn RStudio, go to File &gt; New Project.\nChoose whether to create a project in a new directory or within an existing directory.\nNavigate to the folder where you want your project\nClick Create Project.\n\nTo open an existing project:\n\nIn RStudio, go to File &gt; Open Project.\nBrowse to the .Rproj file of the project you want to open.\nSelect it and click Open.\n\n\nThis ensures all your files and settings are organized within the correct project environment.",
     "crumbs": [
       "{{< fa calendar >}} Schedule",
-      "Course Details",
-      "Schedule"
+      "Computing",
+      "Creating an RStudio Project"
     ]
+  },
+  {
+    "objectID": "ex/ex-1.html",
+    "href": "ex/ex-1.html",
+    "title": "Exercise 1",
+    "section": "",
+    "text": "Exercise 1: Login to RStudio Pro\n\nGo to course website → Computing → Using the RStudio Server\nFollow login instructions\nLog in with your credentials\n\nCheck: You should see the RStudio interface with 4 panes.\n\n\n\nExercise 2: Create RStudio Project\n\nFile → New Project → New Directory → New Project\nName: ex-1\nClick Create Project\n\nCheck: Project name appears in top-right corner.\n\n\n\nExercise 3: Create Quarto Document\n\nFile → New File → Quarto Document\nTitle: “My First Analysis”\nSave as analysis.qmd\n\nCheck: New .qmd file is open and saved.\n\n\n\nExercise 4: Install ISLR Package and Load Data\nRun this code in the console ONCE:\n\ninstall.packages(\"ISLR\")\n\nThen run this:\n\nlibrary(ISLR)\nlibrary(ggplot2)\n# Test it works\ndata(Auto)\nhead(Auto)\n\n  mpg cylinders displacement horsepower weight acceleration year origin\n1  18         8          307        130   3504         12.0   70      1\n2  15         8          350        165   3693         11.5   70      1\n3  18         8          318        150   3436         11.0   70      1\n4  16         8          304        150   3433         12.0   70      1\n5  17         8          302        140   3449         10.5   70      1\n6  15         8          429        198   4341         10.0   70      1\n                       name\n1 chevrolet chevelle malibu\n2         buick skylark 320\n3        plymouth satellite\n4             amc rebel sst\n5               ford torino\n6          ford galaxie 500\n\n\nCheck: You see the Auto dataset.\nNow run this in the console:\n\n?Auto\n\nQuestion: What is in this dataset?\nAction: Add the code below to your .qmd file along with a short description of the data.\n\nlibrary(ISLR)\nlibrary(ggplot2)\ndata(Auto)\n\n\n\n\nExercise 5: Linear Model and Plot\nAdd the following code to your .qmd file. Try running it.\n\n# Fit linear model\nmodel1 &lt;- lm(mpg ~ horsepower, data = Auto)\nsummary(model1)\n\n\nCall:\nlm(formula = mpg ~ horsepower, data = Auto)\n\nResiduals:\n     Min       1Q   Median       3Q      Max \n-13.5710  -3.2592  -0.3435   2.7630  16.9240 \n\nCoefficients:\n             Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) 39.935861   0.717499   55.66   &lt;2e-16 ***\nhorsepower  -0.157845   0.006446  -24.49   &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 4.906 on 390 degrees of freedom\nMultiple R-squared:  0.6059,    Adjusted R-squared:  0.6049 \nF-statistic: 599.7 on 1 and 390 DF,  p-value: &lt; 2.2e-16\n\n# Create plot\nggplot(Auto, aes(x = horsepower, y = mpg)) +\n  geom_point() +\n  geom_smooth(method = \"lm\", formula = \"y ~ x\") +\n  labs(title = \"Horsepower vs MPG\",\n       x = \"Horsepower\", \n       y = \"Miles per Gallon\")\n\n\n\n\n\n\n\n\nCheck: You have model output and a scatter plot with trend line.\n\n\n\nFinish\nClick “Render” to create your HTML report. Upload your .html file in Canvas under Exercise 1",
+    "crumbs": [
+      "{{< fa calendar >}} Schedule",
+      "Exercises",
+      "Exercise 1"
+    ]
+  },
+  {
+    "objectID": "help-quarto.html",
+    "href": "help-quarto.html",
+    "title": "Creating a New Quarto Document in RStudio",
+    "section": "",
+    "text": "To create a new Quarto document:\n\nBe sure that you are in the correct project for the exercise or assignment. If you need help creating a new project here are some tips.\nIn RStudio, go to the menu bar and select File &gt; New File &gt; Quarto Document.\nEnter a title for your document and select the output format (e.g., HTML, PDF, Word).\nClick Create. A new Quarto file (.qmd) will open.\nSave the file to your project directory\nUse the toolbar or the Render button to build your document.",
+    "crumbs": [
+      "{{< fa calendar >}} Schedule",
+      "Computing",
+      "Creating a Quarto Document"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Statistical Learning",
+    "section": "",
+    "text": "Course Info\nLocation: Carswell 208\nTime: Wed/Fri 11a\n\n\n Office Hours\nInstructor: Dr. Lucy D’Agostino McGowan\nEmail: mcgowald@wfu.edu\nOffice Hours: Book Online\nOffice: Manchester 342\nTA: Joe Zhu\nMath & Stats Center: mathandstatscenter@wfu.edu\nLocation: Math & Stats Center\n\n\n\n\n\n\n\n\nCarswell 208\n\n\n\n\n\n\n\n\nWed/Fri 11a\n\n\n\n\n\nTexts\nThe main text book is: An Introduction to Statistical Learning with Applications in R by Gareth James, Daniela Witten, Trevor Hastie, and Robert Tibshirani – it is freely available online.\n\n\nMaterials\nThis class is very hands on; be sure to bring a fully charged laptop to every class."
+  },
+  {
+    "objectID": "rstudio-pro.html",
+    "href": "rstudio-pro.html",
+    "title": "Logging into RStudio Pro",
+    "section": "",
+    "text": "Follow these steps to access RStudio Pro:\n\nMake sure you are connected to the WFU Network. This means you must be on the eduroam wireless network, or connected through the VPN if you are off-campus.\n\nIf you are off-campus, go through the VPN first: WFU VPN Instructions.\n\nGo to login.deac.wfu.edu and sign in with your school email and password.\nOnce logged in, click the RStudio icon.\nSet your working directory to /deac/sta/classes/sta363/YOUR-USERNAME where YOUR-USERNAME is replaced by the first part of your email address, i.e., mine is mcgowald because my email is mcgowald@wfu.edu\nSet the number of hours to how long you plan to work on the project (I usually enter 4).\nClick Launch.\nThe session will show as Queued for a moment. Once it is ready, the status will turn green and say Ready.\nClick the Connect to RStudio Server button. You should now be in RStudio Pro.\n\n\nNote: You are not required to use this setup (i.e., you can download RStudio and all the necessary packages locally). However, the focus of this class is not on technical setup, so we will not be able to spend time troubleshooting issues if you are not using the official setup described here.",
+    "crumbs": [
+      "{{< fa calendar >}} Schedule",
+      "Computing",
+      "Using the RStudio Pro Server"
+    ]
+  },
+  {
+    "objectID": "slides/01-welcome.html#section",
+    "href": "slides/01-welcome.html#section",
+    "title": "Welcome to Statistical Learning",
+    "section": "👋",
+    "text": "👋\nLucy D’Agostino McGowan\n   mcgowald@wfu.edu"
+  },
+  {
+    "objectID": "slides/01-welcome.html#intros",
+    "href": "slides/01-welcome.html#intros",
+    "title": "Welcome to Statistical Learning",
+    "section": "Intros",
+    "text": "Intros\n\nName\nMajor\nFun OR boring fact"
+  },
+  {
+    "objectID": "slides/01-welcome.html#statistical-learning-problems",
+    "href": "slides/01-welcome.html#statistical-learning-problems",
+    "title": "Welcome to Statistical Learning",
+    "section": "Statistical Learning Problems",
+    "text": "Statistical Learning Problems\n\n\n\nIdentify risk factors for breast cancer\n\n\n\n\n\nDr. Lucy D’Agostino McGowan adapted from slides by Hastie & Tibshirani"
+  },
+  {
+    "objectID": "slides/01-welcome.html#statistical-learning-problems-1",
+    "href": "slides/01-welcome.html#statistical-learning-problems-1",
+    "title": "Welcome to Statistical Learning",
+    "section": "Statistical Learning Problems",
+    "text": "Statistical Learning Problems\n\n\n\nIdentify risk factors for breast cancer\nCustomize an email spam detection system\n\n\n\nData: 4601 labeled emails sent to George who works at HP Labs\nInput features: frequencies of words and punctuation\n\n\n\n\n\n—\ngeorge\nyou\nhp\nfree\n!\nedu\nremove\n\n\n\n\nspam\n0.00\n2.26\n0.02\n0.52\n0.51\n0.01\n0.28\n\n\nemail\n2.27\n1.27\n0.90\n0.07\n0.11\n0.29\n0.01\n\n\n\n\nDr. Lucy D’Agostino McGowan adapted from slides by Hastie & Tibshirani"
+  },
+  {
+    "objectID": "slides/01-welcome.html#statistical-learning-problems-2",
+    "href": "slides/01-welcome.html#statistical-learning-problems-2",
+    "title": "Welcome to Statistical Learning",
+    "section": "Statistical Learning Problems",
+    "text": "Statistical Learning Problems\n\n\n\nIdentify risk factors for breast cancer\n\nCustomize an email spam detection system\n\nIdentify numbers in handwritten zip code\n\n\n\n\n\n\nDr. Lucy D’Agostino McGowan adapted from slides by Hastie & Tibshirani"
+  },
+  {
+    "objectID": "slides/01-welcome.html#statistical-learning-problems-3",
+    "href": "slides/01-welcome.html#statistical-learning-problems-3",
+    "title": "Welcome to Statistical Learning",
+    "section": "Statistical Learning Problems",
+    "text": "Statistical Learning Problems\n\n\n\nIdentify risk factors for breast cancer\n\nCustomize an email spam detection system\n\nIdentify numbers in handwritten zip code\n\nEstablish the relationship between variables in population survey data\n\n\n\nIncome survey data for males from the central Atlantic region of US, 2009\n\n\n\nDr. Lucy D’Agostino McGowan adapted from slides by Hastie & Tibshirani"
+  },
+  {
+    "objectID": "slides/01-welcome.html#types-of-statistical-learning",
+    "href": "slides/01-welcome.html#types-of-statistical-learning",
+    "title": "Welcome to Statistical Learning",
+    "section": "✌️ types of statistical learning",
+    "text": "✌️ types of statistical learning\n\nSupervised Learning\nUnsupervised Learning"
+  },
+  {
+    "objectID": "slides/01-welcome.html#supervised-learning",
+    "href": "slides/01-welcome.html#supervised-learning",
+    "title": "Welcome to Statistical Learning",
+    "section": "Supervised Learning",
+    "text": "Supervised Learning\n\nDr. Lucy D’Agostino McGowan adapted from slides by Hastie & Tibshirani\n\n\noutcome variable: \\(Y\\), (dependent variable, response, target)\npredictors: vector of \\(p\\) predictors, \\(X\\), (inputs, regressors, covariates, features, independent variables)\nIn the regression problem, \\(Y\\) is quantitative (e.g price, blood pressure)\nIn the classification problem, \\(Y\\) takes values in a finite, unordered set (survived/died, digit 0-9, cancer class of tissue sample)\nWe have training data \\((x_1, y_1), \\dots, (x_N, y_N)\\). These are observations (examples, instances) of these measurements"
+  },
+  {
+    "objectID": "slides/01-welcome.html#supervised-learning-1",
+    "href": "slides/01-welcome.html#supervised-learning-1",
+    "title": "Welcome to Statistical Learning",
+    "section": "Supervised Learning",
+    "text": "Supervised Learning\n\nWhat do you think are some objectives here?\n\n\nObjectives\n\nAccurately predict unseen test cases\nUnderstand which inputs affect the outcome, and how\nAssess the quality of our predictions and inferences\n\n\nDr. Lucy D’Agostino McGowan adapted from slides by Hastie & Tibshirani"
+  },
+  {
+    "objectID": "slides/01-welcome.html#unsupervised-learning",
+    "href": "slides/01-welcome.html#unsupervised-learning",
+    "title": "Welcome to Statistical Learning",
+    "section": "Unsupervised Learning",
+    "text": "Unsupervised Learning\n\nDr. Lucy D’Agostino McGowan adapted from slides by Hastie & Tibshirani\n\n\nNo outcome variable, just a set of predictors (features) measured on a set of samples\nobjective is more fuzzy – find groups of samples that behave similarly, find features that behave similarly, find linear combinations of features with the most variation\ndifficult to know how well your are doing\ndifferent from supervised learning, but can be useful as a pre-processing step for supervised learning"
+  },
+  {
+    "objectID": "slides/01-welcome.html#lets-take-a-tour---class-website",
+    "href": "slides/01-welcome.html#lets-take-a-tour---class-website",
+    "title": "Welcome to Statistical Learning",
+    "section": "Let’s take a tour - class website",
+    "text": "Let’s take a tour - class website"
   },
   {
     "objectID": "syllabus.html",
