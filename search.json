@@ -12,6 +12,732 @@
     ]
   },
   {
+    "objectID": "slides/03-notation-and-tradeoffs.html#regression-and-classification",
+    "href": "slides/03-notation-and-tradeoffs.html#regression-and-classification",
+    "title": "Trade-offs: Accuracy and interpretability, bias and variance",
+    "section": "Regression and Classification",
+    "text": "Regression and Classification\n\nRegression: quantitative response\nClassification: qualitative (categorical) response"
+  },
+  {
+    "objectID": "slides/03-notation-and-tradeoffs.html#regression-and-classification-1",
+    "href": "slides/03-notation-and-tradeoffs.html#regression-and-classification-1",
+    "title": "Trade-offs: Accuracy and interpretability, bias and variance",
+    "section": "Regression and Classification",
+    "text": "Regression and Classification\n\nWhat would be an example of a regression problem?\n\n\nRegression: quantitative response\nClassification: qualitative (categorical) response"
+  },
+  {
+    "objectID": "slides/03-notation-and-tradeoffs.html#regression-and-classification-2",
+    "href": "slides/03-notation-and-tradeoffs.html#regression-and-classification-2",
+    "title": "Trade-offs: Accuracy and interpretability, bias and variance",
+    "section": "Regression and Classification",
+    "text": "Regression and Classification\n\nWhat would be an example of a classification problem?\n\n\nRegression: quantitative response\nClassification: qualitative (categorical) response"
+  },
+  {
+    "objectID": "slides/03-notation-and-tradeoffs.html#auto-data",
+    "href": "slides/03-notation-and-tradeoffs.html#auto-data",
+    "title": "Trade-offs: Accuracy and interpretability, bias and variance",
+    "section": "Auto data",
+    "text": "Auto data\n\n\n\n\n\n\n\n\n\n\n\nAbove are mpg vs horsepower, weight, and acceleration, with a blue linear-regression line fit separately to each. Can we predict mpg using these three?\n\nMaybe we can do better using a model:\n\\[\\texttt{mpg} \\approx f(\\texttt{horsepower}, \\texttt{weight}, \\texttt{acceleration})\\]"
+  },
+  {
+    "objectID": "slides/03-notation-and-tradeoffs.html#notation",
+    "href": "slides/03-notation-and-tradeoffs.html#notation",
+    "title": "Trade-offs: Accuracy and interpretability, bias and variance",
+    "section": "Notation",
+    "text": "Notation\n\nmpg is the response variable, the outcome variable, we refer to this as \\(Y\\)\nhorsepower is a feature, input, predictor, we refer to this as \\(X_1\\)\nweight is \\(X_2\\)\nacceleration is \\(X_3\\)\nOur input vector is:\n\n\\(X = \\begin{bmatrix} X_1 \\\\X_2 \\\\X_3\\end{bmatrix}\\)\n\nOur model is\n\n\\(Y = f(X) + \\varepsilon\\)\n\n\\(\\varepsilon\\) is our error"
+  },
+  {
+    "objectID": "slides/03-notation-and-tradeoffs.html#why-do-we-care-about-fx",
+    "href": "slides/03-notation-and-tradeoffs.html#why-do-we-care-about-fx",
+    "title": "Trade-offs: Accuracy and interpretability, bias and variance",
+    "section": "Why do we care about \\(f(X)\\)?",
+    "text": "Why do we care about \\(f(X)\\)?\n\nWe can use \\(f(X)\\) to make predictions of \\(Y\\) for new values of \\(X = x\\)\nWe can gain a better understanding of which components of \\(X = (X_1, X_2, \\dots, X_p)\\) are important for explaining \\(Y\\)\nDepending on how complex \\(f\\) is, maybe we can understand how each component ( \\(X_j\\) ) of \\(X\\) affects \\(Y\\)"
+  },
+  {
+    "objectID": "slides/03-notation-and-tradeoffs.html#how-do-we-choose-fx",
+    "href": "slides/03-notation-and-tradeoffs.html#how-do-we-choose-fx",
+    "title": "Trade-offs: Accuracy and interpretability, bias and variance",
+    "section": "How do we choose \\(f(X)\\)?",
+    "text": "How do we choose \\(f(X)\\)?\n\nWhat is a good value for \\(f(X)\\) at any selected value of \\(X\\), say \\(X = 100\\)? There can be many \\(Y\\) values at \\(X = 100\\)."
+  },
+  {
+    "objectID": "slides/03-notation-and-tradeoffs.html#how-do-we-choose-fx-1",
+    "href": "slides/03-notation-and-tradeoffs.html#how-do-we-choose-fx-1",
+    "title": "Trade-offs: Accuracy and interpretability, bias and variance",
+    "section": "How do we choose \\(f(X)\\)?",
+    "text": "How do we choose \\(f(X)\\)?\n\nWhat is a good value for \\(f(X)\\) at any selected value of \\(X\\), say \\(X = 100\\)? There can be many \\(Y\\) values at \\(X = 100\\)."
+  },
+  {
+    "objectID": "slides/03-notation-and-tradeoffs.html#how-do-we-choose-fx-2",
+    "href": "slides/03-notation-and-tradeoffs.html#how-do-we-choose-fx-2",
+    "title": "Trade-offs: Accuracy and interpretability, bias and variance",
+    "section": "How do we choose \\(f(X)\\)?",
+    "text": "How do we choose \\(f(X)\\)?\n\nWhat is a good value for \\(f(X)\\) at any selected value of \\(X\\), say \\(X = 100\\)? There can be many \\(Y\\) values at \\(X = 100\\).\n\nThere are 17 points here, what value should I choose for f(100). What do you think the blue dot represents?"
+  },
+  {
+    "objectID": "slides/03-notation-and-tradeoffs.html#how-do-we-choose-fx-3",
+    "href": "slides/03-notation-and-tradeoffs.html#how-do-we-choose-fx-3",
+    "title": "Trade-offs: Accuracy and interpretability, bias and variance",
+    "section": "How do we choose \\(f(X)\\)?",
+    "text": "How do we choose \\(f(X)\\)?\n\nA good value is\n\\[f(100) = E(Y|X = 100)\\]\n\n\\(E(Y|X = 100)\\) means expected value (average) of \\(Y\\) given \\(X = 100\\)\n\n\nThis ideal \\(f(x) = E(Y | X = x)\\) is called the regression function"
+  },
+  {
+    "objectID": "slides/03-notation-and-tradeoffs.html#regression-function-fx",
+    "href": "slides/03-notation-and-tradeoffs.html#regression-function-fx",
+    "title": "Trade-offs: Accuracy and interpretability, bias and variance",
+    "section": "Regression function, \\(f(X)\\)",
+    "text": "Regression function, \\(f(X)\\)\n\nAlso works or a vector, \\(X\\), for example,\n\n\\[f(x) = f(x_1, x_2, x_3) = E[Y | X_1 = x_1, X_2 = x_2, X_3 = x_3]\\]\n\nThis is the optimal predictor of \\(Y\\) in terms of mean-squared prediction error"
+  },
+  {
+    "objectID": "slides/03-notation-and-tradeoffs.html#regression-function-fx-1",
+    "href": "slides/03-notation-and-tradeoffs.html#regression-function-fx-1",
+    "title": "Trade-offs: Accuracy and interpretability, bias and variance",
+    "section": "Regression function, \\(f(X)\\)",
+    "text": "Regression function, \\(f(X)\\)\n\n\\(f(x) = E(Y|X = x)\\) is the function that minimizes \\(E[(Y - g(X))^2 |X = x]\\) over all functions \\(g\\) at all points \\(X = x\\)\n\n\n\\(\\varepsilon = Y - f(x)\\) is the irreducible error\neven if we knew \\(f(x)\\), we would still make errors in prediction, since at each \\(X = x\\) there is typically a distribution of possible \\(Y\\) values"
+  },
+  {
+    "objectID": "slides/03-notation-and-tradeoffs.html#regression-function-fx-2",
+    "href": "slides/03-notation-and-tradeoffs.html#regression-function-fx-2",
+    "title": "Trade-offs: Accuracy and interpretability, bias and variance",
+    "section": "Regression function, \\(f(X)\\)",
+    "text": "Regression function, \\(f(X)\\)"
+  },
+  {
+    "objectID": "slides/03-notation-and-tradeoffs.html#regression-function-fx-3",
+    "href": "slides/03-notation-and-tradeoffs.html#regression-function-fx-3",
+    "title": "Trade-offs: Accuracy and interpretability, bias and variance",
+    "section": "Regression function, \\(f(X)\\)",
+    "text": "Regression function, \\(f(X)\\)\n\n\nUsing these points, how would I calculate the regression function?\n\n\n\nTake the average! \\(f(100) = E[\\texttt{mpg}|\\texttt{horsepower} = 100] = 19.6\\)"
+  },
+  {
+    "objectID": "slides/03-notation-and-tradeoffs.html#regression-function-fx-4",
+    "href": "slides/03-notation-and-tradeoffs.html#regression-function-fx-4",
+    "title": "Trade-offs: Accuracy and interpretability, bias and variance",
+    "section": "Regression function, \\(f(X)\\)",
+    "text": "Regression function, \\(f(X)\\)\n\n\nThis point has a \\(Y\\) value of 32.9. What is \\(\\hat\\varepsilon\\)?\n\n\n\\(\\hat\\varepsilon = Y - \\hat{f}(X) = 32.9 - 19.6 = \\color{red}{13.3}\\)"
+  },
+  {
+    "objectID": "slides/03-notation-and-tradeoffs.html#the-error",
+    "href": "slides/03-notation-and-tradeoffs.html#the-error",
+    "title": "Trade-offs: Accuracy and interpretability, bias and variance",
+    "section": "The error",
+    "text": "The error\nFor any estimate, \\(\\hat{f}(x)\\), of \\(f(x)\\), we have\n\\[E[(Y - \\hat{f}(x))^2 | X = x] = \\underbrace{[f(x) - \\hat{f}(x)]^2}_{\\textrm{reducible error}} + \\underbrace{Var(\\varepsilon)}_{\\textrm{irreducible error}}\\]\n\nAssume for a moment that both \\(\\hat{f}\\) and X are fixed.\n\\(E(Y − \\hat{Y})^2\\) represents the average, or expected value, of the squared difference between the predicted and actual value of Y, and Var( \\(\\varepsilon\\) ) represents the variance associated with the error term\nThe focus of this class is on techniques for estimating f with the aim of minimizing the reducible error.\nthe irreducible error will always provide an upper bound on the accuracy of our prediction for Y\nThis bound is almost always unknown in practice"
+  },
+  {
+    "objectID": "slides/03-notation-and-tradeoffs.html#estimating-f",
+    "href": "slides/03-notation-and-tradeoffs.html#estimating-f",
+    "title": "Trade-offs: Accuracy and interpretability, bias and variance",
+    "section": "Estimating \\(f\\)",
+    "text": "Estimating \\(f\\)\n\nTypically we have very few (if any!) data points at \\(X=x\\) exactly, so we cannot compute \\(E[Y|X=x]\\)\nFor example, what if we were interested in estimating miles per gallon when horsepower was 104.\n\n\n\n\n\n\n\n\n\n\n\n\n\n💡 We can relax the definition and let\n\\[\\hat{f}(x) = E[Y | X\\in \\mathcal{N}(x)]\\]\n\nWhere \\(\\mathcal{N}(x)\\) is some neighborhood of \\(x\\)"
+  },
+  {
+    "objectID": "slides/03-notation-and-tradeoffs.html#notation-pause",
+    "href": "slides/03-notation-and-tradeoffs.html#notation-pause",
+    "title": "Trade-offs: Accuracy and interpretability, bias and variance",
+    "section": "Notation pause!",
+    "text": "Notation pause!\n\n\\[\\hat{f}(x) = \\underbrace{E}_{\\textrm{The expectation}}[\\underbrace{Y}_{\\textrm{of Y}} \\underbrace{|}_{\\textrm{given}} \\underbrace{X\\in \\mathcal{N}(x)}_{\\textrm{X is in the neighborhood of x}}]\\]\n\n\n🚨 If you need a notation pause at any point during this class, please let me know!"
+  },
+  {
+    "objectID": "slides/03-notation-and-tradeoffs.html#estimating-f-1",
+    "href": "slides/03-notation-and-tradeoffs.html#estimating-f-1",
+    "title": "Trade-offs: Accuracy and interpretability, bias and variance",
+    "section": "Estimating \\(f\\)",
+    "text": "Estimating \\(f\\)\n💡 We can relax the definition and let\n\\[\\hat{f}(x) = E[Y | X\\in \\mathcal{N}(x)]\\]\n\n\nNearest neighbor averaging does pretty well with small \\(p\\) ( \\(p\\leq 4\\) ) and large \\(n\\)\nNearest neighbor is not great when \\(p\\) is large because of the curse of dimensionality (because nearest neighbors tend to be far away in high dimensions)\n\n\n\n\nWhat do I mean by \\(p\\)? What do I mean by \\(n\\)?"
+  },
+  {
+    "objectID": "slides/03-notation-and-tradeoffs.html#parametric-models",
+    "href": "slides/03-notation-and-tradeoffs.html#parametric-models",
+    "title": "Trade-offs: Accuracy and interpretability, bias and variance",
+    "section": "Parametric models",
+    "text": "Parametric models\nA common parametric model is a linear model\n\\[f(X) = \\beta_0 + \\beta_1X_1 + \\beta_2X_2 + \\dots + \\beta_pX_p\\]\n\nA linear model has \\(p + 1\\) parameters ( \\(\\beta_0,\\dots,\\beta_p\\) )\nWe estimate these parameters by fitting a model to training data\nAlthough this model is almost never correct it can often be a good interpretable approximation to the unknown true function, \\(f(X)\\)"
+  },
+  {
+    "objectID": "slides/03-notation-and-tradeoffs.html#section",
+    "href": "slides/03-notation-and-tradeoffs.html#section",
+    "title": "Trade-offs: Accuracy and interpretability, bias and variance",
+    "section": "",
+    "text": "The  red  points are simulated values for income from the model:\n\n\\[\\texttt{income} = f(\\texttt{education, senority}) + \\varepsilon\\]\n\n\\(f\\) is the  blue  surface"
+  },
+  {
+    "objectID": "slides/03-notation-and-tradeoffs.html#section-1",
+    "href": "slides/03-notation-and-tradeoffs.html#section-1",
+    "title": "Trade-offs: Accuracy and interpretability, bias and variance",
+    "section": "",
+    "text": "Linear regression model fit to the simulated data\n\\[\\hat{f}_L(\\texttt{education, senority}) = \\hat{\\beta}_0 + \\hat{\\beta}_1\\texttt{education}+\\hat{\\beta}_2\\texttt{senority}\\]"
+  },
+  {
+    "objectID": "slides/03-notation-and-tradeoffs.html#section-2",
+    "href": "slides/03-notation-and-tradeoffs.html#section-2",
+    "title": "Trade-offs: Accuracy and interpretability, bias and variance",
+    "section": "",
+    "text": "More flexible regression model \\(\\hat{f}_S(\\texttt{education, seniority})\\) fit to the simulated data.\nHere we use a technique called a thin-plate spline to fit a flexible surface"
+  },
+  {
+    "objectID": "slides/03-notation-and-tradeoffs.html#section-3",
+    "href": "slides/03-notation-and-tradeoffs.html#section-3",
+    "title": "Trade-offs: Accuracy and interpretability, bias and variance",
+    "section": "",
+    "text": "And even MORE flexible 😱 model \\(\\hat{f}(\\texttt{education, seniority})\\).\n\nHere we’ve basically drawn the surface to hit every point, minimizing the error, but completely overfitting"
+  },
+  {
+    "objectID": "slides/03-notation-and-tradeoffs.html#finding-balance",
+    "href": "slides/03-notation-and-tradeoffs.html#finding-balance",
+    "title": "Trade-offs: Accuracy and interpretability, bias and variance",
+    "section": "🤹 Finding balance",
+    "text": "🤹 Finding balance\n\nPrediction accuracy versus interpretability\n\nLinear models are easy to interpret, thin-plate splines are not\n\nGood fit versus overfit or underfit\n\nHow do we know when the fit is just right?\n\nParsimony versus black-box\n\nWe often prefer a simpler model involving fewer variables over a black-box predictor involving them all"
+  },
+  {
+    "objectID": "slides/03-notation-and-tradeoffs.html#accuracy",
+    "href": "slides/03-notation-and-tradeoffs.html#accuracy",
+    "title": "Trade-offs: Accuracy and interpretability, bias and variance",
+    "section": "Accuracy",
+    "text": "Accuracy\n\nWe’ve fit a model \\(\\hat{f}(x)\\) to some training data \\(\\texttt{train} = \\{x_i, y_i\\}^N_1\\)\nWe can measure accuracy as the average squared prediction error over that train data\n\n\\[MSE_{\\texttt{train}} = \\textrm{Ave}_{i\\in\\texttt{train}}[y_i-\\hat{f}(x_i)]^2\\]\n\n\nWhat can go wrong here?\n\n\nThis may be biased towards overfit models"
+  },
+  {
+    "objectID": "slides/03-notation-and-tradeoffs.html#accuracy-1",
+    "href": "slides/03-notation-and-tradeoffs.html#accuracy-1",
+    "title": "Trade-offs: Accuracy and interpretability, bias and variance",
+    "section": "Accuracy",
+    "text": "Accuracy\n\n\nI have some train data, plotted above. What \\(\\hat{f}(x)\\) would minimize the \\(MSE_{\\texttt{train}}\\)?\n\n\\[MSE_{\\texttt{train}} = \\textrm{Ave}_{i\\in\\texttt{train}}[y_i-\\hat{f}(x_i)]^2\\]"
+  },
+  {
+    "objectID": "slides/03-notation-and-tradeoffs.html#accuracy-2",
+    "href": "slides/03-notation-and-tradeoffs.html#accuracy-2",
+    "title": "Trade-offs: Accuracy and interpretability, bias and variance",
+    "section": "Accuracy",
+    "text": "Accuracy\n\n\nI have some train data, plotted above. What \\(\\hat{f}(x)\\) would minimize the \\(MSE_{\\texttt{train}}\\)?\n\n\\[MSE_{\\texttt{train}} = \\textrm{Ave}_{i\\in\\texttt{train}}[y_i-\\hat{f}(x_i)]^2\\]"
+  },
+  {
+    "objectID": "slides/03-notation-and-tradeoffs.html#accuracy-3",
+    "href": "slides/03-notation-and-tradeoffs.html#accuracy-3",
+    "title": "Trade-offs: Accuracy and interpretability, bias and variance",
+    "section": "Accuracy",
+    "text": "Accuracy\n\n\nWhat is wrong with this?\n\n\nIt’s overfit!"
+  },
+  {
+    "objectID": "slides/03-notation-and-tradeoffs.html#accuracy-4",
+    "href": "slides/03-notation-and-tradeoffs.html#accuracy-4",
+    "title": "Trade-offs: Accuracy and interpretability, bias and variance",
+    "section": "Accuracy",
+    "text": "Accuracy\n\nIf we get a new sample, that overfit model is probably going to be terrible!"
+  },
+  {
+    "objectID": "slides/03-notation-and-tradeoffs.html#accuracy-5",
+    "href": "slides/03-notation-and-tradeoffs.html#accuracy-5",
+    "title": "Trade-offs: Accuracy and interpretability, bias and variance",
+    "section": "Accuracy",
+    "text": "Accuracy\n\nWe’ve fit a model \\(\\hat{f}(x)\\) to some training data \\(\\texttt{train} = \\{x_i, y_i\\}^N_1\\)\nInstead of measuring accuracy as the average squared prediction error over that train data, we can compute it using fresh test data \\(\\texttt{test} = \\{x_i,y_i\\}^M_1\\)\n\n\\[MSE_{\\texttt{test}} = \\textrm{Ave}_{i\\in\\texttt{test}}[y_i-\\hat{f}(x_i)]^2\\]"
+  },
+  {
+    "objectID": "slides/03-notation-and-tradeoffs.html#section-5",
+    "href": "slides/03-notation-and-tradeoffs.html#section-5",
+    "title": "Trade-offs: Accuracy and interpretability, bias and variance",
+    "section": "",
+    "text": "Black curve is the “truth” on the left.  Red  curve on right is \\(MSE_{\\texttt{test}}\\), grey curve is \\(MSE_{\\texttt{train}}\\). Orange, blue and green curves/squares correspond to fis of different flexibility."
+  },
+  {
+    "objectID": "slides/03-notation-and-tradeoffs.html#section-6",
+    "href": "slides/03-notation-and-tradeoffs.html#section-6",
+    "title": "Trade-offs: Accuracy and interpretability, bias and variance",
+    "section": "",
+    "text": "Here the truth is smoother, so the smoother fit and linear model do really well"
+  },
+  {
+    "objectID": "slides/03-notation-and-tradeoffs.html#section-7",
+    "href": "slides/03-notation-and-tradeoffs.html#section-7",
+    "title": "Trade-offs: Accuracy and interpretability, bias and variance",
+    "section": "",
+    "text": "Here the truth is wiggly and the noise is low, so the more flexible fits do the best"
+  },
+  {
+    "objectID": "slides/03-notation-and-tradeoffs.html#bias-variance-trade-off",
+    "href": "slides/03-notation-and-tradeoffs.html#bias-variance-trade-off",
+    "title": "Trade-offs: Accuracy and interpretability, bias and variance",
+    "section": "Bias-variance trade-off",
+    "text": "Bias-variance trade-off\n\nWe’ve fit a model, \\(\\hat{f}(x)\\), to some training data\nLet’s pull a test observation from this population ( \\(x_0, y_0\\) )\nThe true model is \\(Y = f(x) + \\varepsilon\\)\n\\(f(x) = E[Y|X=x]\\)\n\n\n\\[E(y_0 - \\hat{f}(x_0))^2 = \\textrm{Var}(\\hat{f}(x_0)) + [\\textrm{Bias}(\\hat{f}(x_0))]^2 + \\textrm{Var}(\\varepsilon)\\]\n\n\nThe expectation averages over the variability of \\(y_0\\) as well as the variability of the training data. \\(\\textrm{Bias}(\\hat{f}(x_0)) =E[\\hat{f}(x_0)]-f(x_0)\\)\n\nAs flexibility of \\(\\hat{f}\\) \\(\\uparrow\\), its variance \\(\\uparrow\\) and its bias \\(\\downarrow\\)\nchoosing the flexibility based on average test error amounts to a bias-variance trade-off\n\n\n\nThat U-shape we see for the test MSE curves is due to this bias-variance trade-off\nThe expected test MSE for a given \\(x_0\\) can be decomposed into three components: the variance of \\(\\hat{f}(x_o)\\), the squared bias of \\(\\hat{f}(x_o)\\) and t4he variance of the error term \\(\\varepsilon\\)\nHere the notation \\(E[y_0 − \\hat{f}(x_0)]^2\\) defines the expected test MSE, and refers to the average test MSE that we would obtain if we repeatedly estimated \\(f\\) using a large number of training sets, and tested each at \\(x_0\\)\nThe overall expected test MSE can be computed by averaging \\(E[y_0 − \\hat{f}(x_0)]^2\\) over all possible values of \\(x_0\\) in the test set.\nSO we want to minimize the expected test error, so to do that we need to pick a statistical learning method to simultenously acheive low bias and low variance.\nSince both of these quantities are non-negative, the expected test MSE can never fall below Var( \\(\\varepsilon\\) )"
+  },
+  {
+    "objectID": "slides/03-notation-and-tradeoffs.html#bias-variance-trade-off-1",
+    "href": "slides/03-notation-and-tradeoffs.html#bias-variance-trade-off-1",
+    "title": "Trade-offs: Accuracy and interpretability, bias and variance",
+    "section": "Bias-variance trade-off",
+    "text": "Bias-variance trade-off"
+  },
+  {
+    "objectID": "slides/03-notation-and-tradeoffs.html#notation-1",
+    "href": "slides/03-notation-and-tradeoffs.html#notation-1",
+    "title": "Trade-offs: Accuracy and interpretability, bias and variance",
+    "section": "Notation",
+    "text": "Notation\n\n\\(Y\\) is the response variable. It is qualitative\n\\(\\mathcal{C}(X)\\) is the classifier that assigns a class \\(\\mathcal{C}\\) to some future unlabeled observation, \\(X\\)\nExamples:\n\nEmail can be classified as \\(\\mathcal{C}=(\\texttt{spam, not spam})\\)\nWritten number is one of \\(\\mathcal{C}=\\{0, 1, 2, \\dots, 9\\}\\)"
+  },
+  {
+    "objectID": "slides/03-notation-and-tradeoffs.html#classification-problem",
+    "href": "slides/03-notation-and-tradeoffs.html#classification-problem",
+    "title": "Trade-offs: Accuracy and interpretability, bias and variance",
+    "section": "Classification Problem",
+    "text": "Classification Problem\n\nWhat is the goal?\n\n\nBuild a classifier \\(\\mathcal{C}(X)\\) that assigns a class label from \\(\\mathcal{C}\\) to a future unlabeled observation \\(X\\)\n\nAssess the uncertainty in each classification\n\nUnderstand the roles of the different predictors among \\(X = (X_1, X_2, \\dots, X_p)\\)"
+  },
+  {
+    "objectID": "slides/03-notation-and-tradeoffs.html#section-8",
+    "href": "slides/03-notation-and-tradeoffs.html#section-8",
+    "title": "Trade-offs: Accuracy and interpretability, bias and variance",
+    "section": "",
+    "text": "Suppose there are \\(K\\) elements in \\(\\mathcal{C}\\), numbered \\(1, 2, \\dots, K\\)\n\\[p_k(x) = P(Y = k|X=x), k = 1, 2, \\dots, K\\] These are conditional class probabilities at \\(x\\)\n\n\nHow do you think we could calculate this?\n\n\n\n\nIn the plot, you could examine the mini-barplot at \\(x = 5\\)"
+  },
+  {
+    "objectID": "slides/03-notation-and-tradeoffs.html#section-9",
+    "href": "slides/03-notation-and-tradeoffs.html#section-9",
+    "title": "Trade-offs: Accuracy and interpretability, bias and variance",
+    "section": "",
+    "text": "Suppose there are \\(K\\) elements in \\(\\mathcal{C}\\), numbered \\(1, 2, \\dots, K\\)\n\\[p_k(x) = P(Y = k|X=x), k = 1, 2, \\dots, K\\] These are conditional class probabilities at \\(x\\)\n\nThe Bayes optimal classifier at \\(x\\) is\n\n\\[\\mathcal{C}(x) = j \\textrm{ if } p_j(x) = \\textrm{max}\\{p_1(x), p_2(x), \\dots, p_K(x)\\}\\]\n\n\nNotice that probability is a conditional probability\nIt is the probability that Y equals k given the observed preditor vector, \\(x\\)\nLet’s say we were using a Bayes Classifier for a two class problem, Y is 1 or 2. We would predict that the class is one if \\(P(Y=1|X=x_0)&gt;0.5\\) and 2 otherwise"
+  },
+  {
+    "objectID": "slides/03-notation-and-tradeoffs.html#section-10",
+    "href": "slides/03-notation-and-tradeoffs.html#section-10",
+    "title": "Trade-offs: Accuracy and interpretability, bias and variance",
+    "section": "",
+    "text": "What if this was our data and there were no points at exactly \\(x = 5\\)? Then how could we calculate this?\n\n\nNearest neighbor like before!\nThis does break down as the dimensions grow, but the impact of \\(\\mathcal{\\hat{C}}(x)\\) is less than on \\(\\hat{p}_k(x), k = 1,2,\\dots,K\\)"
+  },
+  {
+    "objectID": "slides/03-notation-and-tradeoffs.html#accuracy-6",
+    "href": "slides/03-notation-and-tradeoffs.html#accuracy-6",
+    "title": "Trade-offs: Accuracy and interpretability, bias and variance",
+    "section": "Accuracy",
+    "text": "Accuracy\n\nMisclassification error rate\n\n\\[Err_{\\texttt{test}} = \\textrm{Ave}_{i\\in\\texttt{test}}I[y_i\\neq \\mathcal{\\hat{C}}(x_i)]\\] ::: {.incremental} * The Bayes Classifier using the true \\(p_k(x)\\) has the smallest error * Some of the methods we will learn build structured models for \\(\\mathcal{C}(x)\\) (support vector machines, for example) * Some build structured models for \\(p_k(x)\\) (logistic regression, for example)\n:::\n\n\nthe test error rate \\(\\textrm{Ave}_{i\\in\\texttt{test}}I[y_i\\neq \\mathcal{\\hat{C}}(x_i)]\\) is minimized on average by very simple classifier that assigns each observation to the most likely class, given its predictor values (that’s the Bayes classifier)"
+  },
+  {
+    "objectID": "slides/03-notation-and-tradeoffs.html#k-nearest-neighbors-example",
+    "href": "slides/03-notation-and-tradeoffs.html#k-nearest-neighbors-example",
+    "title": "Trade-offs: Accuracy and interpretability, bias and variance",
+    "section": "K-Nearest-Neighbors example",
+    "text": "K-Nearest-Neighbors example\n\n\n\nHere is a simulated dataset of 100 observations in two groups, blue and orange\nThe purple dashed line represents the Bayes decision boundary\nThe orange background grid indicates the region where the test observations will be classified as orange, and the blue for the blue\nWe’d love to be able to use the Bayes classifier to but for real data, we don’t know the conditional distribution of Y given X so computing the Bayes classifier is impossible\nAlot of methods try to estimate the conditional distribution of Y given X and then classify a given observation to the class with the highest estimated probability\nOne method to do this is K-nearest neighbors"
+  },
+  {
+    "objectID": "slides/03-notation-and-tradeoffs.html#knn-k-10",
+    "href": "slides/03-notation-and-tradeoffs.html#knn-k-10",
+    "title": "Trade-offs: Accuracy and interpretability, bias and variance",
+    "section": "KNN (K = 10)",
+    "text": "KNN (K = 10)\n\n\n\nAgain, the way KNN works is if K = 10, it is finding the 10 closest observations and calculating the probability of being orange or blue and will classify that point as such\nSo here is an example of K nearest neighbors where K is 10"
+  },
+  {
+    "objectID": "slides/03-notation-and-tradeoffs.html#knn",
+    "href": "slides/03-notation-and-tradeoffs.html#knn",
+    "title": "Trade-offs: Accuracy and interpretability, bias and variance",
+    "section": "KNN",
+    "text": "KNN"
+  },
+  {
+    "objectID": "slides/01-welcome.html#section",
+    "href": "slides/01-welcome.html#section",
+    "title": "Welcome to Statistical Learning",
+    "section": "👋",
+    "text": "👋\nLucy D’Agostino McGowan\n   mcgowald@wfu.edu"
+  },
+  {
+    "objectID": "slides/01-welcome.html#intros",
+    "href": "slides/01-welcome.html#intros",
+    "title": "Welcome to Statistical Learning",
+    "section": "Intros",
+    "text": "Intros\n\nName\nMajor\nFun OR boring fact"
+  },
+  {
+    "objectID": "slides/01-welcome.html#statistical-learning-problems",
+    "href": "slides/01-welcome.html#statistical-learning-problems",
+    "title": "Welcome to Statistical Learning",
+    "section": "Statistical Learning Problems",
+    "text": "Statistical Learning Problems\n\n\n\nIdentify risk factors for breast cancer\n\n\n\n\n\nDr. Lucy D’Agostino McGowan adapted from slides by Hastie & Tibshirani"
+  },
+  {
+    "objectID": "slides/01-welcome.html#statistical-learning-problems-1",
+    "href": "slides/01-welcome.html#statistical-learning-problems-1",
+    "title": "Welcome to Statistical Learning",
+    "section": "Statistical Learning Problems",
+    "text": "Statistical Learning Problems\n\n\n\nIdentify risk factors for breast cancer\nCustomize an email spam detection system\n\n\n\nData: 4601 labeled emails sent to George who works at HP Labs\nInput features: frequencies of words and punctuation\n\n\n\n\n\n—\ngeorge\nyou\nhp\nfree\n!\nedu\nremove\n\n\n\n\nspam\n0.00\n2.26\n0.02\n0.52\n0.51\n0.01\n0.28\n\n\nemail\n2.27\n1.27\n0.90\n0.07\n0.11\n0.29\n0.01\n\n\n\n\nDr. Lucy D’Agostino McGowan adapted from slides by Hastie & Tibshirani"
+  },
+  {
+    "objectID": "slides/01-welcome.html#statistical-learning-problems-2",
+    "href": "slides/01-welcome.html#statistical-learning-problems-2",
+    "title": "Welcome to Statistical Learning",
+    "section": "Statistical Learning Problems",
+    "text": "Statistical Learning Problems\n\n\n\nIdentify risk factors for breast cancer\n\nCustomize an email spam detection system\n\nIdentify numbers in handwritten zip code\n\n\n\n\n\n\nDr. Lucy D’Agostino McGowan adapted from slides by Hastie & Tibshirani"
+  },
+  {
+    "objectID": "slides/01-welcome.html#statistical-learning-problems-3",
+    "href": "slides/01-welcome.html#statistical-learning-problems-3",
+    "title": "Welcome to Statistical Learning",
+    "section": "Statistical Learning Problems",
+    "text": "Statistical Learning Problems\n\n\n\nIdentify risk factors for breast cancer\n\nCustomize an email spam detection system\n\nIdentify numbers in handwritten zip code\n\nEstablish the relationship between variables in population survey data\n\n\n\nIncome survey data for males from the central Atlantic region of US, 2009\n\n\n\nDr. Lucy D’Agostino McGowan adapted from slides by Hastie & Tibshirani"
+  },
+  {
+    "objectID": "slides/01-welcome.html#types-of-statistical-learning",
+    "href": "slides/01-welcome.html#types-of-statistical-learning",
+    "title": "Welcome to Statistical Learning",
+    "section": "✌️ types of statistical learning",
+    "text": "✌️ types of statistical learning\n\nSupervised Learning\nUnsupervised Learning"
+  },
+  {
+    "objectID": "slides/01-welcome.html#supervised-learning",
+    "href": "slides/01-welcome.html#supervised-learning",
+    "title": "Welcome to Statistical Learning",
+    "section": "Supervised Learning",
+    "text": "Supervised Learning\n\nDr. Lucy D’Agostino McGowan adapted from slides by Hastie & Tibshirani\n\n\noutcome variable: \\(Y\\), (dependent variable, response, target)\npredictors: vector of \\(p\\) predictors, \\(X\\), (inputs, regressors, covariates, features, independent variables)\nIn the regression problem, \\(Y\\) is quantitative (e.g price, blood pressure)\nIn the classification problem, \\(Y\\) takes values in a finite, unordered set (survived/died, digit 0-9, cancer class of tissue sample)\nWe have training data \\((x_1, y_1), \\dots, (x_N, y_N)\\). These are observations (examples, instances) of these measurements"
+  },
+  {
+    "objectID": "slides/01-welcome.html#supervised-learning-1",
+    "href": "slides/01-welcome.html#supervised-learning-1",
+    "title": "Welcome to Statistical Learning",
+    "section": "Supervised Learning",
+    "text": "Supervised Learning\n\nWhat do you think are some objectives here?\n\n\nObjectives\n\nAccurately predict unseen test cases\nUnderstand which inputs affect the outcome, and how\nAssess the quality of our predictions and inferences\n\n\nDr. Lucy D’Agostino McGowan adapted from slides by Hastie & Tibshirani"
+  },
+  {
+    "objectID": "slides/01-welcome.html#unsupervised-learning",
+    "href": "slides/01-welcome.html#unsupervised-learning",
+    "title": "Welcome to Statistical Learning",
+    "section": "Unsupervised Learning",
+    "text": "Unsupervised Learning\n\nDr. Lucy D’Agostino McGowan adapted from slides by Hastie & Tibshirani\n\n\nNo outcome variable, just a set of predictors (features) measured on a set of samples\nobjective is more fuzzy – find groups of samples that behave similarly, find features that behave similarly, find linear combinations of features with the most variation\ndifficult to know how well your are doing\ndifferent from supervised learning, but can be useful as a pre-processing step for supervised learning"
+  },
+  {
+    "objectID": "slides/01-welcome.html#lets-take-a-tour---class-website",
+    "href": "slides/01-welcome.html#lets-take-a-tour---class-website",
+    "title": "Welcome to Statistical Learning",
+    "section": "Let’s take a tour - class website",
+    "text": "Let’s take a tour - class website"
+  },
+  {
+    "objectID": "rstudio-pro.html",
+    "href": "rstudio-pro.html",
+    "title": "Logging into RStudio Pro",
+    "section": "",
+    "text": "Follow these steps to access RStudio Pro:\n\nMake sure you are connected to the WFU Network. This means you must be on the eduroam wireless network, or connected through the VPN if you are off-campus.\n\nIf you are off-campus, go through the VPN first: WFU VPN Instructions.\n\nGo to login.deac.wfu.edu and sign in with your school email and password.\nOnce logged in, click the RStudio icon.\nSet your working directory to /deac/sta/classes/sta363/YOUR-USERNAME where YOUR-USERNAME is replaced by the first part of your email address, i.e., mine is mcgowald because my email is mcgowald@wfu.edu\nSet the number of hours to how long you plan to work on the project (I usually enter 4).\nClick Launch.\nThe session will show as Queued for a moment. Once it is ready, the status will turn green and say Ready.\nClick the Connect to RStudio Server button. You should now be in RStudio Pro.\n\n\nNote: You are not required to use this setup (i.e., you can download RStudio and all the necessary packages locally). However, the focus of this class is not on technical setup, so we will not be able to spend time troubleshooting issues if you are not using the official setup described here.",
+    "crumbs": [
+      "{{< fa calendar >}} Schedule",
+      "Computing",
+      "Using the RStudio Pro Server"
+    ]
+  },
+  {
+    "objectID": "lab/01-lab.html",
+    "href": "lab/01-lab.html",
+    "title": "Lab 01 - Hello R!",
+    "section": "",
+    "text": "Due: Friday 2025-09-05 at 11:59pm",
+    "crumbs": [
+      "{{< fa calendar >}} Schedule",
+      "Labs",
+      "Lab 01"
+    ]
+  },
+  {
+    "objectID": "lab/01-lab.html#yaml",
+    "href": "lab/01-lab.html#yaml",
+    "title": "Lab 01 - Hello R!",
+    "section": "YAML:",
+    "text": "YAML:\nOpen the Quarto (qmd) file in your project, change the author name to your name, and render the document.",
+    "crumbs": [
+      "{{< fa calendar >}} Schedule",
+      "Labs",
+      "Lab 01"
+    ]
+  },
+  {
+    "objectID": "help.html",
+    "href": "help.html",
+    "title": "Help",
+    "section": "",
+    "text": "Welcome to the help section! This page contains resources to help you succeed in the course, from technical setup to troubleshooting common issues. Click through the sidebar on the left."
+  },
+  {
+    "objectID": "help.html#getting-started-with-rstudio-and-quarto",
+    "href": "help.html#getting-started-with-rstudio-and-quarto",
+    "title": "Help",
+    "section": "Getting Started with RStudio and Quarto",
+    "text": "Getting Started with RStudio and Quarto\nIf you’re new to using RStudio Pro or working with Quarto documents, check out our getting started guides.\nGetting Started Guide with RStudio Pro →\nGetting Started Guide with Quarto →"
+  },
+  {
+    "objectID": "help.html#quick-links",
+    "href": "help.html#quick-links",
+    "title": "Help",
+    "section": "Quick Links",
+    "text": "Quick Links\n\nRStudio Pro Server: Access your computing environment at login.deac.wfu.edu\nCourse Schedule: Check the schedule for upcoming assignments and due dates"
+  },
+  {
+    "objectID": "help.html#need-additional-help",
+    "href": "help.html#need-additional-help",
+    "title": "Help",
+    "section": "Need Additional Help?",
+    "text": "Need Additional Help?\nIf you can’t find what you’re looking for in our guides, don’t hesitate to reach out."
+  },
+  {
+    "objectID": "help-project.html",
+    "href": "help-project.html",
+    "title": "Creating or Opening a Project",
+    "section": "",
+    "text": "Before starting an assignment or exercise, always create or open a project:\n\nTo create a new project:\n\nIn RStudio, go to File &gt; New Project.\nChoose whether to create a project in a new directory or within an existing directory.\nNavigate to the folder where you want your project\nClick Create Project.\n\nTo open an existing project:\n\nIn RStudio, go to File &gt; Open Project.\nBrowse to the .Rproj file of the project you want to open.\nSelect it and click Open.\n\n\nThis ensures all your files and settings are organized within the correct project environment.",
+    "crumbs": [
+      "{{< fa calendar >}} Schedule",
+      "Computing",
+      "Creating an RStudio Project"
+    ]
+  },
+  {
+    "objectID": "ex/01-ex.html",
+    "href": "ex/01-ex.html",
+    "title": "Exercise 1",
+    "section": "",
+    "text": "Exercise 1: Login to RStudio Pro\n\nGo to course website → Computing → Using the RStudio Server\nFollow login instructions\nLog in with your credentials\n\nCheck: You should see the RStudio interface with 4 panes.\n\n\n\nExercise 2: Create RStudio Project\n\nFile → New Project → New Directory → New Project\nName: ex-1\nClick Create Project\n\nCheck: Project name appears in top-right corner.\n\n\n\nExercise 3: Create Quarto Document\n\nFile → New File → Quarto Document\nTitle: “My First Analysis”\nSave as analysis.qmd\n\nCheck: New .qmd file is open and saved.\n\n\n\nExercise 4: Install ISLR Package and Load Data\nRun this code in the console ONCE:\n\ninstall.packages(\"ISLR\")\n\nThen run this:\n\nlibrary(ISLR)\nlibrary(ggplot2)\n# Test it works\ndata(Auto)\nhead(Auto)\n\n  mpg cylinders displacement horsepower weight acceleration year origin\n1  18         8          307        130   3504         12.0   70      1\n2  15         8          350        165   3693         11.5   70      1\n3  18         8          318        150   3436         11.0   70      1\n4  16         8          304        150   3433         12.0   70      1\n5  17         8          302        140   3449         10.5   70      1\n6  15         8          429        198   4341         10.0   70      1\n                       name\n1 chevrolet chevelle malibu\n2         buick skylark 320\n3        plymouth satellite\n4             amc rebel sst\n5               ford torino\n6          ford galaxie 500\n\n\nCheck: You see the Auto dataset.\nNow run this in the console:\n\n?Auto\n\nQuestion: What is in this dataset?\nAction: Add the code below to your .qmd file along with a short description of the data.\n\nlibrary(ISLR)\nlibrary(ggplot2)\ndata(Auto)\n\n\n\n\nExercise 5: Linear Model and Plot\nAdd the following code to your .qmd file. Try running it.\n\n# Fit linear model\nmodel1 &lt;- lm(mpg ~ horsepower, data = Auto)\nsummary(model1)\n\n\nCall:\nlm(formula = mpg ~ horsepower, data = Auto)\n\nResiduals:\n     Min       1Q   Median       3Q      Max \n-13.5710  -3.2592  -0.3435   2.7630  16.9240 \n\nCoefficients:\n             Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) 39.935861   0.717499   55.66   &lt;2e-16 ***\nhorsepower  -0.157845   0.006446  -24.49   &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 4.906 on 390 degrees of freedom\nMultiple R-squared:  0.6059,    Adjusted R-squared:  0.6049 \nF-statistic: 599.7 on 1 and 390 DF,  p-value: &lt; 2.2e-16\n\n# Create plot\nggplot(Auto, aes(x = horsepower, y = mpg)) +\n  geom_point() +\n  geom_smooth(method = \"lm\", formula = \"y ~ x\") +\n  labs(title = \"Horsepower vs MPG\",\n       x = \"Horsepower\", \n       y = \"Miles per Gallon\")\n\n\n\n\n\n\n\n\nCheck: You have model output and a scatter plot with trend line.\n\n\n\nFinish\nClick “Render” to create your HTML report. Upload your .html file in Canvas under Exercise 1",
+    "crumbs": [
+      "{{< fa calendar >}} Schedule",
+      "Exercises",
+      "Exercise 1"
+    ]
+  },
+  {
+    "objectID": "demo-zipcodes/zipcodes.html",
+    "href": "demo-zipcodes/zipcodes.html",
+    "title": "Predicting handwritten numbers",
+    "section": "",
+    "text": "library(tidyverse)\nlibrary(tidymodels)\nload(\"data/zip.train.Rdata\")\nload(\"data/zip.test.Rdata\")\nThis dataset consists of normalized handwritten digits, automatically scanned from envelopes by the U.S. Postal Service. The ultimate objective is to be able to predict which number is written so that the zip code can be automatically determined. The original scanned digits are binary and of different sizes and orientations; the images here have been deslanted and size normalized, resulting in 16 x 16 grayscale images (Le Cun et al., 1990). This data is obtained from the ElemStatLearn package.\nLet’s see what kind of data this is.\nclass(zip.train)\n\n[1] \"matrix\" \"array\"\nIt looks like this is a matrix. Let’s look at the the first 5 rows and 5 columns.\nzip.train[1:5, 1:5]\n\n     [,1] [,2] [,3] [,4]   [,5]\n[1,]    6   -1   -1   -1 -1.000\n[2,]    5   -1   -1   -1 -0.813\n[3,]    4   -1   -1   -1 -1.000\n[4,]    7   -1   -1   -1 -1.000\n[5,]    3   -1   -1   -1 -1.000\nIt looks like the first column contains the digit and the subsequent columns indicate values for the 256 pixels. Let’s tidy this up a bit.\nzip_train &lt;- zip.train %&gt;%\n  as_tibble(.name_repair = ~ c(\"label\", glue::glue(\"pix_{1:256}\")))\n\nzip_test &lt;- zip.test %&gt;%\n    as_tibble(.name_repair = ~ c(\"label\", glue::glue(\"pix_{1:256}\")))\nLet’s plot a few. This code is adapted from a blog post by David Robinson.\npixels_gathered &lt;- zip_train %&gt;%\n  slice(1:25) %&gt;%\n  mutate(instance = row_number()) %&gt;%\n  gather(pixel, value, -label, -instance) %&gt;%\n  tidyr::extract(pixel, \"pixel\", \"(\\\\d+)\", convert = TRUE) %&gt;%\n  mutate(pixel = pixel - 1,\n         x = pixel %% 16,\n         y = 16 - pixel %/% 16)\n\nggplot(pixels_gathered, aes(x, y, fill = value)) +\n  geom_tile() +\n  facet_wrap(~ instance + label)"
+  },
+  {
+    "objectID": "demo-zipcodes/zipcodes.html#predict-0",
+    "href": "demo-zipcodes/zipcodes.html#predict-0",
+    "title": "Predicting handwritten numbers",
+    "section": "Predict 0",
+    "text": "Predict 0\nWe are interested in creating a prediction model to determine whether the handwritten number is a 0.\n\nFirst we create a recipe\n\nrecip &lt;- zip_train %&gt;% \n    recipe() %&gt;% \n    update_role(starts_with(\"pix\"), new_role = \"predictor\") %&gt;%\n    update_role(label, new_role = \"outcome\") %&gt;%\n    step_mutate(label = as.factor(label == 0)) ## Set the outcome to when the written number is equal to 0\n\n\n\nThen we prep our recipe.\n\nprepped &lt;- recip %&gt;% \n    prep(retain = TRUE)\n\n\n\nThen we create our training data and testing data\n\ntrain &lt;- prepped %&gt;% \n    juice()\n\ntest &lt;- prepped %&gt;% \n    bake(new_data = zip_test)\n\n\n\nNow we specify our model\nWe are fitting a decision tree.\n\ntree_fit &lt;- fit(\n    decision_tree(mode = \"classification\", tree_depth = 3),\n    formula = formula(prepped),\n    data = train,\n    engine = \"rpart\")\n\n\n\nAssess the model\n\nresults &lt;- tibble(\n    truth = test$label,\n    estimate = predict(tree_fit, test) %&gt;% \n      pull(.pred_class)\n  )\n\nmetrics(results, truth = truth, estimate = estimate) %&gt;% \n  knitr::kable()\n\n\n\n\n.metric\n.estimator\n.estimate\n\n\n\n\naccuracy\nbinary\n0.9362232\n\n\nkap\nbinary\n0.7861534\n\n\n\n\n\n\n\nCreate a confusion matrix\nWhat is the false positive rate? What is the false negative rate?\n\nconf_mat(results, truth = truth, estimate = estimate)[[1]] %&gt;% \n  as_tibble() %&gt;% \n  ggplot(aes(Prediction, Truth, alpha = n)) + \n  geom_text(aes(label = n), alpha = 1, size = 10) +\n  labs(title = \"Confusion matrix\")\n\n\n\n\n\n\n\n\n\n\nPlot the tree\nWhich pixels are involved in this prediction?\n\nlibrary(rpart.plot)\nrpart.plot(tree_fit$fit, roundint = FALSE)"
+  },
+  {
+    "objectID": "demo-zipcodes/zipcodes.html#lets-plot-some-zeros-that-we-missed",
+    "href": "demo-zipcodes/zipcodes.html#lets-plot-some-zeros-that-we-missed",
+    "title": "Predicting handwritten numbers",
+    "section": "Let’s plot some zeros that we missed",
+    "text": "Let’s plot some zeros that we missed\n\nzip_test %&gt;%\n  bind_cols(results) %&gt;%\n  filter(truth == \"TRUE\", estimate == \"FALSE\") %&gt;%\n  select(-truth, -estimate) %&gt;%\n  sample_n(25) %&gt;%\n  mutate(instance = row_number()) %&gt;%\n  gather(pixel, value, -label, -instance) %&gt;%\n  tidyr::extract(pixel, \"pixel\", \"(\\\\d+)\", convert = TRUE) %&gt;%\n  mutate(pixel = pixel - 1,\n         x = pixel %% 16,\n         y = 16 - pixel %/% 16) %&gt;%\n  ggplot(aes(x, y, fill = value)) +\n  geom_tile() +\n  facet_wrap(~ instance)"
+  },
+  {
+    "objectID": "demo-zipcodes/zipcodes.html#lets-plot-some-numbers-that-we-misclassified-as-zeros",
+    "href": "demo-zipcodes/zipcodes.html#lets-plot-some-numbers-that-we-misclassified-as-zeros",
+    "title": "Predicting handwritten numbers",
+    "section": "Let’s plot some numbers that we misclassified as zeros",
+    "text": "Let’s plot some numbers that we misclassified as zeros\n\nzip_test %&gt;%\n  bind_cols(results) %&gt;%\n  filter(truth == \"FALSE\", estimate == \"TRUE\") %&gt;%\n  select(-truth, -estimate) %&gt;%\n  sample_n(25) %&gt;%\n  mutate(instance = row_number()) %&gt;%\n  gather(pixel, value, -label, -instance) %&gt;%\n  tidyr::extract(pixel, \"pixel\", \"(\\\\d+)\", convert = TRUE) %&gt;%\n  mutate(pixel = pixel - 1,\n         x = pixel %% 16,\n         y = 16 - pixel %/% 16) %&gt;%\n  ggplot(aes(x, y, fill = value)) +\n  geom_tile() +\n  facet_wrap(~ label + instance)"
+  },
+  {
+    "objectID": "demo-zipcodes/zipcodes.html#references",
+    "href": "demo-zipcodes/zipcodes.html#references",
+    "title": "Predicting handwritten numbers",
+    "section": "References",
+    "text": "References\n\nhttp://varianceexplained.org/r/digit-eda/\nhttps://www.benjaminsorensen.me/post/modeling-with-parsnip-and-tidymodels/"
+  },
+  {
+    "objectID": "ex/02-welcome-penguins.html",
+    "href": "ex/02-welcome-penguins.html",
+    "title": "Welcome Penguins!",
+    "section": "",
+    "text": "Note: if you are off campus, you will need to use a VPN to connect\nGo to login.deac.wfu.edu\n\n\n\n\nClick File &gt; New Project\n\n\n\n\nClick the third option.\n\n\n\n\nClick the first option\n\n\n\n\nPaste this link in the top box (Repository url):\nhttps://github.com/sta-363-f25/appex-01-welcome-penguins.git",
+    "crumbs": [
+      "{{< fa calendar >}} Schedule",
+      "Exercises",
+      "Welcome Penguins"
+    ]
+  },
+  {
+    "objectID": "ex/02-welcome-penguins.html#set-up",
+    "href": "ex/02-welcome-penguins.html#set-up",
+    "title": "Welcome Penguins!",
+    "section": "",
+    "text": "Note: if you are off campus, you will need to use a VPN to connect\nGo to login.deac.wfu.edu\n\n\n\n\nClick File &gt; New Project\n\n\n\n\nClick the third option.\n\n\n\n\nClick the first option\n\n\n\n\nPaste this link in the top box (Repository url):\nhttps://github.com/sta-363-f25/appex-01-welcome-penguins.git",
+    "crumbs": [
+      "{{< fa calendar >}} Schedule",
+      "Exercises",
+      "Welcome Penguins"
+    ]
+  },
+  {
+    "objectID": "ex/02-welcome-penguins.html#your-turn",
+    "href": "ex/02-welcome-penguins.html#your-turn",
+    "title": "Welcome Penguins!",
+    "section": "Your Turn",
+    "text": "Your Turn\n\nOnce you log on to RStudio Pro, create a new project from version control (Git)\nPaste https://github.com/sta-363-f25/appex-01-welcome-penguins.git in the Repository url box\nFind the file pane (on the bottom right). Click the welcome-penguins.qmd file\nClick the “Render” button\nGo back to the file and change your name on top (in the yaml – we’ll talk about what this means later) and render again.\nThen, scroll to the plot chunk, below Palmer Penguins. Instead of looking at the relationship between flipper length and bill length, plot the relationship between flipper length and bill depth. Hint, look at the full dataset at the bottom of the document for variable names, update the captions to match your new plot.\nRender again & voila!",
+    "crumbs": [
+      "{{< fa calendar >}} Schedule",
+      "Exercises",
+      "Welcome Penguins"
+    ]
+  },
+  {
+    "objectID": "help-quarto.html",
+    "href": "help-quarto.html",
+    "title": "Creating a New Quarto Document in RStudio",
+    "section": "",
+    "text": "To create a new Quarto document:\n\nBe sure that you are in the correct project for the exercise or assignment. If you need help creating a new project here are some tips.\nIn RStudio, go to the menu bar and select File &gt; New File &gt; Quarto Document.\nEnter a title for your document and select the output format (e.g., HTML, PDF, Word).\nClick Create. A new Quarto file (.qmd) will open.\nSave the file to your project directory\nUse the toolbar or the Render button to build your document.",
+    "crumbs": [
+      "{{< fa calendar >}} Schedule",
+      "Computing",
+      "Creating a Quarto Document"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Statistical Learning",
+    "section": "",
+    "text": "Course Info\nLocation: Carswell 208\nTime: Wed/Fri 11a\n\n\n Office Hours\nInstructor: Dr. Lucy D’Agostino McGowan\nEmail: mcgowald@wfu.edu\nOffice Hours: Book Online\nOffice: Manchester 342\nTA: Joe Zhu\nMath & Stats Center: mathandstatscenter@wfu.edu\nLocation: Math & Stats Center\n\n\n\n\n\n\n\n\nCarswell 208\n\n\n\n\n\n\n\n\nWed/Fri 11a\n\n\n\n\n\nTexts\nThe main text book is: An Introduction to Statistical Learning with Applications in R by Gareth James, Daniela Witten, Trevor Hastie, and Robert Tibshirani – it is freely available online.\n\n\nMaterials\nThis class is very hands on; be sure to bring a fully charged laptop to every class."
+  },
+  {
+    "objectID": "quarto-quick-guide.html",
+    "href": "quarto-quick-guide.html",
+    "title": "Quarto Quick Reference Guide",
+    "section": "",
+    "text": "Quarto is the next-generation version of R Markdown that combines code, results, and narrative text into dynamic documents. This guide covers the essentials you’ll need for STA 312.",
+    "crumbs": [
+      "{{< fa calendar >}} Schedule",
+      "Computing",
+      "Quarto Quick Guide"
+    ]
+  },
+  {
+    "objectID": "quarto-quick-guide.html#document-structure",
+    "href": "quarto-quick-guide.html#document-structure",
+    "title": "Quarto Quick Reference Guide",
+    "section": "Document Structure",
+    "text": "Document Structure\nEvery Quarto document starts with a YAML header (between --- lines) that contains metadata:\n---\ntitle: \"My Statistical Analysis\"\nauthor: \"Your Name\"\ndate: today\nformat: html\nexecute:\n  echo: true\n  warning: false\n---",
+    "crumbs": [
+      "{{< fa calendar >}} Schedule",
+      "Computing",
+      "Quarto Quick Guide"
+    ]
+  },
+  {
+    "objectID": "quarto-quick-guide.html#basic-markdown-syntax",
+    "href": "quarto-quick-guide.html#basic-markdown-syntax",
+    "title": "Quarto Quick Reference Guide",
+    "section": "Basic Markdown Syntax",
+    "text": "Basic Markdown Syntax\n\nHeaders\n# Header 1 (largest)\n## Header 2\n### Header 3\n#### Header 4\n\n\nText Formatting\n\nBold text: **bold text** or __bold text__\nItalic text: *italic text* or _italic text_\nCode text: `code text`\nLinks: [link text](URL)\n\n\n\nLists\nUnordered lists:\n- Item 1\n- Item 2\n  - Sub-item\n  - Sub-item\nOrdered lists:\n1. First item\n2. Second item\n3. Third item",
+    "crumbs": [
+      "{{< fa calendar >}} Schedule",
+      "Computing",
+      "Quarto Quick Guide"
+    ]
+  },
+  {
+    "objectID": "quarto-quick-guide.html#r-code-chunks",
+    "href": "quarto-quick-guide.html#r-code-chunks",
+    "title": "Quarto Quick Reference Guide",
+    "section": "R Code Chunks",
+    "text": "R Code Chunks\nThe power of Quarto comes from embedding R code directly in your document.\n\nBasic Code Chunk\nCode chucks start with {r}.\n```{r}\n# Your R code here\nx &lt;- c(1, 2, 3, 4, 5)\nmean(x)\n```\n\n\nCode Chunk Options\nYour code chunks can have options that are written in YAML style starting with a #| at the beginning of the line.\n```{r}\n#| label: data-setup\n#| echo: false\n#| message: false\n#| warning: false\n\n# Load libraries and data\nlibrary(tidyverse)\nlibrary(ggplot2)\n```\n\n\nCommon Chunk Options\n\n#| echo: false: Hide code, show output\n\n#| eval: false: Show code, don’t run it\n\n#| include: false: Run code, hide everything\n\n#| message: false: Hide messages\n\n#| warning: false: Hide warnings\n\n#| fig-width: 8 and #| fig-height: 6: Control plot dimensions",
+    "crumbs": [
+      "{{< fa calendar >}} Schedule",
+      "Computing",
+      "Quarto Quick Guide"
+    ]
+  },
+  {
+    "objectID": "quarto-quick-guide.html#inline-r-code",
+    "href": "quarto-quick-guide.html#inline-r-code",
+    "title": "Quarto Quick Reference Guide",
+    "section": "Inline R Code",
+    "text": "Inline R Code\nYou can include R results directly in text using `r`:\nThe mean of our data is `r round(mean(x), 2)`.",
+    "crumbs": [
+      "{{< fa calendar >}} Schedule",
+      "Computing",
+      "Quarto Quick Guide"
+    ]
+  },
+  {
+    "objectID": "quarto-quick-guide.html#mathematical-expressions",
+    "href": "quarto-quick-guide.html#mathematical-expressions",
+    "title": "Quarto Quick Reference Guide",
+    "section": "Mathematical Expressions",
+    "text": "Mathematical Expressions\nQuarto uses LaTeX syntax for mathematical notation:\n\nInline Math\nUse single dollar signs for inline math: $x^2 + y^2 = z^2$\n\n\nDisplay Math\nUse double dollar signs for centered display math:\n$$\\bar{x} = \\frac{1}{n}\\sum_{i=1}^{n} x_i$$\n\n\nCommon Statistical Notation\n\n\n\n\n\n\n\n\nConcept\nLaTeX Code\nRendered Output\n\n\n\n\nMean\n$\\bar{x}$\n\\(\\bar{x}\\)\n\n\nStandard deviation\n$\\sigma$\n\\(\\sigma\\)\n\n\nRegression equation\n$y = \\beta_0 + \\beta_1 x + \\epsilon$\n\\(y = \\beta_0 + \\beta_1 x + \\epsilon\\)\n\n\nSums\n$\\sum_{i=1}^{n} x_i$\n\\(\\sum_{i=1}^{n} x_i\\)\n\n\nSquare root\n$\\sqrt{n}$\n\\(\\sqrt{n}\\)\n\n\nFractions\n$\\frac{a}{b}$\n\\(\\frac{a}{b}\\)\n\n\nSubscripts\n$x_i$\n\\(x_i\\)\n\n\nSuperscripts\n$x^2$\n\\(x^2\\)\n\n\nMatrices\n$\\begin{bmatrix} 1 & 2 & 3 \\\\ 4 & 5 & 6 \\end{bmatrix}$\n\\(\\begin{bmatrix} 1 & 2 & 3 \\\\ 4 & 5 & 6 \\end{bmatrix}\\)",
+    "crumbs": [
+      "{{< fa calendar >}} Schedule",
+      "Computing",
+      "Quarto Quick Guide"
+    ]
+  },
+  {
+    "objectID": "quarto-quick-guide.html#tables",
+    "href": "quarto-quick-guide.html#tables",
+    "title": "Quarto Quick Reference Guide",
+    "section": "Tables",
+    "text": "Tables\n\nSimple Tables\n| Variable | Mean | SD   |\n|----------|------|------|\n| Height   | 68.2 | 3.1  |\n| Weight   | 155  | 22.5 |\n\n\nTables from R Code\n```{r}\n#| label: summary-table\n#| tbl-cap: \"Summary Statistics\"\n\nlibrary(knitr)\nsummary_stats &lt;- data.frame(\n  Variable = c(\"Height\", \"Weight\"),\n  Mean = c(68.2, 155.0),\n  SD = c(3.1, 22.5)\n)\nkable(summary_stats)\n```",
+    "crumbs": [
+      "{{< fa calendar >}} Schedule",
+      "Computing",
+      "Quarto Quick Guide"
+    ]
+  },
+  {
+    "objectID": "quarto-quick-guide.html#figures",
+    "href": "quarto-quick-guide.html#figures",
+    "title": "Quarto Quick Reference Guide",
+    "section": "Figures",
+    "text": "Figures\n\nPlots with Captions\n```{r}\n#| label: fig-scatter\n#| fig-cap: \"Relationship between height and weight\"\n#| fig-width: 6\n#| fig-height: 4\n\nggplot(data, aes(x = height, y = weight)) +\n  geom_point() +\n  geom_smooth(method = \"lm\") +\n  labs(x = \"Height (inches)\", y = \"Weight (lbs)\")\n```",
+    "crumbs": [
+      "{{< fa calendar >}} Schedule",
+      "Computing",
+      "Quarto Quick Guide"
+    ]
+  },
+  {
+    "objectID": "quarto-quick-guide.html#cross-references",
+    "href": "quarto-quick-guide.html#cross-references",
+    "title": "Quarto Quick Reference Guide",
+    "section": "Cross-References",
+    "text": "Cross-References\nYou can reference figures, tables, and equations:\n\nReference a figure: @fig-scatter\n\nReference a table: @tbl-summary\n\nReference an equation: @eq-regression\n\nFor equations with labels:\n$$y = \\beta_0 + \\beta_1 x + \\epsilon$$ {#eq-regression}",
+    "crumbs": [
+      "{{< fa calendar >}} Schedule",
+      "Computing",
+      "Quarto Quick Guide"
+    ]
+  },
+  {
+    "objectID": "quarto-quick-guide.html#callout-blocks",
+    "href": "quarto-quick-guide.html#callout-blocks",
+    "title": "Quarto Quick Reference Guide",
+    "section": "Callout Blocks",
+    "text": "Callout Blocks\nQuarto provides special callout blocks for important information:\n::: {.callout-note}\nThis is a note callout.\n:::\n\n::: {.callout-warning}\nThis is a warning callout.\n:::\n\n::: {.callout-important}\nThis is an important callout.\n:::",
+    "crumbs": [
+      "{{< fa calendar >}} Schedule",
+      "Computing",
+      "Quarto Quick Guide"
+    ]
+  },
+  {
+    "objectID": "quarto-quick-guide.html#rendering-your-document",
+    "href": "quarto-quick-guide.html#rendering-your-document",
+    "title": "Quarto Quick Reference Guide",
+    "section": "Rendering Your Document",
+    "text": "Rendering Your Document\nTo render your Quarto document:\n\nIn RStudio: Click the “Render” button\n\nCommand line: Run quarto render filename.qmd\n\nPreview: Use quarto preview filename.qmd for live preview",
+    "crumbs": [
+      "{{< fa calendar >}} Schedule",
+      "Computing",
+      "Quarto Quick Guide"
+    ]
+  },
+  {
+    "objectID": "quarto-quick-guide.html#tips-for-statistical-writing",
+    "href": "quarto-quick-guide.html#tips-for-statistical-writing",
+    "title": "Quarto Quick Reference Guide",
+    "section": "Tips for Statistical Writing",
+    "text": "Tips for Statistical Writing\n\nAlways explain your code: Use comments (#) and narrative text\nRound numbers appropriately: Use round() function for inline code\nLabel your chunks: Makes debugging easier\nInclude figure captions: Helps with interpretation",
+    "crumbs": [
+      "{{< fa calendar >}} Schedule",
+      "Computing",
+      "Quarto Quick Guide"
+    ]
+  },
+  {
+    "objectID": "schedule.html",
+    "href": "schedule.html",
+    "title": " Schedule",
+    "section": "",
+    "text": "Note: The timeline of topics and assignments might be updated throughout the semester.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nweek\ndate\ntopic\nslides\nappex\nassignment\nassessment\nprepare\n\n\n\n\n1\n27 August\nWelcome\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n1\n29 August\nLab 01: Welcome to R\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n2\n3 September\nTrade-offs: Accuracy and interpretability, bias and variance\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nISLR Sections 2.1 and 2.2\n\n\n2\n5 September\nDesign Principles of Data Analysis\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n3\n10 September\nData Visualization in R\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n3\n10 September\nExploratory Data Analysis\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n3\n12 September\nCross-validation\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nISLR Section 5.1\n\n\n3\n12 September\nIntroduction to tidymodels\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n4\n17 September\nLab 02: Cross-validation\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n4\n19 September\nIntroduction to Linear Regression\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nISLR Sections 3.1, 3.2, 3.3\n\n\n5\n24 September\nLinear Regression in R\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n5\n26 September\nLogistic Regression\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nISLR Section 4.3\n\n\n6\n1 October\nLab 03: Logistic Regression\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nISLR Section 4.4\n\n\n6\n3 October\nRidge Regression\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nISLR Sections 6.1.3 and 6.2.1\n\n\n6\n3 October\nLasso & Elastic Net\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nISLR Sections 6.2.2 and 6.2.3\n\n\n6\n3 October\nPenalized Regression in R\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n7\n8 October\nLab 04: Ridge, Lasso, Elastic Net (Out of Class)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n7\n10 October\n[No Class]\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n7\n15 October\nMissing Data\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n8\n17 October\nReview\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n8\n22 October\nMidterm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n9\n24 October\nPolynomial Regression and Splines\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nISLR Sections 7.1, 7.2, 7.3, 7.4\n\n\n10\n29 October\nNon-linear Models in R\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n10\n29 October\nLab 05: Non-linear models\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n10\n31 October\nDecision Trees (Regression)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nISLR Section 8.1\n\n\n1\n5 November\nDecision Trees\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n11\n7 November\nDecision Trees (Classification)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n12\n12 November\nBagging\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nISLR Section 8.2\n\n\n12\n14 November\nRandom Forests\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n13\n19 November\nBoosted Decision Trees\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n13\n21 November\nNeural Networks\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n14\n26 November\nThanksgiving [No Class]\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n14\n28 November\nThanksgiving [No Class]\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n15\n3 December\nLab 06: Ensemble Models\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n15\n5 December\nCommunicating with Statistics",
+    "crumbs": [
+      "{{< fa calendar >}} Schedule",
+      "Course Details",
+      "Schedule"
+    ]
+  },
+  {
     "objectID": "slides/02-toolkit.html#agenda",
     "href": "slides/02-toolkit.html#agenda",
     "title": "Meet the toolkit",
@@ -171,417 +897,6 @@
     "title": "Meet the toolkit",
     "section": "Lab 01",
     "text": "Lab 01\n\nLab instructions are posted on the course website under assignment\n\nLet’s go find today’s!\n\n\n\nsta-363-f25.github.io/website"
-  },
-  {
-    "objectID": "schedule.html",
-    "href": "schedule.html",
-    "title": " Schedule",
-    "section": "",
-    "text": "Note: The timeline of topics and assignments might be updated throughout the semester.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nweek\ndate\ntopic\nslides\nappex\nassignment\nassessment\nprepare\n\n\n\n\n1\n27 August\nWelcome\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n1\n29 August\nLab 01: Welcome to R\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n2\n3 September\nTrade-offs: Accuracy and interpretability, bias and variance\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nISLR Sections 2.1 and 2.2\n\n\n2\n5 September\nDesign Principles of Data Analysis\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n3\n10 September\nData Visualization in R\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n3\n10 September\nExploratory Data Analysis\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n3\n12 September\nCross-validation\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nISLR Section 5.1\n\n\n3\n12 September\nIntroduction to tidymodels\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n4\n17 September\nLab 02: Cross-validation\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n4\n19 September\nIntroduction to Linear Regression\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nISLR Sections 3.1, 3.2, 3.3\n\n\n5\n24 September\nLinear Regression in R\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n5\n26 September\nLogistic Regression\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nISLR Section 4.3\n\n\n6\n1 October\nLab 03: Logistic Regression\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nISLR Section 4.4\n\n\n6\n3 October\nRidge Regression\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nISLR Sections 6.1.3 and 6.2.1\n\n\n6\n3 October\nLasso & Elastic Net\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nISLR Sections 6.2.2 and 6.2.3\n\n\n6\n3 October\nPenalized Regression in R\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n7\n8 October\nLab 04: Ridge, Lasso, Elastic Net (Out of Class)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n7\n10 October\n[No Class]\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n7\n15 October\nMissing Data\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n8\n17 October\nReview\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n8\n22 October\nMidterm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n9\n24 October\nPolynomial Regression and Splines\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nISLR Sections 7.1, 7.2, 7.3, 7.4\n\n\n10\n29 October\nNon-linear Models in R\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n10\n29 October\nLab 05: Non-linear models\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n10\n31 October\nDecision Trees (Regression)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nISLR Section 8.1\n\n\n1\n5 November\nDecision Trees\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n11\n7 November\nDecision Trees (Classification)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n12\n12 November\nBagging\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nISLR Section 8.2\n\n\n12\n14 November\nRandom Forests\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n13\n19 November\nBoosted Decision Trees\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n13\n21 November\nNeural Networks\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n14\n26 November\nThanksgiving [No Class]\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n14\n28 November\nThanksgiving [No Class]\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n15\n3 December\nLab 06: Ensemble Models\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n15\n5 December\nCommunicating with Statistics",
-    "crumbs": [
-      "{{< fa calendar >}} Schedule",
-      "Course Details",
-      "Schedule"
-    ]
-  },
-  {
-    "objectID": "quarto-quick-guide.html",
-    "href": "quarto-quick-guide.html",
-    "title": "Quarto Quick Reference Guide",
-    "section": "",
-    "text": "Quarto is the next-generation version of R Markdown that combines code, results, and narrative text into dynamic documents. This guide covers the essentials you’ll need for STA 312.",
-    "crumbs": [
-      "{{< fa calendar >}} Schedule",
-      "Computing",
-      "Quarto Quick Guide"
-    ]
-  },
-  {
-    "objectID": "quarto-quick-guide.html#document-structure",
-    "href": "quarto-quick-guide.html#document-structure",
-    "title": "Quarto Quick Reference Guide",
-    "section": "Document Structure",
-    "text": "Document Structure\nEvery Quarto document starts with a YAML header (between --- lines) that contains metadata:\n---\ntitle: \"My Statistical Analysis\"\nauthor: \"Your Name\"\ndate: today\nformat: html\nexecute:\n  echo: true\n  warning: false\n---",
-    "crumbs": [
-      "{{< fa calendar >}} Schedule",
-      "Computing",
-      "Quarto Quick Guide"
-    ]
-  },
-  {
-    "objectID": "quarto-quick-guide.html#basic-markdown-syntax",
-    "href": "quarto-quick-guide.html#basic-markdown-syntax",
-    "title": "Quarto Quick Reference Guide",
-    "section": "Basic Markdown Syntax",
-    "text": "Basic Markdown Syntax\n\nHeaders\n# Header 1 (largest)\n## Header 2\n### Header 3\n#### Header 4\n\n\nText Formatting\n\nBold text: **bold text** or __bold text__\nItalic text: *italic text* or _italic text_\nCode text: `code text`\nLinks: [link text](URL)\n\n\n\nLists\nUnordered lists:\n- Item 1\n- Item 2\n  - Sub-item\n  - Sub-item\nOrdered lists:\n1. First item\n2. Second item\n3. Third item",
-    "crumbs": [
-      "{{< fa calendar >}} Schedule",
-      "Computing",
-      "Quarto Quick Guide"
-    ]
-  },
-  {
-    "objectID": "quarto-quick-guide.html#r-code-chunks",
-    "href": "quarto-quick-guide.html#r-code-chunks",
-    "title": "Quarto Quick Reference Guide",
-    "section": "R Code Chunks",
-    "text": "R Code Chunks\nThe power of Quarto comes from embedding R code directly in your document.\n\nBasic Code Chunk\nCode chucks start with {r}.\n```{r}\n# Your R code here\nx &lt;- c(1, 2, 3, 4, 5)\nmean(x)\n```\n\n\nCode Chunk Options\nYour code chunks can have options that are written in YAML style starting with a #| at the beginning of the line.\n```{r}\n#| label: data-setup\n#| echo: false\n#| message: false\n#| warning: false\n\n# Load libraries and data\nlibrary(tidyverse)\nlibrary(ggplot2)\n```\n\n\nCommon Chunk Options\n\n#| echo: false: Hide code, show output\n\n#| eval: false: Show code, don’t run it\n\n#| include: false: Run code, hide everything\n\n#| message: false: Hide messages\n\n#| warning: false: Hide warnings\n\n#| fig-width: 8 and #| fig-height: 6: Control plot dimensions",
-    "crumbs": [
-      "{{< fa calendar >}} Schedule",
-      "Computing",
-      "Quarto Quick Guide"
-    ]
-  },
-  {
-    "objectID": "quarto-quick-guide.html#inline-r-code",
-    "href": "quarto-quick-guide.html#inline-r-code",
-    "title": "Quarto Quick Reference Guide",
-    "section": "Inline R Code",
-    "text": "Inline R Code\nYou can include R results directly in text using `r`:\nThe mean of our data is `r round(mean(x), 2)`.",
-    "crumbs": [
-      "{{< fa calendar >}} Schedule",
-      "Computing",
-      "Quarto Quick Guide"
-    ]
-  },
-  {
-    "objectID": "quarto-quick-guide.html#mathematical-expressions",
-    "href": "quarto-quick-guide.html#mathematical-expressions",
-    "title": "Quarto Quick Reference Guide",
-    "section": "Mathematical Expressions",
-    "text": "Mathematical Expressions\nQuarto uses LaTeX syntax for mathematical notation:\n\nInline Math\nUse single dollar signs for inline math: $x^2 + y^2 = z^2$\n\n\nDisplay Math\nUse double dollar signs for centered display math:\n$$\\bar{x} = \\frac{1}{n}\\sum_{i=1}^{n} x_i$$\n\n\nCommon Statistical Notation\n\n\n\n\n\n\n\n\nConcept\nLaTeX Code\nRendered Output\n\n\n\n\nMean\n$\\bar{x}$\n\\(\\bar{x}\\)\n\n\nStandard deviation\n$\\sigma$\n\\(\\sigma\\)\n\n\nRegression equation\n$y = \\beta_0 + \\beta_1 x + \\epsilon$\n\\(y = \\beta_0 + \\beta_1 x + \\epsilon\\)\n\n\nSums\n$\\sum_{i=1}^{n} x_i$\n\\(\\sum_{i=1}^{n} x_i\\)\n\n\nSquare root\n$\\sqrt{n}$\n\\(\\sqrt{n}\\)\n\n\nFractions\n$\\frac{a}{b}$\n\\(\\frac{a}{b}\\)\n\n\nSubscripts\n$x_i$\n\\(x_i\\)\n\n\nSuperscripts\n$x^2$\n\\(x^2\\)\n\n\nMatrices\n$\\begin{bmatrix} 1 & 2 & 3 \\\\ 4 & 5 & 6 \\end{bmatrix}$\n\\(\\begin{bmatrix} 1 & 2 & 3 \\\\ 4 & 5 & 6 \\end{bmatrix}\\)",
-    "crumbs": [
-      "{{< fa calendar >}} Schedule",
-      "Computing",
-      "Quarto Quick Guide"
-    ]
-  },
-  {
-    "objectID": "quarto-quick-guide.html#tables",
-    "href": "quarto-quick-guide.html#tables",
-    "title": "Quarto Quick Reference Guide",
-    "section": "Tables",
-    "text": "Tables\n\nSimple Tables\n| Variable | Mean | SD   |\n|----------|------|------|\n| Height   | 68.2 | 3.1  |\n| Weight   | 155  | 22.5 |\n\n\nTables from R Code\n```{r}\n#| label: summary-table\n#| tbl-cap: \"Summary Statistics\"\n\nlibrary(knitr)\nsummary_stats &lt;- data.frame(\n  Variable = c(\"Height\", \"Weight\"),\n  Mean = c(68.2, 155.0),\n  SD = c(3.1, 22.5)\n)\nkable(summary_stats)\n```",
-    "crumbs": [
-      "{{< fa calendar >}} Schedule",
-      "Computing",
-      "Quarto Quick Guide"
-    ]
-  },
-  {
-    "objectID": "quarto-quick-guide.html#figures",
-    "href": "quarto-quick-guide.html#figures",
-    "title": "Quarto Quick Reference Guide",
-    "section": "Figures",
-    "text": "Figures\n\nPlots with Captions\n```{r}\n#| label: fig-scatter\n#| fig-cap: \"Relationship between height and weight\"\n#| fig-width: 6\n#| fig-height: 4\n\nggplot(data, aes(x = height, y = weight)) +\n  geom_point() +\n  geom_smooth(method = \"lm\") +\n  labs(x = \"Height (inches)\", y = \"Weight (lbs)\")\n```",
-    "crumbs": [
-      "{{< fa calendar >}} Schedule",
-      "Computing",
-      "Quarto Quick Guide"
-    ]
-  },
-  {
-    "objectID": "quarto-quick-guide.html#cross-references",
-    "href": "quarto-quick-guide.html#cross-references",
-    "title": "Quarto Quick Reference Guide",
-    "section": "Cross-References",
-    "text": "Cross-References\nYou can reference figures, tables, and equations:\n\nReference a figure: @fig-scatter\n\nReference a table: @tbl-summary\n\nReference an equation: @eq-regression\n\nFor equations with labels:\n$$y = \\beta_0 + \\beta_1 x + \\epsilon$$ {#eq-regression}",
-    "crumbs": [
-      "{{< fa calendar >}} Schedule",
-      "Computing",
-      "Quarto Quick Guide"
-    ]
-  },
-  {
-    "objectID": "quarto-quick-guide.html#callout-blocks",
-    "href": "quarto-quick-guide.html#callout-blocks",
-    "title": "Quarto Quick Reference Guide",
-    "section": "Callout Blocks",
-    "text": "Callout Blocks\nQuarto provides special callout blocks for important information:\n::: {.callout-note}\nThis is a note callout.\n:::\n\n::: {.callout-warning}\nThis is a warning callout.\n:::\n\n::: {.callout-important}\nThis is an important callout.\n:::",
-    "crumbs": [
-      "{{< fa calendar >}} Schedule",
-      "Computing",
-      "Quarto Quick Guide"
-    ]
-  },
-  {
-    "objectID": "quarto-quick-guide.html#rendering-your-document",
-    "href": "quarto-quick-guide.html#rendering-your-document",
-    "title": "Quarto Quick Reference Guide",
-    "section": "Rendering Your Document",
-    "text": "Rendering Your Document\nTo render your Quarto document:\n\nIn RStudio: Click the “Render” button\n\nCommand line: Run quarto render filename.qmd\n\nPreview: Use quarto preview filename.qmd for live preview",
-    "crumbs": [
-      "{{< fa calendar >}} Schedule",
-      "Computing",
-      "Quarto Quick Guide"
-    ]
-  },
-  {
-    "objectID": "quarto-quick-guide.html#tips-for-statistical-writing",
-    "href": "quarto-quick-guide.html#tips-for-statistical-writing",
-    "title": "Quarto Quick Reference Guide",
-    "section": "Tips for Statistical Writing",
-    "text": "Tips for Statistical Writing\n\nAlways explain your code: Use comments (#) and narrative text\nRound numbers appropriately: Use round() function for inline code\nLabel your chunks: Makes debugging easier\nInclude figure captions: Helps with interpretation",
-    "crumbs": [
-      "{{< fa calendar >}} Schedule",
-      "Computing",
-      "Quarto Quick Guide"
-    ]
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Statistical Learning",
-    "section": "",
-    "text": "Course Info\nLocation: Carswell 208\nTime: Wed/Fri 11a\n\n\n Office Hours\nInstructor: Dr. Lucy D’Agostino McGowan\nEmail: mcgowald@wfu.edu\nOffice Hours: Book Online\nOffice: Manchester 342\nTA: Joe Zhu\nMath & Stats Center: mathandstatscenter@wfu.edu\nLocation: Math & Stats Center\n\n\n\n\n\n\n\n\nCarswell 208\n\n\n\n\n\n\n\n\nWed/Fri 11a\n\n\n\n\n\nTexts\nThe main text book is: An Introduction to Statistical Learning with Applications in R by Gareth James, Daniela Witten, Trevor Hastie, and Robert Tibshirani – it is freely available online.\n\n\nMaterials\nThis class is very hands on; be sure to bring a fully charged laptop to every class."
-  },
-  {
-    "objectID": "help-quarto.html",
-    "href": "help-quarto.html",
-    "title": "Creating a New Quarto Document in RStudio",
-    "section": "",
-    "text": "To create a new Quarto document:\n\nBe sure that you are in the correct project for the exercise or assignment. If you need help creating a new project here are some tips.\nIn RStudio, go to the menu bar and select File &gt; New File &gt; Quarto Document.\nEnter a title for your document and select the output format (e.g., HTML, PDF, Word).\nClick Create. A new Quarto file (.qmd) will open.\nSave the file to your project directory\nUse the toolbar or the Render button to build your document.",
-    "crumbs": [
-      "{{< fa calendar >}} Schedule",
-      "Computing",
-      "Creating a Quarto Document"
-    ]
-  },
-  {
-    "objectID": "ex/02-welcome-penguins.html",
-    "href": "ex/02-welcome-penguins.html",
-    "title": "Welcome Penguins!",
-    "section": "",
-    "text": "Note: if you are off campus, you will need to use a VPN to connect\nGo to login.deac.wfu.edu\n\n\n\n\nClick File &gt; New Project\n\n\n\n\nClick the third option.\n\n\n\n\nClick the first option\n\n\n\n\nPaste this link in the top box (Repository url):\nhttps://github.com/sta-363-f25/appex-01-welcome-penguins.git",
-    "crumbs": [
-      "{{< fa calendar >}} Schedule",
-      "Exercises",
-      "Welcome Penguins"
-    ]
-  },
-  {
-    "objectID": "ex/02-welcome-penguins.html#set-up",
-    "href": "ex/02-welcome-penguins.html#set-up",
-    "title": "Welcome Penguins!",
-    "section": "",
-    "text": "Note: if you are off campus, you will need to use a VPN to connect\nGo to login.deac.wfu.edu\n\n\n\n\nClick File &gt; New Project\n\n\n\n\nClick the third option.\n\n\n\n\nClick the first option\n\n\n\n\nPaste this link in the top box (Repository url):\nhttps://github.com/sta-363-f25/appex-01-welcome-penguins.git",
-    "crumbs": [
-      "{{< fa calendar >}} Schedule",
-      "Exercises",
-      "Welcome Penguins"
-    ]
-  },
-  {
-    "objectID": "ex/02-welcome-penguins.html#your-turn",
-    "href": "ex/02-welcome-penguins.html#your-turn",
-    "title": "Welcome Penguins!",
-    "section": "Your Turn",
-    "text": "Your Turn\n\nOnce you log on to RStudio Pro, create a new project from version control (Git)\nPaste https://github.com/sta-363-f25/appex-01-welcome-penguins.git in the Repository url box\nFind the file pane (on the bottom right). Click the welcome-penguins.qmd file\nClick the “Render” button\nGo back to the file and change your name on top (in the yaml – we’ll talk about what this means later) and render again.\nThen, scroll to the plot chunk, below Palmer Penguins. Instead of looking at the relationship between flipper length and bill length, plot the relationship between flipper length and bill depth. Hint, look at the full dataset at the bottom of the document for variable names, update the captions to match your new plot.\nRender again & voila!",
-    "crumbs": [
-      "{{< fa calendar >}} Schedule",
-      "Exercises",
-      "Welcome Penguins"
-    ]
-  },
-  {
-    "objectID": "demo-zipcodes/zipcodes.html",
-    "href": "demo-zipcodes/zipcodes.html",
-    "title": "Predicting handwritten numbers",
-    "section": "",
-    "text": "library(tidyverse)\nlibrary(tidymodels)\nload(\"data/zip.train.Rdata\")\nload(\"data/zip.test.Rdata\")\nThis dataset consists of normalized handwritten digits, automatically scanned from envelopes by the U.S. Postal Service. The ultimate objective is to be able to predict which number is written so that the zip code can be automatically determined. The original scanned digits are binary and of different sizes and orientations; the images here have been deslanted and size normalized, resulting in 16 x 16 grayscale images (Le Cun et al., 1990). This data is obtained from the ElemStatLearn package.\nLet’s see what kind of data this is.\nclass(zip.train)\n\n[1] \"matrix\" \"array\"\nIt looks like this is a matrix. Let’s look at the the first 5 rows and 5 columns.\nzip.train[1:5, 1:5]\n\n     [,1] [,2] [,3] [,4]   [,5]\n[1,]    6   -1   -1   -1 -1.000\n[2,]    5   -1   -1   -1 -0.813\n[3,]    4   -1   -1   -1 -1.000\n[4,]    7   -1   -1   -1 -1.000\n[5,]    3   -1   -1   -1 -1.000\nIt looks like the first column contains the digit and the subsequent columns indicate values for the 256 pixels. Let’s tidy this up a bit.\nzip_train &lt;- zip.train %&gt;%\n  as_tibble(.name_repair = ~ c(\"label\", glue::glue(\"pix_{1:256}\")))\n\nzip_test &lt;- zip.test %&gt;%\n    as_tibble(.name_repair = ~ c(\"label\", glue::glue(\"pix_{1:256}\")))\nLet’s plot a few. This code is adapted from a blog post by David Robinson.\npixels_gathered &lt;- zip_train %&gt;%\n  slice(1:25) %&gt;%\n  mutate(instance = row_number()) %&gt;%\n  gather(pixel, value, -label, -instance) %&gt;%\n  tidyr::extract(pixel, \"pixel\", \"(\\\\d+)\", convert = TRUE) %&gt;%\n  mutate(pixel = pixel - 1,\n         x = pixel %% 16,\n         y = 16 - pixel %/% 16)\n\nggplot(pixels_gathered, aes(x, y, fill = value)) +\n  geom_tile() +\n  facet_wrap(~ instance + label)"
-  },
-  {
-    "objectID": "demo-zipcodes/zipcodes.html#predict-0",
-    "href": "demo-zipcodes/zipcodes.html#predict-0",
-    "title": "Predicting handwritten numbers",
-    "section": "Predict 0",
-    "text": "Predict 0\nWe are interested in creating a prediction model to determine whether the handwritten number is a 0.\n\nFirst we create a recipe\n\nrecip &lt;- zip_train %&gt;% \n    recipe() %&gt;% \n    update_role(starts_with(\"pix\"), new_role = \"predictor\") %&gt;%\n    update_role(label, new_role = \"outcome\") %&gt;%\n    step_mutate(label = as.factor(label == 0)) ## Set the outcome to when the written number is equal to 0\n\n\n\nThen we prep our recipe.\n\nprepped &lt;- recip %&gt;% \n    prep(retain = TRUE)\n\n\n\nThen we create our training data and testing data\n\ntrain &lt;- prepped %&gt;% \n    juice()\n\ntest &lt;- prepped %&gt;% \n    bake(new_data = zip_test)\n\n\n\nNow we specify our model\nWe are fitting a decision tree.\n\ntree_fit &lt;- fit(\n    decision_tree(mode = \"classification\", tree_depth = 3),\n    formula = formula(prepped),\n    data = train,\n    engine = \"rpart\")\n\n\n\nAssess the model\n\nresults &lt;- tibble(\n    truth = test$label,\n    estimate = predict(tree_fit, test) %&gt;% \n      pull(.pred_class)\n  )\n\nmetrics(results, truth = truth, estimate = estimate) %&gt;% \n  knitr::kable()\n\n\n\n\n.metric\n.estimator\n.estimate\n\n\n\n\naccuracy\nbinary\n0.9362232\n\n\nkap\nbinary\n0.7861534\n\n\n\n\n\n\n\nCreate a confusion matrix\nWhat is the false positive rate? What is the false negative rate?\n\nconf_mat(results, truth = truth, estimate = estimate)[[1]] %&gt;% \n  as_tibble() %&gt;% \n  ggplot(aes(Prediction, Truth, alpha = n)) + \n  geom_text(aes(label = n), alpha = 1, size = 10) +\n  labs(title = \"Confusion matrix\")\n\n\n\n\n\n\n\n\n\n\nPlot the tree\nWhich pixels are involved in this prediction?\n\nlibrary(rpart.plot)\nrpart.plot(tree_fit$fit, roundint = FALSE)"
-  },
-  {
-    "objectID": "demo-zipcodes/zipcodes.html#lets-plot-some-zeros-that-we-missed",
-    "href": "demo-zipcodes/zipcodes.html#lets-plot-some-zeros-that-we-missed",
-    "title": "Predicting handwritten numbers",
-    "section": "Let’s plot some zeros that we missed",
-    "text": "Let’s plot some zeros that we missed\n\nzip_test %&gt;%\n  bind_cols(results) %&gt;%\n  filter(truth == \"TRUE\", estimate == \"FALSE\") %&gt;%\n  select(-truth, -estimate) %&gt;%\n  sample_n(25) %&gt;%\n  mutate(instance = row_number()) %&gt;%\n  gather(pixel, value, -label, -instance) %&gt;%\n  tidyr::extract(pixel, \"pixel\", \"(\\\\d+)\", convert = TRUE) %&gt;%\n  mutate(pixel = pixel - 1,\n         x = pixel %% 16,\n         y = 16 - pixel %/% 16) %&gt;%\n  ggplot(aes(x, y, fill = value)) +\n  geom_tile() +\n  facet_wrap(~ instance)"
-  },
-  {
-    "objectID": "demo-zipcodes/zipcodes.html#lets-plot-some-numbers-that-we-misclassified-as-zeros",
-    "href": "demo-zipcodes/zipcodes.html#lets-plot-some-numbers-that-we-misclassified-as-zeros",
-    "title": "Predicting handwritten numbers",
-    "section": "Let’s plot some numbers that we misclassified as zeros",
-    "text": "Let’s plot some numbers that we misclassified as zeros\n\nzip_test %&gt;%\n  bind_cols(results) %&gt;%\n  filter(truth == \"FALSE\", estimate == \"TRUE\") %&gt;%\n  select(-truth, -estimate) %&gt;%\n  sample_n(25) %&gt;%\n  mutate(instance = row_number()) %&gt;%\n  gather(pixel, value, -label, -instance) %&gt;%\n  tidyr::extract(pixel, \"pixel\", \"(\\\\d+)\", convert = TRUE) %&gt;%\n  mutate(pixel = pixel - 1,\n         x = pixel %% 16,\n         y = 16 - pixel %/% 16) %&gt;%\n  ggplot(aes(x, y, fill = value)) +\n  geom_tile() +\n  facet_wrap(~ label + instance)"
-  },
-  {
-    "objectID": "demo-zipcodes/zipcodes.html#references",
-    "href": "demo-zipcodes/zipcodes.html#references",
-    "title": "Predicting handwritten numbers",
-    "section": "References",
-    "text": "References\n\nhttp://varianceexplained.org/r/digit-eda/\nhttps://www.benjaminsorensen.me/post/modeling-with-parsnip-and-tidymodels/"
-  },
-  {
-    "objectID": "ex/01-ex.html",
-    "href": "ex/01-ex.html",
-    "title": "Exercise 1",
-    "section": "",
-    "text": "Exercise 1: Login to RStudio Pro\n\nGo to course website → Computing → Using the RStudio Server\nFollow login instructions\nLog in with your credentials\n\nCheck: You should see the RStudio interface with 4 panes.\n\n\n\nExercise 2: Create RStudio Project\n\nFile → New Project → New Directory → New Project\nName: ex-1\nClick Create Project\n\nCheck: Project name appears in top-right corner.\n\n\n\nExercise 3: Create Quarto Document\n\nFile → New File → Quarto Document\nTitle: “My First Analysis”\nSave as analysis.qmd\n\nCheck: New .qmd file is open and saved.\n\n\n\nExercise 4: Install ISLR Package and Load Data\nRun this code in the console ONCE:\n\ninstall.packages(\"ISLR\")\n\nThen run this:\n\nlibrary(ISLR)\nlibrary(ggplot2)\n# Test it works\ndata(Auto)\nhead(Auto)\n\n  mpg cylinders displacement horsepower weight acceleration year origin\n1  18         8          307        130   3504         12.0   70      1\n2  15         8          350        165   3693         11.5   70      1\n3  18         8          318        150   3436         11.0   70      1\n4  16         8          304        150   3433         12.0   70      1\n5  17         8          302        140   3449         10.5   70      1\n6  15         8          429        198   4341         10.0   70      1\n                       name\n1 chevrolet chevelle malibu\n2         buick skylark 320\n3        plymouth satellite\n4             amc rebel sst\n5               ford torino\n6          ford galaxie 500\n\n\nCheck: You see the Auto dataset.\nNow run this in the console:\n\n?Auto\n\nQuestion: What is in this dataset?\nAction: Add the code below to your .qmd file along with a short description of the data.\n\nlibrary(ISLR)\nlibrary(ggplot2)\ndata(Auto)\n\n\n\n\nExercise 5: Linear Model and Plot\nAdd the following code to your .qmd file. Try running it.\n\n# Fit linear model\nmodel1 &lt;- lm(mpg ~ horsepower, data = Auto)\nsummary(model1)\n\n\nCall:\nlm(formula = mpg ~ horsepower, data = Auto)\n\nResiduals:\n     Min       1Q   Median       3Q      Max \n-13.5710  -3.2592  -0.3435   2.7630  16.9240 \n\nCoefficients:\n             Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) 39.935861   0.717499   55.66   &lt;2e-16 ***\nhorsepower  -0.157845   0.006446  -24.49   &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 4.906 on 390 degrees of freedom\nMultiple R-squared:  0.6059,    Adjusted R-squared:  0.6049 \nF-statistic: 599.7 on 1 and 390 DF,  p-value: &lt; 2.2e-16\n\n# Create plot\nggplot(Auto, aes(x = horsepower, y = mpg)) +\n  geom_point() +\n  geom_smooth(method = \"lm\", formula = \"y ~ x\") +\n  labs(title = \"Horsepower vs MPG\",\n       x = \"Horsepower\", \n       y = \"Miles per Gallon\")\n\n\n\n\n\n\n\n\nCheck: You have model output and a scatter plot with trend line.\n\n\n\nFinish\nClick “Render” to create your HTML report. Upload your .html file in Canvas under Exercise 1",
-    "crumbs": [
-      "{{< fa calendar >}} Schedule",
-      "Exercises",
-      "Exercise 1"
-    ]
-  },
-  {
-    "objectID": "help-project.html",
-    "href": "help-project.html",
-    "title": "Creating or Opening a Project",
-    "section": "",
-    "text": "Before starting an assignment or exercise, always create or open a project:\n\nTo create a new project:\n\nIn RStudio, go to File &gt; New Project.\nChoose whether to create a project in a new directory or within an existing directory.\nNavigate to the folder where you want your project\nClick Create Project.\n\nTo open an existing project:\n\nIn RStudio, go to File &gt; Open Project.\nBrowse to the .Rproj file of the project you want to open.\nSelect it and click Open.\n\n\nThis ensures all your files and settings are organized within the correct project environment.",
-    "crumbs": [
-      "{{< fa calendar >}} Schedule",
-      "Computing",
-      "Creating an RStudio Project"
-    ]
-  },
-  {
-    "objectID": "help.html",
-    "href": "help.html",
-    "title": "Help",
-    "section": "",
-    "text": "Welcome to the help section! This page contains resources to help you succeed in the course, from technical setup to troubleshooting common issues. Click through the sidebar on the left."
-  },
-  {
-    "objectID": "help.html#getting-started-with-rstudio-and-quarto",
-    "href": "help.html#getting-started-with-rstudio-and-quarto",
-    "title": "Help",
-    "section": "Getting Started with RStudio and Quarto",
-    "text": "Getting Started with RStudio and Quarto\nIf you’re new to using RStudio Pro or working with Quarto documents, check out our getting started guides.\nGetting Started Guide with RStudio Pro →\nGetting Started Guide with Quarto →"
-  },
-  {
-    "objectID": "help.html#quick-links",
-    "href": "help.html#quick-links",
-    "title": "Help",
-    "section": "Quick Links",
-    "text": "Quick Links\n\nRStudio Pro Server: Access your computing environment at login.deac.wfu.edu\nCourse Schedule: Check the schedule for upcoming assignments and due dates"
-  },
-  {
-    "objectID": "help.html#need-additional-help",
-    "href": "help.html#need-additional-help",
-    "title": "Help",
-    "section": "Need Additional Help?",
-    "text": "Need Additional Help?\nIf you can’t find what you’re looking for in our guides, don’t hesitate to reach out."
-  },
-  {
-    "objectID": "lab/01-lab.html",
-    "href": "lab/01-lab.html",
-    "title": "Lab 01 - Hello R!",
-    "section": "",
-    "text": "Due: Friday 2025-09-05 at 11:59pm",
-    "crumbs": [
-      "{{< fa calendar >}} Schedule",
-      "Labs",
-      "Lab 01"
-    ]
-  },
-  {
-    "objectID": "lab/01-lab.html#yaml",
-    "href": "lab/01-lab.html#yaml",
-    "title": "Lab 01 - Hello R!",
-    "section": "YAML:",
-    "text": "YAML:\nOpen the Quarto (qmd) file in your project, change the author name to your name, and render the document.",
-    "crumbs": [
-      "{{< fa calendar >}} Schedule",
-      "Labs",
-      "Lab 01"
-    ]
-  },
-  {
-    "objectID": "rstudio-pro.html",
-    "href": "rstudio-pro.html",
-    "title": "Logging into RStudio Pro",
-    "section": "",
-    "text": "Follow these steps to access RStudio Pro:\n\nMake sure you are connected to the WFU Network. This means you must be on the eduroam wireless network, or connected through the VPN if you are off-campus.\n\nIf you are off-campus, go through the VPN first: WFU VPN Instructions.\n\nGo to login.deac.wfu.edu and sign in with your school email and password.\nOnce logged in, click the RStudio icon.\nSet your working directory to /deac/sta/classes/sta363/YOUR-USERNAME where YOUR-USERNAME is replaced by the first part of your email address, i.e., mine is mcgowald because my email is mcgowald@wfu.edu\nSet the number of hours to how long you plan to work on the project (I usually enter 4).\nClick Launch.\nThe session will show as Queued for a moment. Once it is ready, the status will turn green and say Ready.\nClick the Connect to RStudio Server button. You should now be in RStudio Pro.\n\n\nNote: You are not required to use this setup (i.e., you can download RStudio and all the necessary packages locally). However, the focus of this class is not on technical setup, so we will not be able to spend time troubleshooting issues if you are not using the official setup described here.",
-    "crumbs": [
-      "{{< fa calendar >}} Schedule",
-      "Computing",
-      "Using the RStudio Pro Server"
-    ]
-  },
-  {
-    "objectID": "slides/01-welcome.html#section",
-    "href": "slides/01-welcome.html#section",
-    "title": "Welcome to Statistical Learning",
-    "section": "👋",
-    "text": "👋\nLucy D’Agostino McGowan\n   mcgowald@wfu.edu"
-  },
-  {
-    "objectID": "slides/01-welcome.html#intros",
-    "href": "slides/01-welcome.html#intros",
-    "title": "Welcome to Statistical Learning",
-    "section": "Intros",
-    "text": "Intros\n\nName\nMajor\nFun OR boring fact"
-  },
-  {
-    "objectID": "slides/01-welcome.html#statistical-learning-problems",
-    "href": "slides/01-welcome.html#statistical-learning-problems",
-    "title": "Welcome to Statistical Learning",
-    "section": "Statistical Learning Problems",
-    "text": "Statistical Learning Problems\n\n\n\nIdentify risk factors for breast cancer\n\n\n\n\n\nDr. Lucy D’Agostino McGowan adapted from slides by Hastie & Tibshirani"
-  },
-  {
-    "objectID": "slides/01-welcome.html#statistical-learning-problems-1",
-    "href": "slides/01-welcome.html#statistical-learning-problems-1",
-    "title": "Welcome to Statistical Learning",
-    "section": "Statistical Learning Problems",
-    "text": "Statistical Learning Problems\n\n\n\nIdentify risk factors for breast cancer\nCustomize an email spam detection system\n\n\n\nData: 4601 labeled emails sent to George who works at HP Labs\nInput features: frequencies of words and punctuation\n\n\n\n\n\n—\ngeorge\nyou\nhp\nfree\n!\nedu\nremove\n\n\n\n\nspam\n0.00\n2.26\n0.02\n0.52\n0.51\n0.01\n0.28\n\n\nemail\n2.27\n1.27\n0.90\n0.07\n0.11\n0.29\n0.01\n\n\n\n\nDr. Lucy D’Agostino McGowan adapted from slides by Hastie & Tibshirani"
-  },
-  {
-    "objectID": "slides/01-welcome.html#statistical-learning-problems-2",
-    "href": "slides/01-welcome.html#statistical-learning-problems-2",
-    "title": "Welcome to Statistical Learning",
-    "section": "Statistical Learning Problems",
-    "text": "Statistical Learning Problems\n\n\n\nIdentify risk factors for breast cancer\n\nCustomize an email spam detection system\n\nIdentify numbers in handwritten zip code\n\n\n\n\n\n\nDr. Lucy D’Agostino McGowan adapted from slides by Hastie & Tibshirani"
-  },
-  {
-    "objectID": "slides/01-welcome.html#statistical-learning-problems-3",
-    "href": "slides/01-welcome.html#statistical-learning-problems-3",
-    "title": "Welcome to Statistical Learning",
-    "section": "Statistical Learning Problems",
-    "text": "Statistical Learning Problems\n\n\n\nIdentify risk factors for breast cancer\n\nCustomize an email spam detection system\n\nIdentify numbers in handwritten zip code\n\nEstablish the relationship between variables in population survey data\n\n\n\nIncome survey data for males from the central Atlantic region of US, 2009\n\n\n\nDr. Lucy D’Agostino McGowan adapted from slides by Hastie & Tibshirani"
-  },
-  {
-    "objectID": "slides/01-welcome.html#types-of-statistical-learning",
-    "href": "slides/01-welcome.html#types-of-statistical-learning",
-    "title": "Welcome to Statistical Learning",
-    "section": "✌️ types of statistical learning",
-    "text": "✌️ types of statistical learning\n\nSupervised Learning\nUnsupervised Learning"
-  },
-  {
-    "objectID": "slides/01-welcome.html#supervised-learning",
-    "href": "slides/01-welcome.html#supervised-learning",
-    "title": "Welcome to Statistical Learning",
-    "section": "Supervised Learning",
-    "text": "Supervised Learning\n\nDr. Lucy D’Agostino McGowan adapted from slides by Hastie & Tibshirani\n\n\noutcome variable: \\(Y\\), (dependent variable, response, target)\npredictors: vector of \\(p\\) predictors, \\(X\\), (inputs, regressors, covariates, features, independent variables)\nIn the regression problem, \\(Y\\) is quantitative (e.g price, blood pressure)\nIn the classification problem, \\(Y\\) takes values in a finite, unordered set (survived/died, digit 0-9, cancer class of tissue sample)\nWe have training data \\((x_1, y_1), \\dots, (x_N, y_N)\\). These are observations (examples, instances) of these measurements"
-  },
-  {
-    "objectID": "slides/01-welcome.html#supervised-learning-1",
-    "href": "slides/01-welcome.html#supervised-learning-1",
-    "title": "Welcome to Statistical Learning",
-    "section": "Supervised Learning",
-    "text": "Supervised Learning\n\nWhat do you think are some objectives here?\n\n\nObjectives\n\nAccurately predict unseen test cases\nUnderstand which inputs affect the outcome, and how\nAssess the quality of our predictions and inferences\n\n\nDr. Lucy D’Agostino McGowan adapted from slides by Hastie & Tibshirani"
-  },
-  {
-    "objectID": "slides/01-welcome.html#unsupervised-learning",
-    "href": "slides/01-welcome.html#unsupervised-learning",
-    "title": "Welcome to Statistical Learning",
-    "section": "Unsupervised Learning",
-    "text": "Unsupervised Learning\n\nDr. Lucy D’Agostino McGowan adapted from slides by Hastie & Tibshirani\n\n\nNo outcome variable, just a set of predictors (features) measured on a set of samples\nobjective is more fuzzy – find groups of samples that behave similarly, find features that behave similarly, find linear combinations of features with the most variation\ndifficult to know how well your are doing\ndifferent from supervised learning, but can be useful as a pre-processing step for supervised learning"
-  },
-  {
-    "objectID": "slides/01-welcome.html#lets-take-a-tour---class-website",
-    "href": "slides/01-welcome.html#lets-take-a-tour---class-website",
-    "title": "Welcome to Statistical Learning",
-    "section": "Let’s take a tour - class website",
-    "text": "Let’s take a tour - class website"
   },
   {
     "objectID": "syllabus.html",
