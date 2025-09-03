@@ -303,7 +303,7 @@
     "href": "slides/03-notation-and-tradeoffs.html#accuracy-6",
     "title": "Trade-offs: Accuracy and interpretability, bias and variance",
     "section": "Accuracy",
-    "text": "Accuracy\n\nMisclassification error rate\n\n\\[Err_{\\texttt{test}} = \\textrm{Ave}_{i\\in\\texttt{test}}I[y_i\\neq \\mathcal{\\hat{C}}(x_i)]\\] ::: {.incremental} * The Bayes Classifier using the true \\(p_k(x)\\) has the smallest error * Some of the methods we will learn build structured models for \\(\\mathcal{C}(x)\\) (support vector machines, for example) * Some build structured models for \\(p_k(x)\\) (logistic regression, for example)\n:::\n\n\nthe test error rate \\(\\textrm{Ave}_{i\\in\\texttt{test}}I[y_i\\neq \\mathcal{\\hat{C}}(x_i)]\\) is minimized on average by very simple classifier that assigns each observation to the most likely class, given its predictor values (that’s the Bayes classifier)"
+    "text": "Accuracy\n\nMisclassification error rate\n\n\\[Err_{\\texttt{test}} = \\textrm{Ave}_{i\\in\\texttt{test}}I[y_i\\neq \\mathcal{\\hat{C}}(x_i)]\\] ::: {.incremental}\n\nThe Bayes Classifier using the true \\(p_k(x)\\) has the smallest error\n\nSome of the methods we will learn build structured models for \\(\\mathcal{C}(x)\\) (support vector machines, for example)\n\nSome build structured models for \\(p_k(x)\\) (logistic regression, for example)\n\n:::\n\n\nthe test error rate \\(\\textrm{Ave}_{i\\in\\texttt{test}}I[y_i\\neq \\mathcal{\\hat{C}}(x_i)]\\) is minimized on average by very simple classifier that assigns each observation to the most likely class, given its predictor values (that’s the Bayes classifier)"
   },
   {
     "objectID": "slides/03-notation-and-tradeoffs.html#k-nearest-neighbors-example",
