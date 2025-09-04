@@ -12,6 +12,160 @@
     ]
   },
   {
+    "objectID": "slides/04-ggplot2.html#ggplot2-in-tidyverse",
+    "href": "slides/04-ggplot2.html#ggplot2-in-tidyverse",
+    "title": "Introduction to ggplot2",
+    "section": "ggplot2 \\(\\in\\) tidyverse",
+    "text": "ggplot2 \\(\\in\\) tidyverse\nggplot(data = [dataset], \n       mapping = aes(x = [x-variable], \n                     y = [y-variable])) +\n  geom_xxx() +\n  other options\n\n\n\n\n\n\n\nggplot2 is tidyverse’s data visualization package\nStructure of the code for plots can be summarized as"
+  },
+  {
+    "objectID": "slides/04-ggplot2.html#data-palmer-penguins",
+    "href": "slides/04-ggplot2.html#data-palmer-penguins",
+    "title": "Introduction to ggplot2",
+    "section": "Data: Palmer Penguins",
+    "text": "Data: Palmer Penguins\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(data = penguins, \n       mapping = aes(x = bill_depth_mm, y = bill_length_mm,\n                     colour = species)) +\n  geom_point() +\n  labs(title = \"Bill depth and length\",\n       subtitle = \"Dimensions for Adelie, Chinstrap, and Gentoo Penguins\",\n       x = \"Bill depth (mm)\", y = \"Bill length (mm)\",\n       colour = \"Species\")"
+  },
+  {
+    "objectID": "slides/04-ggplot2.html#section",
+    "href": "slides/04-ggplot2.html#section",
+    "title": "Introduction to ggplot2",
+    "section": "",
+    "text": "Start with the penguins data frame\n\n\n\n\nggplot(data = penguins)"
+  },
+  {
+    "objectID": "slides/04-ggplot2.html#section-1",
+    "href": "slides/04-ggplot2.html#section-1",
+    "title": "Introduction to ggplot2",
+    "section": "",
+    "text": "Start with the penguins data frame, map bill depth to the x-axis\n\n\n\n\nggplot(data = penguins,\n       mapping = aes(x = bill_depth_mm))"
+  },
+  {
+    "objectID": "slides/04-ggplot2.html#section-2",
+    "href": "slides/04-ggplot2.html#section-2",
+    "title": "Introduction to ggplot2",
+    "section": "",
+    "text": "Start with the penguins data frame, map bill depth to the x-axis and map bill length to the y-axis.\n\n\n\n\nggplot(data = penguins,\n       mapping = aes(x = bill_depth_mm,\n                     y = bill_length_mm))"
+  },
+  {
+    "objectID": "slides/04-ggplot2.html#section-3",
+    "href": "slides/04-ggplot2.html#section-3",
+    "title": "Introduction to ggplot2",
+    "section": "",
+    "text": "Start with the penguins data frame, map bill depth to the x-axis and map bill length to the y-axis. Represent each observation with a point\n\n\n\n\nggplot(data = penguins,\n       mapping = aes(x = bill_depth_mm,\n                     y = bill_length_mm)) + \n  geom_point()"
+  },
+  {
+    "objectID": "slides/04-ggplot2.html#section-4",
+    "href": "slides/04-ggplot2.html#section-4",
+    "title": "Introduction to ggplot2",
+    "section": "",
+    "text": "Start with the penguins data frame, map bill depth to the x-axis and map bill length to the y-axis. Represent each observation with a point and map species to the color of each point.\n\n\n\n\nggplot(data = penguins,\n       mapping = aes(x = bill_depth_mm,\n                     y = bill_length_mm,\n                     color = species)) + \n  geom_point()"
+  },
+  {
+    "objectID": "slides/04-ggplot2.html#section-5",
+    "href": "slides/04-ggplot2.html#section-5",
+    "title": "Introduction to ggplot2",
+    "section": "",
+    "text": "Start with the penguins data frame, map bill depth to the x-axis and map bill length to the y-axis. Represent each observation with a point and map species to the color of each point. Title the plot “Bill depth and length”\n\n\n\n\nggplot(data = penguins,\n       mapping = aes(x = bill_depth_mm,\n                     y = bill_length_mm,\n                     color = species)) + \n  geom_point() + \n  labs(title = \"Bill depth and length\")"
+  },
+  {
+    "objectID": "slides/04-ggplot2.html#section-6",
+    "href": "slides/04-ggplot2.html#section-6",
+    "title": "Introduction to ggplot2",
+    "section": "",
+    "text": "Start with the penguins data frame, map bill depth to the x-axis and map bill length to the y-axis. Represent each observation with a point and map species to the color of each point. Title the plot “Bill depth and length”, add the subtitle “Dimensions for Adelie, Chinstrap, and Gentoo Penguins”\n\n\n\n\nggplot(data = penguins,\n       mapping = aes(x = bill_depth_mm,\n                     y = bill_length_mm,\n                     color = species)) + \n  geom_point() + \n  labs(title = \"Bill depth and length\",\n       subtitle = \"Dimensions for Adelie,\n         Chinstrap, and Gentoo Penguins\")"
+  },
+  {
+    "objectID": "slides/04-ggplot2.html#section-7",
+    "href": "slides/04-ggplot2.html#section-7",
+    "title": "Introduction to ggplot2",
+    "section": "",
+    "text": "Start with the penguins data frame, map bill depth to the x-axis and map bill length to the y-axis. Represent each observation with a point and map species to the color of each point. Title the plot “Bill depth and length”, add the subtitle “Dimensions for Adelie, Chinstrap, and Gentoo Penguins”, label the x and y axes as “Bill depth (mm)” and “Bill length (mm)”, respectively\n\n\n\n\nggplot(data = penguins,\n       mapping = aes(x = bill_depth_mm,\n                     y = bill_length_mm,\n                     color = species)) + \n  geom_point() + \n  labs(title = \"Bill depth and length\",\n       subtitle = \"Dimensions for Adelie,\n         Chinstrap, and Gentoo Penguins\",\n       x = \"Bill depth (mm)\", \n       y = \"Bill length (mm)\")"
+  },
+  {
+    "objectID": "slides/04-ggplot2.html#section-8",
+    "href": "slides/04-ggplot2.html#section-8",
+    "title": "Introduction to ggplot2",
+    "section": "",
+    "text": "Start with the penguins data frame, map bill depth to the x-axis and map bill length to the y-axis. Represent each observation with a point and map species to the color of each point. Title the plot “Bill depth and length”, add the subtitle “Dimensions for Adelie, Chinstrap, and Gentoo Penguins”, label the x and y axes as “Bill depth (mm)” and “Bill length (mm)”, respectively label the legend “Species”\n\n\n\n\nggplot(data = penguins,\n       mapping = aes(x = bill_depth_mm,\n                     y = bill_length_mm,\n                     color = species)) + \n  geom_point() + \n  labs(title = \"Bill depth and length\",\n       subtitle = \"Dimensions for Adelie,\n         Chinstrap, and Gentoo Penguins\",\n       x = \"Bill depth (mm)\", \n       y = \"Bill length (mm)\",\n       color = \"Species\")"
+  },
+  {
+    "objectID": "slides/04-ggplot2.html#section-9",
+    "href": "slides/04-ggplot2.html#section-9",
+    "title": "Introduction to ggplot2",
+    "section": "",
+    "text": "Start with the penguins data frame, map bill depth to the x-axis and map bill length to the y-axis. Represent each observation with a point and map species to the color of each point. Title the plot “Bill depth and length”, add the subtitle “Dimensions for Adelie, Chinstrap, and Gentoo Penguins”, label the x and y axes as “Bill depth (mm)” and “Bill length (mm)”, respectively label the legend “Species”, and add a caption for the data source.\n\n\n\n\nggplot(data = penguins,\n       mapping = aes(x = bill_depth_mm,\n                     y = bill_length_mm,\n                     color = species)) + \n  geom_point() + \n  labs(title = \"Bill depth and length\",\n       subtitle = \"Dimensions for Adelie,\n         Chinstrap, and Gentoo Penguins\",\n       x = \"Bill depth (mm)\",\n       y = \"Bill length (mm)\",\n       color = \"Species\",\n       caption = \"Source: Palmer Station\n         LTER / palmerpenguins package\")"
+  },
+  {
+    "objectID": "slides/04-ggplot2.html#section-10",
+    "href": "slides/04-ggplot2.html#section-10",
+    "title": "Introduction to ggplot2",
+    "section": "",
+    "text": "Start with the penguins data frame, map bill depth to the x-axis and map bill length to the y-axis. Represent each observation with a point and map species to the color of each point. Title the plot “Bill depth and length”, add the subtitle “Dimensions for Adelie, Chinstrap, and Gentoo Penguins”, label the x and y axes as “Bill depth (mm)” and “Bill length (mm)”, respectively label the legend “Species”, and add a caption for the data source. Finally, use a discrete color scale that is designed to be perceived by viewers with common forms of color blindness.\n\n\n\n\nggplot(data = penguins,\n       mapping = aes(x = bill_depth_mm,\n                     y = bill_length_mm,\n                     color = species)) + \n  geom_point() + \n  labs(title = \"Bill depth and length\",\n       subtitle = \"Dimensions for Adelie,\n         Chinstrap, and Gentoo Penguins\",\n       x = \"Bill depth (mm)\", \n       y = \"Bill length (mm)\",\n       color = \"Species\",\n       caption = \"Source: Palmer Station\n         LTER / palmerpenguins package\") + \n  scale_color_viridis_d()"
+  },
+  {
+    "objectID": "slides/04-ggplot2.html#section-11",
+    "href": "slides/04-ggplot2.html#section-11",
+    "title": "Introduction to ggplot2",
+    "section": "",
+    "text": "PlotCodeNarrative\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(data = penguins,\n       mapping = aes(x = bill_depth_mm,\n                     y = bill_length_mm,\n                     color = species)) + \n  geom_point() + \n  labs(title = \"Bill depth and length\",\n       subtitle = \"Dimensions for Adelie, Chinstrap, and Gentoo Penguins\",\n       x = \"Bill depth (mm)\", y = \"Bill length (mm)\",\n       color = \"Species\",\n       caption = \"Source: Palmer Station LTER / palmerpenguins package\") + \n  scale_color_viridis_d()\n\n\n\nStart with the penguins data frame, map bill depth to the x-axis and map bill length to the y-axis. Represent each observation with a point and map species to the color of each point. Title the plot “Bill depth and length”, add the subtitle “Dimensions for Adelie, Chinstrap, and Gentoo Penguins”, label the x and y axes as “Bill depth (mm)” and “Bill length (mm)”, respectively label the legend “Species”, and add a caption for the data source. Finally, use a discrete color scale that is designed to be perceived by viewers with common forms of color blindness."
+  },
+  {
+    "objectID": "slides/04-ggplot2.html#aesthetics-1",
+    "href": "slides/04-ggplot2.html#aesthetics-1",
+    "title": "Introduction to ggplot2",
+    "section": "Aesthetics",
+    "text": "Aesthetics\nCommonly used characteristics of plotting characters that can be mapped to a specific variable in the data are\n\ncolor\nshape\nsize\nalpha (transparency)"
+  },
+  {
+    "objectID": "slides/04-ggplot2.html#color",
+    "href": "slides/04-ggplot2.html#color",
+    "title": "Introduction to ggplot2",
+    "section": "Color",
+    "text": "Color\n\nggplot(data = penguins,\n       mapping = aes(x = bill_depth_mm,\n                     y = bill_length_mm,\n                     color = species)) + \n  geom_point() +\n  scale_color_viridis_d()"
+  },
+  {
+    "objectID": "slides/04-ggplot2.html#shape",
+    "href": "slides/04-ggplot2.html#shape",
+    "title": "Introduction to ggplot2",
+    "section": "Shape",
+    "text": "Shape\n\nggplot(data = penguins,\n       mapping = aes(x = bill_depth_mm,\n                     y = bill_length_mm,\n                     color = species,\n                     shape = island)) + \n  geom_point() +\n  scale_color_viridis_d()"
+  },
+  {
+    "objectID": "slides/04-ggplot2.html#size",
+    "href": "slides/04-ggplot2.html#size",
+    "title": "Introduction to ggplot2",
+    "section": "Size",
+    "text": "Size\n\nggplot(data = penguins,\n       mapping = aes(x = bill_depth_mm,\n                     y = bill_length_mm,\n                     color = species,\n                     shape = species,\n                     size = body_mass_g)) + \n  geom_point() +\n  scale_color_viridis_d()"
+  },
+  {
+    "objectID": "slides/04-ggplot2.html#alpha",
+    "href": "slides/04-ggplot2.html#alpha",
+    "title": "Introduction to ggplot2",
+    "section": "Alpha",
+    "text": "Alpha\n\nggplot(data = penguins,\n       mapping = aes(x = bill_depth_mm,\n                     y = bill_length_mm,\n                     color = species,\n                     shape = species,\n                     size = body_mass_g,\n                     alpha = flipper_length_mm)) + \n  geom_point() +\n  scale_color_viridis_d()"
+  },
+  {
+    "objectID": "slides/04-ggplot2.html#section-12",
+    "href": "slides/04-ggplot2.html#section-12",
+    "title": "Introduction to ggplot2",
+    "section": "",
+    "text": "Mapping\n\nggplot(penguins,\n       aes(x = bill_depth_mm,\n           y = bill_length_mm,\n           size = body_mass_g, \n           alpha = flipper_length_mm)) + \n  geom_point()\n\n\n\n\n\n\n\n\n\nSetting\n\nggplot(penguins,\n       aes(x = bill_depth_mm,\n           y = bill_length_mm)) + \n  geom_point(size = 2, alpha = 0.5)"
+  },
+  {
+    "objectID": "slides/04-ggplot2.html#mapping-vs.-setting",
+    "href": "slides/04-ggplot2.html#mapping-vs.-setting",
+    "title": "Introduction to ggplot2",
+    "section": "Mapping vs. setting",
+    "text": "Mapping vs. setting\n\nMapping: Determine the size, alpha, etc. of points based on the values of a variable in the data\ngoes into aes()\nSetting: Determine the size, alpha, etc. of points not based on the values of a variable in the data\ngoes into geom_*() (this was geom_point() in the previous example, but we’ll learn about other geoms soon!)"
+  },
+  {
+    "objectID": "slides/04-ggplot2.html#application-exercise",
+    "href": "slides/04-ggplot2.html#application-exercise",
+    "title": "Introduction to ggplot2",
+    "section": " Application Exercise",
+    "text": "Application Exercise\n\nOpen the Welcome Penguins folder from Day 1 in RStudio Pro (can’t find it? Copy the files again by following these instructions)\nCreate a new R chunk (don’t remember how to do this? Make sure you are using the visual editor then click Insert &gt; Code Chunk &gt; R). Using the code in the chunk labeled plot as a template, create a plot that examines the relationship between x = Flipper Length and y = Bill Depth.\nUpdate the plot from part 2 to have a different shape depending on the Island the penguin is from.\nChange the size of all of the points to 3.\nBe sure to update all labels to describe what you have created.\n\nBONUS: Is there any missing data? What is the plot doing with the missing values? See if you can get rid of the warning message.\n\n\n\n−+\n10:00"
+  },
+  {
     "objectID": "slides/03-notation-and-tradeoffs.html#regression-and-classification",
     "href": "slides/03-notation-and-tradeoffs.html#regression-and-classification",
     "title": "Trade-offs: Accuracy and interpretability, bias and variance",
@@ -730,7 +884,7 @@
     "href": "schedule.html",
     "title": " Schedule",
     "section": "",
-    "text": "Note: The timeline of topics and assignments might be updated throughout the semester.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nweek\ndate\ntopic\nslides\nappex\nassignment\nassessment\nprepare\n\n\n\n\n1\n27 August\nWelcome\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n1\n29 August\nLab 01: Welcome to R\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n2\n3 September\nTrade-offs: Accuracy and interpretability, bias and variance\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nISLR Sections 2.1 and 2.2\n\n\n2\n5 September\nDesign Principles of Data Analysis\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n3\n10 September\nData Visualization in R\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n3\n10 September\nExploratory Data Analysis\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n3\n12 September\nCross-validation\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nISLR Section 5.1\n\n\n3\n12 September\nIntroduction to tidymodels\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n4\n17 September\nLab 02: Cross-validation\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n4\n19 September\nIntroduction to Linear Regression\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nISLR Sections 3.1, 3.2, 3.3\n\n\n5\n24 September\nLinear Regression in R\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n5\n26 September\nLogistic Regression\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nISLR Section 4.3\n\n\n6\n1 October\nLab 03: Logistic Regression\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nISLR Section 4.4\n\n\n6\n3 October\nRidge Regression\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nISLR Sections 6.1.3 and 6.2.1\n\n\n6\n3 October\nLasso & Elastic Net\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nISLR Sections 6.2.2 and 6.2.3\n\n\n6\n3 October\nPenalized Regression in R\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n7\n8 October\nLab 04: Ridge, Lasso, Elastic Net (Out of Class)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n7\n10 October\n[No Class]\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n7\n15 October\nMissing Data\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n8\n17 October\nReview\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n8\n22 October\nMidterm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n9\n24 October\nPolynomial Regression and Splines\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nISLR Sections 7.1, 7.2, 7.3, 7.4\n\n\n10\n29 October\nNon-linear Models in R\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n10\n29 October\nLab 05: Non-linear models\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n10\n31 October\nDecision Trees (Regression)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nISLR Section 8.1\n\n\n1\n5 November\nDecision Trees\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n11\n7 November\nDecision Trees (Classification)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n12\n12 November\nBagging\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nISLR Section 8.2\n\n\n12\n14 November\nRandom Forests\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n13\n19 November\nBoosted Decision Trees\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n13\n21 November\nNeural Networks\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n14\n26 November\nThanksgiving [No Class]\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n14\n28 November\nThanksgiving [No Class]\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n15\n3 December\nLab 06: Ensemble Models\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n15\n5 December\nCommunicating with Statistics",
+    "text": "Note: The timeline of topics and assignments might be updated throughout the semester.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nweek\ndate\ntopic\nslides\nappex\nassignment\nassessment\nprepare\n\n\n\n\n1\n27 August\nWelcome\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n1\n29 August\nLab 01: Welcome to R\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n2\n3 September\nTrade-offs: Accuracy and interpretability, bias and variance\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nISLR Sections 2.1 and 2.2\n\n\n2\n5 September\nDesign Principles of Data Analysis\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n3\n10 September\nData Visualization in R\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n3\n10 September\nExploratory Data Analysis\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n3\n12 September\nCross-validation\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nISLR Section 5.1\n\n\n3\n12 September\nIntroduction to tidymodels\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n4\n17 September\nLab 02: Cross-validation\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n4\n19 September\nIntroduction to Linear Regression\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nISLR Sections 3.1, 3.2, 3.3\n\n\n5\n24 September\nLinear Regression in R\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n5\n26 September\nLogistic Regression\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nISLR Section 4.3\n\n\n6\n1 October\nLab 03: Logistic Regression\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nISLR Section 4.4\n\n\n6\n3 October\nRidge Regression\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nISLR Sections 6.1.3 and 6.2.1\n\n\n6\n3 October\nLasso & Elastic Net\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nISLR Sections 6.2.2 and 6.2.3\n\n\n6\n3 October\nPenalized Regression in R\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n7\n8 October\nLab 04: Ridge, Lasso, Elastic Net (Out of Class)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n7\n10 October\n[No Class]\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n7\n15 October\nMissing Data\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n8\n17 October\nReview\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n8\n22 October\nMidterm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n9\n24 October\nPolynomial Regression and Splines\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nISLR Sections 7.1, 7.2, 7.3, 7.4\n\n\n10\n29 October\nNon-linear Models in R\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n10\n29 October\nLab 05: Non-linear models\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n10\n31 October\nDecision Trees (Regression)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nISLR Section 8.1\n\n\n1\n5 November\nDecision Trees\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n11\n7 November\nDecision Trees (Classification)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n12\n12 November\nBagging\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nISLR Section 8.2\n\n\n12\n14 November\nRandom Forests\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n13\n19 November\nBoosted Decision Trees\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n13\n21 November\nNeural Networks\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n14\n26 November\nThanksgiving [No Class]\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n14\n28 November\nThanksgiving [No Class]\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n15\n3 December\nLab 06: Ensemble Models\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n15\n5 December\nCommunicating with Statistics",
     "crumbs": [
       "{{< fa calendar >}} Schedule",
       "Course Details",
@@ -897,6 +1051,258 @@
     "title": "Meet the toolkit",
     "section": "Lab 01",
     "text": "Lab 01\n\nLab instructions are posted on the course website under assignment\n\nLet’s go find today’s!\n\n\n\nsta-363-f25.github.io/website"
+  },
+  {
+    "objectID": "slides/04-design-principles.html#learning-objectives",
+    "href": "slides/04-design-principles.html#learning-objectives",
+    "title": "Design Principles for Data Analysis",
+    "section": "Learning Objectives",
+    "text": "Learning Objectives\n\nCompare convergent and divergent thinking\nDescribe 6 design principles for data analysis\nIdentify which principles were likely prioritized for given analyses"
+  },
+  {
+    "objectID": "slides/04-design-principles.html#statistical-thinking",
+    "href": "slides/04-design-principles.html#statistical-thinking",
+    "title": "Design Principles for Data Analysis",
+    "section": "Statistical thinking",
+    "text": "Statistical thinking\n\n\nD’Agostino McGowan, Peng, and Hicks (2022) doi.org/10.1080/10618600.2022.2104290"
+  },
+  {
+    "objectID": "slides/04-design-principles.html#statistical-thinking-1",
+    "href": "slides/04-design-principles.html#statistical-thinking-1",
+    "title": "Design Principles for Data Analysis",
+    "section": "Statistical thinking",
+    "text": "Statistical thinking\n\n\nhttps://onishlab.colostate.edu/summer-statistics-workshop-2019/which_test_flowchart/"
+  },
+  {
+    "objectID": "slides/04-design-principles.html#design-thinking",
+    "href": "slides/04-design-principles.html#design-thinking",
+    "title": "Design Principles for Data Analysis",
+    "section": "Design Thinking",
+    "text": "Design Thinking\n\n\nModel proposed by the Hasso-Plattner Institute of Design at Stanford"
+  },
+  {
+    "objectID": "slides/04-design-principles.html#design-thinking-1",
+    "href": "slides/04-design-principles.html#design-thinking-1",
+    "title": "Design Principles for Data Analysis",
+    "section": "Design Thinking",
+    "text": "Design Thinking\n\n\nModel proposed by the Hasso-Plattner Institute of Design at Stanford"
+  },
+  {
+    "objectID": "slides/04-design-principles.html#design-thinking-2",
+    "href": "slides/04-design-principles.html#design-thinking-2",
+    "title": "Design Principles for Data Analysis",
+    "section": "Design Thinking",
+    "text": "Design Thinking\n\n\nModel proposed by the Hasso-Plattner Institute of Design at Stanford"
+  },
+  {
+    "objectID": "slides/04-design-principles.html#design-thinking-3",
+    "href": "slides/04-design-principles.html#design-thinking-3",
+    "title": "Design Principles for Data Analysis",
+    "section": "Design Thinking",
+    "text": "Design Thinking\n\n\nModel proposed by the Hasso-Plattner Institute of Design at Stanford"
+  },
+  {
+    "objectID": "slides/04-design-principles.html#design-thinking-4",
+    "href": "slides/04-design-principles.html#design-thinking-4",
+    "title": "Design Principles for Data Analysis",
+    "section": "Design Thinking",
+    "text": "Design Thinking\n\n\nModel proposed by the Hasso-Plattner Institute of Design at Stanford"
+  },
+  {
+    "objectID": "slides/04-design-principles.html#design-thinking-5",
+    "href": "slides/04-design-principles.html#design-thinking-5",
+    "title": "Design Principles for Data Analysis",
+    "section": "Design Thinking",
+    "text": "Design Thinking\n\n\nModel proposed by the Hasso-Plattner Institute of Design at Stanford"
+  },
+  {
+    "objectID": "slides/04-design-principles.html#design-thinking-6",
+    "href": "slides/04-design-principles.html#design-thinking-6",
+    "title": "Design Principles for Data Analysis",
+    "section": "Design Thinking",
+    "text": "Design Thinking\n\n\nModel proposed by the Hasso-Plattner Institute of Design at Stanford"
+  },
+  {
+    "objectID": "slides/04-design-principles.html#section",
+    "href": "slides/04-design-principles.html#section",
+    "title": "Design Principles for Data Analysis",
+    "section": "",
+    "text": "D’Agostino McGowan, Peng, and Hicks (2022) doi.org/10.1080/10618600.2022.2104290"
+  },
+  {
+    "objectID": "slides/04-design-principles.html#section-1",
+    "href": "slides/04-design-principles.html#section-1",
+    "title": "Design Principles for Data Analysis",
+    "section": "",
+    "text": "D’Agostino McGowan, Peng, and Hicks (2022) doi.org/10.1080/10618600.2022.2104290"
+  },
+  {
+    "objectID": "slides/04-design-principles.html#section-2",
+    "href": "slides/04-design-principles.html#section-2",
+    "title": "Design Principles for Data Analysis",
+    "section": "",
+    "text": "D’Agostino McGowan, Peng, and Hicks (2022) doi.org/10.1080/10618600.2022.2104290"
+  },
+  {
+    "objectID": "slides/04-design-principles.html#section-3",
+    "href": "slides/04-design-principles.html#section-3",
+    "title": "Design Principles for Data Analysis",
+    "section": "",
+    "text": "D’Agostino McGowan, Peng, and Hicks (2022) doi.org/10.1080/10618600.2022.2104290"
+  },
+  {
+    "objectID": "slides/04-design-principles.html#section-4",
+    "href": "slides/04-design-principles.html#section-4",
+    "title": "Design Principles for Data Analysis",
+    "section": "",
+    "text": "D’Agostino McGowan, Peng, and Hicks (2022) doi.org/10.1080/10618600.2022.2104290"
+  },
+  {
+    "objectID": "slides/04-design-principles.html#section-5",
+    "href": "slides/04-design-principles.html#section-5",
+    "title": "Design Principles for Data Analysis",
+    "section": "",
+    "text": "D’Agostino McGowan, Peng, and Hicks (2022) doi.org/10.1080/10618600.2022.2104290"
+  },
+  {
+    "objectID": "slides/04-design-principles.html#section-6",
+    "href": "slides/04-design-principles.html#section-6",
+    "title": "Design Principles for Data Analysis",
+    "section": "",
+    "text": "D’Agostino McGowan, Peng, and Hicks (2022) doi.org/10.1080/10618600.2022.2104290"
+  },
+  {
+    "objectID": "slides/04-design-principles.html#section-7",
+    "href": "slides/04-design-principles.html#section-7",
+    "title": "Design Principles for Data Analysis",
+    "section": "",
+    "text": "D’Agostino McGowan, Peng, and Hicks (2022) doi.org/10.1080/10618600.2022.2104290"
+  },
+  {
+    "objectID": "slides/04-design-principles.html#section-8",
+    "href": "slides/04-design-principles.html#section-8",
+    "title": "Design Principles for Data Analysis",
+    "section": "",
+    "text": "D’Agostino McGowan, Peng, and Hicks (2022) doi.org/10.1080/10618600.2022.2104290"
+  },
+  {
+    "objectID": "slides/04-design-principles.html#section-9",
+    "href": "slides/04-design-principles.html#section-9",
+    "title": "Design Principles for Data Analysis",
+    "section": "",
+    "text": "D’Agostino McGowan, Peng, and Hicks (2022) doi.org/10.1080/10618600.2022.2104290"
+  },
+  {
+    "objectID": "slides/04-design-principles.html#section-10",
+    "href": "slides/04-design-principles.html#section-10",
+    "title": "Design Principles for Data Analysis",
+    "section": "",
+    "text": "D’Agostino McGowan, Peng, and Hicks (2022) doi.org/10.1080/10618600.2022.2104290"
+  },
+  {
+    "objectID": "slides/04-design-principles.html#section-11",
+    "href": "slides/04-design-principles.html#section-11",
+    "title": "Design Principles for Data Analysis",
+    "section": "",
+    "text": "D’Agostino McGowan, Peng, and Hicks (2022) doi.org/10.1080/10618600.2022.2104290"
+  },
+  {
+    "objectID": "slides/04-design-principles.html#section-12",
+    "href": "slides/04-design-principles.html#section-12",
+    "title": "Design Principles for Data Analysis",
+    "section": "",
+    "text": "D’Agostino McGowan, Peng, and Hicks (2022) doi.org/10.1080/10618600.2022.2104290"
+  },
+  {
+    "objectID": "slides/04-design-principles.html#section-13",
+    "href": "slides/04-design-principles.html#section-13",
+    "title": "Design Principles for Data Analysis",
+    "section": "",
+    "text": "D’Agostino McGowan, Peng, and Hicks (2022) doi.org/10.1080/10618600.2022.2104290"
+  },
+  {
+    "objectID": "slides/04-design-principles.html#section-14",
+    "href": "slides/04-design-principles.html#section-14",
+    "title": "Design Principles for Data Analysis",
+    "section": "",
+    "text": "D’Agostino McGowan, Peng, and Hicks (2022) doi.org/10.1080/10618600.2022.2104290"
+  },
+  {
+    "objectID": "slides/04-design-principles.html#section-15",
+    "href": "slides/04-design-principles.html#section-15",
+    "title": "Design Principles for Data Analysis",
+    "section": "",
+    "text": "D’Agostino McGowan, Peng, and Hicks (2022) doi.org/10.1080/10618600.2022.2104290"
+  },
+  {
+    "objectID": "slides/04-design-principles.html#section-16",
+    "href": "slides/04-design-principles.html#section-16",
+    "title": "Design Principles for Data Analysis",
+    "section": "",
+    "text": "D’Agostino McGowan, Peng, and Hicks (2022) doi.org/10.1080/10618600.2022.2104290"
+  },
+  {
+    "objectID": "slides/04-design-principles.html#section-17",
+    "href": "slides/04-design-principles.html#section-17",
+    "title": "Design Principles for Data Analysis",
+    "section": "",
+    "text": "D’Agostino McGowan, Peng, and Hicks (2022) doi.org/10.1080/10618600.2022.2104290"
+  },
+  {
+    "objectID": "slides/04-design-principles.html#section-18",
+    "href": "slides/04-design-principles.html#section-18",
+    "title": "Design Principles for Data Analysis",
+    "section": "",
+    "text": "D’Agostino McGowan, Peng, and Hicks (2022) doi.org/10.1080/10618600.2022.2104290"
+  },
+  {
+    "objectID": "slides/04-design-principles.html#section-19",
+    "href": "slides/04-design-principles.html#section-19",
+    "title": "Design Principles for Data Analysis",
+    "section": "",
+    "text": "D’Agostino McGowan, Peng, and Hicks (2022) doi.org/10.1080/10618600.2022.2104290"
+  },
+  {
+    "objectID": "slides/04-design-principles.html#section-20",
+    "href": "slides/04-design-principles.html#section-20",
+    "title": "Design Principles for Data Analysis",
+    "section": "",
+    "text": "D’Agostino McGowan, Peng, and Hicks (2022) doi.org/10.1080/10618600.2022.2104290"
+  },
+  {
+    "objectID": "slides/04-design-principles.html#section-21",
+    "href": "slides/04-design-principles.html#section-21",
+    "title": "Design Principles for Data Analysis",
+    "section": "",
+    "text": "D’Agostino McGowan, Peng, and Hicks (2022) doi.org/10.1080/10618600.2022.2104290"
+  },
+  {
+    "objectID": "slides/04-design-principles.html#section-22",
+    "href": "slides/04-design-principles.html#section-22",
+    "title": "Design Principles for Data Analysis",
+    "section": "",
+    "text": "D’Agostino McGowan, Peng, and Hicks (2022) doi.org/10.1080/10618600.2022.2104290"
+  },
+  {
+    "objectID": "slides/04-design-principles.html#section-23",
+    "href": "slides/04-design-principles.html#section-23",
+    "title": "Design Principles for Data Analysis",
+    "section": "",
+    "text": "D’Agostino McGowan, Peng, and Hicks (2022) doi.org/10.1080/10618600.2022.2104290"
+  },
+  {
+    "objectID": "slides/04-design-principles.html#section-24",
+    "href": "slides/04-design-principles.html#section-24",
+    "title": "Design Principles for Data Analysis",
+    "section": "",
+    "text": "D’Agostino McGowan, Peng, and Hicks (2022) doi.org/10.1080/10618600.2022.2104290"
+  },
+  {
+    "objectID": "slides/04-design-principles.html#section-25",
+    "href": "slides/04-design-principles.html#section-25",
+    "title": "Design Principles for Data Analysis",
+    "section": "",
+    "text": "D’Agostino McGowan, Peng, and Hicks (2022) doi.org/10.1080/10618600.2022.2104290"
   },
   {
     "objectID": "syllabus.html",
