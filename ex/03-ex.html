@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Statistical Learning – Statistical Learning</title>
+<title>Exercise 3 – tidymodels – Statistical Learning</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,32 +20,67 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href=".//img/favicon.png" rel="icon" type="image/png">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-958fc32383290b5ef6234cdb9c3ce2d8.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-00039a9b2ce3f1a1ebc67187faa3690e.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-958fc32383290b5ef6234cdb9c3ce2d8.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-1e14cb0ae9f6a570ce7f0516d90a9c05.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-1f6a9c1b53ab6cd7213014427092a076.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-1e14cb0ae9f6a570ce7f0516d90a9c05.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
-<link href="site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="..//img/favicon.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-958fc32383290b5ef6234cdb9c3ce2d8.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-00039a9b2ce3f1a1ebc67187faa3690e.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-958fc32383290b5ef6234cdb9c3ce2d8.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-1e14cb0ae9f6a570ce7f0516d90a9c05.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-1f6a9c1b53ab6cd7213014427092a076.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-1e14cb0ae9f6a570ce7f0516d90a9c05.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -73,24 +108,46 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<style>
 
-      .quarto-title-block .quarto-title-banner {
-        background-image: url(img/head.jpg);
-background-size: cover;
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
       }
-</style>
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
-
-<meta property="og:title" content="Statistical Learning – Statistical Learning">
-<meta property="og:description" content="Learn the theory behind cutting edge statistical and machine learning techniques. Gain hands on experience with real data from a variety of disciplines. The course will focus on the statistical computing language R.">
+<meta property="og:title" content="Exercise 3 – tidymodels – Statistical Learning">
+<meta property="og:description" content="">
 <meta property="og:image" content="https://sta-363-s23.github.io/website/img/twitter.png">
 <meta property="og:site_name" content="Statistical Learning">
 <meta property="og:locale" content="en_US">
 <meta property="og:image:height" content="670">
 <meta property="og:image:width" content="1200">
-<meta name="twitter:title" content="Statistical Learning – Statistical Learning">
-<meta name="twitter:description" content="Learn the theory behind cutting edge statistical and machine learning techniques. Gain hands on experience with real data from a variety of disciplines. The course will focus on the statistical computing language R.">
+<meta name="twitter:title" content="Exercise 3 – tidymodels – Statistical Learning">
+<meta name="twitter:description" content="">
 <meta name="twitter:image" content="https://sta-363-s23.github.io/website/img/twitter.png">
 <meta name="twitter:creator" content="@LucyStats">
 <meta name="twitter:card" content="summary_large_image">
@@ -98,7 +155,7 @@ background-size: cover;
 <meta name="twitter:image-width" content="1200">
 </head>
 
-<body class="nav-sidebar floating nav-fixed fullcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+<body class="nav-sidebar floating nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -262,11 +319,11 @@ background-size: cover;
   </script>
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+  <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Statistical Learning</span>
     </a>
   </div>
@@ -277,15 +334,15 @@ background-size: cover;
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./schedule.html" aria-current="page"> 
+    <a class="nav-link active" href="../schedule.html" aria-current="page"> 
 <span class="menu-text"><i class="fa-solid fa-calendar" aria-hidden="true"></i> Schedule</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./syllabus.html"> 
+    <a class="nav-link" href="../syllabus.html"> 
 <span class="menu-text"><i class="fa-solid fa-gavel" aria-hidden="true"></i> Policies</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./help.html"> 
+    <a class="nav-link" href="../help.html"> 
 <span class="menu-text"><i class="fa-solid fa-question-circle" aria-hidden="true"></i> Help</span></a>
   </li>  
   <li class="nav-item">
@@ -304,31 +361,14 @@ background-size: cover;
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Statistical Learning</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../ex/01-ex.html">Exercises</a></li><li class="breadcrumb-item"><a href="../ex/03-ex.html">Tidymodels</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
   </nav>
 </header>
 <!-- content -->
-<header id="title-block-header" class="quarto-title-block default page-columns page-full">
-  <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-body">
-      <h1 class="title">Statistical Learning</h1>
-            <p class="subtitle lead">Learn the theory behind cutting edge statistical and machine learning techniques. Gain hands on experience with real data from a variety of disciplines. The course will focus on the statistical computing language R.</p>
-                      </div>
-  </div>
-    
-  
-  <div class="quarto-title-meta">
-
-      
-    
-      
-    </div>
-    
-  
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="sidebar-menu-container"> 
@@ -344,13 +384,13 @@ background-size: cover;
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./schedule.html" class="sidebar-item-text sidebar-link">
+  <a href="../schedule.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Schedule</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./syllabus.html" class="sidebar-item-text sidebar-link">
+  <a href="../syllabus.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Course Policies</span></a>
   </div>
 </li>
@@ -367,31 +407,31 @@ background-size: cover;
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./rstudio-pro.html" class="sidebar-item-text sidebar-link">
+  <a href="../rstudio-pro.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Using the RStudio Pro Server</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./help-project.html" class="sidebar-item-text sidebar-link">
+  <a href="../help-project.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Creating an RStudio Project</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./help-quarto.html" class="sidebar-item-text sidebar-link">
+  <a href="../help-quarto.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Creating a Quarto Document</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./quarto-quick-guide.html" class="sidebar-item-text sidebar-link">
+  <a href="../quarto-quick-guide.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Quarto Quick Guide</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./troubleshooting.html" class="sidebar-item-text sidebar-link">
+  <a href="../troubleshooting.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Troubleshooting</span></a>
   </div>
 </li>
@@ -399,28 +439,28 @@ background-size: cover;
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
  <span class="menu-text">Exercises</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ex/01-ex.html" class="sidebar-item-text sidebar-link">
+  <a href="../ex/01-ex.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Exercise 1</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ex/02-welcome-penguins.html" class="sidebar-item-text sidebar-link">
+  <a href="../ex/02-welcome-penguins.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Welcome Penguins</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ex/03-ex.html" class="sidebar-item-text sidebar-link">
+  <a href="../ex/03-ex.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Tidymodels</span></a>
   </div>
 </li>
@@ -437,7 +477,7 @@ background-size: cover;
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lab/01-lab.html" class="sidebar-item-text sidebar-link">
+  <a href="../lab/01-lab.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lab 01</span></a>
   </div>
 </li>
@@ -448,63 +488,162 @@ background-size: cover;
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#set-up" id="toc-set-up" class="nav-link active" data-scroll-target="#set-up">Set up</a>
+  <ul class="collapse">
+  <li><a href="#login-to-rstudio-pro" id="toc-login-to-rstudio-pro" class="nav-link" data-scroll-target="#login-to-rstudio-pro">Login to RStudio Pro</a></li>
+  </ul></li>
+  <li><a href="#part-1" id="toc-part-1" class="nav-link" data-scroll-target="#part-1">Part 1</a></li>
+  <li><a href="#part-2" id="toc-part-2" class="nav-link" data-scroll-target="#part-2">Part 2</a></li>
+  <li><a href="#part-3" id="toc-part-3" class="nav-link" data-scroll-target="#part-3">Part 3</a></li>
+  <li><a href="#part-4" id="toc-part-4" class="nav-link" data-scroll-target="#part-4">Part 4</a></li>
+  <li><a href="#part-5" id="toc-part-5" class="nav-link" data-scroll-target="#part-5">Part 5</a></li>
+  <li><a href="#part-6" id="toc-part-6" class="nav-link" data-scroll-target="#part-6">Part 6</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/sta-363-f25/website/edit/main/ex/03-ex.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta-363-f25/website/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
 
-
-
-
-
-<div class="quarto-title-meta" style="display:none">
-
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../ex/01-ex.html">Exercises</a></li><li class="breadcrumb-item"><a href="../ex/03-ex.html">Tidymodels</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Exercise 3 – tidymodels</h1>
 </div>
-<div class="grid">
-<section id="course-info" class="level3 g-col-12 g-col-sm-6 g-col-md-6">
-<h3 class="anchored" data-anchor-id="course-info"><i class="fa-solid fa-university" aria-hidden="true"></i> Course Info</h3>
-<p><strong>Location:</strong> Carswell 208<br>
-<strong>Time:</strong> Wed/Fri 11a</p>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="set-up" class="level2">
+<h2 class="anchored" data-anchor-id="set-up">Set up</h2>
+<section id="login-to-rstudio-pro" class="level3">
+<h3 class="anchored" data-anchor-id="login-to-rstudio-pro">Login to RStudio Pro</h3>
+<ul>
+<li><strong>Note:</strong> if you are off campus, you will need to use a <a href="https://is.wfu.edu/services/vpn/">VPN to connect</a></li>
+<li>Go to <a href="login.deac.wfu.edu">login.deac.wfu.edu</a></li>
+</ul>
+<p><img src="img/01/rstudio-pro.png" width="1000" height="350"></p>
+<section id="step-1-create-a-new-project" class="level4">
+<h4 class="anchored" data-anchor-id="step-1-create-a-new-project">Step 1: Create a New Project</h4>
+<p>Click File &gt; New Project</p>
+<p><img src="img/01/new-project.png" class="img-fluid"></p>
 </section>
-<section id="office-hours" class="level3 g-col-12 g-col-sm-6 g-col-md-6">
-<h3 class="anchored" data-anchor-id="office-hours"><i class="fa-solid fa-users" aria-hidden="true"></i> Office Hours</h3>
-<p><strong>Instructor:</strong> <a href="https://www.lucymcgowan.com">Dr.&nbsp;Lucy D’Agostino McGowan</a><br>
-<strong>Email:</strong> mcgowald@wfu.edu<br>
-<strong>Office Hours:</strong> <a href="https://calendar.app.google/bm4LUUgUzkarAeLj8">Book Online</a><br>
-<strong>Office:</strong> Manchester 342</p>
-<p><strong>TA</strong>: Joe Zhu<br>
-<strong>Office Hours</strong>: Monday 3-5PM <a href="mailto:zhuj221@wfu.edu">email to set up</a><br>
-<strong>Math &amp; Stats Center:</strong> <a href="mailto:mathandstatscenter@wfu.edu">mathandstatscenter@wfu.edu</a><br>
-<strong>Location:</strong> <a href="https://mathandstatscenter.wfu.edu/">Math &amp; Stats Center</a></p>
+<section id="step-2-click-version-control" class="level4">
+<h4 class="anchored" data-anchor-id="step-2-click-version-control">Step 2: Click “Version Control”</h4>
+<p>Click the third option.</p>
+<p><img src="img/01/version-control.png" class="img-fluid"></p>
 </section>
+<section id="step-3-click-git" class="level4">
+<h4 class="anchored" data-anchor-id="step-3-click-git">Step 3: Click Git</h4>
+<p>Click the first option</p>
+<p><img src="img/01/git.png" class="img-fluid"></p>
+</section>
+<section id="step-4-copy-my-starter-files" class="level4">
+<h4 class="anchored" data-anchor-id="step-4-copy-my-starter-files">Step 4: Copy my starter files</h4>
+<p>Paste this link in the top box (<code>Repository url</code>):</p>
+<p><code>https://github.com/sta-363-f25/03-ex.git</code></p>
+<p><img src="img/01/paste-link.png" class="img-fluid"></p>
+</section>
+</section>
+</section>
+<section id="part-1" class="level2">
+<h2 class="anchored" data-anchor-id="part-1">Part 1</h2>
+<ol type="1">
+<li>Write a pipe that creates a model that uses <code>lm()</code> to fit a linear regression using tidymodels. Save it as <code>lm_spec</code> and look at the object. What does it return?</li>
+</ol>
+</section>
+<section id="part-2" class="level2">
+<h2 class="anchored" data-anchor-id="part-2">Part 2</h2>
+<ol type="1">
+<li>Fit the model:</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ISLR)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>lm_fit <span class="ot">&lt;-</span> <span class="fu">fit</span>(lm_spec,</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>              mpg <span class="sc">~</span> horsepower,</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">data =</span> Auto)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>lm_fit</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="grid">
-<div class="g-col-12 g-col-sm-6 g-col-md-6">
-<p><br></p>
-<section id="section" class="level1 icon">
-<h1 class="icon"><i class="fa-solid fa-university" aria-hidden="true"></i></h1>
-<section id="section-1" class="level5 center">
-<h5 class="center anchored" data-anchor-id="section-1">Carswell 208</h5>
-</section>
-</section>
+<p>Does this give the same results as</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(mpg <span class="sc">~</span> horsepower, <span class="at">data =</span> Auto)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="g-col-12 g-col-sm-6 g-col-md-6">
-<p><br></p>
-<section id="section-2" class="level1 icon">
-<h1 class="icon"><i class="fa-solid fa-calendar" aria-hidden="true"></i></h1>
-<section id="section-3" class="level5 center">
-<h5 class="center anchored" data-anchor-id="section-3">Wed/Fri 11a</h5>
 </section>
-</section>
+<section id="part-3" class="level2">
+<h2 class="anchored" data-anchor-id="part-3">Part 3</h2>
+<ol type="1">
+<li>Edit the code below to add the original data to the predicted data.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>mpg_pred <span class="ot">&lt;-</span> lm_fit <span class="sc">|&gt;</span> </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">predict</span>(<span class="at">new_data =</span> Auto) <span class="sc">|&gt;</span> </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="sc">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-<section id="texts" class="level3">
-<h3 class="anchored" data-anchor-id="texts">Texts</h3>
-<p>The main text book is: <a href="https://hastie.su.domains/ISLR2/ISLRv2_corrected_June_2023.pdf.download.html">An Introduction to Statistical Learning with Applications in R</a> by Gareth James, Daniela Witten, Trevor Hastie, and Robert Tibshirani – it is freely available online.</p>
 </section>
-<section id="materials" class="level3">
-<h3 class="anchored" data-anchor-id="materials">Materials</h3>
-<p>This class is very hands on; be sure to bring a fully charged laptop to every class.</p>
+<section id="part-4" class="level2">
+<h2 class="anchored" data-anchor-id="part-4">Part 4</h2>
+<ol type="1">
+<li>Copy the code below, fill in the blanks to fit a model on the <strong>training</strong> data then calculate the <strong>test</strong> RMSE.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">100</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>Auto_split  <span class="ot">&lt;-</span> ________</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>Auto_train  <span class="ot">&lt;-</span> ________</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>Auto_test   <span class="ot">&lt;-</span> ________</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>lm_fit      <span class="ot">&lt;-</span> <span class="fu">fit</span>(lm_spec, </span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>                   mpg <span class="sc">~</span> horsepower, </span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>                   <span class="at">data =</span> ________)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>mpg_pred  <span class="ot">&lt;-</span> ________ <span class="sc">|&gt;</span> </span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">predict</span>(<span class="at">new_data =</span> ________) <span class="sc">|&gt;</span> </span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_cols</span>(________)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="fu">rmse</span>(________, <span class="at">truth =</span> ________, <span class="at">estimate =</span> ________)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="part-5" class="level2">
+<h2 class="anchored" data-anchor-id="part-5">Part 5</h2>
+<ol type="1">
+<li>Edit the code below to get the 5-fold cross validation error rate for the following model:</li>
+</ol>
+<p><span class="math inline">\(mpg = \beta_0 + \beta_1 horsepower + \beta_2 horsepower^2+ \epsilon\)</span></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>Auto_cv <span class="ot">&lt;-</span> <span class="fu">vfold_cv</span>(Auto, <span class="at">v =</span> <span class="dv">5</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">fit_resamples</span>(lm_spec,</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>                         <span class="sc">----</span>,</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>                         <span class="at">resamples =</span> <span class="sc">---</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>results <span class="sc">|&gt;</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect_metrics</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>What do you think <code>rsq</code> is?</li>
+</ul>
+</section>
+<section id="part-6" class="level2">
+<h2 class="anchored" data-anchor-id="part-6">Part 6</h2>
+<ol type="1">
+<li><p>Fit 3 models on the data using 5 fold cross validation:</p>
+<p><span class="math inline">\(mpg = \beta_0 + \beta_1 horsepower + \epsilon\)</span></p>
+<p><span class="math inline">\(mpg = \beta_0 + \beta_1 horsepower + \beta_2 horsepower^2+ \epsilon\)</span></p>
+<p><span class="math inline">\(mpg = \beta_0 + \beta_1 horsepower + \beta_2 horsepower^2+ \beta_3 horsepower^3 +\epsilon\)</span></p></li>
+<li><p>Collect the metrics from each model, saving the results as <code>results_1</code>, <code>results_2</code>, <code>results_3</code></p></li>
+<li><p>Which model is “best”?</p></li>
+</ol>
 
 
 </section>
@@ -930,7 +1069,7 @@ background-size: cover;
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><ul><li><a href="https://github.com/sta-363-f25/website/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta-363-f25/website/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sta-363-f25/website/edit/main/ex/03-ex.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta-363-f25/website/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>Made with <i class="fa-brands fa-r-project" aria-hidden="true"></i> and <a href="https://quarto.org/">Quarto</a><br> <a href="https://github.com/sta-363-f25/website">View the source at <i class="fa-brands fa-github" aria-hidden="true"></i> GitHub</a></p>
 </div>
