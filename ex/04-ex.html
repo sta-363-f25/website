@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Logging into RStudio Pro – Statistical Learning</title>
+<title>Exercise 4 – Linear Regression in R – Statistical Learning</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,29 +23,29 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href=".//img/favicon.png" rel="icon" type="image/png">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-958fc32383290b5ef6234cdb9c3ce2d8.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-00039a9b2ce3f1a1ebc67187faa3690e.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-958fc32383290b5ef6234cdb9c3ce2d8.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-1e14cb0ae9f6a570ce7f0516d90a9c05.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-1f6a9c1b53ab6cd7213014427092a076.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-1e14cb0ae9f6a570ce7f0516d90a9c05.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
-<link href="site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="..//img/favicon.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-958fc32383290b5ef6234cdb9c3ce2d8.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-00039a9b2ce3f1a1ebc67187faa3690e.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-958fc32383290b5ef6234cdb9c3ce2d8.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-1e14cb0ae9f6a570ce7f0516d90a9c05.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-1f6a9c1b53ab6cd7213014427092a076.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-1e14cb0ae9f6a570ce7f0516d90a9c05.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -74,16 +74,43 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<meta property="og:title" content="Logging into RStudio Pro – Statistical Learning">
-<meta property="og:description" content="">
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<meta property="og:title" content="Exercise 4 – Linear Regression in R – Statistical Learning">
 <meta property="og:image" content="https://sta-363-s23.github.io/website/img/twitter.png">
 <meta property="og:site_name" content="Statistical Learning">
 <meta property="og:locale" content="en_US">
 <meta property="og:image:height" content="670">
 <meta property="og:image:width" content="1200">
-<meta name="twitter:title" content="Logging into RStudio Pro – Statistical Learning">
-<meta name="twitter:description" content="">
+<meta name="twitter:title" content="Exercise 4 – Linear Regression in R – Statistical Learning">
 <meta name="twitter:image" content="https://sta-363-s23.github.io/website/img/twitter.png">
 <meta name="twitter:creator" content="@LucyStats">
 <meta name="twitter:card" content="summary_large_image">
@@ -259,7 +286,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Statistical Learning</span>
     </a>
   </div>
@@ -270,15 +297,15 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./schedule.html" aria-current="page"> 
+    <a class="nav-link active" href="../schedule.html" aria-current="page"> 
 <span class="menu-text"><i class="fa-solid fa-calendar" aria-hidden="true"></i> Schedule</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./syllabus.html"> 
+    <a class="nav-link" href="../syllabus.html"> 
 <span class="menu-text"><i class="fa-solid fa-gavel" aria-hidden="true"></i> Policies</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./help.html"> 
+    <a class="nav-link" href="../help.html"> 
 <span class="menu-text"><i class="fa-solid fa-question-circle" aria-hidden="true"></i> Help</span></a>
   </li>  
   <li class="nav-item">
@@ -297,7 +324,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./rstudio-pro.html">Computing</a></li><li class="breadcrumb-item"><a href="./rstudio-pro.html">Using the RStudio Pro Server</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../ex/01-ex.html">Exercises</a></li><li class="breadcrumb-item"><a href="../ex/04-ex.html">Linear Regression</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -320,13 +347,13 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./schedule.html" class="sidebar-item-text sidebar-link">
+  <a href="../schedule.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Schedule</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./syllabus.html" class="sidebar-item-text sidebar-link">
+  <a href="../syllabus.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Course Policies</span></a>
   </div>
 </li>
@@ -334,40 +361,40 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
  <span class="menu-text">Computing</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./rstudio-pro.html" class="sidebar-item-text sidebar-link active">
+  <a href="../rstudio-pro.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Using the RStudio Pro Server</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./help-project.html" class="sidebar-item-text sidebar-link">
+  <a href="../help-project.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Creating an RStudio Project</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./help-quarto.html" class="sidebar-item-text sidebar-link">
+  <a href="../help-quarto.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Creating a Quarto Document</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./quarto-quick-guide.html" class="sidebar-item-text sidebar-link">
+  <a href="../quarto-quick-guide.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Quarto Quick Guide</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./troubleshooting.html" class="sidebar-item-text sidebar-link">
+  <a href="../troubleshooting.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Troubleshooting</span></a>
   </div>
 </li>
@@ -375,34 +402,34 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
  <span class="menu-text">Exercises</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ex/01-ex.html" class="sidebar-item-text sidebar-link">
+  <a href="../ex/01-ex.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Exercise 1</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ex/02-welcome-penguins.html" class="sidebar-item-text sidebar-link">
+  <a href="../ex/02-welcome-penguins.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Welcome Penguins</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ex/03-ex.html" class="sidebar-item-text sidebar-link">
+  <a href="../ex/03-ex.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Tidymodels</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ex/04-ex.html" class="sidebar-item-text sidebar-link">
+  <a href="../ex/04-ex.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Linear Regression</span></a>
   </div>
 </li>
@@ -419,13 +446,13 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lab/01-lab.html" class="sidebar-item-text sidebar-link">
+  <a href="../lab/01-lab.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lab 01</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lab/02-cv.html" class="sidebar-item-text sidebar-link">
+  <a href="../lab/02-cv.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lab 02: Cross Validation</span></a>
   </div>
 </li>
@@ -436,16 +463,29 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#set-up" id="toc-set-up" class="nav-link active" data-scroll-target="#set-up">Set up</a>
+  <ul class="collapse">
+  <li><a href="#login-to-rstudio-pro" id="toc-login-to-rstudio-pro" class="nav-link" data-scroll-target="#login-to-rstudio-pro">Login to RStudio Pro</a></li>
+  </ul></li>
+  <li><a href="#part-1" id="toc-part-1" class="nav-link" data-scroll-target="#part-1">Part 1</a></li>
+  <li><a href="#part-2" id="toc-part-2" class="nav-link" data-scroll-target="#part-2">Part 2</a></li>
+  <li><a href="#part-3" id="toc-part-3" class="nav-link" data-scroll-target="#part-3">Part 3</a></li>
+  <li><a href="#part-4" id="toc-part-4" class="nav-link" data-scroll-target="#part-4">Part 4</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/sta-363-f25/website/edit/main/ex/04-ex.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta-363-f25/website/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./rstudio-pro.html">Computing</a></li><li class="breadcrumb-item"><a href="./rstudio-pro.html">Using the RStudio Pro Server</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../ex/01-ex.html">Exercises</a></li><li class="breadcrumb-item"><a href="../ex/04-ex.html">Linear Regression</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Logging into RStudio Pro</h1>
+<h1 class="title">Exercise 4 – Linear Regression in R</h1>
 </div>
 
 
@@ -462,25 +502,69 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Follow these steps to access RStudio Pro:</p>
-<ol type="1">
-<li>Make sure you are connected to the <strong>WFU Network</strong>. This means you must be on the <code>eduroam</code> wireless network, or connected through the VPN if you are off-campus.
+<section id="set-up" class="level2">
+<h2 class="anchored" data-anchor-id="set-up">Set up</h2>
+<section id="login-to-rstudio-pro" class="level3">
+<h3 class="anchored" data-anchor-id="login-to-rstudio-pro">Login to RStudio Pro</h3>
 <ul>
-<li>If you are off-campus, go through the VPN first: <a href="https://is.wfu.edu/vpn/">WFU VPN Instructions</a>.</li>
-</ul></li>
-<li>Go to <a href="https://login.deac.wfu.edu">login.deac.wfu.edu</a> and sign in with your school email and password.</li>
-<li>Once logged in, click the <strong>RStudio</strong> icon.</li>
-<li>Set your working directory to <code>/deac/sta/classes/sta363/YOUR-USERNAME</code> where <code>YOUR-USERNAME</code> is replaced by the first part of your email address, i.e., mine is <code>mcgowald</code> because my email is <code>mcgowald@wfu.edu</code></li>
-<li>Set the number of hours to how long you plan to work on the project (I usually enter <code>4</code>).</li>
-<li>Click <strong>Launch</strong>.</li>
-<li>The session will show as <em>Queued</em> for a moment. Once it is ready, the status will turn green and say <em>Ready</em>.</li>
-<li>Click the <strong>Connect to RStudio Server</strong> button. You should now be in RStudio Pro.</li>
+<li><strong>Note:</strong> if you are off campus, you will need to use a <a href="https://is.wfu.edu/services/vpn/">VPN to connect</a></li>
+<li>Go to <a href="rstudio.deac.wfu.edu">rstudio.deac.wfu.edu</a></li>
+</ul>
+<p><img src="img/01/rstudio-pro.png" width="1000" height="350"></p>
+<section id="step-1-create-a-new-project" class="level4">
+<h4 class="anchored" data-anchor-id="step-1-create-a-new-project">Step 1: Create a New Project</h4>
+<p>Click File &gt; New Project</p>
+<p><img src="img/01/new-project.png" class="img-fluid"></p>
+</section>
+<section id="step-2-click-version-control" class="level4">
+<h4 class="anchored" data-anchor-id="step-2-click-version-control">Step 2: Click “Version Control”</h4>
+<p>Click the third option.</p>
+<p><img src="img/01/version-control.png" class="img-fluid"></p>
+</section>
+<section id="step-3-click-git" class="level4">
+<h4 class="anchored" data-anchor-id="step-3-click-git">Step 3: Click Git</h4>
+<p>Click the first option</p>
+<p><img src="img/01/git.png" class="img-fluid"></p>
+</section>
+<section id="step-4-copy-my-starter-files" class="level4">
+<h4 class="anchored" data-anchor-id="step-4-copy-my-starter-files">Step 4: Copy my starter files</h4>
+<p>Paste this link in the top box (<code>Repository url</code>):</p>
+<p><code>https://github.com/sta-363-s23/08-appex.git</code></p>
+<p><img src="img/01/paste-link.png" class="img-fluid"></p>
+</section>
+</section>
+</section>
+<section id="part-1" class="level2">
+<h2 class="anchored" data-anchor-id="part-1">Part 1</h2>
+<ol type="1">
+<li>Fit a linear model using the <code>mtcars</code> data frame predicting miles per gallon (<code>mpg</code>) from weight and horsepower (<code>wt</code> and <code>hp</code>), using polynomials with 4 degrees of freedom for both.</li>
+<li>Pull out the coefficients and confidence intervals using the <code>tidy()</code> function demonstrated. How do you interpret these?</li>
 </ol>
-<blockquote class="blockquote">
-<p><strong>Note:</strong> You are not required to use this setup (i.e., you can download RStudio and all the necessary packages locally). However, the focus of this class is not on technical setup, so we will not be able to spend time troubleshooting issues if you are not using the official setup described here.</p>
-</blockquote>
+</section>
+<section id="part-2" class="level2">
+<h2 class="anchored" data-anchor-id="part-2">Part 2</h2>
+<ol type="1">
+<li>Using the linear model you fit previously (<code>mpg</code> from <code>wt</code> and <code>hp</code>, using polynomials with 4 degrees of freedom for both with the <code>mtcars</code> data) - calculate the p-value for the coefficient for weight</li>
+<li>Interpret this value. What is the null hypothesis? What is the alternative hypothesis? Do you reject the null?</li>
+</ol>
+</section>
+<section id="part-3" class="level2">
+<h2 class="anchored" data-anchor-id="part-3">Part 3</h2>
+<ol type="1">
+<li>Using the model previously fit (<code>mpg</code> from <code>wt</code> and <code>hp</code>, using polynomials with 4 degrees of freedom for both with the <code>mtcars</code> data), estimate the training <span class="math inline">\(R^2\)</span> using the <code>rsq</code> function.</li>
+<li>Interpret this values.</li>
+</ol>
+</section>
+<section id="part-4" class="level2">
+<h2 class="anchored" data-anchor-id="part-4">Part 4</h2>
+<ol type="1">
+<li>Create a cross validation object to do 5 fold cross validation using the <code>mtcars</code> data</li>
+<li>Refit the model on this object (using <code>fit_resamples</code>)</li>
+<li>Use <code>collect_metrics</code> to estimate the test <span class="math inline">\(R^2\)</span> - how does this compare to the training <span class="math inline">\(R^2\)</span> calculated in the previous exercise?</li>
+</ol>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -903,7 +987,7 @@ ul.task-list li input[type="checkbox"] {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><ul><li><a href="https://github.com/sta-363-f25/website/edit/main/rstudio-pro.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta-363-f25/website/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sta-363-f25/website/edit/main/ex/04-ex.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta-363-f25/website/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>Made with <i class="fa-brands fa-r-project" aria-hidden="true"></i> and <a href="https://quarto.org/">Quarto</a><br> <a href="https://github.com/sta-363-f25/website">View the source at <i class="fa-brands fa-github" aria-hidden="true"></i> GitHub</a></p>
 </div>
