@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -74,35 +109,6 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <meta property="og:title" content="Exercise 4 – Linear Regression in R – Statistical Learning">
 <meta property="og:image" content="https://sta-363-s23.github.io/website/img/twitter.png">
@@ -537,30 +543,69 @@ window.Quarto = {
 <section id="part-1" class="level2">
 <h2 class="anchored" data-anchor-id="part-1">Part 1</h2>
 <ol type="1">
-<li>Fit a linear model using the <code>mtcars</code> data frame predicting miles per gallon (<code>mpg</code>) from weight and horsepower (<code>wt</code> and <code>hp</code>), using polynomials with 4 degrees of freedom for both.</li>
-<li>Pull out the coefficients and confidence intervals using the <code>tidy()</code> function demonstrated. How do you interpret these?</li>
+<li>Run this code to create a simulated dataset:</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate 5 correlated X variables</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>Sigma <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fl">0.25</span>, <span class="dv">5</span>, <span class="dv">5</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">diag</span>(Sigma) <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>X_mat <span class="ot">&lt;-</span> <span class="fu">mvrnorm</span>(<span class="at">n =</span> <span class="dv">20</span>, <span class="at">mu =</span> <span class="fu">rep</span>(<span class="dv">0</span>, <span class="dv">5</span>), <span class="at">Sigma =</span> Sigma)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate Y with known relationship + noise</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">+</span> <span class="dv">3</span><span class="sc">*</span>X_mat[,<span class="dv">1</span>] <span class="sc">-</span> <span class="fl">1.5</span><span class="sc">*</span>X_mat[,<span class="dv">2</span>] <span class="sc">+</span> <span class="fl">0.5</span><span class="sc">*</span>X_mat[,<span class="dv">3</span>] <span class="sc">+</span> </span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="dv">0</span><span class="sc">*</span>X_mat[,<span class="dv">4</span>] <span class="sc">+</span> <span class="dv">0</span><span class="sc">*</span>X_mat[,<span class="dv">5</span>] <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">20</span>, <span class="dv">0</span>, <span class="fl">0.5</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Create data frame</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>sim_data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">X1 =</span> X_mat[,<span class="dv">1</span>], <span class="at">X2 =</span> X_mat[,<span class="dv">2</span>], <span class="at">X3 =</span> X_mat[,<span class="dv">3</span>], </span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">X4 =</span> X_mat[,<span class="dv">4</span>], <span class="at">X5 =</span> X_mat[,<span class="dv">5</span>], <span class="at">Y =</span> Y</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="2" type="1">
+<li>Fit a linear model predicting Y from all 5 X variables using <code>linear_reg()</code><br>
+</li>
+<li>Make predictions for new observations where all X variables = 0, 1, and 2<br>
+</li>
+<li>Which set of X values gives the highest predicted Y?</li>
 </ol>
 </section>
 <section id="part-2" class="level2">
 <h2 class="anchored" data-anchor-id="part-2">Part 2</h2>
 <ol type="1">
-<li>Using the linear model you fit previously (<code>mpg</code> from <code>wt</code> and <code>hp</code>, using polynomials with 4 degrees of freedom for both with the <code>mtcars</code> data) - calculate the p-value for the coefficient for weight</li>
-<li>Interpret this value. What is the null hypothesis? What is the alternative hypothesis? Do you reject the null?</li>
+<li>Using your simulated data, create the design matrix X (including intercept column)<br>
+</li>
+<li>Calculate the coefficients manually using: <code>solve(crossprod(X)) %*% t(X) %*% y</code><br>
+</li>
+<li>Compare these coefficients to what you got from <code>linear_reg() |&gt; tidy()</code><br>
+</li>
+<li>Try changing the noise standard deviation from 0.5 to 2.0 - how do the predictions change for X₁=1, X₂=0, X₃=0, X₄=0, X₅=0?</li>
 </ol>
 </section>
 <section id="part-3" class="level2">
 <h2 class="anchored" data-anchor-id="part-3">Part 3</h2>
 <ol type="1">
-<li>Using the model previously fit (<code>mpg</code> from <code>wt</code> and <code>hp</code>, using polynomials with 4 degrees of freedom for both with the <code>mtcars</code> data), estimate the training <span class="math inline">\(R^2\)</span> using the <code>rsq</code> function.</li>
-<li>Interpret this values.</li>
+<li>Create three simulations with different noise levels: sd = 0.1, 1.0, 3.0<br>
+</li>
+<li>For each noise level, make predictions for X₁=1, X₂=0, X₃=0, X₄=0, X₅=0<br>
+</li>
+<li>Plot the predicted values with prediction intervals<br>
+</li>
+<li>How do prediction intervals change with noise level?</li>
 </ol>
 </section>
 <section id="part-4" class="level2">
 <h2 class="anchored" data-anchor-id="part-4">Part 4</h2>
 <ol type="1">
-<li>Create a cross validation object to do 5 fold cross validation using the <code>mtcars</code> data</li>
-<li>Refit the model on this object (using <code>fit_resamples</code>)</li>
-<li>Use <code>collect_metrics</code> to estimate the test <span class="math inline">\(R^2\)</span> - how does this compare to the training <span class="math inline">\(R^2\)</span> calculated in the previous exercise?</li>
+<li>Create two simulated datasets with the same true relationship but different sample sizes (n=25 and n=200)<br>
+</li>
+<li>Fit models to both datasets and predict Y when X₁=1, X₂=0, X₃=0, X₄=0, X₅=0<br>
+</li>
+<li>Get prediction intervals for both models<br>
+</li>
+<li>How does sample size affect prediction uncertainty?</li>
 </ol>
 
 
