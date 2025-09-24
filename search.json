@@ -1545,7 +1545,7 @@
     "href": "ex/04-ex.html#part-1",
     "title": "Exercise 4 – Linear Regression in R",
     "section": "Part 1",
-    "text": "Part 1\n\nRun this code to create a simulated dataset:\n\n\nlibrary(MASS)\nset.seed(1)\n\n# Generate 5 correlated X variables\nSigma &lt;- matrix(0.25, 5, 5)\ndiag(Sigma) &lt;- 1\nX_mat &lt;- mvrnorm(n = 20, mu = rep(0, 5), Sigma = Sigma)\n\n# Generate Y with known relationship + noise\nY &lt;- 2 + 3*X_mat[,1] - 1.5*X_mat[,2] + 0.5*X_mat[,3] + \n    0*X_mat[,4] + 0*X_mat[,5] + rnorm(20, 0, 0.5)\n\n# Create data frame\nsim_data &lt;- tibble(\n  X1 = X_mat[,1], X2 = X_mat[,2], X3 = X_mat[,3], \n  X4 = X_mat[,4], X5 = X_mat[,5], Y = Y\n)\n\n\nFit a linear model predicting Y from all 5 X variables using linear_reg()\n\nMake predictions for new observations where all X variables = 0, 1, and 2\n\nWhich set of X values gives the highest predicted Y?",
+    "text": "Part 1\n\nRun this code to create a simulated dataset:\n\n\nlibrary(MASS)\nset.seed(1)\n\n# Generate 5 correlated X variables\nSigma &lt;- matrix(0.25, 5, 5)\ndiag(Sigma) &lt;- 1\nX_mat &lt;- mvrnorm(n = 20, mu = rep(0, 5), Sigma = Sigma)\n\n# Generate Y with known relationship + noise\nY &lt;- 2 + 3*X_mat[,1] - 1.5*X_mat[,2] + 0.5*X_mat[,3] + \n    0*X_mat[,4] + 0*X_mat[,5] + rnorm(20, 0, 0.5)\n\n# Create data frame\nsim_data &lt;- tibble(\n  X1 = X_mat[,1], X2 = X_mat[,2], X3 = X_mat[,3], \n  X4 = X_mat[,4], X5 = X_mat[,5], Y = Y\n)\n\n\nFit a linear model predicting Y from all 5 X variables using linear_reg()\n\nMake predictions for new observations where all X variables = 0, 1, and 2\n\nMake predictions for all observations in the training data",
     "crumbs": [
       "{{< fa calendar >}} Schedule",
       "Exercises",
@@ -1557,7 +1557,7 @@
     "href": "ex/04-ex.html#part-2",
     "title": "Exercise 4 – Linear Regression in R",
     "section": "Part 2",
-    "text": "Part 2\n\nUsing your simulated data, create the design matrix X (including intercept column)\n\nCalculate the coefficients manually using: solve(crossprod(X)) %*% t(X) %*% y\n\nCompare these coefficients to what you got from linear_reg() |&gt; tidy()\n\nTry changing the noise standard deviation from 0.5 to 2.0 - how do the predictions change for X₁=1, X₂=0, X₃=0, X₄=0, X₅=0?",
+    "text": "Part 2\n\nUsing your simulated data, create the design matrix X (including intercept column)\n\nCalculate the coefficients manually using: solve(crossprod(X)) %*% t(X) %*% y\n\nCompare these coefficients to what you got from linear_reg() |&gt; tidy()\n\nTry changing the noise standard deviation from 0.5 to 2.0 - how do the predictions change for the training data?",
     "crumbs": [
       "{{< fa calendar >}} Schedule",
       "Exercises",
@@ -1569,19 +1569,7 @@
     "href": "ex/04-ex.html#part-3",
     "title": "Exercise 4 – Linear Regression in R",
     "section": "Part 3",
-    "text": "Part 3\n\nCreate three simulations with different noise levels: sd = 0.1, 1.0, 3.0\n\nFor each noise level, make predictions for X₁=1, X₂=0, X₃=0, X₄=0, X₅=0\n\nPlot the predicted values with prediction intervals\n\nHow do prediction intervals change with noise level?",
-    "crumbs": [
-      "{{< fa calendar >}} Schedule",
-      "Exercises",
-      "Linear Regression"
-    ]
-  },
-  {
-    "objectID": "ex/04-ex.html#part-4",
-    "href": "ex/04-ex.html#part-4",
-    "title": "Exercise 4 – Linear Regression in R",
-    "section": "Part 4",
-    "text": "Part 4\n\nCreate two simulated datasets with the same true relationship but different sample sizes (n=25 and n=200)\n\nFit models to both datasets and predict Y when X₁=1, X₂=0, X₃=0, X₄=0, X₅=0\n\nGet prediction intervals for both models\n\nHow does sample size affect prediction uncertainty?",
+    "text": "Part 3\n\nCreate three simulations with different noise levels: sd = 0.1, 1.0, 3.0\n\nFor each noise level, make predictions for the training dataset\nPlot the predicted values with prediction intervals\n\nHow do prediction intervals change with noise level?",
     "crumbs": [
       "{{< fa calendar >}} Schedule",
       "Exercises",
@@ -2982,39 +2970,18 @@
     "text": "Solution 3\n\nset.seed(3)\nnoise_levels &lt;- c(0.1, 1.0, 3.0)\nresults &lt;- tibble()\n\nfor(i in seq_along(noise_levels)) {\n  # Generate data with different noise\n  Y_noise &lt;- 2 + 3*X_mat[,1] - 1.5*X_mat[,2] + 0.5*X_mat[,3] + \n             0*X_mat[,4] + 0*X_mat[,5] + rnorm(20, 0, noise_levels[i])\n  \n  sim_data_temp &lt;- tibble(\n    X1 = X_mat[,1], X2 = X_mat[,2], X3 = X_mat[,3], \n    X4 = X_mat[,4], X5 = X_mat[,5], Y = Y_noise\n  )\n  \n  # Fit model and predict\n  temp_fit &lt;- linear_reg() |&gt;\n    set_engine(\"lm\") |&gt;\n    fit(Y ~ X1 + X2 + X3 + X4 + X5, data = sim_data_temp)\n  \n  pred &lt;- temp_fit |&gt;\n    predict(sim_data_temp, type = \"pred_int\") |&gt;\n    bind_cols(sim_data_temp) |&gt;\n    mutate(noise_level = noise_levels[i])\n  \n  results &lt;- bind_rows(results, pred)\n}\n\n# Plot results\nggplot(results, aes(x = Y)) +\n  geom_errorbar(aes(ymin = .pred_lower, ymax = .pred_upper), width = 0.1) +\n  labs(x = \"Observed Y\", y = \"Predicted Y\") +\n  theme_minimal() + \n  facet_wrap(~noise_level)"
   },
   {
-    "objectID": "slides/08-linear-regression.html#how-much-do-predictions-vary",
-    "href": "slides/08-linear-regression.html#how-much-do-predictions-vary",
-    "title": "Linear Regression for Prediction",
-    "section": "How Much Do Predictions Vary?",
-    "text": "How Much Do Predictions Vary?\nLet’s see how prediction uncertainty changes with sample size:\n\n# Example: Compare predictions from different sample sizes\nset.seed(1)\n\n# Small sample (n=25)\nsmall_sim &lt;- mvrnorm(25, mu = rep(0, 2), Sigma = diag(2))\nsmall_y &lt;- 2 + 3*small_sim[,1] - 1.5*small_sim[,2] + rnorm(25, 0, 0.5)\n\n# Large sample (n=200)\nlarge_sim &lt;- mvrnorm(200, mu = rep(0, 2), Sigma = diag(2))\nlarge_y &lt;- 2 + 3*large_sim[,1] - 1.5*large_sim[,2] + rnorm(200, 0, 0.5)\n\n# Compare prediction intervals for X1=1, X2=0"
-  },
-  {
-    "objectID": "slides/08-linear-regression.html#application-exercise-4",
-    "href": "slides/08-linear-regression.html#application-exercise-4",
-    "title": "Linear Regression for Prediction",
-    "section": " Application Exercise",
-    "text": "Application Exercise\n\nCreate two simulated datasets with the same true relationship but different sample sizes (n=25 and n=200)\n\nFit models to both datasets and predict Y when X₁=1, X₂=0, X₃=0, X₄=0, X₅=0\n\nGet prediction intervals for both models\n\nHow does sample size affect prediction uncertainty?\n\n\n\n\n\n−+\n08:00"
-  },
-  {
-    "objectID": "slides/08-linear-regression.html#solution-4",
-    "href": "slides/08-linear-regression.html#solution-4",
-    "title": "Linear Regression for Prediction",
-    "section": "Solution 4",
-    "text": "Solution 4\n\nset.seed(1)\n\n# Small sample (n=25)\nX_small &lt;- mvrnorm(n = 25, mu = rep(0, 5), Sigma = diag(5))\nY_small &lt;- 2 + 3*X_small[,1] - 1.5*X_small[,2] + 0.5*X_small[,3] + \n           0*X_small[,4] + 0*X_small[,5] + rnorm(25, 0, 0.5)\n\nsim_data_small &lt;- tibble(\n  X1 = X_small[,1], X2 = X_small[,2], X3 = X_small[,3], \n  X4 = X_small[,4], X5 = X_small[,5], Y = Y_small\n)\n\n# Large sample (n=200)  \nX_large &lt;- mvrnorm(n = 200, mu = rep(0, 5), Sigma = diag(5))\nY_large &lt;- 2 + 3*X_large[,1] - 1.5*X_large[,2] + 0.5*X_large[,3] + \n           0*X_large[,4] + 0*X_large[,5] + rnorm(200, 0, 0.5)\n\nsim_data_large &lt;- tibble(\n  X1 = X_large[,1], X2 = X_large[,2], X3 = X_large[,3], \n  X4 = X_large[,4], X5 = X_large[,5], Y = Y_large\n)\n\n# Fit models\nfit_small &lt;- linear_reg() |&gt; set_engine(\"lm\") |&gt; \n  fit(Y ~ X1 + X2 + X3 + X4 + X5, data = sim_data_small)\nfit_large &lt;- linear_reg() |&gt; set_engine(\"lm\") |&gt; \n  fit(Y ~ X1 + X2 + X3 + X4 + X5, data = sim_data_large)\n\n# Compare predictions\ntest_point &lt;- tibble(X1 = 1, X2 = 0, X3 = 0, X4 = 0, X5 = 0)\npred_small &lt;- fit_small |&gt; predict(test_point, type = \"pred_int\") |&gt; \n  mutate(sample_size = \"n=25\")\npred_large &lt;- fit_large |&gt; predict(test_point, type = \"pred_int\") |&gt; \n  mutate(sample_size = \"n=200\")\n\nbind_rows(pred_small, pred_large)\n# Larger sample = narrower prediction intervals!"
-  },
-  {
     "objectID": "slides/08-linear-regression.html#key-prediction-concepts",
     "href": "slides/08-linear-regression.html#key-prediction-concepts",
     "title": "Linear Regression for Prediction",
     "section": "Key Prediction Concepts",
-    "text": "Key Prediction Concepts\n\n\nGoal: Build models that predict well on new, unseen data\n\nTraining accuracy is optimistic - always use cross-validation\n\nRMSE measures average prediction error (in original units)\n\nR² measures proportion of variance explained (0-1 scale)\n\nPrediction intervals quantify uncertainty in individual predictions\n\nSample size affects prediction uncertainty - larger samples give more precise predictions\n\nNoise level affects both model fit and prediction uncertainty\n\nMore complex models may predict better, but watch for overfitting"
+    "text": "Key Prediction Concepts\n\n\nGoal: Build models that predict well on new, unseen data\n\nTraining accuracy is optimistic - always use cross-validation\n\nRMSE measures average prediction error (in original units)\n\nR² measures proportion of variance explained (0-1 scale)\n\nPrediction intervals quantify uncertainty in individual predictions\n\nIrreducible error affects prediction uncertainty\n\nMore complex models may predict better, but watch for overfitting"
   },
   {
     "objectID": "slides/08-linear-regression.html#understanding-prediction-uncertainty",
     "href": "slides/08-linear-regression.html#understanding-prediction-uncertainty",
     "title": "Linear Regression for Prediction",
     "section": "Understanding Prediction Uncertainty",
-    "text": "Understanding Prediction Uncertainty\n\n\nPrediction intervals tell us how uncertain we are about individual predictions\n\nWider intervals = more uncertainty\n\nUncertainty comes from:\n\nEstimation uncertainty: We don’t know the true coefficients perfectly\n\nIrreduciable error: There’s natural noise in the data\n\nLarger sample sizes reduce estimation uncertainty\n\nLower noise levels reduce residual variation (irreducible error)"
+    "text": "Understanding Prediction Uncertainty\n\n\nPrediction intervals tell us how uncertain we are about individual predictions\n\nWider intervals = more uncertainty\n\nUncertainty comes from:\n\nEstimation uncertainty: We don’t know the true coefficients perfectly\n\nIrreduciable error: There’s natural noise in the data"
   },
   {
     "objectID": "syllabus.html",

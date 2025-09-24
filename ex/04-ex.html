@@ -481,7 +481,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#part-1" id="toc-part-1" class="nav-link" data-scroll-target="#part-1">Part 1</a></li>
   <li><a href="#part-2" id="toc-part-2" class="nav-link" data-scroll-target="#part-2">Part 2</a></li>
   <li><a href="#part-3" id="toc-part-3" class="nav-link" data-scroll-target="#part-3">Part 3</a></li>
-  <li><a href="#part-4" id="toc-part-4" class="nav-link" data-scroll-target="#part-4">Part 4</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/sta-363-f25/website/edit/main/ex/04-ex.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta-363-f25/website/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -569,7 +568,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
 <li>Make predictions for new observations where all X variables = 0, 1, and 2<br>
 </li>
-<li>Which set of X values gives the highest predicted Y?</li>
+<li>Make predictions for all observations in the training data</li>
 </ol>
 </section>
 <section id="part-2" class="level2">
@@ -581,7 +580,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
 <li>Compare these coefficients to what you got from <code>linear_reg() |&gt; tidy()</code><br>
 </li>
-<li>Try changing the noise standard deviation from 0.5 to 2.0 - how do the predictions change for X₁=1, X₂=0, X₃=0, X₄=0, X₅=0?</li>
+<li>Try changing the noise standard deviation from 0.5 to 2.0 - how do the predictions change for the training data?</li>
 </ol>
 </section>
 <section id="part-3" class="level2">
@@ -589,23 +588,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol type="1">
 <li>Create three simulations with different noise levels: sd = 0.1, 1.0, 3.0<br>
 </li>
-<li>For each noise level, make predictions for X₁=1, X₂=0, X₃=0, X₄=0, X₅=0<br>
-</li>
+<li>For each noise level, make predictions for the training dataset</li>
 <li>Plot the predicted values with prediction intervals<br>
 </li>
 <li>How do prediction intervals change with noise level?</li>
-</ol>
-</section>
-<section id="part-4" class="level2">
-<h2 class="anchored" data-anchor-id="part-4">Part 4</h2>
-<ol type="1">
-<li>Create two simulated datasets with the same true relationship but different sample sizes (n=25 and n=200)<br>
-</li>
-<li>Fit models to both datasets and predict Y when X₁=1, X₂=0, X₃=0, X₄=0, X₅=0<br>
-</li>
-<li>Get prediction intervals for both models<br>
-</li>
-<li>How does sample size affect prediction uncertainty?</li>
 </ol>
 
 

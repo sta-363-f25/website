@@ -233,10 +233,10 @@ Lucy D’Agostino McGowan
 <h2>Let’s look at an example</h2>
 <p>Let’s look at car seat sales data from 400 different stores. We want to <strong>predict Sales</strong> from <strong>Price</strong></p>
 
-<img data-src="08-linear-regression_files/figure-html/unnamed-chunk-3-1.png" width="672" class="r-stretch"></section>
+<img data-src="08-linear-regression_files/figure-revealjs/unnamed-chunk-3-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"></section>
 <section id="building-a-prediction-model" class="slide level2">
 <h2>Building a Prediction Model</h2>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="co"># Fit the model</span></span>
 <span id="cb2-2"><a></a>carseat_fit <span class="ot">&lt;-</span> <span class="fu">linear_reg</span>() <span class="sc">|&gt;</span></span>
 <span id="cb2-3"><a></a>  <span class="fu">set_engine</span>(<span class="st">"lm"</span>) <span class="sc">|&gt;</span></span>
@@ -259,7 +259,7 @@ Lucy D’Agostino McGowan
 <p>If I sell my car seats for $200, how many do you predict that I will sell?</p>
 </div>
 <div class="fragment">
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="co"># Manual calculation</span></span>
 <span id="cb4-2"><a></a><span class="co"># Sales = 13.6 - 0.053 x 200</span></span>
 <span id="cb4-3"><a></a><span class="fl">13.6</span> <span class="sc">-</span> <span class="fl">0.053</span> <span class="sc">*</span> <span class="dv">200</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -271,7 +271,7 @@ Lucy D’Agostino McGowan
 </section>
 <section id="making-predictions-with-predict" class="slide level2">
 <h2>Making Predictions with <code>predict()</code></h2>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="co"># Create new data</span></span>
 <span id="cb6-2"><a></a>new_carseat <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">Price =</span> <span class="dv">200</span>)</span>
 <span id="cb6-3"><a></a></span>
@@ -288,7 +288,7 @@ Lucy D’Agostino McGowan
 </section>
 <section id="multiple-predictions-at-once" class="slide level2">
 <h2>Multiple Predictions at Once</h2>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="co"># Predict for several prices</span></span>
 <span id="cb8-2"><a></a>new_carseats <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">Price =</span> <span class="fu">c</span>(<span class="dv">100</span>, <span class="dv">150</span>, <span class="dv">200</span>, <span class="dv">500</span>, <span class="dv">1000</span>))</span>
 <span id="cb8-3"><a></a></span>
@@ -312,7 +312,7 @@ Lucy D’Agostino McGowan
 <section id="application-exercise-1" class="slide level2 small">
 <h2><i class="fa-solid fa-laptop" aria-hidden="true"></i> <code>Application Exercise</code></h2>
 <p>Run this code to create a simulated dataset:</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="fu">library</span>(MASS)</span>
 <span id="cb10-2"><a></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
 <span id="cb10-3"><a></a></span>
@@ -341,9 +341,9 @@ Lucy D’Agostino McGowan
 </li>
 </ol>
 </div>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div class="countdown" id="timer_28deae84" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_f804d8c2" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -352,7 +352,7 @@ Lucy D’Agostino McGowan
 </section>
 <section id="solution-1" class="slide level2">
 <h2>Solution 1</h2>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="co"># 2. Fit the model</span></span>
 <span id="cb11-2"><a></a>sim_fit <span class="ot">&lt;-</span> <span class="fu">linear_reg</span>() <span class="sc">|&gt;</span></span>
 <span id="cb11-3"><a></a>  <span class="fu">set_engine</span>(<span class="st">"lm"</span>) <span class="sc">|&gt;</span></span>
@@ -376,7 +376,7 @@ Lucy D’Agostino McGowan
 <section id="how-good-are-our-predictions" class="slide level2">
 <h2>How Good Are Our Predictions?</h2>
 <p>Let’s look at <strong>prediction accuracy</strong> on our training data:</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="co"># Get predictions for all training data</span></span>
 <span id="cb12-2"><a></a>training_results <span class="ot">&lt;-</span> carseat_fit <span class="sc">|&gt;</span></span>
 <span id="cb12-3"><a></a>  <span class="fu">predict</span>(<span class="at">new_data =</span> Carseats) <span class="sc">|&gt;</span></span>
@@ -401,7 +401,7 @@ Lucy D’Agostino McGowan
 </section>
 <section id="visualizing-predictions-vs-reality" class="slide level2">
 <h2>Visualizing Predictions vs Reality</h2>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="fu">ggplot</span>(training_results, <span class="fu">aes</span>(<span class="at">x =</span> Sales, <span class="at">y =</span> .pred)) <span class="sc">+</span></span>
 <span id="cb14-2"><a></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"cornflower blue"</span>) <span class="sc">+</span></span>
 <span id="cb14-3"><a></a>  <span class="fu">geom_abline</span>(<span class="at">slope =</span> <span class="dv">1</span>, <span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">color =</span> <span class="st">"orange"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
@@ -410,11 +410,11 @@ Lucy D’Agostino McGowan
 <span id="cb14-6"><a></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="08-linear-regression_files/figure-html/unnamed-chunk-12-1.png" width="672" class="r-stretch"></section>
+<img data-src="08-linear-regression_files/figure-revealjs/unnamed-chunk-12-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"></section>
 <section id="measuring-prediction-accuracy-rmse" class="slide level2">
 <h2>Measuring Prediction Accuracy: RMSE</h2>
 <p><strong>Root Mean Squared Error (RMSE)</strong>: Average prediction error</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a>training_results <span class="sc">|&gt;</span> </span>
 <span id="cb15-2"><a></a>  <span class="fu">rmse</span>(<span class="at">truth =</span> Sales, <span class="at">estimate =</span> .pred)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -431,7 +431,7 @@ Lucy D’Agostino McGowan
 <section id="measuring-prediction-accuracy-r²" class="slide level2">
 <h2>Measuring Prediction Accuracy: R²</h2>
 <p><strong>R-squared</strong>: Proportion of variance explained by the model</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a>training_results <span class="sc">|&gt;</span> </span>
 <span id="cb17-2"><a></a>  <span class="fu">rsq</span>(<span class="at">truth =</span> Sales, <span class="at">estimate =</span> .pred)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -456,7 +456,7 @@ Lucy D’Agostino McGowan
 </section>
 <section id="cross-validation-for-better-estimates" class="slide level2">
 <h2>Cross-Validation for Better Estimates</h2>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a><span class="co"># Create cross-validation folds</span></span>
 <span id="cb19-2"><a></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
 <span id="cb19-3"><a></a>carseat_folds <span class="ot">&lt;-</span> <span class="fu">vfold_cv</span>(Carseats, <span class="at">v =</span> <span class="dv">5</span>)</span>
@@ -481,7 +481,7 @@ Lucy D’Agostino McGowan
 </section>
 <section id="training-vs-test-performance" class="slide level2">
 <h2>Training vs Test Performance</h2>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <table class="caption-top">
 <thead>
@@ -522,9 +522,9 @@ Lucy D’Agostino McGowan
 <li>Try changing the noise standard deviation from 0.5 to 2.0 - how do the predictions change for X₁=1, X₂=0, X₃=0, X₄=0, X₅=0?<br>
 </li>
 </ol>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div class="countdown" id="timer_f66cd01a" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_bfb3ef7c" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">06</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -533,7 +533,7 @@ Lucy D’Agostino McGowan
 </section>
 <section id="solution-2" class="slide level2">
 <h2>Solution 2</h2>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a><span class="co"># 1. Create design matrix</span></span>
 <span id="cb21-2"><a></a>X_design <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="dv">1</span>, X_mat)  <span class="co"># Add intercept column</span></span>
 <span id="cb21-3"><a></a>y_vec <span class="ot">&lt;-</span> sim_data<span class="sc">$</span>Y</span>
@@ -565,7 +565,7 @@ Lucy D’Agostino McGowan
 </section>
 <section id="more-complex-predictions" class="slide level2">
 <h2>More Complex Predictions</h2>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a>multi_fit <span class="ot">&lt;-</span> <span class="fu">linear_reg</span>() <span class="sc">|&gt;</span></span>
 <span id="cb22-2"><a></a>  <span class="fu">fit</span>(Sales <span class="sc">~</span> Price <span class="sc">+</span> Income <span class="sc">+</span> Advertising <span class="sc">+</span></span>
 <span id="cb22-3"><a></a>        Population <span class="sc">+</span> ShelveLoc <span class="sc">+</span> Age <span class="sc">+</span></span>
@@ -593,7 +593,7 @@ Lucy D’Agostino McGowan
 </section>
 <section id="comparing-model-complexity" class="slide level2">
 <h2>Comparing Model Complexity</h2>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <table class="caption-top">
 <thead>
@@ -634,7 +634,7 @@ Lucy D’Agostino McGowan
 <section id="prediction-uncertainty" class="slide level2">
 <h2>Prediction Uncertainty</h2>
 <p>Our predictions aren’t perfect - how can we quantify uncertainty?</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a>new_prices <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">Price =</span> <span class="fu">c</span>(<span class="dv">100</span>, <span class="dv">150</span>, <span class="dv">200</span>))</span>
 <span id="cb24-2"><a></a></span>
 <span id="cb24-3"><a></a>carseat_fit <span class="sc">|&gt;</span></span>
@@ -663,9 +663,9 @@ Lucy D’Agostino McGowan
 <li>How do prediction intervals change with noise level?<br>
 </li>
 </ol>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div class="countdown" id="timer_d4a18088" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_f389e329" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">06</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -674,7 +674,7 @@ Lucy D’Agostino McGowan
 </section>
 <section id="solution-3" class="slide level2">
 <h2>Solution 3</h2>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a></a><span class="fu">set.seed</span>(<span class="dv">3</span>)</span>
 <span id="cb26-2"><a></a>noise_levels <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.1</span>, <span class="fl">1.0</span>, <span class="fl">3.0</span>)</span>
 <span id="cb26-3"><a></a>results <span class="ot">&lt;-</span> <span class="fu">tibble</span>()</span>
@@ -710,87 +710,6 @@ Lucy D’Agostino McGowan
 <span id="cb26-33"><a></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>noise_level)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="how-much-do-predictions-vary" class="slide level2">
-<h2>How Much Do Predictions Vary?</h2>
-<p>Let’s see how prediction uncertainty changes with sample size:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a><span class="co"># Example: Compare predictions from different sample sizes</span></span>
-<span id="cb27-2"><a></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
-<span id="cb27-3"><a></a></span>
-<span id="cb27-4"><a></a><span class="co"># Small sample (n=25)</span></span>
-<span id="cb27-5"><a></a>small_sim <span class="ot">&lt;-</span> <span class="fu">mvrnorm</span>(<span class="dv">25</span>, <span class="at">mu =</span> <span class="fu">rep</span>(<span class="dv">0</span>, <span class="dv">2</span>), <span class="at">Sigma =</span> <span class="fu">diag</span>(<span class="dv">2</span>))</span>
-<span id="cb27-6"><a></a>small_y <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">+</span> <span class="dv">3</span><span class="sc">*</span>small_sim[,<span class="dv">1</span>] <span class="sc">-</span> <span class="fl">1.5</span><span class="sc">*</span>small_sim[,<span class="dv">2</span>] <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">25</span>, <span class="dv">0</span>, <span class="fl">0.5</span>)</span>
-<span id="cb27-7"><a></a></span>
-<span id="cb27-8"><a></a><span class="co"># Large sample (n=200)</span></span>
-<span id="cb27-9"><a></a>large_sim <span class="ot">&lt;-</span> <span class="fu">mvrnorm</span>(<span class="dv">200</span>, <span class="at">mu =</span> <span class="fu">rep</span>(<span class="dv">0</span>, <span class="dv">2</span>), <span class="at">Sigma =</span> <span class="fu">diag</span>(<span class="dv">2</span>))</span>
-<span id="cb27-10"><a></a>large_y <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">+</span> <span class="dv">3</span><span class="sc">*</span>large_sim[,<span class="dv">1</span>] <span class="sc">-</span> <span class="fl">1.5</span><span class="sc">*</span>large_sim[,<span class="dv">2</span>] <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">200</span>, <span class="dv">0</span>, <span class="fl">0.5</span>)</span>
-<span id="cb27-11"><a></a></span>
-<span id="cb27-12"><a></a><span class="co"># Compare prediction intervals for X1=1, X2=0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="application-exercise-4" class="slide level2 small">
-<h2><i class="fa-solid fa-laptop" aria-hidden="true"></i> <code>Application Exercise</code></h2>
-<ol type="1">
-<li>Create two simulated datasets with the same true relationship but different sample sizes (n=25 and n=200)<br>
-</li>
-<li>Fit models to both datasets and predict Y when X₁=1, X₂=0, X₃=0, X₄=0, X₅=0<br>
-</li>
-<li>Get prediction intervals for both models<br>
-</li>
-<li>How does sample size affect prediction uncertainty?<br>
-</li>
-</ol>
-<div class="cell">
-<div class="cell-output-display">
-<div class="countdown" id="timer_84d116b2" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
-<div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
-<code class="countdown-time"><span class="countdown-digits minutes">08</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
-</div>
-</div>
-</div>
-</section>
-<section id="solution-4" class="slide level2">
-<h2>Solution 4</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
-<span id="cb28-2"><a></a></span>
-<span id="cb28-3"><a></a><span class="co"># Small sample (n=25)</span></span>
-<span id="cb28-4"><a></a>X_small <span class="ot">&lt;-</span> <span class="fu">mvrnorm</span>(<span class="at">n =</span> <span class="dv">25</span>, <span class="at">mu =</span> <span class="fu">rep</span>(<span class="dv">0</span>, <span class="dv">5</span>), <span class="at">Sigma =</span> <span class="fu">diag</span>(<span class="dv">5</span>))</span>
-<span id="cb28-5"><a></a>Y_small <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">+</span> <span class="dv">3</span><span class="sc">*</span>X_small[,<span class="dv">1</span>] <span class="sc">-</span> <span class="fl">1.5</span><span class="sc">*</span>X_small[,<span class="dv">2</span>] <span class="sc">+</span> <span class="fl">0.5</span><span class="sc">*</span>X_small[,<span class="dv">3</span>] <span class="sc">+</span> </span>
-<span id="cb28-6"><a></a>           <span class="dv">0</span><span class="sc">*</span>X_small[,<span class="dv">4</span>] <span class="sc">+</span> <span class="dv">0</span><span class="sc">*</span>X_small[,<span class="dv">5</span>] <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">25</span>, <span class="dv">0</span>, <span class="fl">0.5</span>)</span>
-<span id="cb28-7"><a></a></span>
-<span id="cb28-8"><a></a>sim_data_small <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb28-9"><a></a>  <span class="at">X1 =</span> X_small[,<span class="dv">1</span>], <span class="at">X2 =</span> X_small[,<span class="dv">2</span>], <span class="at">X3 =</span> X_small[,<span class="dv">3</span>], </span>
-<span id="cb28-10"><a></a>  <span class="at">X4 =</span> X_small[,<span class="dv">4</span>], <span class="at">X5 =</span> X_small[,<span class="dv">5</span>], <span class="at">Y =</span> Y_small</span>
-<span id="cb28-11"><a></a>)</span>
-<span id="cb28-12"><a></a></span>
-<span id="cb28-13"><a></a><span class="co"># Large sample (n=200)  </span></span>
-<span id="cb28-14"><a></a>X_large <span class="ot">&lt;-</span> <span class="fu">mvrnorm</span>(<span class="at">n =</span> <span class="dv">200</span>, <span class="at">mu =</span> <span class="fu">rep</span>(<span class="dv">0</span>, <span class="dv">5</span>), <span class="at">Sigma =</span> <span class="fu">diag</span>(<span class="dv">5</span>))</span>
-<span id="cb28-15"><a></a>Y_large <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">+</span> <span class="dv">3</span><span class="sc">*</span>X_large[,<span class="dv">1</span>] <span class="sc">-</span> <span class="fl">1.5</span><span class="sc">*</span>X_large[,<span class="dv">2</span>] <span class="sc">+</span> <span class="fl">0.5</span><span class="sc">*</span>X_large[,<span class="dv">3</span>] <span class="sc">+</span> </span>
-<span id="cb28-16"><a></a>           <span class="dv">0</span><span class="sc">*</span>X_large[,<span class="dv">4</span>] <span class="sc">+</span> <span class="dv">0</span><span class="sc">*</span>X_large[,<span class="dv">5</span>] <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">200</span>, <span class="dv">0</span>, <span class="fl">0.5</span>)</span>
-<span id="cb28-17"><a></a></span>
-<span id="cb28-18"><a></a>sim_data_large <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb28-19"><a></a>  <span class="at">X1 =</span> X_large[,<span class="dv">1</span>], <span class="at">X2 =</span> X_large[,<span class="dv">2</span>], <span class="at">X3 =</span> X_large[,<span class="dv">3</span>], </span>
-<span id="cb28-20"><a></a>  <span class="at">X4 =</span> X_large[,<span class="dv">4</span>], <span class="at">X5 =</span> X_large[,<span class="dv">5</span>], <span class="at">Y =</span> Y_large</span>
-<span id="cb28-21"><a></a>)</span>
-<span id="cb28-22"><a></a></span>
-<span id="cb28-23"><a></a><span class="co"># Fit models</span></span>
-<span id="cb28-24"><a></a>fit_small <span class="ot">&lt;-</span> <span class="fu">linear_reg</span>() <span class="sc">|&gt;</span> <span class="fu">set_engine</span>(<span class="st">"lm"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb28-25"><a></a>  <span class="fu">fit</span>(Y <span class="sc">~</span> X1 <span class="sc">+</span> X2 <span class="sc">+</span> X3 <span class="sc">+</span> X4 <span class="sc">+</span> X5, <span class="at">data =</span> sim_data_small)</span>
-<span id="cb28-26"><a></a>fit_large <span class="ot">&lt;-</span> <span class="fu">linear_reg</span>() <span class="sc">|&gt;</span> <span class="fu">set_engine</span>(<span class="st">"lm"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb28-27"><a></a>  <span class="fu">fit</span>(Y <span class="sc">~</span> X1 <span class="sc">+</span> X2 <span class="sc">+</span> X3 <span class="sc">+</span> X4 <span class="sc">+</span> X5, <span class="at">data =</span> sim_data_large)</span>
-<span id="cb28-28"><a></a></span>
-<span id="cb28-29"><a></a><span class="co"># Compare predictions</span></span>
-<span id="cb28-30"><a></a>test_point <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">X1 =</span> <span class="dv">1</span>, <span class="at">X2 =</span> <span class="dv">0</span>, <span class="at">X3 =</span> <span class="dv">0</span>, <span class="at">X4 =</span> <span class="dv">0</span>, <span class="at">X5 =</span> <span class="dv">0</span>)</span>
-<span id="cb28-31"><a></a>pred_small <span class="ot">&lt;-</span> fit_small <span class="sc">|&gt;</span> <span class="fu">predict</span>(test_point, <span class="at">type =</span> <span class="st">"pred_int"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb28-32"><a></a>  <span class="fu">mutate</span>(<span class="at">sample_size =</span> <span class="st">"n=25"</span>)</span>
-<span id="cb28-33"><a></a>pred_large <span class="ot">&lt;-</span> fit_large <span class="sc">|&gt;</span> <span class="fu">predict</span>(test_point, <span class="at">type =</span> <span class="st">"pred_int"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb28-34"><a></a>  <span class="fu">mutate</span>(<span class="at">sample_size =</span> <span class="st">"n=200"</span>)</span>
-<span id="cb28-35"><a></a></span>
-<span id="cb28-36"><a></a><span class="fu">bind_rows</span>(pred_small, pred_large)</span>
-<span id="cb28-37"><a></a><span class="co"># Larger sample = narrower prediction intervals!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
 <section id="key-prediction-concepts" class="slide level2">
 <h2>Key Prediction Concepts</h2>
 <div class="small">
@@ -805,9 +724,7 @@ Lucy D’Agostino McGowan
 </li>
 <li><strong>Prediction intervals</strong> quantify uncertainty in individual predictions<br>
 </li>
-<li><strong>Sample size</strong> affects prediction uncertainty - larger samples give more precise predictions<br>
-</li>
-<li><strong>Noise level</strong> affects both model fit and prediction uncertainty<br>
+<li><strong>Irreducible error</strong> affects prediction uncertainty<br>
 </li>
 <li>More complex models may predict better, but watch for <strong>overfitting</strong><br>
 </li>
@@ -828,9 +745,6 @@ Lucy D’Agostino McGowan
 </li>
 <li><strong>Irreduciable error</strong>: There’s natural noise in the data<br>
 </li>
-<li><strong>Larger sample sizes</strong> reduce estimation uncertainty<br>
-</li>
-<li><strong>Lower noise levels</strong> reduce residual variation (irreducible error)</li>
 </ul>
 </div>
 
@@ -1054,6 +968,44 @@ Lucy D’Agostino McGowan
         ]
       });
     </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
     <script id="quarto-html-after-body" type="application/javascript">
       window.document.addEventListener("DOMContentLoaded", function (event) {
         const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
