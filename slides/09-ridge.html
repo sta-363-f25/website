@@ -221,10 +221,10 @@
 <p>In linear regression, what are we minimizing? How can I write this in matrix form?</p>
 </div>
 <ul>
-<li class="fragment">RSS!</li>
-<li class="fragment"><span class="math inline">\((\mathbf{y} - \mathbf{X}\hat\beta)^T(\mathbf{y}-\mathbf{X}\hat\beta)\)</span></li>
-<li class="fragment">What is the solution ( <span class="math inline">\(\hat\beta\)</span> ) to this?</li>
-<li class="fragment"><span class="math inline">\(\mathbf{(X}^T\mathbf{X})^{-1}\mathbf{X}^T\mathbf{y}\)</span></li>
+<li>RSS!</li>
+<li><span class="math inline">\((\mathbf{y} - \mathbf{X}\hat\beta)^T(\mathbf{y}-\mathbf{X}\hat\beta)\)</span></li>
+<li>What is the solution ( <span class="math inline">\(\hat\beta\)</span> ) to this?</li>
+<li><span class="math inline">\(\mathbf{(X}^T\mathbf{X})^{-1}\mathbf{X}^T\mathbf{y}\)</span></li>
 </ul>
 </section>
 <section id="linear-regression-review-1" class="slide level2 small">
@@ -233,7 +233,7 @@
 <p>What is <span class="math inline">\(\mathbf{X}\)</span>?</p>
 </div>
 <ul>
-<li class="fragment">the design matrix!</li>
+<li>the design matrix!</li>
 </ul>
 </section>
 <section id="linear-regression-review-2" class="slide level2 small">
@@ -414,7 +414,7 @@
 </div>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div class="countdown" id="timer_6a9c786a" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_16e9f523" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -428,10 +428,10 @@
 <p>Under what circumstances is this equation not estimable?</p>
 </div>
 <ul>
-<li class="fragment">when we can’t invert <span class="math inline">\((\mathbf{X^TX})^{-1}\)</span></li>
-<li class="fragment"><span class="math inline">\(p &gt; n\)</span></li>
-<li class="fragment">multicollinearity</li>
-<li class="fragment">A guaranteed way to check whether a square matrix is not invertible is to check whether the <strong>determinant</strong> is equal to zero</li>
+<li>when we can’t invert <span class="math inline">\((\mathbf{X^TX})^{-1}\)</span></li>
+<li><span class="math inline">\(p &gt; n\)</span></li>
+<li>multicollinearity</li>
+<li>A guaranteed way to check whether a square matrix is not invertible is to check whether the <strong>determinant</strong> is equal to zero</li>
 </ul>
 </section>
 <section id="estimating-hatbeta-1" class="slide level2 small">
@@ -503,11 +503,11 @@
 <p>What is a sure-fire way to tell whether <span class="math inline">\(\mathbf{(X^TX)^{-1}}\)</span> will be invertible?</p>
 </div>
 <ul>
-<li class="fragment">Take the determinant!</li>
-<li class="fragment"><span class="math inline">\(|\mathbf{A}|\)</span> means the determinant of matrix <span class="math inline">\(\mathbf{A}\)</span></li>
-<li class="fragment">For a 2x2 matrix:</li>
-<li class="fragment"><span class="math inline">\(\mathbf{A} = \begin{bmatrix}a&amp;b\\c&amp;d\end{bmatrix}\)</span></li>
-<li class="fragment"><span class="math inline">\(|\mathbf{A}| = ad - bc\)</span></li>
+<li>Take the determinant!</li>
+<li><span class="math inline">\(|\mathbf{A}|\)</span> means the determinant of matrix <span class="math inline">\(\mathbf{A}\)</span></li>
+<li>For a 2x2 matrix:</li>
+<li><span class="math inline">\(\mathbf{A} = \begin{bmatrix}a&amp;b\\c&amp;d\end{bmatrix}\)</span></li>
+<li><span class="math inline">\(|\mathbf{A}| = ad - bc\)</span></li>
 </ul>
 </section>
 <section id="estimating-hatbeta-6" class="slide level2 small">
@@ -520,9 +520,9 @@
 <li><span class="math inline">\(|\mathbf{A}|\)</span> means the determinant of matrix <span class="math inline">\(\mathbf{A}\)</span></li>
 </ul>
 <ul>
-<li class="fragment">For a 3x3 matrix:</li>
-<li class="fragment"><span class="math inline">\(\mathbf{A} = \begin{bmatrix}a&amp;b&amp;c\\d&amp;e&amp;f\\g&amp;h&amp;i\end{bmatrix}\)</span></li>
-<li class="fragment"><span class="math inline">\(|\mathbf{A}| = a(ei-fh)-b(di-fg) +c(dh-eg)\)</span></li>
+<li>For a 3x3 matrix:</li>
+<li><span class="math inline">\(\mathbf{A} = \begin{bmatrix}a&amp;b&amp;c\\d&amp;e&amp;f\\g&amp;h&amp;i\end{bmatrix}\)</span></li>
+<li><span class="math inline">\(|\mathbf{A}| = a(ei-fh)-b(di-fg) +c(dh-eg)\)</span></li>
 </ul>
 </section>
 <section id="determinants" class="slide level2 small">
@@ -530,9 +530,9 @@
 <p><em>It looks funky, but it follows a nice pattern!</em></p>
 <p><span class="math display">\[\mathbf{A} = \begin{bmatrix}a&amp;b&amp;c\\d&amp;e&amp;f\\g&amp;h&amp;i\end{bmatrix}\]</span> <span class="math display">\[|\mathbf{A}| = a(ei-fh)-b(di-fg) +c(dh-eg)\]</span></p>
 <ul>
-<li class="fragment">multiply <span class="math inline">\(a\)</span> by the determinant of the portion of the matrix that are <strong>not</strong> in <span class="math inline">\(a\)</span>’s row or column (A)</li>
-<li class="fragment">do the same for <span class="math inline">\(b\)</span> (B) and <span class="math inline">\(c\)</span> (C)</li>
-<li class="fragment">put it together as <strong>plus</strong> (A) <strong>minus</strong> (B) <strong>plus</strong> (C)</li>
+<li>multiply <span class="math inline">\(a\)</span> by the determinant of the portion of the matrix that are <strong>not</strong> in <span class="math inline">\(a\)</span>’s row or column (A)</li>
+<li>do the same for <span class="math inline">\(b\)</span> (B) and <span class="math inline">\(c\)</span> (C)</li>
+<li>put it together as <strong>plus</strong> (A) <strong>minus</strong> (B) <strong>plus</strong> (C)</li>
 </ul>
 </section>
 <section id="determinants-1" class="slide level2 small">
@@ -548,7 +548,7 @@
 <p><span class="math display">\[\mathbf{B} = \begin{bmatrix} 1 &amp; 2 &amp; 3 \\ 3 &amp; 6 &amp; 9 \\ 2 &amp; 5 &amp; 7\end{bmatrix}\]</span> Are these both invertible?</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div class="countdown" id="timer_42ffc463" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_1aedb53f" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">01</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -606,7 +606,7 @@
 </div>
 <p><span class="math display">\[var(\hat\beta) = \hat\sigma^2(\mathbf{X}^T\mathbf{X})^{-1}\]</span></p>
 <ul>
-<li class="fragment"><span class="math inline">\(\hat\sigma^2 = \frac{RSS}{n-(p+1)}\)</span></li>
+<li><span class="math inline">\(\hat\sigma^2 = \frac{RSS}{n-(p+1)}\)</span></li>
 </ul>
 </section>
 <section id="variance-of-hatbeta" class="slide level2">
@@ -648,7 +648,7 @@
 <section id="whats-the-problem" class="slide level2">
 <h2>What’s the problem?</h2>
 <ul>
-<li class="fragment">Sometimes we can’t solve for <span class="math inline">\(\hat\beta\)</span></li>
+<li>Sometimes we can’t solve for <span class="math inline">\(\hat\beta\)</span></li>
 </ul>
 <div class="question">
 <p>Why?</p>
@@ -657,12 +657,12 @@
 <section id="whats-the-problem-1" class="slide level2 small">
 <h2>What’s the problem?</h2>
 <ul>
-<li class="fragment">Sometimes we can’t solve for <span class="math inline">\(\hat\beta\)</span></li>
-<li class="fragment"><span class="math inline">\(\mathbf{X}^T\mathbf{X}\)</span> is not invertible</li>
-<li class="fragment">We have more variables than observations ( <span class="math inline">\(p &gt; n\)</span> )</li>
-<li class="fragment">The variables are linear combinations of one another</li>
-<li class="fragment">Even when we <strong>can</strong> invert <span class="math inline">\(\mathbf{X}^T\mathbf{X}\)</span>, things can go wrong</li>
-<li class="fragment">The variance can blow up, like we just saw!</li>
+<li>Sometimes we can’t solve for <span class="math inline">\(\hat\beta\)</span></li>
+<li><span class="math inline">\(\mathbf{X}^T\mathbf{X}\)</span> is not invertible</li>
+<li>We have more variables than observations ( <span class="math inline">\(p &gt; n\)</span> )</li>
+<li>The variables are linear combinations of one another</li>
+<li>Even when we <strong>can</strong> invert <span class="math inline">\(\mathbf{X}^T\mathbf{X}\)</span>, things can go wrong</li>
+<li>The variance can blow up, like we just saw!</li>
 </ul>
 </section>
 <section>
@@ -673,9 +673,9 @@
 <section id="ridge-regression" class="slide level2 small">
 <h2>Ridge Regression</h2>
 <ul>
-<li class="fragment">What if we add an additional <em>penalty</em> to keep the <span class="math inline">\(\hat\beta\)</span> coefficients small (this will keep the variance from blowing up!)</li>
-<li class="fragment">Instead of minimizing <span class="math inline">\(RSS\)</span>, like we do with linear regression, let’s minimize <span class="math inline">\(RSS\)</span> PLUS some penalty function</li>
-<li class="fragment"><span class="math inline">\(RSS + \underbrace{\lambda\sum_{j=1}^p\beta^2_j}_{\textrm{shrinkage penalty}}\)</span></li>
+<li>What if we add an additional <em>penalty</em> to keep the <span class="math inline">\(\hat\beta\)</span> coefficients small (this will keep the variance from blowing up!)</li>
+<li>Instead of minimizing <span class="math inline">\(RSS\)</span>, like we do with linear regression, let’s minimize <span class="math inline">\(RSS\)</span> PLUS some penalty function</li>
+<li><span class="math inline">\(RSS + \underbrace{\lambda\sum_{j=1}^p\beta^2_j}_{\textrm{shrinkage penalty}}\)</span></li>
 </ul>
 <div class="question">
 <p>What happens when <span class="math inline">\(\lambda=0\)</span>? What happens as <span class="math inline">\(\lambda\rightarrow\infty\)</span>?</p>
@@ -696,7 +696,7 @@
 <p><span class="math display">\[(\mathbf{y}-\mathbf{X}\beta)^T(\mathbf{y}-\mathbf{X}\beta)+\lambda\beta^T\beta\]</span></p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div class="countdown" id="timer_9c087719" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_f08d43dd" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">02</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -707,14 +707,14 @@
 <h2>Ridge Regression</h2>
 <p><span class="math display">\[\hat\beta_{ridge} = (\mathbf{X}^T\mathbf{X}+\lambda\mathbf{I})^{-1}\mathbf{X}^T\mathbf{y}\]</span></p>
 <ul>
-<li class="fragment">Not only does this help with the variance, it solves our problem when <span class="math inline">\(\mathbf{X}^{T}\mathbf{X}\)</span> isn’t invertible!</li>
+<li>Not only does this help with the variance, it solves our problem when <span class="math inline">\(\mathbf{X}^{T}\mathbf{X}\)</span> isn’t invertible!</li>
 </ul>
 </section>
 <section id="choosing-lambda" class="slide level2 small">
 <h2>Choosing <span class="math inline">\(\lambda\)</span></h2>
 <ul>
-<li class="fragment"><span class="math inline">\(\lambda\)</span> is known as a <strong>tuning parameter</strong> and is selected using <strong>cross validation</strong></li>
-<li class="fragment">For example, choose the <span class="math inline">\(\lambda\)</span> that results in the smallest estimated test error</li>
+<li><span class="math inline">\(\lambda\)</span> is known as a <strong>tuning parameter</strong> and is selected using <strong>cross validation</strong></li>
+<li>For example, choose the <span class="math inline">\(\lambda\)</span> that results in the smallest estimated test error</li>
 </ul>
 </section>
 <section id="bias-variance-tradeoff" class="slide level2 small">
@@ -723,8 +723,8 @@
 <p>How do you think ridge regression fits into the bias-variance tradeoff?</p>
 </div>
 <ul>
-<li class="fragment">As <span class="math inline">\(\lambda\)</span> ☝️, bias ☝️, variance 👇</li>
-<li class="fragment">Bias( <span class="math inline">\(\hat\beta_{ridge}\)</span> ) = <span class="math inline">\(-\lambda(\mathbf{X}^T\mathbf{X}+\lambda\mathbf{I})^{-1}\beta\)</span></li>
+<li>As <span class="math inline">\(\lambda\)</span> ☝️, bias ☝️, variance 👇</li>
+<li>Bias( <span class="math inline">\(\hat\beta_{ridge}\)</span> ) = <span class="math inline">\(-\lambda(\mathbf{X}^T\mathbf{X}+\lambda\mathbf{I})^{-1}\beta\)</span></li>
 </ul>
 </section>
 <section id="bias-variance-tradeoff-1" class="slide level2 small">
@@ -733,7 +733,7 @@
 <p>What would this be if <span class="math inline">\(\lambda\)</span> was 0?</p>
 </div>
 <ul>
-<li class="fragment">Var( <span class="math inline">\(\hat\beta_{ridge}\)</span> ) = <span class="math inline">\(\sigma^2(\mathbf{X}^T\mathbf{X}+\lambda\mathbf{I})^{-1}\mathbf{X}^T\mathbf{X}(\mathbf{X}^T\mathbf{X}+\lambda\mathbf{I})^{-1}\)</span></li>
+<li>Var( <span class="math inline">\(\hat\beta_{ridge}\)</span> ) = <span class="math inline">\(\sigma^2(\mathbf{X}^T\mathbf{X}+\lambda\mathbf{I})^{-1}\mathbf{X}^T\mathbf{X}(\mathbf{X}^T\mathbf{X}+\lambda\mathbf{I})^{-1}\)</span></li>
 </ul>
 </section>
 <section id="bias-variance-tradeoff-2" class="slide level2 small">
