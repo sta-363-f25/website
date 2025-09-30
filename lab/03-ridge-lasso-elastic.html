@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-09-30">
 
-<title>Exercise 1 – Statistical Learning</title>
+<title>Lab 03 - Ridge Lasso Elastic Net – Statistical Learning</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -110,15 +109,44 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<meta property="og:title" content="Exercise 1 – Statistical Learning">
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<meta property="og:title" content="Lab 03 - Ridge Lasso Elastic Net – Statistical Learning">
 <meta property="og:description" content="">
 <meta property="og:image" content="https://sta-363-s23.github.io/website/img/twitter.png">
 <meta property="og:site_name" content="Statistical Learning">
 <meta property="og:locale" content="en_US">
 <meta property="og:image:height" content="670">
 <meta property="og:image:width" content="1200">
-<meta name="twitter:title" content="Exercise 1 – Statistical Learning">
+<meta name="twitter:title" content="Lab 03 - Ridge Lasso Elastic Net – Statistical Learning">
 <meta name="twitter:description" content="">
 <meta name="twitter:image" content="https://sta-363-s23.github.io/website/img/twitter.png">
 <meta name="twitter:creator" content="@LucyStats">
@@ -333,7 +361,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../ex/01-ex.html">Exercises</a></li><li class="breadcrumb-item"><a href="../ex/01-ex.html">Exercise 1</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Lab 03 - Ridge Lasso Elastic Net</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -411,16 +439,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
  <span class="menu-text">Exercises</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../ex/01-ex.html" class="sidebar-item-text sidebar-link active">
+  <a href="../ex/01-ex.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Exercise 1</span></a>
   </div>
 </li>
@@ -483,22 +511,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#exercise-1-login-to-rstudio-pro" id="toc-exercise-1-login-to-rstudio-pro" class="nav-link active" data-scroll-target="#exercise-1-login-to-rstudio-pro">Exercise 1: Login to RStudio Pro</a></li>
-  <li><a href="#exercise-2-create-rstudio-project" id="toc-exercise-2-create-rstudio-project" class="nav-link" data-scroll-target="#exercise-2-create-rstudio-project">Exercise 2: Create RStudio Project</a></li>
-  <li><a href="#exercise-3-create-quarto-document" id="toc-exercise-3-create-quarto-document" class="nav-link" data-scroll-target="#exercise-3-create-quarto-document">Exercise 3: Create Quarto Document</a></li>
-  <li><a href="#exercise-4-install-islr-package-and-load-data" id="toc-exercise-4-install-islr-package-and-load-data" class="nav-link" data-scroll-target="#exercise-4-install-islr-package-and-load-data">Exercise 4: Install ISLR Package and Load Data</a></li>
-  <li><a href="#exercise-5-linear-model-and-plot" id="toc-exercise-5-linear-model-and-plot" class="nav-link" data-scroll-target="#exercise-5-linear-model-and-plot">Exercise 5: Linear Model and Plot</a></li>
-  <li><a href="#finish" id="toc-finish" class="nav-link" data-scroll-target="#finish">Finish</a></li>
+  <li><a href="#getting-started" id="toc-getting-started" class="nav-link active" data-scroll-target="#getting-started">Getting started</a></li>
+  <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages">Packages</a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/sta-363-f25/website/edit/main/ex/01-ex.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta-363-f25/website/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/sta-363-f25/website/edit/main/lab/03-ridge-lasso-elastic.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta-363-f25/website/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../ex/01-ex.html">Exercises</a></li><li class="breadcrumb-item"><a href="../ex/01-ex.html">Exercise 1</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Exercise 1</h1>
+<h1 class="title">Lab 03 - Ridge Lasso Elastic Net</h1>
 </div>
 
 
@@ -506,12 +532,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="quarto-title-meta">
 
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">September 30, 2025</p>
-    </div>
-  </div>
   
     
   </div>
@@ -521,128 +541,57 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="exercise-1-login-to-rstudio-pro" class="level1">
-<h1>Exercise 1: Login to RStudio Pro</h1>
+<p><strong>Due:</strong> Tuesday 2025-10-08</p>
+<section id="getting-started" class="level1">
+<h1>Getting started</h1>
+<ul>
+<li>Go to our RStudio Pro workspace and create a new project using my template.</li>
+</ul>
+<p>For this assignment, go to RStudio Pro and click:</p>
+<p><strong>Step 1</strong>. File &gt; New Project<br>
+<strong>Step 2</strong>. “Version Control”<br>
+<strong>Step 3</strong>. Git<br>
+<strong>Step 4</strong>. Copy the following into the “Repository URL”:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">https://github.com/sta-363-f25/lab-03-ridge-lasso-elastic.git</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Remember to write out your answers in full sentences, do not just rely on the R output</strong></p>
+</section>
+<section id="packages" class="level1">
+<h1>Packages</h1>
+<p>In this lab we will work with two packages: <code>tidyverse</code> which is a collection of packages for doing data analysis in a “tidy” way and <code>tidymodels</code> for statistical modeling.</p>
+<p>If you’d like to run your code in the Console as well you’ll also need to load the packages there. To do so, run the following in the console.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Note that the packages are also loaded with the same commands in your R Markdown document.</p>
+</section>
+<section id="data" class="level1">
+<h1>Data</h1>
+<p>For this lab, we are using a data frame currently in <code>music.csv</code>. This data frame includes 72 predictors that are components of audio files and one outcome, <code>lat</code>, the latitude of where the music originated. We are trying to predict the location of the music’s origin using audio components of the music.</p>
+<p>This data frame should be loaded in your RStudio Project when you load your starter files.</p>
+</section>
+<section id="exercises" class="level1">
+<h1>Exercises</h1>
 <ol type="1">
-<li>Go to course website → Computing → Using the RStudio Server</li>
-<li>Follow login instructions</li>
-<li>Log in with your credentials</li>
+<li>Set a seed of <code>7</code>. Split the <code>music</code> data into a training and test set with 75% of the data in the training and 25% in the testing. Call your training set <code>music_train</code> and your testing set <code>music_test</code>. Describe these data sets (how many observations, how many variables).</li>
 </ol>
-<p><strong>Check:</strong> You should see the RStudio interface with 4 panes.</p>
-<hr>
-</section>
-<section id="exercise-2-create-rstudio-project" class="level1">
-<h1>Exercise 2: Create RStudio Project</h1>
-<ol type="1">
-<li>File → New Project → New Directory → New Project</li>
-<li>Name: <code>ex-1</code></li>
-<li>Click Create Project</li>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>music <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/music.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="2" type="1">
+<li><p>We are interested in predicting the latitude (<code>lat</code>) of the music’s origin from all other variables. Using the training data only, examine a visualization of the outcome.</p></li>
+<li><p>Fit a linear model using least squares on the training set. Report the test root mean squared error obtained.</p></li>
+<li><p>Fit a ridge regression model on the training set with <span class="math inline">\(\lambda\)</span> chosen using 10-fold cross validation. Report the <span class="math inline">\(\lambda\)</span> chosen and explain why. Report the estimated test root mean square error from the cross validation <strong>and</strong> the test root mean squared error obtained using testing portion of the initially split data frame.</p></li>
+<li><p>Using the model chosen above on the training data, which variables were included in the final model?</p></li>
+<li><p>Fit a lasso model on the training set with <span class="math inline">\(\lambda\)</span> chosen using cross validation. Report the <span class="math inline">\(\lambda\)</span> chosen and explain why. Report the estimated test root mean square error from the cross validation <strong>and</strong> the test root mean squared error obtained using testing portion of the initially split data frame.</p></li>
+<li><p>Using the model chosen above on the training data, which variables were included in the final model?</p></li>
+<li><p>Fit an elastic net model on the training set with <span class="math inline">\(\lambda\)</span> and <span class="math inline">\(\alpha\)</span> chosen using cross validation. Create a Figure with the estimated test root mean squared error on the y-axis and <span class="math inline">\(\lambda\)</span> on the x-axis with lines colored by the mixture chosen.</p></li>
+<li><p>Report the <span class="math inline">\(\lambda\)</span> that you would choose from the previous exercise and explain why. Report the estimated test root mean square error from the cross validation <strong>and</strong> the test root mean squared error obtained using testing portion of the initially split data frame.</p></li>
+<li><p>Using the model chosen above on the training data, which variables were included in the final model?</p></li>
+<li><p>Comment on the results obtained. How well can we predict the latitude of where the music originated? Is there much difference among the test errors resulting from these four approaches?</p></li>
 </ol>
-<p><strong>Check:</strong> Project name appears in top-right corner.</p>
-<hr>
-</section>
-<section id="exercise-3-create-quarto-document" class="level1">
-<h1>Exercise 3: Create Quarto Document</h1>
-<ol type="1">
-<li>File → New File → Quarto Document</li>
-<li>Title: “My First Analysis”</li>
-<li>Save as <code>analysis.qmd</code></li>
-</ol>
-<p><strong>Check:</strong> New .qmd file is open and saved.</p>
-<hr>
-</section>
-<section id="exercise-4-install-islr-package-and-load-data" class="level1">
-<h1>Exercise 4: Install ISLR Package and Load Data</h1>
-<p>Run this code in the console ONCE:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"ISLR"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Then run this:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ISLR)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Test it works</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(Auto)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(Auto)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>  mpg cylinders displacement horsepower weight acceleration year origin
-1  18         8          307        130   3504         12.0   70      1
-2  15         8          350        165   3693         11.5   70      1
-3  18         8          318        150   3436         11.0   70      1
-4  16         8          304        150   3433         12.0   70      1
-5  17         8          302        140   3449         10.5   70      1
-6  15         8          429        198   4341         10.0   70      1
-                       name
-1 chevrolet chevelle malibu
-2         buick skylark 320
-3        plymouth satellite
-4             amc rebel sst
-5               ford torino
-6          ford galaxie 500</code></pre>
-</div>
-</div>
-<p><strong>Check:</strong> You see the Auto dataset.</p>
-<p>Now run this in the console:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>?Auto</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><strong>Question:</strong> What is in this dataset?</p>
-<p><strong>Action</strong>: Add the code below to your <code>.qmd</code> file along with a short description of the data.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ISLR)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(Auto)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<hr>
-</section>
-<section id="exercise-5-linear-model-and-plot" class="level1">
-<h1>Exercise 5: Linear Model and Plot</h1>
-<p>Add the following code to your <code>.qmd</code> file. Try running it.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit linear model</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(mpg <span class="sc">~</span> horsepower, <span class="at">data =</span> Auto)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Call:
-lm(formula = mpg ~ horsepower, data = Auto)
-
-Residuals:
-     Min       1Q   Median       3Q      Max 
--13.5710  -3.2592  -0.3435   2.7630  16.9240 
-
-Coefficients:
-             Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept) 39.935861   0.717499   55.66   &lt;2e-16 ***
-horsepower  -0.157845   0.006446  -24.49   &lt;2e-16 ***
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-Residual standard error: 4.906 on 390 degrees of freedom
-Multiple R-squared:  0.6059,    Adjusted R-squared:  0.6049 
-F-statistic: 599.7 on 1 and 390 DF,  p-value: &lt; 2.2e-16</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create plot</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(Auto, <span class="fu">aes</span>(<span class="at">x =</span> horsepower, <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">formula =</span> <span class="st">"y ~ x"</span>) <span class="sc">+</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Horsepower vs MPG"</span>,</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Horsepower"</span>, </span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Miles per Gallon"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="01-ex_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p><strong>Check:</strong> You have model output and a scatter plot with trend line.</p>
-<hr>
-</section>
-<section id="finish" class="level1">
-<h1>Finish</h1>
-<p>Click “Render” to create your HTML report. Upload your .html file in Canvas under <code>Exercise 1</code></p>
 
 
 </section>
@@ -1068,7 +1017,7 @@ F-statistic: 599.7 on 1 and 390 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sta-363-f25/website/edit/main/ex/01-ex.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta-363-f25/website/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sta-363-f25/website/edit/main/lab/03-ridge-lasso-elastic.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta-363-f25/website/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>Made with <i class="fa-brands fa-r-project" aria-hidden="true"></i> and <a href="https://quarto.org/">Quarto</a><br> <a href="https://github.com/sta-363-f25/website">View the source at <i class="fa-brands fa-github" aria-hidden="true"></i> GitHub</a></p>
 </div>
