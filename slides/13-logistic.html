@@ -1,0 +1,1837 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<link href="..//img/favicon.png" rel="icon" type="image/png">
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-html/tabby.min.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-0815c480559380816a4d1ea211a47e91.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.7.29">
+
+  <title>Statistical Learning – Logistic regression</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-375959f61c09a32b9f00afdc644bc626.css">
+  <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+  <link href="../site_libs/countdown-0.4.0/countdown.css" rel="stylesheet">
+  <script src="../site_libs/countdown-0.4.0/countdown.js"></script>
+<meta property="og:title" content="Logistic regression – Statistical Learning">
+<meta property="og:image" content="https://sta-363-s23.github.io/website/img/twitter.png">
+<meta property="og:site_name" content="Statistical Learning">
+<meta property="og:locale" content="en_US">
+<meta property="og:image:height" content="670">
+<meta property="og:image:width" content="1200">
+<meta name="twitter:title" content="Logistic regression – Statistical Learning">
+<meta name="twitter:image" content="https://sta-363-s23.github.io/website/img/twitter.png">
+<meta name="twitter:creator" content="@LucyStats">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image-height" content="670">
+<meta name="twitter:image-width" content="1200">
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" data-background-color="#23373B" data-color="#70001A" class="quarto-title-block center">
+  <h1 class="title">Logistic regression</h1>
+
+<div class="quarto-title-authors">
+</div>
+
+</section>
+<section id="recap" class="slide level2 small">
+<h2>Recap</h2>
+<ul>
+<li class="fragment">We covered how to write a linear model in <em>matrix</em> form</li>
+<li class="fragment">We learned how to minimize RSS to calculate <span class="math inline">\(\hat{\beta}\)</span> with <span class="math inline">\((\mathbf{X^TX)^{-1}X^Ty}\)</span></li>
+<li class="fragment">Linear regression is a great tool when we have a continuous outcome</li>
+<li class="fragment">We are going to learn some fancy ways to do even better in the future</li>
+</ul>
+</section>
+<section>
+<section id="classification" class="title-slide slide level1 center">
+<h1>Classification</h1>
+
+</section>
+<section id="classification-1" class="slide level2 small">
+<h2>Classification</h2>
+<div class="question">
+<p>What are some examples of classification problems?</p>
+</div>
+<ul>
+<li class="fragment">Qualitative response variable in an <em>unordered set</em>, <span class="math inline">\(\mathcal{C}\)</span></li>
+<li class="fragment"><code>eye color</code> <span class="math inline">\(\in\)</span> <code>{blue, brown, green}</code></li>
+<li class="fragment"><code>email</code> <span class="math inline">\(\in\)</span> <code>{spam, not spam}</code></li>
+<li class="fragment">Response, <span class="math inline">\(Y\)</span> takes on values in <span class="math inline">\(\mathcal{C}\)</span></li>
+<li class="fragment">Predictors are a vector, <span class="math inline">\(X\)</span></li>
+<li class="fragment">The task: build a function <span class="math inline">\(C(X)\)</span> that takes <span class="math inline">\(X\)</span> and predicts <span class="math inline">\(Y\)</span>, <span class="math inline">\(C(X)\in\mathcal{C}\)</span></li>
+<li class="fragment">Many times we are actually more interested in the <em>probabilities</em> that <span class="math inline">\(X\)</span> belongs to each category in <span class="math inline">\(\mathcal{C}\)</span></li>
+</ul>
+</section>
+<section id="example-credit-card-default" class="slide level2">
+<h2>Example: Credit card default</h2>
+<div class="cell" data-layout-align="center">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb1-2"><a></a>Default <span class="sc">|&gt;</span></span>
+<span id="cb1-3"><a></a>  <span class="fu">sample_frac</span>(<span class="at">size =</span> <span class="fl">0.25</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-4"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(balance, income, <span class="at">color =</span> default)) <span class="sc">+</span></span>
+<span id="cb1-5"><a></a>  <span class="fu">geom_point</span>(<span class="at">pch =</span> <span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb1-6"><a></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"cornflower blue"</span>, <span class="st">"red"</span>)) <span class="sc">+</span></span>
+<span id="cb1-7"><a></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb1-8"><a></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>) <span class="ot">-&gt;</span> p1</span>
+<span id="cb1-9"><a></a></span>
+<span id="cb1-10"><a></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(Default, <span class="fu">aes</span>(<span class="at">x =</span> default, <span class="at">y =</span> balance, <span class="at">fill =</span> default)) <span class="sc">+</span></span>
+<span id="cb1-11"><a></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb1-12"><a></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"cornflower blue"</span>, <span class="st">"red"</span>)) <span class="sc">+</span></span>
+<span id="cb1-13"><a></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb1-14"><a></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span>
+<span id="cb1-15"><a></a></span>
+<span id="cb1-16"><a></a>p3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(Default, <span class="fu">aes</span>(<span class="at">x =</span> default, <span class="at">y =</span> income, <span class="at">fill =</span> default)) <span class="sc">+</span></span>
+<span id="cb1-17"><a></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb1-18"><a></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"cornflower blue"</span>, <span class="st">"red"</span>)) <span class="sc">+</span></span>
+<span id="cb1-19"><a></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb1-20"><a></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span>
+<span id="cb1-21"><a></a><span class="fu">grid.arrange</span>(p1, p2, p3, <span class="at">ncol =</span> <span class="dv">3</span>, <span class="at">widths =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+
+</div>
+<img data-src="13-logistic_files/figure-revealjs/plot1-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"></section>
+<section id="can-we-use-linear-regression" class="slide level2 small">
+<h2>Can we use linear regression?</h2>
+<p>We can code <code>Default</code> as</p>
+<p><span class="math display">\[Y = \begin{cases} 0 &amp; \textrm{if }\texttt{No}\\ 1&amp;\textrm{if }\texttt{Yes}\end{cases}\]</span> Can we fit a linear regression of <span class="math inline">\(Y\)</span> on <span class="math inline">\(X\)</span> and classify as <code>Yes</code> if <span class="math inline">\(\hat{Y}&gt; 0.5\)</span>?</p>
+<ul>
+<li class="fragment">In this case of a <strong>binary</strong> outcome, linear regression is okay (it is equivalent to <strong>linear discriminant analysis</strong>, you can read more about that in your book!)</li>
+<li class="fragment"><span class="math inline">\(E[Y|X=x] = P(Y=1|X=x)\)</span>, so it seems like this is a pretty good idea!</li>
+<li class="fragment"><strong>The problem</strong>: Linear regression can produce probabilities less than 0 or greater than 1 😱</li>
+</ul>
+</section>
+<section id="can-we-use-linear-regression-1" class="slide level2 small">
+<h2>Can we use linear regression?</h2>
+<p>We can code <code>Default</code> as</p>
+<p><span class="math display">\[Y = \begin{cases} 0 &amp; \textrm{if }\texttt{No}\\ 1&amp;\textrm{if }\texttt{Yes}\end{cases}\]</span> Can we fit a linear regression of <span class="math inline">\(Y\)</span> on <span class="math inline">\(X\)</span> and classify as <code>Yes</code> if <span class="math inline">\(\hat{Y}&gt; 0.5\)</span>?</p>
+<div class="question">
+<p>What may do a better job?</p>
+</div>
+<ul>
+<li class="fragment"><strong>Logistic regression!</strong></li>
+</ul>
+</section>
+<section id="linear-versus-logistic-regression" class="slide level2 small">
+<h2>Linear versus logistic regression</h2>
+<div class="cell" data-layout-align="center">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>Default <span class="ot">&lt;-</span> Default <span class="sc">|&gt;</span></span>
+<span id="cb2-2"><a></a>  <span class="fu">mutate</span>(</span>
+<span id="cb2-3"><a></a>  <span class="at">p =</span> <span class="fu">glm</span>(default <span class="sc">~</span> balance, <span class="at">data =</span> Default, <span class="at">family =</span> <span class="st">"binomial"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb2-4"><a></a>  <span class="fu">predict</span>(<span class="at">type =</span> <span class="st">"response"</span>),</span>
+<span id="cb2-5"><a></a>  <span class="at">p2 =</span> <span class="fu">lm</span>(<span class="fu">I</span>(default <span class="sc">==</span> <span class="st">"Yes"</span>) <span class="sc">~</span> balance, <span class="at">data =</span> Default) <span class="sc">|&gt;</span> <span class="fu">predict</span>(),</span>
+<span id="cb2-6"><a></a>  <span class="at">def =</span> <span class="fu">ifelse</span>(default <span class="sc">==</span> <span class="st">"Yes"</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb2-7"><a></a>)</span>
+<span id="cb2-8"><a></a></span>
+<span id="cb2-9"><a></a></span>
+<span id="cb2-10"><a></a>Default <span class="sc">|&gt;</span></span>
+<span id="cb2-11"><a></a>  <span class="fu">sample_frac</span>(<span class="fl">0.25</span>) <span class="sc">|&gt;</span></span>
+<span id="cb2-12"><a></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(balance, p2)) <span class="sc">+</span></span>
+<span id="cb2-13"><a></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">size =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb2-14"><a></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">"cornflower blue"</span>) <span class="sc">+</span></span>
+<span id="cb2-15"><a></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(balance, def), <span class="at">shape =</span> <span class="st">"|"</span>, <span class="at">color =</span> <span class="st">"orange"</span>) <span class="sc">+</span></span>
+<span id="cb2-16"><a></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb2-17"><a></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"probability of default"</span>) <span class="ot">-&gt;</span> p1</span>
+<span id="cb2-18"><a></a></span>
+<span id="cb2-19"><a></a>Default <span class="sc">|&gt;</span></span>
+<span id="cb2-20"><a></a>  <span class="fu">sample_frac</span>(<span class="fl">0.25</span>) <span class="sc">|&gt;</span></span>
+<span id="cb2-21"><a></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(balance, p)) <span class="sc">+</span></span>
+<span id="cb2-22"><a></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">size =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb2-23"><a></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">"cornflower blue"</span>) <span class="sc">+</span></span>
+<span id="cb2-24"><a></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(balance, def), <span class="at">shape =</span> <span class="st">"|"</span>, <span class="at">color =</span> <span class="st">"orange"</span>) <span class="sc">+</span></span>
+<span id="cb2-25"><a></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb2-26"><a></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"probability of default"</span>) <span class="ot">-&gt;</span> p2</span>
+<span id="cb2-27"><a></a></span>
+<span id="cb2-28"><a></a><span class="fu">grid.arrange</span>(p1, p2, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+
+</div>
+<img data-src="13-logistic_files/figure-revealjs/plot2-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"><div class="question">
+<p>Which does a better job at predicting the probability of default?</p>
+</div>
+<ul>
+<li class="fragment">The orange marks represent the response <span class="math inline">\(Y\in\{0,1\}\)</span></li>
+</ul>
+</section>
+<section id="linear-regression" class="slide level2 small">
+<h2>Linear Regression</h2>
+<p>What if we have <span class="math inline">\(&gt;2\)</span> possible outcomes? For example, someone comes to the emergency room and we need to classify them according to their symptoms</p>
+<p><span class="math display">\[
+\begin{align}
+Y = \begin{cases} 1&amp; \textrm{if }\texttt{stroke}\\2&amp;\textrm{if }\texttt{drug overdose}\\3&amp;\textrm{if }\texttt{epileptic seizure}\end{cases}
+\end{align}
+\]</span></p>
+<div class="question">
+<p>What could go wrong here?</p>
+</div>
+<ul>
+<li class="fragment">The coding implies an <em>ordering</em></li>
+<li class="fragment">The coding implies <em>equal spacing</em> (that is the difference between <code>stroke</code> and <code>drug overdose</code> is the same as <code>drug overdose</code> and <code>epileptic seizure</code>)</li>
+</ul>
+</section>
+<section id="linear-regression-1" class="slide level2 small">
+<h2>Linear Regression</h2>
+<p>What if we have <span class="math inline">\(&gt;2\)</span> possible outcomes? For example, someone comes to the emergency room and we need to classify them according to their symptoms</p>
+<p><span class="math display">\[
+\begin{align}
+Y = \begin{cases} 1&amp; \textrm{if }\texttt{stroke}\\2&amp;\textrm{if }\texttt{drug overdose}\\3&amp;\textrm{if }\texttt{epileptic seizure}\end{cases}
+\end{align}
+\]</span></p>
+<ul>
+<li class="fragment">Linear regression is <strong>not</strong> appropriate here</li>
+<li class="fragment"><strong>Mutliclass logistic regression</strong> or <strong>discriminant analysis</strong> are more appropriate</li>
+</ul>
+</section>
+<section id="logistic-regression" class="slide level2 small">
+<h2>Logistic Regression</h2>
+<p><span class="math display">\[
+p(X) = \frac{e^{\beta_0+\beta_1X}}{1+e^{\beta_0+\beta_1X}}
+\]</span></p>
+<ul>
+<li class="fragment">Note: <span class="math inline">\(p(X)\)</span> is shorthand for <span class="math inline">\(P(Y=1|X)\)</span></li>
+<li class="fragment">No matter what values <span class="math inline">\(\beta_0\)</span>, <span class="math inline">\(\beta_1\)</span>, or <span class="math inline">\(X\)</span> take <span class="math inline">\(p(X)\)</span> will always be between 0 and 1</li>
+</ul>
+</section>
+<section id="logistic-regression-1" class="slide level2 small">
+<h2>Logistic Regression</h2>
+<p><span class="math display">\[
+p(X) = \frac{e^{\beta_0+\beta_1X}}{1+e^{\beta_0+\beta_1X}}
+\]</span></p>
+<p>We can rearrange this into the following form:</p>
+<p><span class="math display">\[
+\log\left(\frac{p(X)}{1-p(X)}\right) = \beta_0 + \beta_1 X
+\]</span></p>
+<div class="question">
+<p>What is this transformation called?</p>
+</div>
+<ul>
+<li class="fragment">This is a <strong>log odds</strong> or <strong>logit</strong> transformation of <span class="math inline">\(p(X)\)</span></li>
+</ul>
+</section>
+<section id="linear-versus-logistic-regression-1" class="slide level2">
+<h2>Linear versus logistic regression</h2>
+
+<img data-src="13-logistic_files/figure-revealjs/unnamed-chunk-3-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"><p>Logistic regression ensures that our estimates for <span class="math inline">\(p(X)\)</span> are between 0 and 1 🎉</p>
+</section>
+<section id="maximum-likelihood" class="slide level2">
+<h2>Maximum Likelihood</h2>
+<div class="question">
+<p>Refresher: How did we estimate <span class="math inline">\(\hat\beta\)</span> in linear regression?</p>
+</div>
+</section>
+<section id="maximum-likelihood-1" class="slide level2 small">
+<h2>Maximum Likelihood</h2>
+<div class="question">
+<p>Refresher: How did we estimate <span class="math inline">\(\hat\beta\)</span> in linear regression?</p>
+</div>
+<p>In logistic regression, we use <strong>maximum likelihood</strong> to estimate the parameters</p>
+<p><span class="math display">\[\mathcal{l}(\beta_0,\beta_1)=\prod_{i:y_i=1}p(x_i)\prod_{i:y_i=0}(1-p(x_i))\]</span></p>
+<ul>
+<li class="fragment">This <strong>likelihood</strong> give the probability of the observed ones and zeros in the data</li>
+<li class="fragment">We pick <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span> to maximize the likelihood</li>
+<li class="fragment"><em>We’ll let <code>R</code> do the heavy lifting here</em></li>
+</ul>
+</section>
+<section id="lets-see-it-in-r" class="slide level2 small">
+<h2>Let’s see it in R</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">logistic_reg</span>() <span class="sc">|&gt;</span></span>
+<span id="cb3-2"><a></a>  <span class="fu">set_engine</span>(<span class="st">"glm"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb3-3"><a></a>  <span class="fu">fit</span>(default <span class="sc">~</span> balance, </span>
+<span id="cb3-4"><a></a>      <span class="at">data =</span> Default) <span class="sc">|&gt;</span></span>
+<span id="cb3-5"><a></a>  <span class="fu">tidy</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 5
+  term         estimate std.error statistic   p.value
+  &lt;chr&gt;           &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+1 (Intercept) -10.7      0.361        -29.5 3.62e-191
+2 balance       0.00550  0.000220      25.0 1.98e-137</code></pre>
+</div>
+</div>
+<ul>
+<li class="fragment">Use the <code>logistic_reg()</code> function in R with the <code>glm</code> engine</li>
+</ul>
+</section>
+<section id="making-predictions" class="slide level2">
+<h2>Making predictions</h2>
+<div class="question">
+<p>What is our estimated probability of default for someone with a balance of $1000?</p>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<table class="caption-top" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">term</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">estimate</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">std.error</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">statistic</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">p.value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">(Intercept)</td>
+<td style="text-align: right;">-10.6513306</td>
+<td style="text-align: right;">0.3611574</td>
+<td style="text-align: right;">-29.49221</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">balance</td>
+<td style="text-align: right;">0.0054989</td>
+<td style="text-align: right;">0.0002204</td>
+<td style="text-align: right;">24.95309</td>
+<td style="text-align: right;">0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="fragment">
+<p><span class="math display">\[
+\hat{p}(X) = \frac{e^{\hat{\beta}_0+\hat{\beta}_1X}}{1+e^{\hat{\beta}_0+\hat{\beta}_1X}}=\frac{e^{-10.65+0.0055\times 1000}}{1+e^{-10.65+0.0055\times 1000}}=0.006
+\]</span></p>
+</div>
+</section>
+<section id="making-predictions-1" class="slide level2">
+<h2>Making predictions</h2>
+<div class="question">
+<p>What is our estimated probability of default for someone with a balance of $2000?</p>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<table class="caption-top" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">term</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">estimate</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">std.error</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">statistic</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">p.value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">(Intercept)</td>
+<td style="text-align: right;">-10.6513306</td>
+<td style="text-align: right;">0.3611574</td>
+<td style="text-align: right;">-29.49221</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">balance</td>
+<td style="text-align: right;">0.0054989</td>
+<td style="text-align: right;">0.0002204</td>
+<td style="text-align: right;">24.95309</td>
+<td style="text-align: right;">0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="fragment">
+<p><span class="math display">\[
+\hat{p}(X) = \frac{e^{\hat{\beta}_0+\hat{\beta}_1X}}{1+e^{\hat{\beta}_0+\hat{\beta}_1X}}=\frac{e^{-10.65+0.0055\times 2000}}{1+e^{-10.65+0.0055\times 2000}}=0.586
+\]</span></p>
+</div>
+</section>
+<section id="logistic-regression-example" class="slide level2 small">
+<h2>Logistic regression example</h2>
+<p>Let’s refit the model to predict the probability of default given the customer is a <code>student</code></p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<table class="caption-top" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">term</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">estimate</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">std.error</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">statistic</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">p.value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">(Intercept)</td>
+<td style="text-align: right;">-3.5041278</td>
+<td style="text-align: right;">0.0707130</td>
+<td style="text-align: right;">-49.554219</td>
+<td style="text-align: right;">0.0000000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">studentYes</td>
+<td style="text-align: right;">0.4048871</td>
+<td style="text-align: right;">0.1150188</td>
+<td style="text-align: right;">3.520181</td>
+<td style="text-align: right;">0.0004313</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><span class="math display">\[P(\texttt{default = Yes}|\texttt{student = Yes}) = \frac{e^{-3.5041+0.4049\times1}}{1+e^{-3.5041+0.4049\times1}}=0.0431\]</span></p>
+<div class="fragment">
+<div class="question">
+<p>How will this change if <code>student = No</code>?</p>
+</div>
+</div>
+<div class="fragment">
+<p><span class="math display">\[P(\texttt{default = Yes}|\texttt{student = No}) = \frac{e^{-3.5041+0.4049\times0}}{1+e^{-3.5041+0.4049\times0}}=0.0292\]</span></p>
+</div>
+</section>
+<section id="multiple-logistic-regression" class="slide level2 small">
+<h2>Multiple logistic regression</h2>
+<p><span class="math display">\[\log\left(\frac{p(X)}{1-p(X)}\right)=\beta_0+\beta_1X_1+\dots+\beta_pX_p\]</span> <span class="math display">\[p(X) = \frac{e^{\beta_0+\beta_1X_1+\dots+\beta_pX_p}}{1+e^{\beta_0+\beta_1X_1+\dots+\beta_pX_p}}\]</span></p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<table class="caption-top" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">term</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">estimate</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">std.error</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">statistic</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">p.value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">(Intercept)</td>
+<td style="text-align: right;">-10.8690452</td>
+<td style="text-align: right;">0.4922555</td>
+<td style="text-align: right;">-22.080088</td>
+<td style="text-align: right;">0.0000000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">balance</td>
+<td style="text-align: right;">0.0057365</td>
+<td style="text-align: right;">0.0002319</td>
+<td style="text-align: right;">24.737563</td>
+<td style="text-align: right;">0.0000000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">income</td>
+<td style="text-align: right;">0.0000030</td>
+<td style="text-align: right;">0.0000082</td>
+<td style="text-align: right;">0.369815</td>
+<td style="text-align: right;">0.7115203</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">studentYes</td>
+<td style="text-align: right;">-0.6467758</td>
+<td style="text-align: right;">0.2362525</td>
+<td style="text-align: right;">-2.737646</td>
+<td style="text-align: right;">0.0061881</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<ul>
+<li class="fragment">Why is the coefficient for <code>student</code> negative now when it was positive before?</li>
+</ul>
+</section>
+<section id="confounding" class="slide level2 small">
+<h2>Confounding</h2>
+
+<img data-src="13-logistic_files/figure-revealjs/plot3-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"><div class="question">
+<p>What is going on here?</p>
+</div>
+</section>
+<section id="confounding-1" class="slide level2 small">
+<h2>Confounding</h2>
+
+<img data-src="13-logistic_files/figure-revealjs/unnamed-chunk-9-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"><ul>
+<li class="fragment">Students tend to have higher balances than non-students</li>
+<li class="fragment">Their <strong>marginal</strong> default rate is higher</li>
+<li class="fragment">For each level of balance, students default less</li>
+<li class="fragment">Their <strong>conditional</strong> default rate is lower</li>
+</ul>
+</section>
+<section id="logistic-regression-for-more-than-two-classes" class="slide level2 small">
+<h2>Logistic regression for more than two classes</h2>
+<p><span class="math display">\[P(Y=k|X) = \frac{e ^{\beta_{0k}+\beta_{1k}X_1+\dots+\beta_{pk}X_p}}{\sum_{l=1}^Ke^{\beta_{0l}+\beta_{1l}X_1+\dots+\beta_{pl}X_p}}\]</span></p>
+<ul>
+<li class="fragment">So far we’ve discussed <strong>binary</strong> outcome data</li>
+<li class="fragment">We can generalize this to situations with <strong>multiple</strong> classes</li>
+<li class="fragment">Here we have a linear function for <strong>each</strong> of the <span class="math inline">\(K\)</span> classes</li>
+<li class="fragment">This is known as <strong>multinomial logistic regression</strong></li>
+</ul>
+</section>
+<section id="a-bit-about-odds" class="slide level2 small">
+<h2>A bit about “odds”</h2>
+<ul>
+<li class="fragment">The “odds” tell you how likely an event is</li>
+<li class="fragment">🌂 Let’s say there is a 60% chance of rain today * What is the probability that it will rain?</li>
+<li class="fragment"><span class="math inline">\(p = 0.6\)</span></li>
+<li class="fragment">What is the probability that it <strong>won’t</strong> rain?</li>
+<li class="fragment"><span class="math inline">\(1-p = 0.4\)</span></li>
+<li class="fragment">What are the <strong>odds</strong> that it will rain?</li>
+<li class="fragment">3 to 2, 3:2, <span class="math inline">\(\frac{0.6}{0.4} = 1.5\)</span></li>
+</ul>
+</section>
+<section id="transforming-logs" class="slide level2 small">
+<h2>Transforming logs</h2>
+<ul>
+<li class="fragment">How do you “undo” a <span class="math inline">\(\log\)</span> base <span class="math inline">\(e\)</span>?</li>
+<li class="fragment">Use <span class="math inline">\(e\)</span>! For example:</li>
+<li class="fragment"><span class="math inline">\(e^{\log(10)} = 10\)</span></li>
+<li class="fragment"><span class="math inline">\(e^{\log(1283)} = 1283\)</span></li>
+<li class="fragment"><span class="math inline">\(e^{\log(x)} = x\)</span></li>
+</ul>
+</section>
+<section id="transforming-logs-1" class="slide level2 small">
+<h2>Transforming logs</h2>
+<div class="question">
+<p>How would you get the <strong>odds</strong> from the <strong>log(odds)</strong>?</p>
+</div>
+<ul>
+<li>How do you “undo” a <span class="math inline">\(\log\)</span> base <span class="math inline">\(e\)</span>?</li>
+<li>Use <span class="math inline">\(e\)</span>! For example:</li>
+<li><span class="math inline">\(e^{\log(10)} = 10\)</span></li>
+<li><span class="math inline">\(e^{\log(1283)} = 1283\)</span></li>
+<li><span class="math inline">\(e^{\log(x)} = x\)</span></li>
+</ul>
+<ul>
+<li class="fragment"><span class="math inline">\(e^{\log(odds)}\)</span> = odds</li>
+</ul>
+</section>
+<section id="transforming-odds" class="slide level2 small">
+<h2>Transforming odds</h2>
+<ul>
+<li class="fragment">odds = <span class="math inline">\(\frac{\pi}{1-\pi}\)</span></li>
+<li class="fragment">Solving for <span class="math inline">\(\pi\)</span></li>
+<li class="fragment"><span class="math inline">\(\pi = \frac{\textrm{odds}}{1+\textrm{odds}}\)</span></li>
+<li class="fragment">Plugging in <span class="math inline">\(e^{\log(odds)}\)</span> = odds</li>
+<li class="fragment"><span class="math inline">\(\pi = \frac{e^{\log(odds)}}{1+e^{\log(odds)}}\)</span></li>
+<li class="fragment">Plugging in <span class="math inline">\(\log(odds) = \beta_0 + \beta_1x\)</span></li>
+<li class="fragment"><span class="math inline">\(\pi = \frac{e^{\beta_0 + \beta_1x}}{1+e^{\beta_0 + \beta_1x}}\)</span></li>
+</ul>
+</section>
+<section id="the-logistic-model" class="slide level2">
+<h2>The logistic model</h2>
+<ul>
+<li class="fragment">✌️ forms</li>
+</ul>
+<table class="caption-top">
+<colgroup>
+<col style="width: 45%">
+<col style="width: 54%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Form</th>
+<th>Model</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Logit form</td>
+<td><span class="math inline">\(\log\left(\frac{\pi}{1-\pi}\right) = \beta_0 + \beta_1x\)</span></td>
+</tr>
+<tr class="even">
+<td>Probability form</td>
+<td><span class="math inline">\(\Large\pi = \frac{e^{\beta_0 + \beta_1x}}{1+e^{\beta_0 + \beta_1x}}\)</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="the-logistic-model-1" class="slide level2">
+<h2>The logistic model</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>probability</th>
+<th>odds</th>
+<th>log(odds)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\pi\)</span></td>
+<td><span class="math inline">\(\frac{\pi}{1-\pi}\)</span></td>
+<td><span class="math inline">\(\log\left(\frac{\pi}{1-\pi}\right)=l\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>⬅️</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>log(odds)</th>
+<th>odds</th>
+<th>probability</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(l\)</span></td>
+<td><span class="math inline">\(e^l\)</span></td>
+<td><span class="math inline">\(\frac{e^l}{1+e^l} = \pi\)</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="the-logistic-model-2" class="slide level2 small">
+<h2>The logistic model</h2>
+<ul>
+<li class="fragment">✌️ forms</li>
+<li class="fragment"><strong>log(odds)</strong>: <span class="math inline">\(l = \beta_0 + \beta_1x\)</span></li>
+<li class="fragment"><strong>P(Outcome = Yes)</strong>: <span class="math inline">\(\Large\pi =\frac{e^{\beta_0 + \beta_1x}}{1+e^{\beta_0 + \beta_1x}}\)</span></li>
+</ul>
+</section>
+<section id="odds-ratios" class="slide level2 small">
+<h2>Odds ratios</h2>
+<p>A study investigated whether a handheld device that sends a magnetic pulse into a person’s head might be an effective treatment for migraine headaches.</p>
+<ul>
+<li class="fragment">Researchers recruited 200 subjects who suffered from migraines</li>
+<li class="fragment">randomly assigned them to receive either the TMS (transcranial magnetic stimulation) treatment or a placebo treatment</li>
+<li class="fragment">Subjects were instructed to apply the device at the onset of migraine symptoms and then assess how they felt two hours later. (either <strong>Pain-free</strong> or <strong>Not pain-free</strong>)</li>
+</ul>
+</section>
+<section id="odds-ratios-1" class="slide level2 small">
+<h2>Odds ratios</h2>
+<div class="question">
+<p>What is the explanatory variable?</p>
+</div>
+<p>A study investigated whether a handheld device that sends a magnetic pulse into a person’s head might be an effective treatment for migraine headaches.</p>
+<ul>
+<li>Researchers recruited 200 subjects who suffered from migraines</li>
+<li>randomly assigned them to receive either the TMS (transcranial magnetic stimulation) treatment or a placebo treatment</li>
+<li>Subjects were instructed to apply the device at the onset of migraine symptoms and then assess how they felt two hours later (either <strong>Pain-free</strong> or <strong>Not pain-free</strong>)</li>
+</ul>
+</section>
+<section id="odds-ratios-2" class="slide level2 small">
+<h2>Odds ratios</h2>
+<div class="question">
+<p>What type of variable is this?</p>
+</div>
+<p>A study investigated whether a handheld device that sends a magnetic pulse into a person’s head might be an effective treatment for migraine headaches.</p>
+<ul>
+<li>Researchers recruited 200 subjects who suffered from migraines</li>
+<li>randomly assigned them to receive either the TMS (transcranial magnetic stimulation) treatment or a placebo treatment</li>
+<li>Subjects were instructed to apply the device at the onset of migraine symptoms and then assess how they felt two hours later (either <strong>Pain-free</strong> or <strong>Not pain-free</strong>)</li>
+</ul>
+</section>
+<section id="odds-ratios-3" class="slide level2 small">
+<h2>Odds ratios</h2>
+<div class="question">
+<p>What is the outcome variable?</p>
+</div>
+<p>A study investigated whether a handheld device that sends a magnetic pulse into a person’s head might be an effective treatment for migraine headaches.</p>
+<ul>
+<li>Researchers recruited 200 subjects who suffered from migraines</li>
+<li>randomly assigned them to receive either the TMS (transcranial magnetic stimulation) treatment or a placebo treatment</li>
+<li>Subjects were instructed to apply the device at the onset of migraine symptoms and then assess how they felt two hours later (either <strong>Pain-free</strong> or <strong>Not pain-free</strong>)</li>
+</ul>
+</section>
+<section id="odds-ratios-4" class="slide level2 small">
+<h2>Odds ratios</h2>
+<div class="question">
+<p>What type of variable is this?</p>
+</div>
+<p>A study investigated whether a handheld device that sends a magnetic pulse into a person’s head might be an effective treatment for migraine headaches.</p>
+<ul>
+<li>Researchers recruited 200 subjects who suffered from migraines</li>
+<li>randomly assigned them to receive either the TMS (transcranial magnetic stimulation) treatment or a placebo treatment</li>
+<li>Subjects were instructed to apply the device at the onset of migraine symptoms and then assess how they felt two hours later (either <strong>Pain-free</strong> or <strong>Not pain-free</strong>)</li>
+</ul>
+</section>
+<section id="odds-ratios-5" class="slide level2 small">
+<h2>Odds ratios</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>TMS</th>
+<th>Placebo</th>
+<th>Total</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Pain-free two hours later</td>
+<td>39</td>
+<td>22</td>
+<td>61</td>
+</tr>
+<tr class="even">
+<td>Not pain-free two hours later</td>
+<td>61</td>
+<td>78</td>
+<td>139</td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td>100</td>
+<td>100</td>
+<td>200</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li class="fragment">We can compare the results using <strong>odds</strong></li>
+<li class="fragment">What are the odds of being pain-free for the placebo group?</li>
+<li class="fragment"><span class="math inline">\((22/100)/(78/100) = 22/78 = 0.282\)</span></li>
+<li class="fragment">What are the odds of being pain-free for the treatment group?</li>
+<li class="fragment"><span class="math inline">\(39/61 = 0.639\)</span></li>
+<li class="fragment">Comparing the <strong>odds</strong> what can we conclude?</li>
+<li class="fragment">TMS increases the likelihood of success</li>
+</ul>
+</section>
+<section id="odds-ratios-6" class="slide level2 small">
+<h2>Odds ratios</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>TMS</th>
+<th>Placebo</th>
+<th>Total</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Pain-free two hours later</td>
+<td>39</td>
+<td>22</td>
+<td>61</td>
+</tr>
+<tr class="even">
+<td>Not pain-free two hours later</td>
+<td>61</td>
+<td>78</td>
+<td>139</td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td>100</td>
+<td>100</td>
+<td>200</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li class="fragment">We can summarize this relationship with an <strong>odds ratio</strong>: the ratio of the two odds</li>
+<li class="fragment"><span class="math inline">\(\Large OR = \frac{39/61}{22/78} = \frac{0.639}{0.282} = 2.27\)</span></li>
+<li class="fragment"><em>“the odds of being pain free were 2.27 times higher with TMS than with the placebo”</em></li>
+</ul>
+</section>
+<section id="odds-ratios-7" class="slide level2 small">
+<h2>Odds ratios</h2>
+<div class="question">
+<p>What if we wanted to calculate this in terms of <em>Not pain-free</em> (with <em>pain-free</em>) as the referent?</p>
+</div>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>TMS</th>
+<th>Placebo</th>
+<th>Total</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Pain-free two hours later</td>
+<td>39</td>
+<td>22</td>
+<td>61</td>
+</tr>
+<tr class="even">
+<td>Not pain-free two hours later</td>
+<td>61</td>
+<td>78</td>
+<td>139</td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td>100</td>
+<td>100</td>
+<td>200</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li class="fragment"><span class="math inline">\(\Large OR = \frac{61/39}{78/22} = \frac{1.564}{3.545} = 0.441\)</span></li>
+<li class="fragment"><em>the odds for still being in pain for the TMS group are 0.441 times the odds of being in pain for the placebo group</em></li>
+</ul>
+</section>
+<section id="odds-ratios-8" class="slide level2 small">
+<h2>Odds ratios</h2>
+<div class="question">
+<p>What changed here?</p>
+</div>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>TMS</th>
+<th>Placebo</th>
+<th>Total</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Pain-free two hours later</td>
+<td>39</td>
+<td>22</td>
+<td>61</td>
+</tr>
+<tr class="even">
+<td>Not pain-free two hours later</td>
+<td>61</td>
+<td>78</td>
+<td>139</td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td>100</td>
+<td>100</td>
+<td>200</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li class="fragment"><span class="math inline">\(\Large OR = \frac{78/22}{61/39} = \frac{3.545}{1.564} = 2.27\)</span></li>
+<li class="fragment"><em>the odds for still being in pain for the placebo group are 2.27 times the odds of being in pain for the TMS group</em></li>
+</ul>
+</section>
+<section id="odds-ratios-9" class="slide level2 small">
+<h2>Odds ratios</h2>
+<p>In general, it’s more natural to interpret odds ratios &gt; 1, you can flip the referent to do so</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>TMS</th>
+<th>Placebo</th>
+<th>Total</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Pain-free two hours later</td>
+<td>39</td>
+<td>22</td>
+<td>61</td>
+</tr>
+<tr class="even">
+<td>Not pain-free two hours later</td>
+<td>61</td>
+<td>78</td>
+<td>139</td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td>100</td>
+<td>100</td>
+<td>200</td>
+</tr>
+</tbody>
+</table>
+<p><span class="math inline">\(\Large OR = \frac{78/22}{61/39} = \frac{3.545}{1.564} = 2.27\)</span></p>
+<p><em>the odds for still being in pain for the placebo group are 2.27 times the odds of being in pain for the TMS group</em></p>
+</section>
+<section id="application-exercise" class="slide level2 small">
+<h2><i class="fas fa-laptop"></i> <code>Application Exercise</code></h2>
+<p>5000 women were enrolled in a study and were randomly assigned to receive either letrozole or a placebo. The primary response variable of interest was disease-free survival.</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>letrozole</th>
+<th>placebo</th>
+<th>total</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>death or disease</td>
+<td>185</td>
+<td>341</td>
+<td>526</td>
+</tr>
+<tr class="even">
+<td>no death or disease</td>
+<td>2390</td>
+<td>2241</td>
+<td>4631</td>
+</tr>
+<tr class="odd">
+<td>total</td>
+<td>2575</td>
+<td>2582</td>
+<td>5157</td>
+</tr>
+</tbody>
+</table>
+<div class="smaller">
+<ol type="1">
+<li>Calculate the odds ratio of death or disease in the placebo group versus the treatment group</li>
+<li>Calculate the odds ratio of no death or disease in the treatment group versus the placebo group</li>
+<li>Calculate the odds ratio of death or disease in the treatment group versus the placebo group</li>
+</ol>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="countdown" id="timer_1c11151c" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">04</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+</div>
+</div>
+</section>
+<section id="odds-ratios-10" class="slide level2 small">
+<h2>Odds ratios</h2>
+<p>Let’s look at some Titanic data. We are interested in whether the passenger reported being female is related to whether they survived.</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Female</th>
+<th>Male</th>
+<th>Total</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Survived</td>
+<td>308</td>
+<td>142</td>
+<td>450</td>
+</tr>
+<tr class="even">
+<td>Died</td>
+<td>154</td>
+<td>709</td>
+<td>863</td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td>462</td>
+<td>851</td>
+<td>1313</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="odds-ratios-11" class="slide level2 small">
+<h2>Odds ratios</h2>
+<div class="question">
+<p>What are the odds of surviving for females versus males?</p>
+</div>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Female</th>
+<th>Male</th>
+<th>Total</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Survived</td>
+<td>308</td>
+<td>142</td>
+<td>450</td>
+</tr>
+<tr class="even">
+<td>Died</td>
+<td>154</td>
+<td>709</td>
+<td>863</td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td>462</td>
+<td>851</td>
+<td>1313</td>
+</tr>
+</tbody>
+</table>
+<p><span class="math display">\[\Large OR = \frac{308/154}{142/709} = \frac{2}{0.2} = 9.99\]</span></p>
+</section>
+<section id="odds-ratios-12" class="slide level2 small">
+<h2>Odds ratios</h2>
+<div class="question">
+<p>How do you interpret this?</p>
+</div>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Female</th>
+<th>Male</th>
+<th>Total</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Survived</td>
+<td>308</td>
+<td>142</td>
+<td>450</td>
+</tr>
+<tr class="even">
+<td>Died</td>
+<td>154</td>
+<td>709</td>
+<td>863</td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td>462</td>
+<td>851</td>
+<td>1313</td>
+</tr>
+</tbody>
+</table>
+<p><span class="math display">\[\Large OR = \frac{308/154}{142/709} = \frac{2}{0.2} = 9.99\]</span> <em>the odds of surviving for the female passengers was 9.99 times the odds of surviving for the male passengers</em></p>
+</section>
+<section id="odds-ratios-13" class="slide level2 small">
+<h2>Odds ratios</h2>
+<div class="question">
+<p>What if we wanted to fit a <strong>model</strong>? What would the equation be?</p>
+</div>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Female</th>
+<th>Male</th>
+<th>Total</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Survived</td>
+<td>308</td>
+<td>142</td>
+<td>450</td>
+</tr>
+<tr class="even">
+<td>Died</td>
+<td>154</td>
+<td>709</td>
+<td>863</td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td>462</td>
+<td>851</td>
+<td>1313</td>
+</tr>
+</tbody>
+</table>
+<div class="fragment">
+<p><span class="math display">\[\Large \log(\textrm{odds of survival}) = \beta_0 + \beta_1 \textrm{Female}\]</span></p>
+</div>
+</section>
+<section id="odds-ratios-14" class="slide level2 small">
+<h2>Odds ratios</h2>
+<p><span class="math display">\[\Large \log(\textrm{odds of survival}) = \beta_0 + \beta_1 \textrm{Female}\]</span></p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">logistic_reg</span>() <span class="sc">|&gt;</span></span>
+<span id="cb5-2"><a></a>  <span class="fu">set_engine</span>(<span class="st">"glm"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb5-3"><a></a>  <span class="fu">fit</span>(Survived <span class="sc">~</span> Sex, <span class="at">data =</span> Titanic) <span class="sc">|&gt;</span></span>
+<span id="cb5-4"><a></a>  <span class="fu">tidy</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 5
+  term        estimate std.error statistic  p.value
+  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+1 (Intercept)    -1.61    0.0919     -17.5 1.70e-68
+2 Sexfemale       2.30    0.135       17.1 2.91e-65</code></pre>
+</div>
+</div>
+</section>
+<section id="odds-ratios-15" class="slide level2 small">
+<h2>Odds Ratios</h2>
+<div class="question">
+<p>How do you interpret this result?</p>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="fu">logistic_reg</span>() <span class="sc">|&gt;</span></span>
+<span id="cb7-2"><a></a>  <span class="fu">set_engine</span>(<span class="st">"glm"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb7-3"><a></a>  <span class="fu">fit</span>(Survived <span class="sc">~</span> Sex, <span class="at">data =</span> Titanic) <span class="sc">|&gt;</span></span>
+<span id="cb7-4"><a></a>  <span class="fu">tidy</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 5
+  term        estimate std.error statistic  p.value
+  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+1 (Intercept)    -1.61    0.0919     -17.5 1.70e-68
+2 Sexfemale       2.30    0.135       17.1 2.91e-65</code></pre>
+</div>
+</div>
+</section>
+<section id="odds-ratios-16" class="slide level2 small">
+<h2>Odds Ratios</h2>
+<div class="question">
+<p>How do you interpret this result?</p>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb9" data-code-line-numbers="4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="fu">logistic_reg</span>() <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a></a>  <span class="fu">set_engine</span>(<span class="st">"glm"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb9-3"><a></a>  <span class="fu">fit</span>(Survived <span class="sc">~</span> Sex, <span class="at">data =</span> Titanic) <span class="sc">|&gt;</span></span>
+<span id="cb9-4"><a></a>  <span class="fu">tidy</span>(<span class="at">exponentiate =</span> <span class="cn">TRUE</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 5
+  term        estimate std.error statistic  p.value
+  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+1 (Intercept)    0.200    0.0919     -17.5 1.70e-68
+2 Sexfemale      9.99     0.135       17.1 2.91e-65</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11" data-code-line-numbers="4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="fu">exp</span>(<span class="fl">2.301176</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 9.99</code></pre>
+</div>
+</div>
+</section>
+<section id="odds-ratios-17" class="slide level2 small">
+<h2>Odds Ratios</h2>
+<div class="question">
+<p>How do you interpret this result?</p>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="fu">logistic_reg</span>() <span class="sc">|&gt;</span></span>
+<span id="cb13-2"><a></a>  <span class="fu">set_engine</span>(<span class="st">"glm"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb13-3"><a></a>  <span class="fu">fit</span>(Survived <span class="sc">~</span> Sex, <span class="at">data =</span> Titanic) <span class="sc">|&gt;</span></span>
+<span id="cb13-4"><a></a>  <span class="fu">tidy</span>(<span class="at">exponentiate =</span> <span class="cn">TRUE</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 5
+  term        estimate std.error statistic  p.value
+  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+1 (Intercept)    0.200    0.0919     -17.5 1.70e-68
+2 Sexfemale      9.99     0.135       17.1 2.91e-65</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a><span class="fu">exp</span>(<span class="fl">2.301176</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 9.99</code></pre>
+</div>
+</div>
+<p><em>the odds of surviving for the female passengers was 9.99 times the odds of surviving for the male passengers</em></p>
+</section>
+<section id="odds-ratios-18" class="slide level2 small">
+<h2>Odds ratios</h2>
+<p>What if the explanatory variable is continuous?</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a><span class="fu">logistic_reg</span>() <span class="sc">|&gt;</span></span>
+<span id="cb17-2"><a></a>  <span class="fu">set_engine</span>(<span class="st">"glm"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb17-3"><a></a>  <span class="fu">fit</span>(Acceptance <span class="sc">~</span> GPA, <span class="at">data =</span> MedGPA) <span class="sc">|&gt;</span></span>
+<span id="cb17-4"><a></a>  <span class="fu">tidy</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 5
+  term        estimate std.error statistic  p.value
+  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+1 (Intercept)   -19.2       5.63     -3.41 0.000644
+2 GPA             5.45      1.58      3.45 0.000553</code></pre>
+</div>
+</div>
+<p><em>A one unit increase in GPA yields a 5.45 increase in the log odds of acceptance</em></p>
+</section>
+<section id="odds-ratios-19" class="slide level2 small">
+<h2>Odds ratios</h2>
+<p>What if the explanatory variable is continuous?</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a><span class="fu">logistic_reg</span>() <span class="sc">|&gt;</span></span>
+<span id="cb19-2"><a></a>  <span class="fu">set_engine</span>(<span class="st">"glm"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb19-3"><a></a>  <span class="fu">fit</span>(Acceptance <span class="sc">~</span> GPA, <span class="at">data =</span> MedGPA) <span class="sc">|&gt;</span></span>
+<span id="cb19-4"><a></a>  <span class="fu">tidy</span>(<span class="at">exponentiate =</span> <span class="cn">TRUE</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 5
+  term        estimate std.error statistic  p.value
+  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+1 (Intercept)  4.56e-9      5.63     -3.41 0.000644
+2 GPA          2.34e+2      1.58      3.45 0.000553</code></pre>
+</div>
+</div>
+<p><em>A one unit increase in GPA yields a 234-fold increase in the odds of acceptance</em></p>
+<ul>
+<li class="fragment">😱 that seems huge! <strong>Remember:</strong> the interpretation of these coefficients depends on your units (the same as in ordinary linear regression).</li>
+</ul>
+</section>
+<section id="odds-ratios-20" class="slide level2 small">
+<h2>Odds ratios</h2>
+<div class="question">
+<p>How could we get the odds associated with increasing GPA by 0.1?</p>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a><span class="fu">logistic_reg</span>() <span class="sc">|&gt;</span></span>
+<span id="cb21-2"><a></a>  <span class="fu">set_engine</span>(<span class="st">"glm"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb21-3"><a></a>  <span class="fu">fit</span>(Acceptance <span class="sc">~</span> GPA, <span class="at">data =</span> MedGPA) <span class="sc">|&gt;</span></span>
+<span id="cb21-4"><a></a>  <span class="fu">tidy</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 5
+  term        estimate std.error statistic  p.value
+  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+1 (Intercept)   -19.2       5.63     -3.41 0.000644
+2 GPA             5.45      1.58      3.45 0.000553</code></pre>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a><span class="fu">exp</span>(<span class="fl">5.454</span>) <span class="do">## a one unit increase in GPA</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 234</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a><span class="fu">exp</span>(<span class="fl">5.454</span> <span class="sc">*</span> <span class="fl">0.1</span>) <span class="do">## a 0.1 increase in GPA</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.73</code></pre>
+</div>
+</div>
+<p><em>A one-tenth unit increase in GPA yields a 1.73-fold increase in the odds of acceptance</em></p>
+</section>
+<section id="odds-ratios-21" class="slide level2 small">
+<h2>Odds ratios</h2>
+<div class="question">
+<p>How could we get the odds associated with increasing GPA by 0.1?</p>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a>MedGPA <span class="ot">&lt;-</span> MedGPA <span class="sc">|&gt;</span></span>
+<span id="cb27-2"><a></a>  <span class="fu">mutate</span>(<span class="at">GPA_10 =</span> GPA <span class="sc">*</span> <span class="dv">10</span>)</span>
+<span id="cb27-3"><a></a></span>
+<span id="cb27-4"><a></a><span class="fu">logistic_reg</span>() <span class="sc">|&gt;</span></span>
+<span id="cb27-5"><a></a>  <span class="fu">set_engine</span>(<span class="st">"glm"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb27-6"><a></a>  <span class="fu">fit</span>(Acceptance <span class="sc">~</span> GPA_10, <span class="at">data =</span> MedGPA) <span class="sc">|&gt;</span></span>
+<span id="cb27-7"><a></a>  <span class="fu">tidy</span>(<span class="at">exponentiate =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 5
+  term             estimate std.error statistic  p.value
+  &lt;chr&gt;               &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+1 (Intercept) 0.00000000456     5.63      -3.41 0.000644
+2 GPA_10      1.73              0.158      3.45 0.000553</code></pre>
+</div>
+</div>
+<p><em>A one-tenth unit increase in GPA yields a 1.73-fold increase in the odds of acceptance</em></p>
+</section>
+<section id="application-exercise-1" class="slide level2">
+<h2><svg aria-hidden="true" role="img" viewbox="0 0 640 512" style="height:1em;width:1.25em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M128 32C92.7 32 64 60.7 64 96V352h64V96H512V352h64V96c0-35.3-28.7-64-64-64H128zM19.2 384C8.6 384 0 392.6 0 403.2C0 445.6 34.4 480 76.8 480H563.2c42.4 0 76.8-34.4 76.8-76.8c0-10.6-8.6-19.2-19.2-19.2H19.2z"></path></svg> <code>Application Exercise</code></h2>
+<p>Using the <code>Default</code> data from the <code>ISLR</code> package, fit a logistic regression model predicting whether a customer <code>defaults</code> with whether they are a <code>student</code> and their current <code>balance</code>.</p>
+<p>Here is some code to get you started:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a></a><span class="fu">library</span>(ISLR)</span>
+<span id="cb29-2"><a></a><span class="fu">data</span>(<span class="st">"Default"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="countdown" id="timer_e4361e7c" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+</div>
+</div>
+
+
+</section></section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<p><img src="img/icon.png" class="slide-logo"></p>
+<div class="footer footer-default">
+<p><a href="https://lucymcgowan.com">Dr.&nbsp;Lucy D’Agostino McGowan</a> <i>adapted from slides by Hastie &amp; Tibshirani</i></p>
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="../site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="../site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="../site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="../site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="../site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="../site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: true,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+            const codeEl = trigger.previousElementSibling.cloneNode(true);
+            for (const childEl of codeEl.children) {
+              if (isCodeAnnotation(childEl)) {
+                childEl.remove();
+              }
+            }
+            return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp("https:\/\/sta-363-s23\.github\.io\/website");
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>
