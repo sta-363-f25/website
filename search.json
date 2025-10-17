@@ -2005,318 +2005,118 @@
     ]
   },
   {
-    "objectID": "lab/03-ridge-lasso-elastic.html",
-    "href": "lab/03-ridge-lasso-elastic.html",
-    "title": "Lab 03 - Ridge Lasso Elastic Net",
+    "objectID": "lab/04-logistic.html",
+    "href": "lab/04-logistic.html",
+    "title": "Lab 04 - Logistic Regression",
     "section": "",
-    "text": "Due: Tuesday 2025-10-08\n\nGetting started\n\nGo to our RStudio Pro workspace and create a new project using my template.\n\nFor this assignment, go to RStudio Pro and click:\nStep 1. File &gt; New Project\nStep 2. “Version Control”\nStep 3. Git\nStep 4. Copy the following into the “Repository URL”:\n\nhttps://github.com/sta-363-f25/lab-03-ridge-lasso-elastic.git\n\nRemember to write out your answers in full sentences, do not just rely on the R output\n\n\nPackages\nIn this lab we will work with two packages: tidyverse which is a collection of packages for doing data analysis in a “tidy” way and tidymodels for statistical modeling.\nIf you’d like to run your code in the Console as well you’ll also need to load the packages there. To do so, run the following in the console.\n\nlibrary(tidyverse) \nlibrary(tidymodels)\n\nNote that the packages are also loaded with the same commands in your R Markdown document.\n\n\nData\nFor this lab, we are using a data frame currently in music.csv. This data frame includes 72 predictors that are components of audio files and one outcome, lat, the latitude of where the music originated. We are trying to predict the location of the music’s origin using audio components of the music.\nThis data frame should be loaded in your RStudio Project when you load your starter files.\n\n\nExercises\n\nSet a seed of 7. Split the music data into a training and test set with 75% of the data in the training and 25% in the testing. Call your training set music_train and your testing set music_test. Describe these data sets (how many observations, how many variables).\n\n\nmusic &lt;- read_csv(\"data/music.csv\")\n\n\nWe are interested in predicting the latitude (lat) of the music’s origin from all other variables. Using the training data only, examine a visualization of the outcome.\nFit a linear model using least squares on the training set. Report the test root mean squared error obtained.\nFit a ridge regression model on the training set with \\(\\lambda\\) chosen using 10-fold cross validation. Report the \\(\\lambda\\) chosen and explain why. Report the estimated test root mean square error from the cross validation and the test root mean squared error obtained using testing portion of the initially split data frame.\nUsing the model chosen above on the training data, which variables were included in the final model?\nFit a lasso model on the training set with \\(\\lambda\\) chosen using cross validation. Report the \\(\\lambda\\) chosen and explain why. Report the estimated test root mean square error from the cross validation and the test root mean squared error obtained using testing portion of the initially split data frame.\nUsing the model chosen above on the training data, which variables were included in the final model?\nFit an elastic net model on the training set with \\(\\lambda\\) and \\(\\alpha\\) chosen using cross validation. Create a Figure with the estimated test root mean squared error on the y-axis and \\(\\lambda\\) on the x-axis with lines colored by the mixture chosen.\nReport the \\(\\lambda\\) that you would choose from the previous exercise and explain why. Report the estimated test root mean square error from the cross validation and the test root mean squared error obtained using testing portion of the initially split data frame.\nUsing the model chosen above on the training data, which variables were included in the final model?\nComment on the results obtained. How well can we predict the latitude of where the music originated? Is there much difference among the test errors resulting from these four approaches?",
+    "text": "Due: Friday 2025-10-24",
     "crumbs": [
       "{{< fa calendar >}} Schedule",
       "Labs",
-      "Lab 03: Ridge, Lasso, and Elastic Net"
+      "Lab 04: Logistic Regression"
     ]
   },
   {
-    "objectID": "lab/01-lab.html",
-    "href": "lab/01-lab.html",
-    "title": "Lab 01 - Hello R!",
-    "section": "",
-    "text": "Due: Friday 2025-09-05 at 11:59pm",
+    "objectID": "lab/04-logistic.html#conceptual-questions",
+    "href": "lab/04-logistic.html#conceptual-questions",
+    "title": "Lab 04 - Logistic Regression",
+    "section": "Conceptual questions",
+    "text": "Conceptual questions\n\nUsing algebra, rearrange equation (1) below to get equation (2). Show all steps. For this, I want you to use Latex, remember you can insert a Latex equation by wrapping it in $$. If you need a refresher check out the Mathematical Expressions section of the Quarto Quick Guide on our website \n\nEquation (1)\n\\[p(X)=\\frac{e^{\\beta_0+\\beta_1X}}{1+e^{\\beta_0+\\beta_1X}}\\]\nEquation (2)\n\\[\\textrm{log}\\left(\\frac{p(X)}{1-p(X)}\\right)=\\beta_0+\\beta_1X\\]\n\nSuppose that an individual has a 23% chance of defaulting on their credit card payment. What are the odds that they will default?",
     "crumbs": [
       "{{< fa calendar >}} Schedule",
       "Labs",
-      "Lab 01"
+      "Lab 04: Logistic Regression"
     ]
   },
   {
-    "objectID": "lab/01-lab.html#yaml",
-    "href": "lab/01-lab.html#yaml",
-    "title": "Lab 01 - Hello R!",
+    "objectID": "lab/04-logistic.html#logistic-regression",
+    "href": "lab/04-logistic.html#logistic-regression",
+    "title": "Lab 04 - Logistic Regression",
+    "section": "Logistic Regression",
+    "text": "Logistic Regression\n\nFor this lab we are using the Smarket data. Examine this data set - how many observations are there? How many columns? What are the variables?\nLet’s look at the correlation between all of the variables. To do this, if you haven’t done so already, we need to install the GGally package. Run the following code in your Console one time.\n\n\ninstall.packages(\"GGally\")\n\nThen add the code below to your .qmd file. What can you learn from this visualization? Which pair of variables have the highest correlation?\n\nggpairs(Smarket, \n        lower = list(combo = wrap(ggally_facethist, binwidth = 0.5)), \n        progress = FALSE)\n\n\nInference Fit a logistic regression model to predict Direction using Lag1, Lag2, Lag3, Lag4, Lag5, and Volume. Show a table that contains the coefficients and p-values along with the confidence intervals for each of the 6 predictors. Which predictor has the smallest p-value? Interpret the coefficient, confidence interval, and p-value for this predictor.\nInference Exponentiate the results from Exercise 5. Interpret the odds ratio for the same predictor you selected in Exercise 5.\nPrediction Using 5-fold cross validation, fit the same logistic regression model as Exercise 5. What is the test Accuracy for this model? Interpret this result.\nInference Fit a logistic regression model to predict Direction using only Lag1 and Lag2. Show a table that contains the coefficients and p-values along with the confidence intervals for each of the 2 predictors. Which predictor has the smallest p-value? Interpret the coefficient, confidence interval, and p-value for this predictor.\nInference Exponentiate the results from Exercise 8. Interpret the odds ratio for the same predictor you selected in Exercise 8.\nPrediction Using 5-fold cross validation, fit the same logistic regression model as Exercise 8. What is the test Accuracy for this model? Interpret this result.\nIf you had to choose between the model fit in Exercise 5 and the one fit in Exercise 8, which would you choose? Why?",
+    "crumbs": [
+      "{{< fa calendar >}} Schedule",
+      "Labs",
+      "Lab 04: Logistic Regression"
+    ]
+  },
+  {
+    "objectID": "lab/02-cv.html",
+    "href": "lab/02-cv.html",
+    "title": "Lab 02 - Cross Validation",
+    "section": "",
+    "text": "Due: Wednesday 2025-09-24 at 11:59pm",
+    "crumbs": [
+      "{{< fa calendar >}} Schedule",
+      "Labs",
+      "Lab 02: Cross Validation"
+    ]
+  },
+  {
+    "objectID": "lab/02-cv.html#yaml",
+    "href": "lab/02-cv.html#yaml",
+    "title": "Lab 02 - Cross Validation",
     "section": "YAML:",
-    "text": "YAML:\nOpen the Quarto (qmd) file in your project, change the author name to your name, and render the document.",
+    "text": "YAML:\nOpen the .qmd file in your project, change the author name to your name, and Render the document.",
     "crumbs": [
       "{{< fa calendar >}} Schedule",
       "Labs",
-      "Lab 01"
+      "Lab 02: Cross Validation"
     ]
   },
   {
-    "objectID": "help.html",
-    "href": "help.html",
-    "title": "Help",
+    "objectID": "lab/02-cv.html#conceptual-questions",
+    "href": "lab/02-cv.html#conceptual-questions",
+    "title": "Lab 02 - Cross Validation",
+    "section": "Conceptual questions",
+    "text": "Conceptual questions\n\nExplain how k-fold Cross Validation is implemented.\nWhat are the advantages / disadvantages of k-fold Cross Validation compared to the Validation Set approach? What are the advantages / disadvantages of k-fold Cross Validation compared to Leave-one-out Cross Validation?",
+    "crumbs": [
+      "{{< fa calendar >}} Schedule",
+      "Labs",
+      "Lab 02: Cross Validation"
+    ]
+  },
+  {
+    "objectID": "lab/02-cv.html#data-exploration",
+    "href": "lab/02-cv.html#data-exploration",
+    "title": "Lab 02 - Cross Validation",
+    "section": "Data exploration",
+    "text": "Data exploration\n\nFor this analysis, we are using the Auto dataset from the ISLR package. How many rows are in this dataset? How many columns? Is there any missing data?\nOur outcome of interest is miles per gallon: mpg. Create a publication-ready figure examining the distribution of this variable. For full credit, be sure your figure has correct labels and titles.\nOur main predictor of interest is horsepower. Create a publication-ready figure looking at the relationship between miles per gallon and horsepower.",
+    "crumbs": [
+      "{{< fa calendar >}} Schedule",
+      "Labs",
+      "Lab 02: Cross Validation"
+    ]
+  },
+  {
+    "objectID": "lab/02-cv.html#k-fold-cross-validation",
+    "href": "lab/02-cv.html#k-fold-cross-validation",
+    "title": "Lab 02 - Cross Validation",
+    "section": "K-fold cross validation",
+    "text": "K-fold cross validation\nWe are trying to decide between three models of varying flexibility:\n\nModel 1: \\(\\texttt{mpg} = \\beta_0 + \\beta_1 \\texttt{horsepower} + \\epsilon\\)\nModel 2: \\(\\texttt{mpg} = \\beta_0 + \\beta_1 \\texttt{horsepower} + \\beta_2 \\texttt{horsepower}^2 + \\epsilon\\)\nModel 3: \\(\\texttt{mpg} = \\beta_0 + \\beta_1 \\texttt{horsepower} + \\beta_2 \\texttt{horsepower}^2 + \\beta_3 \\texttt{horsepower}^3 + \\epsilon\\)\n\n\nUsing the Auto data, split the data into two groups a training data set, saved as Auto_train and a testing data set, saved as Auto_test. Be sure to set a seed to ensure that you get the same result each time you Render your document.\n\n\n\nYou can use the poly() function to fit a model with a polynomial term. For example, to fit the model \\(y = \\beta_0 + \\beta_1 \\texttt{x} + \\beta_2 \\texttt{x}^2 + \\beta_3 \\texttt{x}^3 + \\epsilon\\), you would run fit(lm_spec, y ~ poly(x, 3), data = data)\n\nFit the three models outlined above on the training data. Using the model created on the training data, predict mpg in the test data set for each model. What is the test RMSE for the three models? Which model would you choose?\nFit the same three models, but instead of the validation set approach, perform 5-fold cross validation. Make sure to set a seed so you get the same answer each time you run the analysis. Calculate the overall 5-fold cross validation error for each of the three models. Which model would you chose?\nThe tidymodels package allows you to do this faster! Instead of having a fit 3 (or more!) different models to determine the best flexibility, you can (1) create a recipe to specify how you would like to fit a model and then (2) tune this model to determine the best output. Copy the code below. What do you think the line step_poly(horsepower, degree = tune()) does? Hint: you can run ?step_poly in the Console to learn more about this function.\n\n\nauto_prep &lt;- Auto |&gt;\n  recipe(mpg ~ horsepower) |&gt;\n  step_poly(horsepower, degree = tune())\n\n\nTo tune this model, you will replace fit_resamples with tune_grid. The pseudo code to do this is below - you may need to update some names to match what you have named objects in your document. Add the code to tune your model based on the code below.\n\n\nauto_tune &lt;- tune_grid(lm_spec,\n          auto_prep,\n          resamples = auto_cv)\n\n\nUsing the collect_metrics function, look at the RMSE for auto_tune. Which degree is preferable?\nYou can plot the output from Exercise 11 to make it a bit easier to determine. First, save your output from Exercise 11 as auto_metrics. Then filter this data frame to only include rows where .metric == \"rmse\". Save this filtered data frame as auto_rmse. Edit the code below to plot the degree on the x-axis and mean on the y-axis. Describe what this plot shows.\n\n\nggplot(auto_rmse, aes(x = ----, y = ----)) + \n  geom_line() +\n  geom_pointrange(aes(ymin = mean - std_err, ymax = mean + std_err)) + \n  labs(x = \"Degree\",\n       y = \"Cross validation error\",\n       title = ---)",
+    "crumbs": [
+      "{{< fa calendar >}} Schedule",
+      "Labs",
+      "Lab 02: Cross Validation"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Statistical Learning",
     "section": "",
-    "text": "Welcome to the help section! This page contains resources to help you succeed in the course, from technical setup to troubleshooting common issues. Click through the sidebar on the left."
+    "text": "Course Info\nLocation: Carswell 208\nTime: Wed/Fri 11a\n\n\n Office Hours\nInstructor: Dr. Lucy D’Agostino McGowan\nEmail: mcgowald@wfu.edu\nOffice Hours: Book Online\nOffice: Manchester 342\nTA: Joe Zhu\nOffice Hours: Monday 3-5PM email to set up\nMath & Stats Center: mathandstatscenter@wfu.edu\nLocation: Math & Stats Center\n\n\n\n\n\n\n\n\nCarswell 208\n\n\n\n\n\n\n\n\nWed/Fri 11a\n\n\n\n\n\nTexts\nThe main text book is: An Introduction to Statistical Learning with Applications in R by Gareth James, Daniela Witten, Trevor Hastie, and Robert Tibshirani – it is freely available online.\n\n\nMaterials\nThis class is very hands on; be sure to bring a fully charged laptop to every class."
   },
   {
-    "objectID": "help.html#getting-started-with-rstudio-and-quarto",
-    "href": "help.html#getting-started-with-rstudio-and-quarto",
-    "title": "Help",
-    "section": "Getting Started with RStudio and Quarto",
-    "text": "Getting Started with RStudio and Quarto\nIf you’re new to using RStudio Pro or working with Quarto documents, check out our getting started guides.\nGetting Started Guide with RStudio Pro →\nGetting Started Guide with Quarto →"
-  },
-  {
-    "objectID": "help.html#quick-links",
-    "href": "help.html#quick-links",
-    "title": "Help",
-    "section": "Quick Links",
-    "text": "Quick Links\n\nRStudio Pro Server: Access your computing environment at login.deac.wfu.edu\nCourse Schedule: Check the schedule for upcoming assignments and due dates"
-  },
-  {
-    "objectID": "help.html#need-additional-help",
-    "href": "help.html#need-additional-help",
-    "title": "Help",
-    "section": "Need Additional Help?",
-    "text": "Need Additional Help?\nIf you can’t find what you’re looking for in our guides, don’t hesitate to reach out."
-  },
-  {
-    "objectID": "help-project.html",
-    "href": "help-project.html",
-    "title": "Creating or Opening a Project",
+    "objectID": "help-quarto.html",
+    "href": "help-quarto.html",
+    "title": "Creating a New Quarto Document in RStudio",
     "section": "",
-    "text": "Before starting an assignment or exercise, always create or open a project:\n\nTo create a new project:\n\nIn RStudio, go to File &gt; New Project.\nChoose whether to create a project in a new directory or within an existing directory.\nNavigate to the folder where you want your project\nClick Create Project.\n\nTo open an existing project:\n\nIn RStudio, go to File &gt; Open Project.\nBrowse to the .Rproj file of the project you want to open.\nSelect it and click Open.\n\n\nThis ensures all your files and settings are organized within the correct project environment.",
+    "text": "To create a new Quarto document:\n\nBe sure that you are in the correct project for the exercise or assignment. If you need help creating a new project here are some tips.\nIn RStudio, go to the menu bar and select File &gt; New File &gt; Quarto Document.\nEnter a title for your document and select the output format (e.g., HTML, PDF, Word).\nClick Create. A new Quarto file (.qmd) will open.\nSave the file to your project directory\nUse the toolbar or the Render button to build your document.",
     "crumbs": [
       "{{< fa calendar >}} Schedule",
       "Computing",
-      "Creating an RStudio Project"
-    ]
-  },
-  {
-    "objectID": "ex/04-ex.html",
-    "href": "ex/04-ex.html",
-    "title": "Exercise 4 – Linear Regression in R",
-    "section": "",
-    "text": "Note: if you are off campus, you will need to use a VPN to connect\nGo to rstudio.deac.wfu.edu\n\n\n\n\nClick File &gt; New Project\n\n\n\n\nClick the third option.\n\n\n\n\nClick the first option\n\n\n\n\nPaste this link in the top box (Repository url):\nhttps://github.com/sta-363-f25/04-ex.git",
-    "crumbs": [
-      "{{< fa calendar >}} Schedule",
-      "Exercises",
-      "Linear Regression"
-    ]
-  },
-  {
-    "objectID": "ex/04-ex.html#set-up",
-    "href": "ex/04-ex.html#set-up",
-    "title": "Exercise 4 – Linear Regression in R",
-    "section": "",
-    "text": "Note: if you are off campus, you will need to use a VPN to connect\nGo to rstudio.deac.wfu.edu\n\n\n\n\nClick File &gt; New Project\n\n\n\n\nClick the third option.\n\n\n\n\nClick the first option\n\n\n\n\nPaste this link in the top box (Repository url):\nhttps://github.com/sta-363-f25/04-ex.git",
-    "crumbs": [
-      "{{< fa calendar >}} Schedule",
-      "Exercises",
-      "Linear Regression"
-    ]
-  },
-  {
-    "objectID": "ex/04-ex.html#part-1",
-    "href": "ex/04-ex.html#part-1",
-    "title": "Exercise 4 – Linear Regression in R",
-    "section": "Part 1",
-    "text": "Part 1\n\nRun this code to create a simulated dataset:\n\n\nlibrary(MASS)\nset.seed(1)\n\n# Generate 5 correlated X variables\nSigma &lt;- matrix(0.25, 5, 5)\ndiag(Sigma) &lt;- 1\nX_mat &lt;- mvrnorm(n = 20, mu = rep(0, 5), Sigma = Sigma)\n\n# Generate Y with known relationship + noise\nY &lt;- 2 + 3*X_mat[,1] - 1.5*X_mat[,2] + 0.5*X_mat[,3] + \n    0*X_mat[,4] + 0*X_mat[,5] + rnorm(20, 0, 0.5)\n\n# Create data frame\nsim_data &lt;- tibble(\n  X1 = X_mat[,1], X2 = X_mat[,2], X3 = X_mat[,3], \n  X4 = X_mat[,4], X5 = X_mat[,5], Y = Y\n)\n\n\nFit a linear model predicting Y from all 5 X variables using linear_reg()\n\nMake predictions for new observations where all X variables = 0, 1, and 2\n\nMake predictions for all observations in the training data",
-    "crumbs": [
-      "{{< fa calendar >}} Schedule",
-      "Exercises",
-      "Linear Regression"
-    ]
-  },
-  {
-    "objectID": "ex/04-ex.html#part-2",
-    "href": "ex/04-ex.html#part-2",
-    "title": "Exercise 4 – Linear Regression in R",
-    "section": "Part 2",
-    "text": "Part 2\n\nUsing your simulated data, create the design matrix X (including intercept column)\n\nCalculate the coefficients manually using: solve(crossprod(X)) %*% t(X) %*% y\n\nCompare these coefficients to what you got from linear_reg() |&gt; tidy()\n\nTry changing the noise standard deviation from 0.5 to 2.0 - how do the predictions change for the training data?",
-    "crumbs": [
-      "{{< fa calendar >}} Schedule",
-      "Exercises",
-      "Linear Regression"
-    ]
-  },
-  {
-    "objectID": "ex/04-ex.html#part-3",
-    "href": "ex/04-ex.html#part-3",
-    "title": "Exercise 4 – Linear Regression in R",
-    "section": "Part 3",
-    "text": "Part 3\n\nCreate three simulations with different noise levels: sd = 0.1, 1.0, 3.0\n\nFor each noise level, make predictions for the training dataset\nPlot the predicted values with prediction intervals\n\nHow do prediction intervals change with noise level?",
-    "crumbs": [
-      "{{< fa calendar >}} Schedule",
-      "Exercises",
-      "Linear Regression"
-    ]
-  },
-  {
-    "objectID": "ex/02-welcome-penguins.html",
-    "href": "ex/02-welcome-penguins.html",
-    "title": "Welcome Penguins!",
-    "section": "",
-    "text": "Note: if you are off campus, you will need to use a VPN to connect\nGo to login.deac.wfu.edu\n\n\n\n\nClick File &gt; New Project\n\n\n\n\nClick the third option.\n\n\n\n\nClick the first option\n\n\n\n\nPaste this link in the top box (Repository url):\nhttps://github.com/sta-363-f25/appex-01-welcome-penguins.git",
-    "crumbs": [
-      "{{< fa calendar >}} Schedule",
-      "Exercises",
-      "Welcome Penguins"
-    ]
-  },
-  {
-    "objectID": "ex/02-welcome-penguins.html#set-up",
-    "href": "ex/02-welcome-penguins.html#set-up",
-    "title": "Welcome Penguins!",
-    "section": "",
-    "text": "Note: if you are off campus, you will need to use a VPN to connect\nGo to login.deac.wfu.edu\n\n\n\n\nClick File &gt; New Project\n\n\n\n\nClick the third option.\n\n\n\n\nClick the first option\n\n\n\n\nPaste this link in the top box (Repository url):\nhttps://github.com/sta-363-f25/appex-01-welcome-penguins.git",
-    "crumbs": [
-      "{{< fa calendar >}} Schedule",
-      "Exercises",
-      "Welcome Penguins"
-    ]
-  },
-  {
-    "objectID": "ex/02-welcome-penguins.html#your-turn",
-    "href": "ex/02-welcome-penguins.html#your-turn",
-    "title": "Welcome Penguins!",
-    "section": "Your Turn",
-    "text": "Your Turn\n\nOnce you log on to RStudio Pro, create a new project from version control (Git)\nPaste https://github.com/sta-363-f25/appex-01-welcome-penguins.git in the Repository url box\nFind the file pane (on the bottom right). Click the welcome-penguins.qmd file\nClick the “Render” button\nGo back to the file and change your name on top (in the yaml – we’ll talk about what this means later) and render again.\nThen, scroll to the plot chunk, below Palmer Penguins. Instead of looking at the relationship between flipper length and bill length, plot the relationship between flipper length and bill depth. Hint, look at the full dataset at the bottom of the document for variable names, update the captions to match your new plot.\nRender again & voila!",
-    "crumbs": [
-      "{{< fa calendar >}} Schedule",
-      "Exercises",
-      "Welcome Penguins"
-    ]
-  },
-  {
-    "objectID": "demo-zipcodes/zipcodes.html",
-    "href": "demo-zipcodes/zipcodes.html",
-    "title": "Predicting handwritten numbers",
-    "section": "",
-    "text": "library(tidyverse)\nlibrary(tidymodels)\nload(\"data/zip.train.Rdata\")\nload(\"data/zip.test.Rdata\")\nThis dataset consists of normalized handwritten digits, automatically scanned from envelopes by the U.S. Postal Service. The ultimate objective is to be able to predict which number is written so that the zip code can be automatically determined. The original scanned digits are binary and of different sizes and orientations; the images here have been deslanted and size normalized, resulting in 16 x 16 grayscale images (Le Cun et al., 1990). This data is obtained from the ElemStatLearn package.\nLet’s see what kind of data this is.\nclass(zip.train)\n\n[1] \"matrix\" \"array\"\nIt looks like this is a matrix. Let’s look at the the first 5 rows and 5 columns.\nzip.train[1:5, 1:5]\n\n     [,1] [,2] [,3] [,4]   [,5]\n[1,]    6   -1   -1   -1 -1.000\n[2,]    5   -1   -1   -1 -0.813\n[3,]    4   -1   -1   -1 -1.000\n[4,]    7   -1   -1   -1 -1.000\n[5,]    3   -1   -1   -1 -1.000\nIt looks like the first column contains the digit and the subsequent columns indicate values for the 256 pixels. Let’s tidy this up a bit.\nzip_train &lt;- zip.train %&gt;%\n  as_tibble(.name_repair = ~ c(\"label\", glue::glue(\"pix_{1:256}\")))\n\nzip_test &lt;- zip.test %&gt;%\n    as_tibble(.name_repair = ~ c(\"label\", glue::glue(\"pix_{1:256}\")))\nLet’s plot a few. This code is adapted from a blog post by David Robinson.\npixels_gathered &lt;- zip_train %&gt;%\n  slice(1:25) %&gt;%\n  mutate(instance = row_number()) %&gt;%\n  gather(pixel, value, -label, -instance) %&gt;%\n  tidyr::extract(pixel, \"pixel\", \"(\\\\d+)\", convert = TRUE) %&gt;%\n  mutate(pixel = pixel - 1,\n         x = pixel %% 16,\n         y = 16 - pixel %/% 16)\n\nggplot(pixels_gathered, aes(x, y, fill = value)) +\n  geom_tile() +\n  facet_wrap(~ instance + label)"
-  },
-  {
-    "objectID": "demo-zipcodes/zipcodes.html#predict-0",
-    "href": "demo-zipcodes/zipcodes.html#predict-0",
-    "title": "Predicting handwritten numbers",
-    "section": "Predict 0",
-    "text": "Predict 0\nWe are interested in creating a prediction model to determine whether the handwritten number is a 0.\n\nFirst we create a recipe\n\nrecip &lt;- zip_train %&gt;% \n    recipe() %&gt;% \n    update_role(starts_with(\"pix\"), new_role = \"predictor\") %&gt;%\n    update_role(label, new_role = \"outcome\") %&gt;%\n    step_mutate(label = as.factor(label == 0)) ## Set the outcome to when the written number is equal to 0\n\n\n\nThen we prep our recipe.\n\nprepped &lt;- recip %&gt;% \n    prep(retain = TRUE)\n\n\n\nThen we create our training data and testing data\n\ntrain &lt;- prepped %&gt;% \n    juice()\n\ntest &lt;- prepped %&gt;% \n    bake(new_data = zip_test)\n\n\n\nNow we specify our model\nWe are fitting a decision tree.\n\ntree_fit &lt;- fit(\n    decision_tree(mode = \"classification\", tree_depth = 3),\n    formula = formula(prepped),\n    data = train,\n    engine = \"rpart\")\n\n\n\nAssess the model\n\nresults &lt;- tibble(\n    truth = test$label,\n    estimate = predict(tree_fit, test) %&gt;% \n      pull(.pred_class)\n  )\n\nmetrics(results, truth = truth, estimate = estimate) %&gt;% \n  knitr::kable()\n\n\n\n\n.metric\n.estimator\n.estimate\n\n\n\n\naccuracy\nbinary\n0.9362232\n\n\nkap\nbinary\n0.7861534\n\n\n\n\n\n\n\nCreate a confusion matrix\nWhat is the false positive rate? What is the false negative rate?\n\nconf_mat(results, truth = truth, estimate = estimate)[[1]] %&gt;% \n  as_tibble() %&gt;% \n  ggplot(aes(Prediction, Truth, alpha = n)) + \n  geom_text(aes(label = n), alpha = 1, size = 10) +\n  labs(title = \"Confusion matrix\")\n\n\n\n\n\n\n\n\n\n\nPlot the tree\nWhich pixels are involved in this prediction?\n\nlibrary(rpart.plot)\nrpart.plot(tree_fit$fit, roundint = FALSE)"
-  },
-  {
-    "objectID": "demo-zipcodes/zipcodes.html#lets-plot-some-zeros-that-we-missed",
-    "href": "demo-zipcodes/zipcodes.html#lets-plot-some-zeros-that-we-missed",
-    "title": "Predicting handwritten numbers",
-    "section": "Let’s plot some zeros that we missed",
-    "text": "Let’s plot some zeros that we missed\n\nzip_test %&gt;%\n  bind_cols(results) %&gt;%\n  filter(truth == \"TRUE\", estimate == \"FALSE\") %&gt;%\n  select(-truth, -estimate) %&gt;%\n  sample_n(25) %&gt;%\n  mutate(instance = row_number()) %&gt;%\n  gather(pixel, value, -label, -instance) %&gt;%\n  tidyr::extract(pixel, \"pixel\", \"(\\\\d+)\", convert = TRUE) %&gt;%\n  mutate(pixel = pixel - 1,\n         x = pixel %% 16,\n         y = 16 - pixel %/% 16) %&gt;%\n  ggplot(aes(x, y, fill = value)) +\n  geom_tile() +\n  facet_wrap(~ instance)"
-  },
-  {
-    "objectID": "demo-zipcodes/zipcodes.html#lets-plot-some-numbers-that-we-misclassified-as-zeros",
-    "href": "demo-zipcodes/zipcodes.html#lets-plot-some-numbers-that-we-misclassified-as-zeros",
-    "title": "Predicting handwritten numbers",
-    "section": "Let’s plot some numbers that we misclassified as zeros",
-    "text": "Let’s plot some numbers that we misclassified as zeros\n\nzip_test %&gt;%\n  bind_cols(results) %&gt;%\n  filter(truth == \"FALSE\", estimate == \"TRUE\") %&gt;%\n  select(-truth, -estimate) %&gt;%\n  sample_n(25) %&gt;%\n  mutate(instance = row_number()) %&gt;%\n  gather(pixel, value, -label, -instance) %&gt;%\n  tidyr::extract(pixel, \"pixel\", \"(\\\\d+)\", convert = TRUE) %&gt;%\n  mutate(pixel = pixel - 1,\n         x = pixel %% 16,\n         y = 16 - pixel %/% 16) %&gt;%\n  ggplot(aes(x, y, fill = value)) +\n  geom_tile() +\n  facet_wrap(~ label + instance)"
-  },
-  {
-    "objectID": "demo-zipcodes/zipcodes.html#references",
-    "href": "demo-zipcodes/zipcodes.html#references",
-    "title": "Predicting handwritten numbers",
-    "section": "References",
-    "text": "References\n\nhttp://varianceexplained.org/r/digit-eda/\nhttps://www.benjaminsorensen.me/post/modeling-with-parsnip-and-tidymodels/"
-  },
-  {
-    "objectID": "ex/01-ex.html",
-    "href": "ex/01-ex.html",
-    "title": "Exercise 1",
-    "section": "",
-    "text": "Exercise 1: Login to RStudio Pro\n\nGo to course website → Computing → Using the RStudio Server\nFollow login instructions\nLog in with your credentials\n\nCheck: You should see the RStudio interface with 4 panes.\n\n\n\nExercise 2: Create RStudio Project\n\nFile → New Project → New Directory → New Project\nName: ex-1\nClick Create Project\n\nCheck: Project name appears in top-right corner.\n\n\n\nExercise 3: Create Quarto Document\n\nFile → New File → Quarto Document\nTitle: “My First Analysis”\nSave as analysis.qmd\n\nCheck: New .qmd file is open and saved.\n\n\n\nExercise 4: Install ISLR Package and Load Data\nRun this code in the console ONCE:\n\ninstall.packages(\"ISLR\")\n\nThen run this:\n\nlibrary(ISLR)\nlibrary(ggplot2)\n# Test it works\ndata(Auto)\nhead(Auto)\n\n  mpg cylinders displacement horsepower weight acceleration year origin\n1  18         8          307        130   3504         12.0   70      1\n2  15         8          350        165   3693         11.5   70      1\n3  18         8          318        150   3436         11.0   70      1\n4  16         8          304        150   3433         12.0   70      1\n5  17         8          302        140   3449         10.5   70      1\n6  15         8          429        198   4341         10.0   70      1\n                       name\n1 chevrolet chevelle malibu\n2         buick skylark 320\n3        plymouth satellite\n4             amc rebel sst\n5               ford torino\n6          ford galaxie 500\n\n\nCheck: You see the Auto dataset.\nNow run this in the console:\n\n?Auto\n\nQuestion: What is in this dataset?\nAction: Add the code below to your .qmd file along with a short description of the data.\n\nlibrary(ISLR)\nlibrary(ggplot2)\ndata(Auto)\n\n\n\n\nExercise 5: Linear Model and Plot\nAdd the following code to your .qmd file. Try running it.\n\n# Fit linear model\nmodel1 &lt;- lm(mpg ~ horsepower, data = Auto)\nsummary(model1)\n\n\nCall:\nlm(formula = mpg ~ horsepower, data = Auto)\n\nResiduals:\n     Min       1Q   Median       3Q      Max \n-13.5710  -3.2592  -0.3435   2.7630  16.9240 \n\nCoefficients:\n             Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) 39.935861   0.717499   55.66   &lt;2e-16 ***\nhorsepower  -0.157845   0.006446  -24.49   &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 4.906 on 390 degrees of freedom\nMultiple R-squared:  0.6059,    Adjusted R-squared:  0.6049 \nF-statistic: 599.7 on 1 and 390 DF,  p-value: &lt; 2.2e-16\n\n# Create plot\nggplot(Auto, aes(x = horsepower, y = mpg)) +\n  geom_point() +\n  geom_smooth(method = \"lm\", formula = \"y ~ x\") +\n  labs(title = \"Horsepower vs MPG\",\n       x = \"Horsepower\", \n       y = \"Miles per Gallon\")\n\n\n\n\n\n\n\n\nCheck: You have model output and a scatter plot with trend line.\n\n\n\nFinish\nClick “Render” to create your HTML report. Upload your .html file in Canvas under Exercise 1",
-    "crumbs": [
-      "{{< fa calendar >}} Schedule",
-      "Exercises",
-      "Exercise 1"
-    ]
-  },
-  {
-    "objectID": "ex/03-ex.html",
-    "href": "ex/03-ex.html",
-    "title": "Exercise 3 – tidymodels",
-    "section": "",
-    "text": "Note: if you are off campus, you will need to use a VPN to connect\nGo to login.deac.wfu.edu\n\n\n\n\nClick File &gt; New Project\n\n\n\n\nClick the third option.\n\n\n\n\nClick the first option\n\n\n\n\nPaste this link in the top box (Repository url):\nhttps://github.com/sta-363-f25/03-ex.git",
-    "crumbs": [
-      "{{< fa calendar >}} Schedule",
-      "Exercises",
-      "Tidymodels"
-    ]
-  },
-  {
-    "objectID": "ex/03-ex.html#set-up",
-    "href": "ex/03-ex.html#set-up",
-    "title": "Exercise 3 – tidymodels",
-    "section": "",
-    "text": "Note: if you are off campus, you will need to use a VPN to connect\nGo to login.deac.wfu.edu\n\n\n\n\nClick File &gt; New Project\n\n\n\n\nClick the third option.\n\n\n\n\nClick the first option\n\n\n\n\nPaste this link in the top box (Repository url):\nhttps://github.com/sta-363-f25/03-ex.git",
-    "crumbs": [
-      "{{< fa calendar >}} Schedule",
-      "Exercises",
-      "Tidymodels"
-    ]
-  },
-  {
-    "objectID": "ex/03-ex.html#part-1",
-    "href": "ex/03-ex.html#part-1",
-    "title": "Exercise 3 – tidymodels",
-    "section": "Part 1",
-    "text": "Part 1\n\nWrite a pipe that creates a model that uses lm() to fit a linear regression using tidymodels. Save it as lm_spec and look at the object. What does it return?",
-    "crumbs": [
-      "{{< fa calendar >}} Schedule",
-      "Exercises",
-      "Tidymodels"
-    ]
-  },
-  {
-    "objectID": "ex/03-ex.html#part-2",
-    "href": "ex/03-ex.html#part-2",
-    "title": "Exercise 3 – tidymodels",
-    "section": "Part 2",
-    "text": "Part 2\n\nFit the model:\n\n\nlibrary(ISLR)\nlm_fit &lt;- fit(lm_spec,\n              mpg ~ horsepower,\n              data = Auto)\nlm_fit\n\nDoes this give the same results as\n\nlm(mpg ~ horsepower, data = Auto)",
-    "crumbs": [
-      "{{< fa calendar >}} Schedule",
-      "Exercises",
-      "Tidymodels"
-    ]
-  },
-  {
-    "objectID": "ex/03-ex.html#part-3",
-    "href": "ex/03-ex.html#part-3",
-    "title": "Exercise 3 – tidymodels",
-    "section": "Part 3",
-    "text": "Part 3\n\nEdit the code below to add the original data to the predicted data.\n\n\nmpg_pred &lt;- lm_fit |&gt; \n  predict(new_data = Auto) |&gt; \n  ---",
-    "crumbs": [
-      "{{< fa calendar >}} Schedule",
-      "Exercises",
-      "Tidymodels"
-    ]
-  },
-  {
-    "objectID": "ex/03-ex.html#part-4",
-    "href": "ex/03-ex.html#part-4",
-    "title": "Exercise 3 – tidymodels",
-    "section": "Part 4",
-    "text": "Part 4\n\nCopy the code below, fill in the blanks to fit a model on the training data then calculate the test RMSE.\n\n\nset.seed(100)\nAuto_split  &lt;- ________\nAuto_train  &lt;- ________\nAuto_test   &lt;- ________\nlm_fit      &lt;- fit(lm_spec, \n                   mpg ~ horsepower, \n                   data = ________)\nmpg_pred  &lt;- ________ |&gt; \n  predict(new_data = ________) |&gt; \n  bind_cols(________)\nrmse(________, truth = ________, estimate = ________)",
-    "crumbs": [
-      "{{< fa calendar >}} Schedule",
-      "Exercises",
-      "Tidymodels"
-    ]
-  },
-  {
-    "objectID": "ex/03-ex.html#part-5",
-    "href": "ex/03-ex.html#part-5",
-    "title": "Exercise 3 – tidymodels",
-    "section": "Part 5",
-    "text": "Part 5\n\nEdit the code below to get the 5-fold cross validation error rate for the following model:\n\n\\(mpg = \\beta_0 + \\beta_1 horsepower + \\beta_2 horsepower^2+ \\epsilon\\)\n\nAuto_cv &lt;- vfold_cv(Auto, v = 5)\n\nresults &lt;- fit_resamples(lm_spec,\n                         ----,\n                         resamples = ---)\n\nresults |&gt;\n  collect_metrics()\n\n\nWhat do you think rsq is?",
-    "crumbs": [
-      "{{< fa calendar >}} Schedule",
-      "Exercises",
-      "Tidymodels"
-    ]
-  },
-  {
-    "objectID": "ex/03-ex.html#part-6",
-    "href": "ex/03-ex.html#part-6",
-    "title": "Exercise 3 – tidymodels",
-    "section": "Part 6",
-    "text": "Part 6\n\nFit 3 models on the data using 5 fold cross validation:\n\\(mpg = \\beta_0 + \\beta_1 horsepower + \\epsilon\\)\n\\(mpg = \\beta_0 + \\beta_1 horsepower + \\beta_2 horsepower^2+ \\epsilon\\)\n\\(mpg = \\beta_0 + \\beta_1 horsepower + \\beta_2 horsepower^2+ \\beta_3 horsepower^3 +\\epsilon\\)\nCollect the metrics from each model, saving the results as results_1, results_2, results_3\nWhich model is “best”?",
-    "crumbs": [
-      "{{< fa calendar >}} Schedule",
-      "Exercises",
-      "Tidymodels"
+      "Creating a Quarto Document"
     ]
   },
   {
@@ -2632,82 +2432,318 @@
     ]
   },
   {
-    "objectID": "help-quarto.html",
-    "href": "help-quarto.html",
-    "title": "Creating a New Quarto Document in RStudio",
+    "objectID": "ex/03-ex.html",
+    "href": "ex/03-ex.html",
+    "title": "Exercise 3 – tidymodels",
     "section": "",
-    "text": "To create a new Quarto document:\n\nBe sure that you are in the correct project for the exercise or assignment. If you need help creating a new project here are some tips.\nIn RStudio, go to the menu bar and select File &gt; New File &gt; Quarto Document.\nEnter a title for your document and select the output format (e.g., HTML, PDF, Word).\nClick Create. A new Quarto file (.qmd) will open.\nSave the file to your project directory\nUse the toolbar or the Render button to build your document.",
+    "text": "Note: if you are off campus, you will need to use a VPN to connect\nGo to login.deac.wfu.edu\n\n\n\n\nClick File &gt; New Project\n\n\n\n\nClick the third option.\n\n\n\n\nClick the first option\n\n\n\n\nPaste this link in the top box (Repository url):\nhttps://github.com/sta-363-f25/03-ex.git",
+    "crumbs": [
+      "{{< fa calendar >}} Schedule",
+      "Exercises",
+      "Tidymodels"
+    ]
+  },
+  {
+    "objectID": "ex/03-ex.html#set-up",
+    "href": "ex/03-ex.html#set-up",
+    "title": "Exercise 3 – tidymodels",
+    "section": "",
+    "text": "Note: if you are off campus, you will need to use a VPN to connect\nGo to login.deac.wfu.edu\n\n\n\n\nClick File &gt; New Project\n\n\n\n\nClick the third option.\n\n\n\n\nClick the first option\n\n\n\n\nPaste this link in the top box (Repository url):\nhttps://github.com/sta-363-f25/03-ex.git",
+    "crumbs": [
+      "{{< fa calendar >}} Schedule",
+      "Exercises",
+      "Tidymodels"
+    ]
+  },
+  {
+    "objectID": "ex/03-ex.html#part-1",
+    "href": "ex/03-ex.html#part-1",
+    "title": "Exercise 3 – tidymodels",
+    "section": "Part 1",
+    "text": "Part 1\n\nWrite a pipe that creates a model that uses lm() to fit a linear regression using tidymodels. Save it as lm_spec and look at the object. What does it return?",
+    "crumbs": [
+      "{{< fa calendar >}} Schedule",
+      "Exercises",
+      "Tidymodels"
+    ]
+  },
+  {
+    "objectID": "ex/03-ex.html#part-2",
+    "href": "ex/03-ex.html#part-2",
+    "title": "Exercise 3 – tidymodels",
+    "section": "Part 2",
+    "text": "Part 2\n\nFit the model:\n\n\nlibrary(ISLR)\nlm_fit &lt;- fit(lm_spec,\n              mpg ~ horsepower,\n              data = Auto)\nlm_fit\n\nDoes this give the same results as\n\nlm(mpg ~ horsepower, data = Auto)",
+    "crumbs": [
+      "{{< fa calendar >}} Schedule",
+      "Exercises",
+      "Tidymodels"
+    ]
+  },
+  {
+    "objectID": "ex/03-ex.html#part-3",
+    "href": "ex/03-ex.html#part-3",
+    "title": "Exercise 3 – tidymodels",
+    "section": "Part 3",
+    "text": "Part 3\n\nEdit the code below to add the original data to the predicted data.\n\n\nmpg_pred &lt;- lm_fit |&gt; \n  predict(new_data = Auto) |&gt; \n  ---",
+    "crumbs": [
+      "{{< fa calendar >}} Schedule",
+      "Exercises",
+      "Tidymodels"
+    ]
+  },
+  {
+    "objectID": "ex/03-ex.html#part-4",
+    "href": "ex/03-ex.html#part-4",
+    "title": "Exercise 3 – tidymodels",
+    "section": "Part 4",
+    "text": "Part 4\n\nCopy the code below, fill in the blanks to fit a model on the training data then calculate the test RMSE.\n\n\nset.seed(100)\nAuto_split  &lt;- ________\nAuto_train  &lt;- ________\nAuto_test   &lt;- ________\nlm_fit      &lt;- fit(lm_spec, \n                   mpg ~ horsepower, \n                   data = ________)\nmpg_pred  &lt;- ________ |&gt; \n  predict(new_data = ________) |&gt; \n  bind_cols(________)\nrmse(________, truth = ________, estimate = ________)",
+    "crumbs": [
+      "{{< fa calendar >}} Schedule",
+      "Exercises",
+      "Tidymodels"
+    ]
+  },
+  {
+    "objectID": "ex/03-ex.html#part-5",
+    "href": "ex/03-ex.html#part-5",
+    "title": "Exercise 3 – tidymodels",
+    "section": "Part 5",
+    "text": "Part 5\n\nEdit the code below to get the 5-fold cross validation error rate for the following model:\n\n\\(mpg = \\beta_0 + \\beta_1 horsepower + \\beta_2 horsepower^2+ \\epsilon\\)\n\nAuto_cv &lt;- vfold_cv(Auto, v = 5)\n\nresults &lt;- fit_resamples(lm_spec,\n                         ----,\n                         resamples = ---)\n\nresults |&gt;\n  collect_metrics()\n\n\nWhat do you think rsq is?",
+    "crumbs": [
+      "{{< fa calendar >}} Schedule",
+      "Exercises",
+      "Tidymodels"
+    ]
+  },
+  {
+    "objectID": "ex/03-ex.html#part-6",
+    "href": "ex/03-ex.html#part-6",
+    "title": "Exercise 3 – tidymodels",
+    "section": "Part 6",
+    "text": "Part 6\n\nFit 3 models on the data using 5 fold cross validation:\n\\(mpg = \\beta_0 + \\beta_1 horsepower + \\epsilon\\)\n\\(mpg = \\beta_0 + \\beta_1 horsepower + \\beta_2 horsepower^2+ \\epsilon\\)\n\\(mpg = \\beta_0 + \\beta_1 horsepower + \\beta_2 horsepower^2+ \\beta_3 horsepower^3 +\\epsilon\\)\nCollect the metrics from each model, saving the results as results_1, results_2, results_3\nWhich model is “best”?",
+    "crumbs": [
+      "{{< fa calendar >}} Schedule",
+      "Exercises",
+      "Tidymodels"
+    ]
+  },
+  {
+    "objectID": "ex/01-ex.html",
+    "href": "ex/01-ex.html",
+    "title": "Exercise 1",
+    "section": "",
+    "text": "Exercise 1: Login to RStudio Pro\n\nGo to course website → Computing → Using the RStudio Server\nFollow login instructions\nLog in with your credentials\n\nCheck: You should see the RStudio interface with 4 panes.\n\n\n\nExercise 2: Create RStudio Project\n\nFile → New Project → New Directory → New Project\nName: ex-1\nClick Create Project\n\nCheck: Project name appears in top-right corner.\n\n\n\nExercise 3: Create Quarto Document\n\nFile → New File → Quarto Document\nTitle: “My First Analysis”\nSave as analysis.qmd\n\nCheck: New .qmd file is open and saved.\n\n\n\nExercise 4: Install ISLR Package and Load Data\nRun this code in the console ONCE:\n\ninstall.packages(\"ISLR\")\n\nThen run this:\n\nlibrary(ISLR)\nlibrary(ggplot2)\n# Test it works\ndata(Auto)\nhead(Auto)\n\n  mpg cylinders displacement horsepower weight acceleration year origin\n1  18         8          307        130   3504         12.0   70      1\n2  15         8          350        165   3693         11.5   70      1\n3  18         8          318        150   3436         11.0   70      1\n4  16         8          304        150   3433         12.0   70      1\n5  17         8          302        140   3449         10.5   70      1\n6  15         8          429        198   4341         10.0   70      1\n                       name\n1 chevrolet chevelle malibu\n2         buick skylark 320\n3        plymouth satellite\n4             amc rebel sst\n5               ford torino\n6          ford galaxie 500\n\n\nCheck: You see the Auto dataset.\nNow run this in the console:\n\n?Auto\n\nQuestion: What is in this dataset?\nAction: Add the code below to your .qmd file along with a short description of the data.\n\nlibrary(ISLR)\nlibrary(ggplot2)\ndata(Auto)\n\n\n\n\nExercise 5: Linear Model and Plot\nAdd the following code to your .qmd file. Try running it.\n\n# Fit linear model\nmodel1 &lt;- lm(mpg ~ horsepower, data = Auto)\nsummary(model1)\n\n\nCall:\nlm(formula = mpg ~ horsepower, data = Auto)\n\nResiduals:\n     Min       1Q   Median       3Q      Max \n-13.5710  -3.2592  -0.3435   2.7630  16.9240 \n\nCoefficients:\n             Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) 39.935861   0.717499   55.66   &lt;2e-16 ***\nhorsepower  -0.157845   0.006446  -24.49   &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 4.906 on 390 degrees of freedom\nMultiple R-squared:  0.6059,    Adjusted R-squared:  0.6049 \nF-statistic: 599.7 on 1 and 390 DF,  p-value: &lt; 2.2e-16\n\n# Create plot\nggplot(Auto, aes(x = horsepower, y = mpg)) +\n  geom_point() +\n  geom_smooth(method = \"lm\", formula = \"y ~ x\") +\n  labs(title = \"Horsepower vs MPG\",\n       x = \"Horsepower\", \n       y = \"Miles per Gallon\")\n\n\n\n\n\n\n\n\nCheck: You have model output and a scatter plot with trend line.\n\n\n\nFinish\nClick “Render” to create your HTML report. Upload your .html file in Canvas under Exercise 1",
+    "crumbs": [
+      "{{< fa calendar >}} Schedule",
+      "Exercises",
+      "Exercise 1"
+    ]
+  },
+  {
+    "objectID": "demo-zipcodes/zipcodes.html",
+    "href": "demo-zipcodes/zipcodes.html",
+    "title": "Predicting handwritten numbers",
+    "section": "",
+    "text": "library(tidyverse)\nlibrary(tidymodels)\nload(\"data/zip.train.Rdata\")\nload(\"data/zip.test.Rdata\")\nThis dataset consists of normalized handwritten digits, automatically scanned from envelopes by the U.S. Postal Service. The ultimate objective is to be able to predict which number is written so that the zip code can be automatically determined. The original scanned digits are binary and of different sizes and orientations; the images here have been deslanted and size normalized, resulting in 16 x 16 grayscale images (Le Cun et al., 1990). This data is obtained from the ElemStatLearn package.\nLet’s see what kind of data this is.\nclass(zip.train)\n\n[1] \"matrix\" \"array\"\nIt looks like this is a matrix. Let’s look at the the first 5 rows and 5 columns.\nzip.train[1:5, 1:5]\n\n     [,1] [,2] [,3] [,4]   [,5]\n[1,]    6   -1   -1   -1 -1.000\n[2,]    5   -1   -1   -1 -0.813\n[3,]    4   -1   -1   -1 -1.000\n[4,]    7   -1   -1   -1 -1.000\n[5,]    3   -1   -1   -1 -1.000\nIt looks like the first column contains the digit and the subsequent columns indicate values for the 256 pixels. Let’s tidy this up a bit.\nzip_train &lt;- zip.train %&gt;%\n  as_tibble(.name_repair = ~ c(\"label\", glue::glue(\"pix_{1:256}\")))\n\nzip_test &lt;- zip.test %&gt;%\n    as_tibble(.name_repair = ~ c(\"label\", glue::glue(\"pix_{1:256}\")))\nLet’s plot a few. This code is adapted from a blog post by David Robinson.\npixels_gathered &lt;- zip_train %&gt;%\n  slice(1:25) %&gt;%\n  mutate(instance = row_number()) %&gt;%\n  gather(pixel, value, -label, -instance) %&gt;%\n  tidyr::extract(pixel, \"pixel\", \"(\\\\d+)\", convert = TRUE) %&gt;%\n  mutate(pixel = pixel - 1,\n         x = pixel %% 16,\n         y = 16 - pixel %/% 16)\n\nggplot(pixels_gathered, aes(x, y, fill = value)) +\n  geom_tile() +\n  facet_wrap(~ instance + label)"
+  },
+  {
+    "objectID": "demo-zipcodes/zipcodes.html#predict-0",
+    "href": "demo-zipcodes/zipcodes.html#predict-0",
+    "title": "Predicting handwritten numbers",
+    "section": "Predict 0",
+    "text": "Predict 0\nWe are interested in creating a prediction model to determine whether the handwritten number is a 0.\n\nFirst we create a recipe\n\nrecip &lt;- zip_train %&gt;% \n    recipe() %&gt;% \n    update_role(starts_with(\"pix\"), new_role = \"predictor\") %&gt;%\n    update_role(label, new_role = \"outcome\") %&gt;%\n    step_mutate(label = as.factor(label == 0)) ## Set the outcome to when the written number is equal to 0\n\n\n\nThen we prep our recipe.\n\nprepped &lt;- recip %&gt;% \n    prep(retain = TRUE)\n\n\n\nThen we create our training data and testing data\n\ntrain &lt;- prepped %&gt;% \n    juice()\n\ntest &lt;- prepped %&gt;% \n    bake(new_data = zip_test)\n\n\n\nNow we specify our model\nWe are fitting a decision tree.\n\ntree_fit &lt;- fit(\n    decision_tree(mode = \"classification\", tree_depth = 3),\n    formula = formula(prepped),\n    data = train,\n    engine = \"rpart\")\n\n\n\nAssess the model\n\nresults &lt;- tibble(\n    truth = test$label,\n    estimate = predict(tree_fit, test) %&gt;% \n      pull(.pred_class)\n  )\n\nmetrics(results, truth = truth, estimate = estimate) %&gt;% \n  knitr::kable()\n\n\n\n\n.metric\n.estimator\n.estimate\n\n\n\n\naccuracy\nbinary\n0.9362232\n\n\nkap\nbinary\n0.7861534\n\n\n\n\n\n\n\nCreate a confusion matrix\nWhat is the false positive rate? What is the false negative rate?\n\nconf_mat(results, truth = truth, estimate = estimate)[[1]] %&gt;% \n  as_tibble() %&gt;% \n  ggplot(aes(Prediction, Truth, alpha = n)) + \n  geom_text(aes(label = n), alpha = 1, size = 10) +\n  labs(title = \"Confusion matrix\")\n\n\n\n\n\n\n\n\n\n\nPlot the tree\nWhich pixels are involved in this prediction?\n\nlibrary(rpart.plot)\nrpart.plot(tree_fit$fit, roundint = FALSE)"
+  },
+  {
+    "objectID": "demo-zipcodes/zipcodes.html#lets-plot-some-zeros-that-we-missed",
+    "href": "demo-zipcodes/zipcodes.html#lets-plot-some-zeros-that-we-missed",
+    "title": "Predicting handwritten numbers",
+    "section": "Let’s plot some zeros that we missed",
+    "text": "Let’s plot some zeros that we missed\n\nzip_test %&gt;%\n  bind_cols(results) %&gt;%\n  filter(truth == \"TRUE\", estimate == \"FALSE\") %&gt;%\n  select(-truth, -estimate) %&gt;%\n  sample_n(25) %&gt;%\n  mutate(instance = row_number()) %&gt;%\n  gather(pixel, value, -label, -instance) %&gt;%\n  tidyr::extract(pixel, \"pixel\", \"(\\\\d+)\", convert = TRUE) %&gt;%\n  mutate(pixel = pixel - 1,\n         x = pixel %% 16,\n         y = 16 - pixel %/% 16) %&gt;%\n  ggplot(aes(x, y, fill = value)) +\n  geom_tile() +\n  facet_wrap(~ instance)"
+  },
+  {
+    "objectID": "demo-zipcodes/zipcodes.html#lets-plot-some-numbers-that-we-misclassified-as-zeros",
+    "href": "demo-zipcodes/zipcodes.html#lets-plot-some-numbers-that-we-misclassified-as-zeros",
+    "title": "Predicting handwritten numbers",
+    "section": "Let’s plot some numbers that we misclassified as zeros",
+    "text": "Let’s plot some numbers that we misclassified as zeros\n\nzip_test %&gt;%\n  bind_cols(results) %&gt;%\n  filter(truth == \"FALSE\", estimate == \"TRUE\") %&gt;%\n  select(-truth, -estimate) %&gt;%\n  sample_n(25) %&gt;%\n  mutate(instance = row_number()) %&gt;%\n  gather(pixel, value, -label, -instance) %&gt;%\n  tidyr::extract(pixel, \"pixel\", \"(\\\\d+)\", convert = TRUE) %&gt;%\n  mutate(pixel = pixel - 1,\n         x = pixel %% 16,\n         y = 16 - pixel %/% 16) %&gt;%\n  ggplot(aes(x, y, fill = value)) +\n  geom_tile() +\n  facet_wrap(~ label + instance)"
+  },
+  {
+    "objectID": "demo-zipcodes/zipcodes.html#references",
+    "href": "demo-zipcodes/zipcodes.html#references",
+    "title": "Predicting handwritten numbers",
+    "section": "References",
+    "text": "References\n\nhttp://varianceexplained.org/r/digit-eda/\nhttps://www.benjaminsorensen.me/post/modeling-with-parsnip-and-tidymodels/"
+  },
+  {
+    "objectID": "ex/02-welcome-penguins.html",
+    "href": "ex/02-welcome-penguins.html",
+    "title": "Welcome Penguins!",
+    "section": "",
+    "text": "Note: if you are off campus, you will need to use a VPN to connect\nGo to login.deac.wfu.edu\n\n\n\n\nClick File &gt; New Project\n\n\n\n\nClick the third option.\n\n\n\n\nClick the first option\n\n\n\n\nPaste this link in the top box (Repository url):\nhttps://github.com/sta-363-f25/appex-01-welcome-penguins.git",
+    "crumbs": [
+      "{{< fa calendar >}} Schedule",
+      "Exercises",
+      "Welcome Penguins"
+    ]
+  },
+  {
+    "objectID": "ex/02-welcome-penguins.html#set-up",
+    "href": "ex/02-welcome-penguins.html#set-up",
+    "title": "Welcome Penguins!",
+    "section": "",
+    "text": "Note: if you are off campus, you will need to use a VPN to connect\nGo to login.deac.wfu.edu\n\n\n\n\nClick File &gt; New Project\n\n\n\n\nClick the third option.\n\n\n\n\nClick the first option\n\n\n\n\nPaste this link in the top box (Repository url):\nhttps://github.com/sta-363-f25/appex-01-welcome-penguins.git",
+    "crumbs": [
+      "{{< fa calendar >}} Schedule",
+      "Exercises",
+      "Welcome Penguins"
+    ]
+  },
+  {
+    "objectID": "ex/02-welcome-penguins.html#your-turn",
+    "href": "ex/02-welcome-penguins.html#your-turn",
+    "title": "Welcome Penguins!",
+    "section": "Your Turn",
+    "text": "Your Turn\n\nOnce you log on to RStudio Pro, create a new project from version control (Git)\nPaste https://github.com/sta-363-f25/appex-01-welcome-penguins.git in the Repository url box\nFind the file pane (on the bottom right). Click the welcome-penguins.qmd file\nClick the “Render” button\nGo back to the file and change your name on top (in the yaml – we’ll talk about what this means later) and render again.\nThen, scroll to the plot chunk, below Palmer Penguins. Instead of looking at the relationship between flipper length and bill length, plot the relationship between flipper length and bill depth. Hint, look at the full dataset at the bottom of the document for variable names, update the captions to match your new plot.\nRender again & voila!",
+    "crumbs": [
+      "{{< fa calendar >}} Schedule",
+      "Exercises",
+      "Welcome Penguins"
+    ]
+  },
+  {
+    "objectID": "ex/04-ex.html",
+    "href": "ex/04-ex.html",
+    "title": "Exercise 4 – Linear Regression in R",
+    "section": "",
+    "text": "Note: if you are off campus, you will need to use a VPN to connect\nGo to rstudio.deac.wfu.edu\n\n\n\n\nClick File &gt; New Project\n\n\n\n\nClick the third option.\n\n\n\n\nClick the first option\n\n\n\n\nPaste this link in the top box (Repository url):\nhttps://github.com/sta-363-f25/04-ex.git",
+    "crumbs": [
+      "{{< fa calendar >}} Schedule",
+      "Exercises",
+      "Linear Regression"
+    ]
+  },
+  {
+    "objectID": "ex/04-ex.html#set-up",
+    "href": "ex/04-ex.html#set-up",
+    "title": "Exercise 4 – Linear Regression in R",
+    "section": "",
+    "text": "Note: if you are off campus, you will need to use a VPN to connect\nGo to rstudio.deac.wfu.edu\n\n\n\n\nClick File &gt; New Project\n\n\n\n\nClick the third option.\n\n\n\n\nClick the first option\n\n\n\n\nPaste this link in the top box (Repository url):\nhttps://github.com/sta-363-f25/04-ex.git",
+    "crumbs": [
+      "{{< fa calendar >}} Schedule",
+      "Exercises",
+      "Linear Regression"
+    ]
+  },
+  {
+    "objectID": "ex/04-ex.html#part-1",
+    "href": "ex/04-ex.html#part-1",
+    "title": "Exercise 4 – Linear Regression in R",
+    "section": "Part 1",
+    "text": "Part 1\n\nRun this code to create a simulated dataset:\n\n\nlibrary(MASS)\nset.seed(1)\n\n# Generate 5 correlated X variables\nSigma &lt;- matrix(0.25, 5, 5)\ndiag(Sigma) &lt;- 1\nX_mat &lt;- mvrnorm(n = 20, mu = rep(0, 5), Sigma = Sigma)\n\n# Generate Y with known relationship + noise\nY &lt;- 2 + 3*X_mat[,1] - 1.5*X_mat[,2] + 0.5*X_mat[,3] + \n    0*X_mat[,4] + 0*X_mat[,5] + rnorm(20, 0, 0.5)\n\n# Create data frame\nsim_data &lt;- tibble(\n  X1 = X_mat[,1], X2 = X_mat[,2], X3 = X_mat[,3], \n  X4 = X_mat[,4], X5 = X_mat[,5], Y = Y\n)\n\n\nFit a linear model predicting Y from all 5 X variables using linear_reg()\n\nMake predictions for new observations where all X variables = 0, 1, and 2\n\nMake predictions for all observations in the training data",
+    "crumbs": [
+      "{{< fa calendar >}} Schedule",
+      "Exercises",
+      "Linear Regression"
+    ]
+  },
+  {
+    "objectID": "ex/04-ex.html#part-2",
+    "href": "ex/04-ex.html#part-2",
+    "title": "Exercise 4 – Linear Regression in R",
+    "section": "Part 2",
+    "text": "Part 2\n\nUsing your simulated data, create the design matrix X (including intercept column)\n\nCalculate the coefficients manually using: solve(crossprod(X)) %*% t(X) %*% y\n\nCompare these coefficients to what you got from linear_reg() |&gt; tidy()\n\nTry changing the noise standard deviation from 0.5 to 2.0 - how do the predictions change for the training data?",
+    "crumbs": [
+      "{{< fa calendar >}} Schedule",
+      "Exercises",
+      "Linear Regression"
+    ]
+  },
+  {
+    "objectID": "ex/04-ex.html#part-3",
+    "href": "ex/04-ex.html#part-3",
+    "title": "Exercise 4 – Linear Regression in R",
+    "section": "Part 3",
+    "text": "Part 3\n\nCreate three simulations with different noise levels: sd = 0.1, 1.0, 3.0\n\nFor each noise level, make predictions for the training dataset\nPlot the predicted values with prediction intervals\n\nHow do prediction intervals change with noise level?",
+    "crumbs": [
+      "{{< fa calendar >}} Schedule",
+      "Exercises",
+      "Linear Regression"
+    ]
+  },
+  {
+    "objectID": "help-project.html",
+    "href": "help-project.html",
+    "title": "Creating or Opening a Project",
+    "section": "",
+    "text": "Before starting an assignment or exercise, always create or open a project:\n\nTo create a new project:\n\nIn RStudio, go to File &gt; New Project.\nChoose whether to create a project in a new directory or within an existing directory.\nNavigate to the folder where you want your project\nClick Create Project.\n\nTo open an existing project:\n\nIn RStudio, go to File &gt; Open Project.\nBrowse to the .Rproj file of the project you want to open.\nSelect it and click Open.\n\n\nThis ensures all your files and settings are organized within the correct project environment.",
     "crumbs": [
       "{{< fa calendar >}} Schedule",
       "Computing",
-      "Creating a Quarto Document"
+      "Creating an RStudio Project"
     ]
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Statistical Learning",
+    "objectID": "help.html",
+    "href": "help.html",
+    "title": "Help",
     "section": "",
-    "text": "Course Info\nLocation: Carswell 208\nTime: Wed/Fri 11a\n\n\n Office Hours\nInstructor: Dr. Lucy D’Agostino McGowan\nEmail: mcgowald@wfu.edu\nOffice Hours: Book Online\nOffice: Manchester 342\nTA: Joe Zhu\nOffice Hours: Monday 3-5PM email to set up\nMath & Stats Center: mathandstatscenter@wfu.edu\nLocation: Math & Stats Center\n\n\n\n\n\n\n\n\nCarswell 208\n\n\n\n\n\n\n\n\nWed/Fri 11a\n\n\n\n\n\nTexts\nThe main text book is: An Introduction to Statistical Learning with Applications in R by Gareth James, Daniela Witten, Trevor Hastie, and Robert Tibshirani – it is freely available online.\n\n\nMaterials\nThis class is very hands on; be sure to bring a fully charged laptop to every class."
+    "text": "Welcome to the help section! This page contains resources to help you succeed in the course, from technical setup to troubleshooting common issues. Click through the sidebar on the left."
   },
   {
-    "objectID": "lab/02-cv.html",
-    "href": "lab/02-cv.html",
-    "title": "Lab 02 - Cross Validation",
+    "objectID": "help.html#getting-started-with-rstudio-and-quarto",
+    "href": "help.html#getting-started-with-rstudio-and-quarto",
+    "title": "Help",
+    "section": "Getting Started with RStudio and Quarto",
+    "text": "Getting Started with RStudio and Quarto\nIf you’re new to using RStudio Pro or working with Quarto documents, check out our getting started guides.\nGetting Started Guide with RStudio Pro →\nGetting Started Guide with Quarto →"
+  },
+  {
+    "objectID": "help.html#quick-links",
+    "href": "help.html#quick-links",
+    "title": "Help",
+    "section": "Quick Links",
+    "text": "Quick Links\n\nRStudio Pro Server: Access your computing environment at login.deac.wfu.edu\nCourse Schedule: Check the schedule for upcoming assignments and due dates"
+  },
+  {
+    "objectID": "help.html#need-additional-help",
+    "href": "help.html#need-additional-help",
+    "title": "Help",
+    "section": "Need Additional Help?",
+    "text": "Need Additional Help?\nIf you can’t find what you’re looking for in our guides, don’t hesitate to reach out."
+  },
+  {
+    "objectID": "lab/01-lab.html",
+    "href": "lab/01-lab.html",
+    "title": "Lab 01 - Hello R!",
     "section": "",
-    "text": "Due: Wednesday 2025-09-24 at 11:59pm",
+    "text": "Due: Friday 2025-09-05 at 11:59pm",
     "crumbs": [
       "{{< fa calendar >}} Schedule",
       "Labs",
-      "Lab 02: Cross Validation"
+      "Lab 01"
     ]
   },
   {
-    "objectID": "lab/02-cv.html#yaml",
-    "href": "lab/02-cv.html#yaml",
-    "title": "Lab 02 - Cross Validation",
+    "objectID": "lab/01-lab.html#yaml",
+    "href": "lab/01-lab.html#yaml",
+    "title": "Lab 01 - Hello R!",
     "section": "YAML:",
-    "text": "YAML:\nOpen the .qmd file in your project, change the author name to your name, and Render the document.",
+    "text": "YAML:\nOpen the Quarto (qmd) file in your project, change the author name to your name, and render the document.",
     "crumbs": [
       "{{< fa calendar >}} Schedule",
       "Labs",
-      "Lab 02: Cross Validation"
+      "Lab 01"
     ]
   },
   {
-    "objectID": "lab/02-cv.html#conceptual-questions",
-    "href": "lab/02-cv.html#conceptual-questions",
-    "title": "Lab 02 - Cross Validation",
-    "section": "Conceptual questions",
-    "text": "Conceptual questions\n\nExplain how k-fold Cross Validation is implemented.\nWhat are the advantages / disadvantages of k-fold Cross Validation compared to the Validation Set approach? What are the advantages / disadvantages of k-fold Cross Validation compared to Leave-one-out Cross Validation?",
+    "objectID": "lab/03-ridge-lasso-elastic.html",
+    "href": "lab/03-ridge-lasso-elastic.html",
+    "title": "Lab 03 - Ridge Lasso Elastic Net",
+    "section": "",
+    "text": "Due: Tuesday 2025-10-08\n\nGetting started\n\nGo to our RStudio Pro workspace and create a new project using my template.\n\nFor this assignment, go to RStudio Pro and click:\nStep 1. File &gt; New Project\nStep 2. “Version Control”\nStep 3. Git\nStep 4. Copy the following into the “Repository URL”:\n\nhttps://github.com/sta-363-f25/lab-03-ridge-lasso-elastic.git\n\nRemember to write out your answers in full sentences, do not just rely on the R output\n\n\nPackages\nIn this lab we will work with two packages: tidyverse which is a collection of packages for doing data analysis in a “tidy” way and tidymodels for statistical modeling.\nIf you’d like to run your code in the Console as well you’ll also need to load the packages there. To do so, run the following in the console.\n\nlibrary(tidyverse) \nlibrary(tidymodels)\n\nNote that the packages are also loaded with the same commands in your R Markdown document.\n\n\nData\nFor this lab, we are using a data frame currently in music.csv. This data frame includes 72 predictors that are components of audio files and one outcome, lat, the latitude of where the music originated. We are trying to predict the location of the music’s origin using audio components of the music.\nThis data frame should be loaded in your RStudio Project when you load your starter files.\n\n\nExercises\n\nSet a seed of 7. Split the music data into a training and test set with 75% of the data in the training and 25% in the testing. Call your training set music_train and your testing set music_test. Describe these data sets (how many observations, how many variables).\n\n\nmusic &lt;- read_csv(\"data/music.csv\")\n\n\nWe are interested in predicting the latitude (lat) of the music’s origin from all other variables. Using the training data only, examine a visualization of the outcome.\nFit a linear model using least squares on the training set. Report the test root mean squared error obtained.\nFit a ridge regression model on the training set with \\(\\lambda\\) chosen using 10-fold cross validation. Report the \\(\\lambda\\) chosen and explain why. Report the estimated test root mean square error from the cross validation and the test root mean squared error obtained using testing portion of the initially split data frame.\nUsing the model chosen above on the training data, which variables were included in the final model?\nFit a lasso model on the training set with \\(\\lambda\\) chosen using cross validation. Report the \\(\\lambda\\) chosen and explain why. Report the estimated test root mean square error from the cross validation and the test root mean squared error obtained using testing portion of the initially split data frame.\nUsing the model chosen above on the training data, which variables were included in the final model?\nFit an elastic net model on the training set with \\(\\lambda\\) and \\(\\alpha\\) chosen using cross validation. Create a Figure with the estimated test root mean squared error on the y-axis and \\(\\lambda\\) on the x-axis with lines colored by the mixture chosen.\nReport the \\(\\lambda\\) that you would choose from the previous exercise and explain why. Report the estimated test root mean square error from the cross validation and the test root mean squared error obtained using testing portion of the initially split data frame.\nUsing the model chosen above on the training data, which variables were included in the final model?\nComment on the results obtained. How well can we predict the latitude of where the music originated? Is there much difference among the test errors resulting from these four approaches?",
     "crumbs": [
       "{{< fa calendar >}} Schedule",
       "Labs",
-      "Lab 02: Cross Validation"
-    ]
-  },
-  {
-    "objectID": "lab/02-cv.html#data-exploration",
-    "href": "lab/02-cv.html#data-exploration",
-    "title": "Lab 02 - Cross Validation",
-    "section": "Data exploration",
-    "text": "Data exploration\n\nFor this analysis, we are using the Auto dataset from the ISLR package. How many rows are in this dataset? How many columns? Is there any missing data?\nOur outcome of interest is miles per gallon: mpg. Create a publication-ready figure examining the distribution of this variable. For full credit, be sure your figure has correct labels and titles.\nOur main predictor of interest is horsepower. Create a publication-ready figure looking at the relationship between miles per gallon and horsepower.",
-    "crumbs": [
-      "{{< fa calendar >}} Schedule",
-      "Labs",
-      "Lab 02: Cross Validation"
-    ]
-  },
-  {
-    "objectID": "lab/02-cv.html#k-fold-cross-validation",
-    "href": "lab/02-cv.html#k-fold-cross-validation",
-    "title": "Lab 02 - Cross Validation",
-    "section": "K-fold cross validation",
-    "text": "K-fold cross validation\nWe are trying to decide between three models of varying flexibility:\n\nModel 1: \\(\\texttt{mpg} = \\beta_0 + \\beta_1 \\texttt{horsepower} + \\epsilon\\)\nModel 2: \\(\\texttt{mpg} = \\beta_0 + \\beta_1 \\texttt{horsepower} + \\beta_2 \\texttt{horsepower}^2 + \\epsilon\\)\nModel 3: \\(\\texttt{mpg} = \\beta_0 + \\beta_1 \\texttt{horsepower} + \\beta_2 \\texttt{horsepower}^2 + \\beta_3 \\texttt{horsepower}^3 + \\epsilon\\)\n\n\nUsing the Auto data, split the data into two groups a training data set, saved as Auto_train and a testing data set, saved as Auto_test. Be sure to set a seed to ensure that you get the same result each time you Render your document.\n\n\n\nYou can use the poly() function to fit a model with a polynomial term. For example, to fit the model \\(y = \\beta_0 + \\beta_1 \\texttt{x} + \\beta_2 \\texttt{x}^2 + \\beta_3 \\texttt{x}^3 + \\epsilon\\), you would run fit(lm_spec, y ~ poly(x, 3), data = data)\n\nFit the three models outlined above on the training data. Using the model created on the training data, predict mpg in the test data set for each model. What is the test RMSE for the three models? Which model would you choose?\nFit the same three models, but instead of the validation set approach, perform 5-fold cross validation. Make sure to set a seed so you get the same answer each time you run the analysis. Calculate the overall 5-fold cross validation error for each of the three models. Which model would you chose?\nThe tidymodels package allows you to do this faster! Instead of having a fit 3 (or more!) different models to determine the best flexibility, you can (1) create a recipe to specify how you would like to fit a model and then (2) tune this model to determine the best output. Copy the code below. What do you think the line step_poly(horsepower, degree = tune()) does? Hint: you can run ?step_poly in the Console to learn more about this function.\n\n\nauto_prep &lt;- Auto |&gt;\n  recipe(mpg ~ horsepower) |&gt;\n  step_poly(horsepower, degree = tune())\n\n\nTo tune this model, you will replace fit_resamples with tune_grid. The pseudo code to do this is below - you may need to update some names to match what you have named objects in your document. Add the code to tune your model based on the code below.\n\n\nauto_tune &lt;- tune_grid(lm_spec,\n          auto_prep,\n          resamples = auto_cv)\n\n\nUsing the collect_metrics function, look at the RMSE for auto_tune. Which degree is preferable?\nYou can plot the output from Exercise 11 to make it a bit easier to determine. First, save your output from Exercise 11 as auto_metrics. Then filter this data frame to only include rows where .metric == \"rmse\". Save this filtered data frame as auto_rmse. Edit the code below to plot the degree on the x-axis and mean on the y-axis. Describe what this plot shows.\n\n\nggplot(auto_rmse, aes(x = ----, y = ----)) + \n  geom_line() +\n  geom_pointrange(aes(ymin = mean - std_err, ymax = mean + std_err)) + \n  labs(x = \"Degree\",\n       y = \"Cross validation error\",\n       title = ---)",
-    "crumbs": [
-      "{{< fa calendar >}} Schedule",
-      "Labs",
-      "Lab 02: Cross Validation"
+      "Lab 03: Ridge, Lasso, and Elastic Net"
     ]
   },
   {
