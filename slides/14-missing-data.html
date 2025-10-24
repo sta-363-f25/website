@@ -548,22 +548,13 @@ Lucy D’Agostino McGowan
 <h2>Congenial Imputation: Best Practices</h2>
 <p><strong>Your imputation model should include:</strong></p>
 <ol type="1">
-<li>All variables in your analysis model (predictors + outcome)</li>
+<li>All variables in your analysis model (predictors)</li>
 <li>Additional auxiliary variables that might help predict missingness</li>
 <li>Variables related to the missing data mechanism</li>
 </ol>
-<p><strong>Example</strong>: If analyzing <code>lowbirthweight ~ fage + mage + habit</code>, impute <code>fage</code> using:</p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="fu">recipe</span>(lowbirthweight <span class="sc">~</span> fage <span class="sc">+</span> mage <span class="sc">+</span> habit, <span class="at">data =</span> nc) <span class="sc">|&gt;</span></span>
-<span id="cb13-2"><a></a>  <span class="fu">step_impute_knn</span>(fage, </span>
-<span id="cb13-3"><a></a>                  <span class="at">impute_with =</span> <span class="fu">imp_vars</span>(mage, habit, lowbirthweight))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="small">
-<p>Note: We include the <strong>outcome</strong> (<code>lowbirthweight</code>) in the imputation model!</p>
-</div>
 </section>
-<section id="why-include-the-outcome-in-imputation" class="slide level2 small">
-<h2>Why Include the Outcome in Imputation?</h2>
+<section id="why-include-the-outcome-in-stochastic-imputation" class="slide level2 small">
+<h2>Why Include the Outcome in Stochastic Imputation?</h2>
 <p>This might seem counterintuitive, but you should include Y when imputing X:</p>
 <ul>
 <li>The relationship between X and Y should be preserved in imputed values</li>
@@ -571,24 +562,6 @@ Lucy D’Agostino McGowan
 <li>This is called “uncongenial imputation” and leads to bias</li>
 </ul>
 <p><strong>Rule of thumb</strong>: Your imputation model should be <em>more</em> inclusive than your analysis model, never less.</p>
-</section>
-<section id="practical-implementation" class="slide level2 small">
-<h2>Practical Implementation</h2>
-<p><strong>Good approach</strong> (congenial):</p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="co"># Analysis model: Y ~ X1 + X2</span></span>
-<span id="cb14-2"><a></a><span class="fu">recipe</span>(lowbirthweight <span class="sc">~</span> fage <span class="sc">+</span> mage, <span class="at">data =</span> nc) <span class="sc">|&gt;</span></span>
-<span id="cb14-3"><a></a>  <span class="fu">step_impute_knn</span>(fage, </span>
-<span id="cb14-4"><a></a>                  <span class="at">impute_with =</span> <span class="fu">imp_vars</span>(mage, lowbirthweight, </span>
-<span id="cb14-5"><a></a>                                        habit, visits)) <span class="co"># extra variables OK!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><strong>Bad approach</strong> (uncongenial):</p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a><span class="co"># Analysis model: Y ~ X1 + X2</span></span>
-<span id="cb15-2"><a></a><span class="fu">recipe</span>(lowbirthweight <span class="sc">~</span> fage <span class="sc">+</span> mage, <span class="at">data =</span> nc) <span class="sc">|&gt;</span></span>
-<span id="cb15-3"><a></a>  <span class="fu">step_impute_knn</span>(fage, </span>
-<span id="cb15-4"><a></a>                  <span class="at">impute_with =</span> <span class="fu">imp_vars</span>(visits)) <span class="co"># missing mage and Y!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </section></section>
 <section>
 <section id="imputation" class="title-slide slide level1 center">
@@ -665,32 +638,32 @@ Lucy D’Agostino McGowan
 <section id="technique-1-unconditional-mean-imputation-2" class="slide level2 small">
 <h2>Technique 1: Unconditional Mean Imputation</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a>recipe_nc <span class="ot">&lt;-</span> <span class="fu">recipe</span>(lowbirthweight <span class="sc">~</span> ., <span class="at">data =</span> nc) <span class="sc">|&gt;</span></span>
-<span id="cb17-2"><a></a>  <span class="fu">step_impute_mean</span>(fage)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a>recipe_nc <span class="ot">&lt;-</span> <span class="fu">recipe</span>(lowbirthweight <span class="sc">~</span> ., <span class="at">data =</span> nc) <span class="sc">|&gt;</span></span>
+<span id="cb14-2"><a></a>  <span class="fu">step_impute_mean</span>(fage)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="technique-1-unconditional-mean-imputation-3" class="slide level2 small">
 <h2>Technique 1: Unconditional Mean Imputation</h2>
 <p><em>Behind the scenes (in practice you don’t need the code below, just showing what the recipe is doing)</em></p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a>nc <span class="sc">|&gt;</span></span>
-<span id="cb18-2"><a></a>  <span class="fu">summarise</span>(<span class="at">mean_fage =</span> <span class="fu">mean</span>(fage, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a>nc <span class="sc">|&gt;</span></span>
+<span id="cb15-2"><a></a>  <span class="fu">summarise</span>(<span class="at">mean_fage =</span> <span class="fu">mean</span>(fage, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 1
   mean_fage
       &lt;dbl&gt;
 1      30.3</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a>nc_mean_impute <span class="ot">&lt;-</span> nc <span class="sc">|&gt;</span></span>
-<span id="cb20-2"><a></a>  <span class="fu">mutate</span>(</span>
-<span id="cb20-3"><a></a>    <span class="at">imputed =</span> <span class="fu">is.na</span>(fage),</span>
-<span id="cb20-4"><a></a>    <span class="at">fage =</span> <span class="fu">case_when</span>(</span>
-<span id="cb20-5"><a></a>    imputed <span class="sc">~</span> <span class="fl">30.25573</span>,</span>
-<span id="cb20-6"><a></a>    <span class="cn">TRUE</span> <span class="sc">~</span> <span class="fu">as.numeric</span>(fage)</span>
-<span id="cb20-7"><a></a>  ))</span>
-<span id="cb20-8"><a></a></span>
-<span id="cb20-9"><a></a>nc_mean_impute <span class="sc">%&gt;%</span></span>
-<span id="cb20-10"><a></a>  <span class="fu">slice</span>(<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a>nc_mean_impute <span class="ot">&lt;-</span> nc <span class="sc">|&gt;</span></span>
+<span id="cb17-2"><a></a>  <span class="fu">mutate</span>(</span>
+<span id="cb17-3"><a></a>    <span class="at">imputed =</span> <span class="fu">is.na</span>(fage),</span>
+<span id="cb17-4"><a></a>    <span class="at">fage =</span> <span class="fu">case_when</span>(</span>
+<span id="cb17-5"><a></a>    imputed <span class="sc">~</span> <span class="fl">30.25573</span>,</span>
+<span id="cb17-6"><a></a>    <span class="cn">TRUE</span> <span class="sc">~</span> <span class="fu">as.numeric</span>(fage)</span>
+<span id="cb17-7"><a></a>  ))</span>
+<span id="cb17-8"><a></a></span>
+<span id="cb17-9"><a></a>nc_mean_impute <span class="sc">%&gt;%</span></span>
+<span id="cb17-10"><a></a>  <span class="fu">slice</span>(<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 14
    fage  mage mature    weeks premie visits marital gained weight lowbirthweight
@@ -712,24 +685,24 @@ Lucy D’Agostino McGowan
 <section id="checking-our-imputations-1" class="slide level2 small">
 <h2>Checking our imputations</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a><span class="do">## Imputed data</span></span>
-<span id="cb22-2"><a></a>nc_mean_imputation <span class="ot">&lt;-</span> <span class="fu">prep</span>(recipe_nc) <span class="sc">|&gt;</span></span>
-<span id="cb22-3"><a></a>  <span class="fu">bake</span>(<span class="at">new_data =</span> nc)</span>
-<span id="cb22-4"><a></a></span>
-<span id="cb22-5"><a></a>nc_mean_imputation <span class="sc">|&gt;</span></span>
-<span id="cb22-6"><a></a>  <span class="fu">summarise</span>(<span class="at">mean_fage =</span> <span class="fu">mean</span>(fage),</span>
-<span id="cb22-7"><a></a>            <span class="at">sd_fage =</span> <span class="fu">sd</span>(fage))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a><span class="do">## Imputed data</span></span>
+<span id="cb19-2"><a></a>nc_mean_imputation <span class="ot">&lt;-</span> <span class="fu">prep</span>(recipe_nc) <span class="sc">|&gt;</span></span>
+<span id="cb19-3"><a></a>  <span class="fu">bake</span>(<span class="at">new_data =</span> nc)</span>
+<span id="cb19-4"><a></a></span>
+<span id="cb19-5"><a></a>nc_mean_imputation <span class="sc">|&gt;</span></span>
+<span id="cb19-6"><a></a>  <span class="fu">summarise</span>(<span class="at">mean_fage =</span> <span class="fu">mean</span>(fage),</span>
+<span id="cb19-7"><a></a>            <span class="at">sd_fage =</span> <span class="fu">sd</span>(fage))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 2
   mean_fage sd_fage
       &lt;dbl&gt;   &lt;dbl&gt;
 1      30.2    6.16</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a><span class="do">## Complete case data</span></span>
-<span id="cb24-2"><a></a>nc <span class="sc">|&gt;</span></span>
-<span id="cb24-3"><a></a>  <span class="fu">drop_na</span>(fage) <span class="sc">|&gt;</span></span>
-<span id="cb24-4"><a></a>  <span class="fu">summarise</span>(<span class="at">mean_fage =</span> <span class="fu">mean</span>(fage),</span>
-<span id="cb24-5"><a></a>            <span class="at">sd_fage =</span> <span class="fu">sd</span>(fage))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a><span class="do">## Complete case data</span></span>
+<span id="cb21-2"><a></a>nc <span class="sc">|&gt;</span></span>
+<span id="cb21-3"><a></a>  <span class="fu">drop_na</span>(fage) <span class="sc">|&gt;</span></span>
+<span id="cb21-4"><a></a>  <span class="fu">summarise</span>(<span class="at">mean_fage =</span> <span class="fu">mean</span>(fage),</span>
+<span id="cb21-5"><a></a>            <span class="at">sd_fage =</span> <span class="fu">sd</span>(fage))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 2
   mean_fage sd_fage
@@ -762,7 +735,7 @@ Lucy D’Agostino McGowan
 <section id="considerations-unconditional-mean-imputation-1" class="slide level2 small">
 <h2>Considerations: Unconditional Mean Imputation</h2>
 
-<img data-src="14-missing-data_files/figure-revealjs/unnamed-chunk-17-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"></section>
+<img data-src="14-missing-data_files/figure-revealjs/unnamed-chunk-14-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"></section>
 <section id="disadvantages-unconditional-mean-imputation" class="slide level2 small">
 <h2>Disadvantages: Unconditional Mean Imputation</h2>
 <ul>
@@ -801,29 +774,29 @@ Lucy D’Agostino McGowan
 <section id="conditional-mean-imputation-2" class="slide level2">
 <h2>Conditional Mean Imputation</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a></a>recipe_nc <span class="ot">&lt;-</span> <span class="fu">recipe</span>(lowbirthweight <span class="sc">~</span> ., <span class="at">data =</span> nc) <span class="sc">|&gt;</span></span>
-<span id="cb26-2"><a></a>  <span class="fu">step_impute_linear</span>(fage, <span class="at">impute_with =</span> <span class="fu">imp_vars</span>(mage))</span>
-<span id="cb26-3"><a></a></span>
-<span id="cb26-4"><a></a>recipe_nc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a>recipe_nc <span class="ot">&lt;-</span> <span class="fu">recipe</span>(lowbirthweight <span class="sc">~</span> ., <span class="at">data =</span> nc) <span class="sc">|&gt;</span></span>
+<span id="cb23-2"><a></a>  <span class="fu">step_impute_linear</span>(fage, <span class="at">impute_with =</span> <span class="fu">imp_vars</span>(mage))</span>
+<span id="cb23-3"><a></a></span>
+<span id="cb23-4"><a></a>recipe_nc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="conditional-mean-imputation-3" class="slide level2 small">
 <h2>Conditional Mean Imputation</h2>
 <p><em>Behind the scenes (in practice you don’t need the code below, just showing what the recipe is doing)</em></p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a>nc_cmean_impute <span class="ot">&lt;-</span> <span class="fu">fit</span>(<span class="fu">linear_reg</span>(), </span>
-<span id="cb27-2"><a></a>  fage <span class="sc">~</span> mage, </span>
-<span id="cb27-3"><a></a>  <span class="at">data =</span> nc) <span class="sc">|&gt;</span></span>
-<span id="cb27-4"><a></a>  <span class="fu">predict</span>(<span class="at">new_data =</span> nc) <span class="sc">|&gt;</span></span>
-<span id="cb27-5"><a></a>  <span class="fu">bind_cols</span>(nc) <span class="sc">|&gt;</span></span>
-<span id="cb27-6"><a></a>  <span class="fu">mutate</span>(</span>
-<span id="cb27-7"><a></a>    <span class="at">imputed =</span> <span class="fu">is.na</span>(fage),</span>
-<span id="cb27-8"><a></a>    <span class="at">fage =</span> <span class="fu">case_when</span>(</span>
-<span id="cb27-9"><a></a>    imputed <span class="sc">~</span> .pred,</span>
-<span id="cb27-10"><a></a>    <span class="cn">TRUE</span> <span class="sc">~</span> <span class="fu">as.numeric</span>(fage)</span>
-<span id="cb27-11"><a></a>  ))</span>
-<span id="cb27-12"><a></a></span>
-<span id="cb27-13"><a></a>nc_cmean_impute</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a>nc_cmean_impute <span class="ot">&lt;-</span> <span class="fu">fit</span>(<span class="fu">linear_reg</span>(), </span>
+<span id="cb24-2"><a></a>  fage <span class="sc">~</span> mage, </span>
+<span id="cb24-3"><a></a>  <span class="at">data =</span> nc) <span class="sc">|&gt;</span></span>
+<span id="cb24-4"><a></a>  <span class="fu">predict</span>(<span class="at">new_data =</span> nc) <span class="sc">|&gt;</span></span>
+<span id="cb24-5"><a></a>  <span class="fu">bind_cols</span>(nc) <span class="sc">|&gt;</span></span>
+<span id="cb24-6"><a></a>  <span class="fu">mutate</span>(</span>
+<span id="cb24-7"><a></a>    <span class="at">imputed =</span> <span class="fu">is.na</span>(fage),</span>
+<span id="cb24-8"><a></a>    <span class="at">fage =</span> <span class="fu">case_when</span>(</span>
+<span id="cb24-9"><a></a>    imputed <span class="sc">~</span> .pred,</span>
+<span id="cb24-10"><a></a>    <span class="cn">TRUE</span> <span class="sc">~</span> <span class="fu">as.numeric</span>(fage)</span>
+<span id="cb24-11"><a></a>  ))</span>
+<span id="cb24-12"><a></a></span>
+<span id="cb24-13"><a></a>nc_cmean_impute</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1,000 × 15
    .pred  fage  mage mature      weeks premie    visits marital gained weight
@@ -847,26 +820,26 @@ Lucy D’Agostino McGowan
 <section id="conditional-mean-imputation-4" class="slide level2 small">
 <h2>Conditional Mean Imputation</h2>
 
-<img data-src="14-missing-data_files/figure-revealjs/unnamed-chunk-20-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"></section>
+<img data-src="14-missing-data_files/figure-revealjs/unnamed-chunk-17-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"></section>
 <section id="summary-statistics" class="slide level2 small">
 <h2>Summary statistics</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a></a>nc_cmean_imputation <span class="ot">&lt;-</span> <span class="fu">prep</span>(recipe_nc) <span class="sc">|&gt;</span></span>
-<span id="cb29-2"><a></a>  <span class="fu">bake</span>(<span class="at">new_data =</span> nc)</span>
-<span id="cb29-3"><a></a></span>
-<span id="cb29-4"><a></a>nc_cmean_imputation <span class="sc">|&gt;</span></span>
-<span id="cb29-5"><a></a>  <span class="fu">summarise</span>(<span class="at">mean_fage =</span> <span class="fu">mean</span>(fage),</span>
-<span id="cb29-6"><a></a>            <span class="at">sd_fage =</span> <span class="fu">sd</span>(fage))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a></a>nc_cmean_imputation <span class="ot">&lt;-</span> <span class="fu">prep</span>(recipe_nc) <span class="sc">|&gt;</span></span>
+<span id="cb26-2"><a></a>  <span class="fu">bake</span>(<span class="at">new_data =</span> nc)</span>
+<span id="cb26-3"><a></a></span>
+<span id="cb26-4"><a></a>nc_cmean_imputation <span class="sc">|&gt;</span></span>
+<span id="cb26-5"><a></a>  <span class="fu">summarise</span>(<span class="at">mean_fage =</span> <span class="fu">mean</span>(fage),</span>
+<span id="cb26-6"><a></a>            <span class="at">sd_fage =</span> <span class="fu">sd</span>(fage))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 2
   mean_fage sd_fage
       &lt;dbl&gt;   &lt;dbl&gt;
 1      29.7    6.57</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a></a>nc <span class="sc">|&gt;</span></span>
-<span id="cb31-2"><a></a>  <span class="fu">drop_na</span>(fage, mage) <span class="sc">|&gt;</span></span>
-<span id="cb31-3"><a></a>  <span class="fu">summarise</span>(<span class="at">mean_fage =</span> <span class="fu">mean</span>(fage),</span>
-<span id="cb31-4"><a></a>            <span class="at">sd_fage =</span> <span class="fu">sd</span>(fage))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a></a>nc <span class="sc">|&gt;</span></span>
+<span id="cb28-2"><a></a>  <span class="fu">drop_na</span>(fage, mage) <span class="sc">|&gt;</span></span>
+<span id="cb28-3"><a></a>  <span class="fu">summarise</span>(<span class="at">mean_fage =</span> <span class="fu">mean</span>(fage),</span>
+<span id="cb28-4"><a></a>            <span class="at">sd_fage =</span> <span class="fu">sd</span>(fage))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 2
   mean_fage sd_fage
@@ -887,17 +860,17 @@ Lucy D’Agostino McGowan
 <li>What if we think <code>fage</code> is actually conditional on more than just <code>mage</code>?</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a></a>recipe_nc <span class="ot">&lt;-</span> <span class="fu">recipe</span>(lowbirthweight <span class="sc">~</span> ., <span class="at">data =</span> nc) <span class="sc">|&gt;</span></span>
-<span id="cb33-2"><a></a>  <span class="fu">step_impute_mode</span>(marital) <span class="sc">|&gt;</span></span>
-<span id="cb33-3"><a></a>  <span class="fu">step_impute_linear</span>(fage, <span class="at">impute_with =</span> <span class="fu">imp_vars</span>(mage, marital))</span>
-<span id="cb33-4"><a></a></span>
-<span id="cb33-5"><a></a>recipe_nc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a></a>recipe_nc <span class="ot">&lt;-</span> <span class="fu">recipe</span>(lowbirthweight <span class="sc">~</span> ., <span class="at">data =</span> nc) <span class="sc">|&gt;</span></span>
+<span id="cb30-2"><a></a>  <span class="fu">step_impute_mode</span>(marital) <span class="sc">|&gt;</span></span>
+<span id="cb30-3"><a></a>  <span class="fu">step_impute_linear</span>(fage, <span class="at">impute_with =</span> <span class="fu">imp_vars</span>(mage, marital))</span>
+<span id="cb30-4"><a></a></span>
+<span id="cb30-5"><a></a>recipe_nc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="conditional-mean-imputation-5" class="slide level2 small">
 <h2>Conditional Mean Imputation</h2>
 
-<img data-src="14-missing-data_files/figure-revealjs/unnamed-chunk-23-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"></section>
+<img data-src="14-missing-data_files/figure-revealjs/unnamed-chunk-20-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"></section>
 <section id="conditional-mean-imputation-6" class="slide level2 small">
 <h2>Conditional Mean Imputation</h2>
 <ul>
@@ -909,14 +882,14 @@ Lucy D’Agostino McGowan
 <section id="conditional-mean-imputation-7" class="slide level2 small">
 <h2>Conditional Mean Imputation</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a></a>recipe_nc <span class="ot">&lt;-</span> <span class="fu">recipe</span>(lowbirthweight <span class="sc">~</span> ., <span class="at">data =</span> nc) <span class="sc">|&gt;</span></span>
-<span id="cb34-2"><a></a>  <span class="fu">step_impute_linear</span>(fage, <span class="at">impute_with =</span> <span class="fu">imp_vars</span>(<span class="fu">all_predictors</span>()))</span>
-<span id="cb34-3"><a></a></span>
-<span id="cb34-4"><a></a>wf <span class="ot">&lt;-</span> <span class="fu">workflow</span>() <span class="sc">|&gt;</span></span>
-<span id="cb34-5"><a></a><span class="fu">add_recipe</span>(recipe_nc) <span class="sc">|&gt;</span></span>
-<span id="cb34-6"><a></a>  <span class="fu">add_model</span>(<span class="fu">logistic_reg</span>())</span>
-<span id="cb34-7"><a></a></span>
-<span id="cb34-8"><a></a><span class="fu">fit</span>(wf, <span class="at">data =</span> nc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a></a>recipe_nc <span class="ot">&lt;-</span> <span class="fu">recipe</span>(lowbirthweight <span class="sc">~</span> ., <span class="at">data =</span> nc) <span class="sc">|&gt;</span></span>
+<span id="cb31-2"><a></a>  <span class="fu">step_impute_linear</span>(fage, <span class="at">impute_with =</span> <span class="fu">imp_vars</span>(<span class="fu">all_predictors</span>()))</span>
+<span id="cb31-3"><a></a></span>
+<span id="cb31-4"><a></a>wf <span class="ot">&lt;-</span> <span class="fu">workflow</span>() <span class="sc">|&gt;</span></span>
+<span id="cb31-5"><a></a><span class="fu">add_recipe</span>(recipe_nc) <span class="sc">|&gt;</span></span>
+<span id="cb31-6"><a></a>  <span class="fu">add_model</span>(<span class="fu">logistic_reg</span>())</span>
+<span id="cb31-7"><a></a></span>
+<span id="cb31-8"><a></a><span class="fu">fit</span>(wf, <span class="at">data =</span> nc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: There were missing values in the predictor(s) used to impute; imputation did
 not occur.</code></pre>
@@ -990,37 +963,37 @@ Residual Deviance: 7.287e-07    AIC: 26</code></pre>
 <section id="conditional-imputation-knn-1" class="slide level2 small">
 <h2>Conditional Imputation: KNN</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a></a>recipe_nc <span class="ot">&lt;-</span> <span class="fu">recipe</span>(lowbirthweight <span class="sc">~</span> ., <span class="at">data =</span> nc) <span class="sc">|&gt;</span></span>
-<span id="cb39-2"><a></a>  <span class="fu">step_impute_knn</span>(fage, <span class="at">impute_with =</span> <span class="fu">imp_vars</span>(<span class="fu">all_predictors</span>()))</span>
-<span id="cb39-3"><a></a></span>
-<span id="cb39-4"><a></a><span class="do">## these are the same</span></span>
-<span id="cb39-5"><a></a>recipe_nc <span class="ot">&lt;-</span> <span class="fu">recipe</span>(lowbirthweight <span class="sc">~</span> ., <span class="at">data =</span> nc) <span class="sc">|&gt;</span></span>
-<span id="cb39-6"><a></a>  <span class="fu">step_impute_knn</span>(fage)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a></a>recipe_nc <span class="ot">&lt;-</span> <span class="fu">recipe</span>(lowbirthweight <span class="sc">~</span> ., <span class="at">data =</span> nc) <span class="sc">|&gt;</span></span>
+<span id="cb36-2"><a></a>  <span class="fu">step_impute_knn</span>(fage, <span class="at">impute_with =</span> <span class="fu">imp_vars</span>(<span class="fu">all_predictors</span>()))</span>
+<span id="cb36-3"><a></a></span>
+<span id="cb36-4"><a></a><span class="do">## these are the same</span></span>
+<span id="cb36-5"><a></a>recipe_nc <span class="ot">&lt;-</span> <span class="fu">recipe</span>(lowbirthweight <span class="sc">~</span> ., <span class="at">data =</span> nc) <span class="sc">|&gt;</span></span>
+<span id="cb36-6"><a></a>  <span class="fu">step_impute_knn</span>(fage)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="conditional-imputation-knn-2" class="slide level2">
 <h2>Conditional Imputation: KNN</h2>
 
-<img data-src="14-missing-data_files/figure-revealjs/unnamed-chunk-26-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"></section>
+<img data-src="14-missing-data_files/figure-revealjs/unnamed-chunk-23-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"></section>
 <section id="checking-summary-statistics" class="slide level2">
 <h2>Checking summary statistics</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a></a>nc_knn_impute <span class="ot">&lt;-</span> <span class="fu">prep</span>(recipe_nc) <span class="sc">|&gt;</span></span>
-<span id="cb40-2"><a></a>  <span class="fu">bake</span>(<span class="at">new_data =</span> nc)</span>
-<span id="cb40-3"><a></a></span>
-<span id="cb40-4"><a></a>nc_knn_impute<span class="sc">|&gt;</span></span>
-<span id="cb40-5"><a></a>  <span class="fu">summarise</span>(<span class="at">mean_fage =</span> <span class="fu">mean</span>(fage),</span>
-<span id="cb40-6"><a></a>            <span class="at">sd_fage =</span> <span class="fu">sd</span>(fage))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a></a>nc_knn_impute <span class="ot">&lt;-</span> <span class="fu">prep</span>(recipe_nc) <span class="sc">|&gt;</span></span>
+<span id="cb37-2"><a></a>  <span class="fu">bake</span>(<span class="at">new_data =</span> nc)</span>
+<span id="cb37-3"><a></a></span>
+<span id="cb37-4"><a></a>nc_knn_impute<span class="sc">|&gt;</span></span>
+<span id="cb37-5"><a></a>  <span class="fu">summarise</span>(<span class="at">mean_fage =</span> <span class="fu">mean</span>(fage),</span>
+<span id="cb37-6"><a></a>            <span class="at">sd_fage =</span> <span class="fu">sd</span>(fage))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 2
   mean_fage sd_fage
       &lt;dbl&gt;   &lt;dbl&gt;
 1      29.6    6.60</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a></a>nc <span class="sc">|&gt;</span></span>
-<span id="cb42-2"><a></a>  <span class="fu">drop_na</span>(fage) <span class="sc">|&gt;</span></span>
-<span id="cb42-3"><a></a>  <span class="fu">summarise</span>(<span class="at">mean_fage =</span> <span class="fu">mean</span>(fage),</span>
-<span id="cb42-4"><a></a>            <span class="at">sd_fage =</span> <span class="fu">sd</span>(fage))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a></a>nc <span class="sc">|&gt;</span></span>
+<span id="cb39-2"><a></a>  <span class="fu">drop_na</span>(fage) <span class="sc">|&gt;</span></span>
+<span id="cb39-3"><a></a>  <span class="fu">summarise</span>(<span class="at">mean_fage =</span> <span class="fu">mean</span>(fage),</span>
+<span id="cb39-4"><a></a>            <span class="at">sd_fage =</span> <span class="fu">sd</span>(fage))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 2
   mean_fage sd_fage

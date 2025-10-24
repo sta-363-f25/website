@@ -4468,21 +4468,14 @@
     "href": "slides/14-missing-data.html#congenial-imputation-best-practices",
     "title": "Missing Data",
     "section": "Congenial Imputation: Best Practices",
-    "text": "Congenial Imputation: Best Practices\nYour imputation model should include:\n\nAll variables in your analysis model (predictors + outcome)\nAdditional auxiliary variables that might help predict missingness\nVariables related to the missing data mechanism\n\nExample: If analyzing lowbirthweight ~ fage + mage + habit, impute fage using:\n\nrecipe(lowbirthweight ~ fage + mage + habit, data = nc) |&gt;\n  step_impute_knn(fage, \n                  impute_with = imp_vars(mage, habit, lowbirthweight))\n\n\nNote: We include the outcome (lowbirthweight) in the imputation model!"
+    "text": "Congenial Imputation: Best Practices\nYour imputation model should include:\n\nAll variables in your analysis model (predictors)\nAdditional auxiliary variables that might help predict missingness\nVariables related to the missing data mechanism"
   },
   {
-    "objectID": "slides/14-missing-data.html#why-include-the-outcome-in-imputation",
-    "href": "slides/14-missing-data.html#why-include-the-outcome-in-imputation",
+    "objectID": "slides/14-missing-data.html#why-include-the-outcome-in-stochastic-imputation",
+    "href": "slides/14-missing-data.html#why-include-the-outcome-in-stochastic-imputation",
     "title": "Missing Data",
-    "section": "Why Include the Outcome in Imputation?",
-    "text": "Why Include the Outcome in Imputation?\nThis might seem counterintuitive, but you should include Y when imputing X:\n\nThe relationship between X and Y should be preserved in imputed values\nLeaving out Y can attenuate (weaken) the relationship in your analysis\nThis is called “uncongenial imputation” and leads to bias\n\nRule of thumb: Your imputation model should be more inclusive than your analysis model, never less."
-  },
-  {
-    "objectID": "slides/14-missing-data.html#practical-implementation",
-    "href": "slides/14-missing-data.html#practical-implementation",
-    "title": "Missing Data",
-    "section": "Practical Implementation",
-    "text": "Practical Implementation\nGood approach (congenial):\n\n# Analysis model: Y ~ X1 + X2\nrecipe(lowbirthweight ~ fage + mage, data = nc) |&gt;\n  step_impute_knn(fage, \n                  impute_with = imp_vars(mage, lowbirthweight, \n                                        habit, visits)) # extra variables OK!\n\nBad approach (uncongenial):\n\n# Analysis model: Y ~ X1 + X2\nrecipe(lowbirthweight ~ fage + mage, data = nc) |&gt;\n  step_impute_knn(fage, \n                  impute_with = imp_vars(visits)) # missing mage and Y!"
+    "section": "Why Include the Outcome in Stochastic Imputation?",
+    "text": "Why Include the Outcome in Stochastic Imputation?\nThis might seem counterintuitive, but you should include Y when imputing X:\n\nThe relationship between X and Y should be preserved in imputed values\nLeaving out Y can attenuate (weaken) the relationship in your analysis\nThis is called “uncongenial imputation” and leads to bias\n\nRule of thumb: Your imputation model should be more inclusive than your analysis model, never less."
   },
   {
     "objectID": "slides/14-missing-data.html#imputation-1",
