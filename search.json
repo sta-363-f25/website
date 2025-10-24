@@ -4475,7 +4475,7 @@
     "href": "slides/14-missing-data.html#why-include-the-outcome-in-stochastic-imputation",
     "title": "Missing Data",
     "section": "Why Include the Outcome in Stochastic Imputation?",
-    "text": "Why Include the Outcome in Stochastic Imputation?\nThis might seem counterintuitive, but you should include Y when imputing X:\n\nThe relationship between X and Y should be preserved in imputed values\nLeaving out Y can attenuate (weaken) the relationship in your analysis\nThis is called “uncongenial imputation” and leads to bias\n\nRule of thumb: Your imputation model should be more inclusive than your analysis model, never less."
+    "text": "Why Include the Outcome in Stochastic Imputation?\nThis might seem counterintuitive, but you should include Y when imputing X if you are using stochastic imputation (like multiple imputation):\n\nThe relationship between X and Y should be preserved in imputed values\nLeaving out Y can attenuate (weaken) the relationship in your analysis\nNot doing so leads to bias (if the imputation model is stochastic)\nMost of imputation methods we will see in this class are deterministic, so do not need the outcome"
   },
   {
     "objectID": "slides/14-missing-data.html#imputation-1",

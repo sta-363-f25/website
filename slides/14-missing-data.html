@@ -555,13 +555,13 @@ Lucy D’Agostino McGowan
 </section>
 <section id="why-include-the-outcome-in-stochastic-imputation" class="slide level2 small">
 <h2>Why Include the Outcome in Stochastic Imputation?</h2>
-<p>This might seem counterintuitive, but you should include Y when imputing X:</p>
+<p>This might seem counterintuitive, but you should include Y when imputing X if you are using <strong>stochastic</strong> imputation (like multiple imputation):</p>
 <ul>
 <li>The relationship between X and Y should be preserved in imputed values</li>
 <li>Leaving out Y can attenuate (weaken) the relationship in your analysis</li>
-<li>This is called “uncongenial imputation” and leads to bias</li>
+<li>Not doing so leads to bias (<strong>if the imputation model is stochastic</strong>)</li>
+<li><strong>Most of imputation methods we will see in this class are deterministic, so do not need the outcome</strong></li>
 </ul>
-<p><strong>Rule of thumb</strong>: Your imputation model should be <em>more</em> inclusive than your analysis model, never less.</p>
 </section></section>
 <section>
 <section id="imputation" class="title-slide slide level1 center">
