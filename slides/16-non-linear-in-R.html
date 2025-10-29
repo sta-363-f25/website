@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<link href="..//img/favicon.png" rel="icon" type="image/png">
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-html/tabby.min.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-0815c480559380816a4d1ea211a47e91.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.7.29">
+
+  <meta name="author" content="Lucy D’Agostino McGowan">
+  <title>Statistical Learning – Non-linearity in R</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-375959f61c09a32b9f00afdc644bc626.css">
+  <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+<meta property="og:title" content="Non-linearity in R – Statistical Learning">
+<meta property="og:image" content="https://sta-363-s23.github.io/website/img/twitter.png">
+<meta property="og:site_name" content="Statistical Learning">
+<meta property="og:locale" content="en_US">
+<meta property="og:image:height" content="670">
+<meta property="og:image:width" content="1200">
+<meta name="twitter:title" content="Non-linearity in R – Statistical Learning">
+<meta name="twitter:image" content="https://sta-363-s23.github.io/website/img/twitter.png">
+<meta name="twitter:creator" content="@LucyStats">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image-height" content="670">
+<meta name="twitter:image-width" content="1200">
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" data-background-color="#23373B" data-color="#70001A" class="quarto-title-block center">
+  <h1 class="title">Non-linearity in R</h1>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Lucy D’Agostino McGowan 
+</div>
+</div>
+</div>
+
+</section>
+<section id="natural-cubic-splines" class="slide level2 small">
+<h2>Natural Cubic Splines</h2>
+<ul>
+<li class="fragment">Variables you would like to fit using a natural (restricted) cubic spline can be set using the <code>step_ns()</code> function in your recipe</li>
+<li class="fragment">By default, this will create a natural spline with <strong>two</strong> degrees of freedom (in other words, a spline with three knots: 2 boundary knots and one internal knot)</li>
+<li class="fragment">Behind the scenes, this is using the <code>splines::ns</code> function</li>
+</ul>
+</section>
+<section id="natural-cubic-splines-example" class="slide level2 small">
+<h2>Natural Cubic Splines Example</h2>
+<p>The dataset consists of different biomass fuels characterized by the amount of certain molecules and the corresponding “higher heating value” (HHV). We are going to try to predict HHV based on the quantity 5 molecules.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb1" data-code-line-numbers="1-5|6|"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">library</span>(tidymodels)</span>
+<span id="cb1-2"><a></a></span>
+<span id="cb1-3"><a></a>rec_splines <span class="ot">&lt;-</span> <span class="fu">recipe</span>(</span>
+<span id="cb1-4"><a></a>  HHV <span class="sc">~</span> carbon <span class="sc">+</span> hydrogen <span class="sc">+</span> oxygen <span class="sc">+</span> nitrogen <span class="sc">+</span> sulfur, </span>
+<span id="cb1-5"><a></a>  <span class="at">data =</span> biomass) <span class="sc">|&gt;</span></span>
+<span id="cb1-6"><a></a>  <span class="fu">step_ns</span>(carbon, hydrogen)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="natural-cubic-splines-example-1" class="slide level2 small">
+<h2>Natural Cubic Splines Example</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>expanded_biomass <span class="ot">&lt;-</span> <span class="fu">prep</span>(rec_splines, biomass) <span class="sc">|&gt;</span></span>
+<span id="cb2-2"><a></a>  <span class="fu">bake</span>(biomass)</span>
+<span id="cb2-3"><a></a></span>
+<span id="cb2-4"><a></a>expanded_biomass</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 536 × 8
+   oxygen nitrogen sulfur   HHV carbon_ns_1 carbon_ns_2 hydrogen_ns_1
+    &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;         &lt;dbl&gt;
+ 1   42.9     0.41   0     20.0       0.549      -0.220         0.561
+ 2   41.3     0.2    0     19.2       0.547      -0.222         0.564
+ 3   46.2     0.11   0.02  18.3       0.536      -0.231         0.567
+ 4   35.6     3.3    0.16  18.2       0.512      -0.239         0.530
+ 5   40.7     1      0.02  18.4       0.527      -0.235         0.552
+ 6   40.2     2.04   0.1   18.5       0.515      -0.238         0.565
+ 7   38.2     2.68   0.2   18.7       0.530      -0.233         0.572
+ 8   39.7     1.7    0.2   18.3       0.518      -0.238         0.564
+ 9   40.9     0.8    0     18.6       0.543      -0.226         0.556
+10   40       1.2    0.1   18.9       0.530      -0.234         0.569
+# ℹ 526 more rows
+# ℹ 1 more variable: hydrogen_ns_2 &lt;dbl&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="natural-cubic-splines-example-2" class="slide level2 small">
+<h2>Natural Cubic Splines Example</h2>
+<p>Let’s increase the degree of the spline</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb4" data-code-line-numbers="|7|"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">library</span>(tidymodels)</span>
+<span id="cb4-2"><a></a></span>
+<span id="cb4-3"><a></a>rec_splines <span class="ot">&lt;-</span> <span class="fu">recipe</span>(</span>
+<span id="cb4-4"><a></a>  HHV <span class="sc">~</span> carbon <span class="sc">+</span> hydrogen <span class="sc">+</span> oxygen <span class="sc">+</span> nitrogen <span class="sc">+</span> sulfur, </span>
+<span id="cb4-5"><a></a>  <span class="at">data =</span> biomass) <span class="sc">|&gt;</span></span>
+<span id="cb4-6"><a></a>  <span class="fu">step_ns</span>(carbon, hydrogen, </span>
+<span id="cb4-7"><a></a>          <span class="at">deg_free =</span> <span class="dv">3</span>)</span>
+<span id="cb4-8"><a></a></span>
+<span id="cb4-9"><a></a>expanded_biomass <span class="ot">&lt;-</span> <span class="fu">prep</span>(rec_splines, biomass) <span class="sc">|&gt;</span></span>
+<span id="cb4-10"><a></a>  <span class="fu">bake</span>(biomass)</span>
+<span id="cb4-11"><a></a></span>
+<span id="cb4-12"><a></a>expanded_biomass</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 536 × 10
+   oxygen nitrogen sulfur   HHV carbon_ns_1 carbon_ns_2 carbon_ns_3
+    &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;
+ 1   42.9     0.41   0     20.0      0.221        0.536      -0.272
+ 2   41.3     0.2    0     19.2      0.210        0.540      -0.275
+ 3   46.2     0.11   0.02  18.3      0.144        0.564      -0.290
+ 4   35.6     3.3    0.16  18.2      0.0361       0.597      -0.308
+ 5   40.7     1      0.02  18.4      0.101        0.579      -0.298
+ 6   40.2     2.04   0.1   18.5      0.0472       0.595      -0.307
+ 7   38.2     2.68   0.2   18.7      0.118        0.573      -0.296
+ 8   39.7     1.7    0.2   18.3      0.0586       0.591      -0.305
+ 9   40.9     0.8    0     18.6      0.183        0.550      -0.282
+10   40       1.2    0.1   18.9      0.115        0.574      -0.296
+# ℹ 526 more rows
+# ℹ 3 more variables: hydrogen_ns_1 &lt;dbl&gt;, hydrogen_ns_2 &lt;dbl&gt;,
+#   hydrogen_ns_3 &lt;dbl&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="what-is-happening-behind-the-scenes" class="slide level2">
+<h2>What is happening behind the scenes?</h2>
+<ul>
+<li class="fragment">The default “boundary knots” are the extremes of the data</li>
+</ul>
+<div class="fragment">
+<div class="question">
+<p>For a natural cubic spline, what happens beyond the “boundary knots”?</p>
+</div>
+</div>
+</section>
+<section id="what-is-happening-behind-the-scenes-1" class="slide level2">
+<h2>What is happening behind the scenes?</h2>
+<p>The default interior knots are set as follows:</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th><code>deg_free</code></th>
+<th># of interior knots</th>
+<th>quantile</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>2</td>
+<td>1</td>
+<td>50%</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>2</td>
+<td>33.3%, 66.7%</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td>3</td>
+<td>25%, 50%, 75%</td>
+</tr>
+<tr class="even">
+<td>5</td>
+<td>4</td>
+<td>20%, 40%, 60%, 80%</td>
+</tr>
+<tr class="odd">
+<td>6</td>
+<td>5</td>
+<td>16.7%, 33.3%, 50%, 66.7%, 83.3%</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="natural-cubic-splines-example-3" class="slide level2">
+<h2>Natural Cubic Splines Example</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>wf <span class="ot">&lt;-</span> <span class="fu">workflow</span>() <span class="sc">|&gt;</span></span>
+<span id="cb6-2"><a></a>  <span class="fu">add_recipe</span>(rec_splines) <span class="sc">|&gt;</span></span>
+<span id="cb6-3"><a></a>  <span class="fu">add_model</span>(<span class="fu">linear_reg</span>())</span>
+<span id="cb6-4"><a></a></span>
+<span id="cb6-5"><a></a>fit_splines <span class="ot">&lt;-</span> <span class="fu">fit</span>(wf, <span class="at">data =</span> biomass)</span>
+<span id="cb6-6"><a></a></span>
+<span id="cb6-7"><a></a><span class="fu">tidy</span>(fit_splines)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 5
+   term          estimate std.error statistic   p.value
+   &lt;chr&gt;            &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+ 1 (Intercept)     8.30     0.890       9.32  3.07e- 19
+ 2 oxygen          0.0252   0.00919     2.74  6.39e-  3
+ 3 nitrogen        0.0307   0.0558      0.550 5.82e-  1
+ 4 sulfur          0.251    0.134       1.87  6.14e-  2
+ 5 carbon_ns_1    14.1      0.546      25.8   1.51e- 95
+ 6 carbon_ns_2    19.8      1.54       12.9   2.97e- 33
+ 7 carbon_ns_3    23.9      0.721      33.2   2.67e-131
+ 8 hydrogen_ns_1   1.84     0.519       3.54  4.36e-  4
+ 9 hydrogen_ns_2   7.70     1.30        5.91  6.01e-  9
+10 hydrogen_ns_3   4.04     1.26        3.21  1.43e-  3</code></pre>
+</div>
+</div>
+</section>
+<section id="natural-cubic-splines-example-4" class="slide level2 small">
+<h2>Natural Cubic Splines Example</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb8" data-code-line-numbers="|1|3-8|3|4|5|6|7|10-13|"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="fu">library</span>(DALEXtra)</span>
+<span id="cb8-2"><a></a></span>
+<span id="cb8-3"><a></a>splines_explainer <span class="ot">&lt;-</span> <span class="fu">explain_tidymodels</span>(</span>
+<span id="cb8-4"><a></a>  fit_splines,</span>
+<span id="cb8-5"><a></a>  <span class="at">data =</span> dplyr<span class="sc">::</span><span class="fu">select</span>(biomass, <span class="sc">-</span>HHV),</span>
+<span id="cb8-6"><a></a>  <span class="at">y =</span> biomass<span class="sc">$</span>HHV,</span>
+<span id="cb8-7"><a></a>  <span class="at">verbose =</span> <span class="cn">FALSE</span></span>
+<span id="cb8-8"><a></a>)</span>
+<span id="cb8-9"><a></a></span>
+<span id="cb8-10"><a></a>carbon_profile <span class="ot">&lt;-</span> <span class="fu">model_profile</span>(</span>
+<span id="cb8-11"><a></a>  splines_explainer,</span>
+<span id="cb8-12"><a></a>  <span class="at">variables =</span> <span class="st">"carbon"</span></span>
+<span id="cb8-13"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="aside-ggplot2-helper-function" class="slide level2">
+<h2>Aside: <code>ggplot2</code> helper function</h2>
+<p><em>You don’t need to know what is going on here and I will provide this for your labs!</em></p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>ggplot_pdp <span class="ot">&lt;-</span> <span class="cf">function</span>(obj, x) {</span>
+<span id="cb9-2"><a></a>  </span>
+<span id="cb9-3"><a></a>  p <span class="ot">&lt;-</span> </span>
+<span id="cb9-4"><a></a>    <span class="fu">as_tibble</span>(obj<span class="sc">$</span>agr_profiles) <span class="sc">%&gt;%</span></span>
+<span id="cb9-5"><a></a>    <span class="fu">mutate</span>(<span class="st">`</span><span class="at">_label_</span><span class="st">`</span> <span class="ot">=</span> stringr<span class="sc">::</span><span class="fu">str_remove</span>(<span class="st">`</span><span class="at">_label_</span><span class="st">`</span>, <span class="st">"^[^_]*_"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb9-6"><a></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="st">`</span><span class="at">_x_</span><span class="st">`</span>, <span class="st">`</span><span class="at">_yhat_</span><span class="st">`</span>)) <span class="sc">+</span></span>
+<span id="cb9-7"><a></a>    <span class="fu">geom_line</span>(<span class="at">data =</span> <span class="fu">as_tibble</span>(obj<span class="sc">$</span>cp_profiles),</span>
+<span id="cb9-8"><a></a>              <span class="fu">aes</span>(<span class="at">x =</span> {{ x }}, <span class="at">group =</span> <span class="st">`</span><span class="at">_ids_</span><span class="st">`</span>),</span>
+<span id="cb9-9"><a></a>              <span class="at">linewidth =</span> <span class="fl">0.5</span>, <span class="at">alpha =</span> <span class="fl">0.05</span>, <span class="at">color =</span> <span class="st">"gray50"</span>)</span>
+<span id="cb9-10"><a></a>  </span>
+<span id="cb9-11"><a></a>  num_colors <span class="ot">&lt;-</span> <span class="fu">n_distinct</span>(obj<span class="sc">$</span>agr_profiles<span class="sc">$</span><span class="st">`</span><span class="at">_label_</span><span class="st">`</span>)</span>
+<span id="cb9-12"><a></a>  </span>
+<span id="cb9-13"><a></a>  <span class="cf">if</span> (num_colors <span class="sc">&gt;</span> <span class="dv">1</span>) {</span>
+<span id="cb9-14"><a></a>    p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">color =</span> <span class="st">`</span><span class="at">_label_</span><span class="st">`</span>), <span class="at">linewidth =</span> <span class="fl">1.2</span>, <span class="at">alpha =</span> <span class="fl">0.8</span>)</span>
+<span id="cb9-15"><a></a>  } <span class="cf">else</span> {</span>
+<span id="cb9-16"><a></a>    p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">"cornflower blue"</span>, <span class="at">linewidth =</span> <span class="fl">1.2</span>, <span class="at">alpha =</span> <span class="fl">0.8</span>)</span>
+<span id="cb9-17"><a></a>  }</span>
+<span id="cb9-18"><a></a>  </span>
+<span id="cb9-19"><a></a>  p</span>
+<span id="cb9-20"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="natural-cubic-splines-example-5" class="slide level2 small">
+<h2>Natural Cubic Splines Example</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="fu">ggplot_pdp</span>(carbon_profile, carbon) <span class="sc">+</span> </span>
+<span id="cb10-2"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Carbon"</span>,</span>
+<span id="cb10-3"><a></a>       <span class="at">y =</span> <span class="st">"Average Predicted HHV"</span>,</span>
+<span id="cb10-4"><a></a>       <span class="at">title =</span> <span class="st">"Partial Dependence Profile"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="16-non-linear-in-R_files/figure-revealjs/unnamed-chunk-7-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"></section>
+<section id="natural-cubic-splines-example-6" class="slide level2 small">
+<h2>Natural Cubic Splines Example</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>hydrogen_profile <span class="ot">&lt;-</span> <span class="fu">model_profile</span>(</span>
+<span id="cb11-2"><a></a>  splines_explainer,</span>
+<span id="cb11-3"><a></a>  <span class="at">variables =</span> <span class="st">"hydrogen"</span></span>
+<span id="cb11-4"><a></a>)</span>
+<span id="cb11-5"><a></a></span>
+<span id="cb11-6"><a></a><span class="fu">ggplot_pdp</span>(hydrogen_profile, hydrogen) <span class="sc">+</span> </span>
+<span id="cb11-7"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Hydrogen"</span>,</span>
+<span id="cb11-8"><a></a>       <span class="at">y =</span> <span class="st">"Average Predicted HHV"</span>,</span>
+<span id="cb11-9"><a></a>       <span class="at">title =</span> <span class="st">"Partial Dependence Profile"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="16-non-linear-in-R_files/figure-revealjs/unnamed-chunk-8-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"></section>
+<section id="natural-cubic-splines-example-7" class="slide level2 small">
+<h2>Natural Cubic Splines Example</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>oxygen_profile <span class="ot">&lt;-</span> <span class="fu">model_profile</span>(</span>
+<span id="cb12-2"><a></a>  splines_explainer,</span>
+<span id="cb12-3"><a></a>  <span class="at">variables =</span> <span class="st">"oxygen"</span></span>
+<span id="cb12-4"><a></a>)</span>
+<span id="cb12-5"><a></a></span>
+<span id="cb12-6"><a></a><span class="fu">ggplot_pdp</span>(oxygen_profile, oxygen) <span class="sc">+</span> </span>
+<span id="cb12-7"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Oxygen"</span>,</span>
+<span id="cb12-8"><a></a>       <span class="at">y =</span> <span class="st">"Average Predicted HHV"</span>,</span>
+<span id="cb12-9"><a></a>       <span class="at">title =</span> <span class="st">"Partial Dependence Profile"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="16-non-linear-in-R_files/figure-revealjs/unnamed-chunk-9-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"></section>
+<section id="a-bit-more-on-the-workflow" class="slide level2">
+<h2>A bit more on the “workflow”</h2>
+<ul>
+<li class="fragment">The <code>workflow()</code> allows us to iteratively update our model without having to change the recipe after tuning.</li>
+<li class="fragment">We can use a few helper functions: <code>select_best</code> and <code>finalize_workflow</code></li>
+</ul>
+</section>
+<section id="a-bit-more-on-the-workflow-1" class="slide level2 small">
+<h2>A bit more on the “workflow”</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb13" data-code-line-numbers="|1-4|4|6-8|10|10-15|17|"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a>recipe_splines <span class="ot">&lt;-</span> <span class="fu">recipe</span>(</span>
+<span id="cb13-2"><a></a>  HHV <span class="sc">~</span> carbon <span class="sc">+</span> hydrogen <span class="sc">+</span> oxygen <span class="sc">+</span> nitrogen <span class="sc">+</span> sulfur, </span>
+<span id="cb13-3"><a></a>  <span class="at">data =</span> biomass) <span class="sc">|&gt;</span></span>
+<span id="cb13-4"><a></a>  <span class="fu">step_ns</span>(carbon, hydrogen, <span class="at">deg_free =</span> <span class="fu">tune</span>())</span>
+<span id="cb13-5"><a></a></span>
+<span id="cb13-6"><a></a>splines_wf <span class="ot">&lt;-</span> <span class="fu">workflow</span>() <span class="sc">|&gt;</span></span>
+<span id="cb13-7"><a></a>  <span class="fu">add_recipe</span>(recipe_splines) <span class="sc">|&gt;</span></span>
+<span id="cb13-8"><a></a>  <span class="fu">add_model</span>(<span class="fu">linear_reg</span>())</span>
+<span id="cb13-9"><a></a></span>
+<span id="cb13-10"><a></a>cv <span class="ot">&lt;-</span> <span class="fu">vfold_cv</span>(biomass)</span>
+<span id="cb13-11"><a></a></span>
+<span id="cb13-12"><a></a>splines_tuned <span class="ot">&lt;-</span> <span class="fu">tune_grid</span>(</span>
+<span id="cb13-13"><a></a>  splines_wf,</span>
+<span id="cb13-14"><a></a>  cv</span>
+<span id="cb13-15"><a></a>)</span>
+<span id="cb13-16"><a></a></span>
+<span id="cb13-17"><a></a><span class="fu">show_best</span>(splines_tuned, <span class="at">metric =</span> <span class="st">"rmse"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 7
+  deg_free .metric .estimator  mean     n std_err .config              
+     &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;                
+1       10 rmse    standard    1.37    10   0.171 Preprocessor10_Model1
+2        9 rmse    standard    1.37    10   0.174 Preprocessor04_Model1
+3        1 rmse    standard    1.37    10   0.199 Preprocessor09_Model1
+4       12 rmse    standard    1.37    10   0.171 Preprocessor07_Model1
+5       14 rmse    standard    1.38    10   0.170 Preprocessor05_Model1</code></pre>
+</div>
+</div>
+<div class="fragment">
+<div class="question">
+<p>How many degrees of freedom does the best model have?</p>
+</div>
+</div>
+</section>
+<section id="a-bit-more-on-the-workflow-2" class="slide level2 small">
+<h2>A bit more on the “workflow”</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb15" data-code-line-numbers="1|1-7|9-14|10|16-19|"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a>best_params <span class="ot">&lt;-</span> <span class="fu">select_best</span>(splines_tuned, <span class="at">metric =</span> <span class="st">"rmse"</span>)</span>
+<span id="cb15-2"><a></a></span>
+<span id="cb15-3"><a></a>splines_wf_final <span class="ot">&lt;-</span> splines_wf <span class="sc">|&gt;</span></span>
+<span id="cb15-4"><a></a>  <span class="fu">finalize_workflow</span>(best_params)</span>
+<span id="cb15-5"><a></a></span>
+<span id="cb15-6"><a></a>final_fit <span class="ot">&lt;-</span> <span class="fu">fit</span>(splines_wf_final,</span>
+<span id="cb15-7"><a></a>                 <span class="at">data =</span> biomass)</span>
+<span id="cb15-8"><a></a></span>
+<span id="cb15-9"><a></a>final_explainer <span class="ot">&lt;-</span> <span class="fu">explain_tidymodels</span>(</span>
+<span id="cb15-10"><a></a>  final_fit,</span>
+<span id="cb15-11"><a></a>  <span class="at">data =</span> dplyr<span class="sc">::</span><span class="fu">select</span>(biomass, <span class="sc">-</span>HHV),</span>
+<span id="cb15-12"><a></a>  <span class="at">y =</span> biomass<span class="sc">$</span>HHV,</span>
+<span id="cb15-13"><a></a>  <span class="at">verbose =</span> <span class="cn">FALSE</span></span>
+<span id="cb15-14"><a></a>)</span>
+<span id="cb15-15"><a></a></span>
+<span id="cb15-16"><a></a>carbon_profile <span class="ot">&lt;-</span> <span class="fu">model_profile</span>(</span>
+<span id="cb15-17"><a></a>  final_explainer,</span>
+<span id="cb15-18"><a></a>  <span class="at">variables =</span> <span class="st">"carbon"</span></span>
+<span id="cb15-19"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="a-bit-more-on-the-workflow-3" class="slide level2 small">
+<h2>A bit more on the “workflow”</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a><span class="fu">ggplot_pdp</span>(carbon_profile, carbon) <span class="sc">+</span> </span>
+<span id="cb16-2"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Carbon"</span>,</span>
+<span id="cb16-3"><a></a>       <span class="at">y =</span> <span class="st">"Average Predicted HHV"</span>,</span>
+<span id="cb16-4"><a></a>       <span class="at">title =</span> <span class="st">"Partial Dependence Profile"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+
+
+<img data-src="16-non-linear-in-R_files/figure-revealjs/unnamed-chunk-13-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"></section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<p><img src="img/icon.png" class="slide-logo"></p>
+<div class="footer footer-default">
+<p><a href="https://lucymcgowan.com">Dr.&nbsp;Lucy D’Agostino McGowan</a></p>
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="../site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="../site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="../site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="../site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="../site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="../site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: true,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+            const codeEl = trigger.previousElementSibling.cloneNode(true);
+            for (const childEl of codeEl.children) {
+              if (isCodeAnnotation(childEl)) {
+                childEl.remove();
+              }
+            }
+            return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp("https:\/\/sta-363-s23\.github\.io\/website");
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>
