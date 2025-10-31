@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Lab 03 - Ridge Lasso Elastic Net – Statistical Learning</title>
+<title>Exercise 5 – Decision Trees (Regression) – Statistical Learning</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,41 +19,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -109,44 +74,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<meta property="og:title" content="Lab 03 - Ridge Lasso Elastic Net – Statistical Learning">
+<meta property="og:title" content="Exercise 5 – Decision Trees (Regression) – Statistical Learning">
 <meta property="og:description" content="">
 <meta property="og:image" content="https://sta-363-s23.github.io/website/img/twitter.png">
 <meta property="og:site_name" content="Statistical Learning">
 <meta property="og:locale" content="en_US">
 <meta property="og:image:height" content="670">
 <meta property="og:image:width" content="1200">
-<meta name="twitter:title" content="Lab 03 - Ridge Lasso Elastic Net – Statistical Learning">
+<meta name="twitter:title" content="Exercise 5 – Decision Trees (Regression) – Statistical Learning">
 <meta name="twitter:description" content="">
 <meta name="twitter:image" content="https://sta-363-s23.github.io/website/img/twitter.png">
 <meta name="twitter:creator" content="@LucyStats">
@@ -361,7 +297,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lab/01-lab.html">Labs</a></li><li class="breadcrumb-item"><a href="../lab/03-ridge-lasso-elastic.html">Lab 03: Ridge, Lasso, and Elastic Net</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../ex/01-ex.html">Exercises</a></li><li class="breadcrumb-item"><a href="../ex/05-ex.html">Decision Trees (Regression)</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -439,13 +375,13 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
  <span class="menu-text">Exercises</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ex/01-ex.html" class="sidebar-item-text sidebar-link">
@@ -478,7 +414,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../ex/05-ex.html" class="sidebar-item-text sidebar-link">
+  <a href="../ex/05-ex.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Decision Trees (Regression)</span></a>
   </div>
 </li>
@@ -486,13 +422,13 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
  <span class="menu-text">Labs</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lab/01-lab.html" class="sidebar-item-text sidebar-link">
@@ -507,7 +443,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lab/03-ridge-lasso-elastic.html" class="sidebar-item-text sidebar-link active">
+  <a href="../lab/03-ridge-lasso-elastic.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lab 03: Ridge, Lasso, and Elastic Net</span></a>
   </div>
 </li>
@@ -535,20 +471,21 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#getting-started" id="toc-getting-started" class="nav-link active" data-scroll-target="#getting-started">Getting started</a></li>
-  <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages">Packages</a></li>
-  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a></li>
+  <li><a href="#set-up" id="toc-set-up" class="nav-link active" data-scroll-target="#set-up">Set up</a>
+  <ul class="collapse">
+  <li><a href="#login-to-rstudio-pro" id="toc-login-to-rstudio-pro" class="nav-link" data-scroll-target="#login-to-rstudio-pro">Login to RStudio Pro</a></li>
+  </ul></li>
+  <li><a href="#part-1" id="toc-part-1" class="nav-link" data-scroll-target="#part-1">Part 1</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/sta-363-f25/website/edit/main/lab/03-ridge-lasso-elastic.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta-363-f25/website/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/sta-363-f25/website/edit/main/ex/05-ex.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta-363-f25/website/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lab/01-lab.html">Labs</a></li><li class="breadcrumb-item"><a href="../lab/03-ridge-lasso-elastic.html">Lab 03: Ridge, Lasso, and Elastic Net</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../ex/01-ex.html">Exercises</a></li><li class="breadcrumb-item"><a href="../ex/05-ex.html">Decision Trees (Regression)</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Lab 03 - Ridge Lasso Elastic Net</h1>
+<h1 class="title">Exercise 5 – Decision Trees (Regression)</h1>
 </div>
 
 
@@ -565,57 +502,41 @@ window.Quarto = {
 </header>
 
 
-<p><strong>Due:</strong> Tuesday 2025-10-08</p>
-<section id="getting-started" class="level1">
-<h1>Getting started</h1>
+<section id="set-up" class="level2">
+<h2 class="anchored" data-anchor-id="set-up">Set up</h2>
+<section id="login-to-rstudio-pro" class="level3">
+<h3 class="anchored" data-anchor-id="login-to-rstudio-pro">Login to RStudio Pro</h3>
 <ul>
-<li>Go to our RStudio Pro workspace and create a new project using my template.</li>
+<li><strong>Note:</strong> if you are off campus, you will need to use a <a href="https://is.wfu.edu/services/vpn/">VPN to connect</a></li>
+<li>Go to <a href="rstudio.deac.wfu.edu">rstudio.deac.wfu.edu</a></li>
 </ul>
-<p>For this assignment, go to RStudio Pro and click:</p>
-<p><strong>Step 1</strong>. File &gt; New Project<br>
-<strong>Step 2</strong>. “Version Control”<br>
-<strong>Step 3</strong>. Git<br>
-<strong>Step 4</strong>. Copy the following into the “Repository URL”:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">https://github.com/sta-363-f25/lab-03-ridge-lasso-elastic.git</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><strong>Remember to write out your answers in full sentences, do not just rely on the R output</strong></p>
+<p><img src="img/01/rstudio-pro.png" width="1000" height="350"></p>
+<section id="step-1-create-a-new-project" class="level4">
+<h4 class="anchored" data-anchor-id="step-1-create-a-new-project">Step 1: Create a New Project</h4>
+<p>Click File &gt; New Project</p>
+<p><img src="img/01/new-project.png" class="img-fluid"></p>
 </section>
-<section id="packages" class="level1">
-<h1>Packages</h1>
-<p>In this lab we will work with two packages: <code>tidyverse</code> which is a collection of packages for doing data analysis in a “tidy” way and <code>tidymodels</code> for statistical modeling.</p>
-<p>If you’d like to run your code in the Console as well you’ll also need to load the packages there. To do so, run the following in the console.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) </span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Note that the packages are also loaded with the same commands in your R Markdown document.</p>
+<section id="step-2-click-version-control" class="level4">
+<h4 class="anchored" data-anchor-id="step-2-click-version-control">Step 2: Click “Version Control”</h4>
+<p>Click the third option.</p>
+<p><img src="img/01/version-control.png" class="img-fluid"></p>
 </section>
-<section id="data" class="level1">
-<h1>Data</h1>
-<p>For this lab, we are using a data frame currently in <code>music.csv</code>. This data frame includes 72 predictors that are components of audio files and one outcome, <code>lat</code>, the latitude of where the music originated. We are trying to predict the location of the music’s origin using audio components of the music.</p>
-<p>This data frame should be loaded in your RStudio Project when you load your starter files.</p>
+<section id="step-3-click-git" class="level4">
+<h4 class="anchored" data-anchor-id="step-3-click-git">Step 3: Click Git</h4>
+<p>Click the first option</p>
+<p><img src="img/01/git.png" class="img-fluid"></p>
 </section>
-<section id="exercises" class="level1">
-<h1>Exercises</h1>
-<ol type="1">
-<li>Set a seed of <code>7</code>. Split the <code>music</code> data into a training and test set with 75% of the data in the training and 25% in the testing. Call your training set <code>music_train</code> and your testing set <code>music_test</code>. Describe these data sets (how many observations, how many variables).</li>
-</ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>music <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/music.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ol start="2" type="1">
-<li><p>We are interested in predicting the latitude (<code>lat</code>) of the music’s origin from all other variables. Using the training data only, examine a visualization of the outcome.</p></li>
-<li><p>Fit a linear model using least squares on the training set. Report the test root mean squared error obtained.</p></li>
-<li><p>Fit a ridge regression model on the training set with <span class="math inline">\(\lambda\)</span> chosen using 10-fold cross validation. Report the <span class="math inline">\(\lambda\)</span> chosen and explain why. Report the estimated test root mean square error from the cross validation <strong>and</strong> the test root mean squared error obtained using testing portion of the initially split data frame.</p></li>
-<li><p>Using the model chosen above on the training data, which variables were included in the final model?</p></li>
-<li><p>Fit a lasso model on the training set with <span class="math inline">\(\lambda\)</span> chosen using cross validation. Report the <span class="math inline">\(\lambda\)</span> chosen and explain why. Report the estimated test root mean square error from the cross validation <strong>and</strong> the test root mean squared error obtained using testing portion of the initially split data frame.</p></li>
-<li><p>Using the model chosen above on the training data, which variables were included in the final model?</p></li>
-<li><p>Fit an elastic net model on the training set with <span class="math inline">\(\lambda\)</span> and <span class="math inline">\(\alpha\)</span> chosen using cross validation. Create a Figure with the estimated test root mean squared error on the y-axis and <span class="math inline">\(\lambda\)</span> on the x-axis with lines colored by the mixture chosen.</p></li>
-<li><p>Report the <span class="math inline">\(\lambda\)</span> that you would choose from the previous exercise and explain why. Report the estimated test root mean square error from the cross validation <strong>and</strong> the test root mean squared error obtained using testing portion of the initially split data frame.</p></li>
-<li><p>Using the model chosen above on the training data, which variables were included in the final model?</p></li>
-<li><p>Comment on the results obtained. How well can we predict the latitude of where the music originated? Is there much difference among the test errors resulting from these four approaches?</p></li>
-</ol>
+<section id="step-4-copy-my-starter-files" class="level4">
+<h4 class="anchored" data-anchor-id="step-4-copy-my-starter-files">Step 4: Copy my starter files</h4>
+<p>Paste this link in the top box (<code>Repository url</code>):</p>
+<p><code>https://github.com/sta-363-f25/05-ex.git</code></p>
+<p><img src="img/01/paste-link.png" class="img-fluid"></p>
+</section>
+</section>
+</section>
+<section id="part-1" class="level2">
+<h2 class="anchored" data-anchor-id="part-1">Part 1</h2>
+<p>Using the <code>College</code> data from the <code>ISLR</code> package, predict the number of applications received from a subset of the variables of your choice using a decision tree. (Not sure about the variables? Run <code>?College</code> in the console after loading the <code>ISLR</code> package)</p>
 
 
 </section>
@@ -1041,7 +962,7 @@ window.Quarto = {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sta-363-f25/website/edit/main/lab/03-ridge-lasso-elastic.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta-363-f25/website/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sta-363-f25/website/edit/main/ex/05-ex.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta-363-f25/website/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>Made with <i class="fa-brands fa-r-project" aria-hidden="true"></i> and <a href="https://quarto.org/">Quarto</a><br> <a href="https://github.com/sta-363-f25/website">View the source at <i class="fa-brands fa-github" aria-hidden="true"></i> GitHub</a></p>
 </div>
