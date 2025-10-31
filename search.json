@@ -12,6 +12,76 @@
     ]
   },
   {
+    "objectID": "slides/18-decision-trees-classification.html#classification-trees",
+    "href": "slides/18-decision-trees-classification.html#classification-trees",
+    "title": "Decision trees - Classification trees",
+    "section": "Classification Trees",
+    "text": "Classification Trees\n\nVery similar to regression trees except it is used to predict a qualitative response rather than a quantitative one\nWe predict that each observation belongs to the most commonly occuring class of the training observations in a given region"
+  },
+  {
+    "objectID": "slides/18-decision-trees-classification.html#fitting-classification-trees",
+    "href": "slides/18-decision-trees-classification.html#fitting-classification-trees",
+    "title": "Decision trees - Classification trees",
+    "section": "Fitting classification trees",
+    "text": "Fitting classification trees\n\nWe use recursive binary splitting to grow the tree\nInstead of RSS, we can use:\nGini index: \\(G = \\sum_{k=1}^K \\hat{p}_{mk}(1-\\hat{p}_{mk})\\)\nThis is a measure of total variance across the \\(K\\) classes. If all of the \\(\\hat{p}_{mk}\\) values are close to zero or one, this will be small\nThe Gini index is a measure of node purity small values indicate that node contains predominantly observations from a single class\nIn R, this can be estimated using the gain_capture() function."
+  },
+  {
+    "objectID": "slides/18-decision-trees-classification.html#classification-tree---heart-disease-example",
+    "href": "slides/18-decision-trees-classification.html#classification-tree---heart-disease-example",
+    "title": "Decision trees - Classification trees",
+    "section": "Classification tree - Heart Disease Example",
+    "text": "Classification tree - Heart Disease Example\n\nClassifying whether 303 patients have heart disease based on 13 predictors (Age, Sex, Chol, etc)"
+  },
+  {
+    "objectID": "slides/18-decision-trees-classification.html#split-the-data-into-a-cross-validation-set",
+    "href": "slides/18-decision-trees-classification.html#split-the-data-into-a-cross-validation-set",
+    "title": "Decision trees - Classification trees",
+    "section": "1. Split the data into a cross-validation set",
+    "text": "1. Split the data into a cross-validation set\n\nheart_cv &lt;- vfold_cv(heart, v = 5)\n\n\nHow many folds do I have?"
+  },
+  {
+    "objectID": "slides/18-decision-trees-classification.html#create-a-model-specification-that-tunes-based-on-complexity-alpha",
+    "href": "slides/18-decision-trees-classification.html#create-a-model-specification-that-tunes-based-on-complexity-alpha",
+    "title": "Decision trees - Classification trees",
+    "section": "2. Create a model specification that tunes based on complexity, \\(\\alpha\\)",
+    "text": "2. Create a model specification that tunes based on complexity, \\(\\alpha\\)\n\ntree_spec &lt;- decision_tree(\n  cost_complexity = tune(), \n  tree_depth = 10,\n  mode = \"classification\") %&gt;% \n  set_engine(\"rpart\")\n\nwf &lt;- workflow() |&gt;\n  add_recipe(\n    recipe(HD ~ Age + Sex + ChestPain + RestBP + Chol + Fbs + \n                     RestECG + MaxHR + ExAng + Oldpeak + Slope + Ca,\n    data = heart\n    )\n  ) |&gt;\n  add_model(tree_spec)"
+  },
+  {
+    "objectID": "slides/18-decision-trees-classification.html#fit-the-model-on-the-cross-validation-set",
+    "href": "slides/18-decision-trees-classification.html#fit-the-model-on-the-cross-validation-set",
+    "title": "Decision trees - Classification trees",
+    "section": "3. Fit the model on the cross validation set",
+    "text": "3. Fit the model on the cross validation set\n\ngrid &lt;- expand_grid(cost_complexity = seq(0.01, 0.05, by = 0.01))\nmodel &lt;- tune_grid(wf,\n                   grid = grid,\n                   resamples = heart_cv,\n                   metrics = metric_set(gain_capture, accuracy)) \n\n\n\nWhat \\(\\alpha\\)s am I trying?"
+  },
+  {
+    "objectID": "slides/18-decision-trees-classification.html#choose-alpha-that-minimizes-the-gini-index",
+    "href": "slides/18-decision-trees-classification.html#choose-alpha-that-minimizes-the-gini-index",
+    "title": "Decision trees - Classification trees",
+    "section": "5. Choose \\(\\alpha\\) that minimizes the Gini Index",
+    "text": "5. Choose \\(\\alpha\\) that minimizes the Gini Index\n\nbest &lt;- model %&gt;%\n  select_best(metric = \"gain_capture\")"
+  },
+  {
+    "objectID": "slides/18-decision-trees-classification.html#fit-the-final-model",
+    "href": "slides/18-decision-trees-classification.html#fit-the-final-model",
+    "title": "Decision trees - Classification trees",
+    "section": "6. Fit the final model",
+    "text": "6. Fit the final model\n\nfinal_wf &lt;- wf |&gt;\n  finalize_workflow(best)\n\nfinal_model &lt;- fit(final_wf, data = heart)"
+  },
+  {
+    "objectID": "slides/18-decision-trees-classification.html#examine-how-the-final-model-does-on-the-full-sample",
+    "href": "slides/18-decision-trees-classification.html#examine-how-the-final-model-does-on-the-full-sample",
+    "title": "Decision trees - Classification trees",
+    "section": "7. Examine how the final model does on the full sample",
+    "text": "7. Examine how the final model does on the full sample\n\nfinal_model %&gt;%\n  predict(new_data = heart) %&gt;%\n  bind_cols(heart) %&gt;%\n  conf_mat(truth = HD, estimate = .pred_class) %&gt;%\n  autoplot(type = \"heatmap\")\n\nNew names:\n• `...1` -&gt; `...2`"
+  },
+  {
+    "objectID": "slides/18-decision-trees-classification.html#decision-trees",
+    "href": "slides/18-decision-trees-classification.html#decision-trees",
+    "title": "Decision trees - Classification trees",
+    "section": "Decision trees",
+    "text": "Decision trees\n\n\nPros\n\nsimple\neasy to interpret\n\n\nCons\n\nnot often competitive in terms of predictive accuracy\nNext we will discuss how to combine multiple trees to improve accuracy"
+  },
+  {
     "objectID": "slides/17-decision-trees.html#decision-trees",
     "href": "slides/17-decision-trees.html#decision-trees",
     "title": "Decision trees - Regression tree building",
@@ -5119,6 +5189,55 @@
     "title": "Non-linearity in R",
     "section": "A bit more on the “workflow”",
     "text": "A bit more on the “workflow”\n\nggplot_pdp(carbon_profile, carbon) + \n  labs(x = \"Carbon\",\n       y = \"Average Predicted HHV\",\n       title = \"Partial Dependence Profile\")"
+  },
+  {
+    "objectID": "slides/18-decision-tree-plot.html#plotting-decision-trees",
+    "href": "slides/18-decision-tree-plot.html#plotting-decision-trees",
+    "title": "Plotting Decision trees",
+    "section": "Plotting decision trees",
+    "text": "Plotting decision trees\nThere are several R packages that assist with tree plotting\n\nrpart.plot\npartykit\nrattle"
+  },
+  {
+    "objectID": "slides/18-decision-tree-plot.html#where-to-find-out-more-about-packages",
+    "href": "slides/18-decision-tree-plot.html#where-to-find-out-more-about-packages",
+    "title": "Plotting Decision trees",
+    "section": "Where to find out more about packages",
+    "text": "Where to find out more about packages\n\nVignettes\nJournal Article (R Journal is great)\nRstudio Community\nStackOverflow\nTwitter"
+  },
+  {
+    "objectID": "slides/18-decision-tree-plot.html#learn-about-partykit",
+    "href": "slides/18-decision-tree-plot.html#learn-about-partykit",
+    "title": "Plotting Decision trees",
+    "section": " Learn about partykit",
+    "text": "Learn about partykit\nGoogle partykit to find out how more about it (hint: use key words like rstats and decision tree plots)\n\n\n\n−+\n03:00"
+  },
+  {
+    "objectID": "slides/18-decision-tree-plot.html#rpart.plot",
+    "href": "slides/18-decision-tree-plot.html#rpart.plot",
+    "title": "Plotting Decision trees",
+    "section": "rpart.plot",
+    "text": "rpart.plot\nWe’re going to focus on rpart.plot, but feel free to try the others!\n\ninstall.packages(\"rpart.plot\")\n\n\nlibrary(rpart.plot)"
+  },
+  {
+    "objectID": "slides/18-decision-tree-plot.html#rpart.plot-1",
+    "href": "slides/18-decision-tree-plot.html#rpart.plot-1",
+    "title": "Plotting Decision trees",
+    "section": "rpart.plot",
+    "text": "rpart.plot\n\ntree_spec &lt;- decision_tree(\n  cost_complexity = 0.1,\n  tree_depth = 10,\n  mode = \"regression\") |&gt;\n  set_engine(\"rpart\")\n\nwf &lt;- workflow() |&gt;\n  add_recipe(\n    recipe(Salary ~ Hits + Years + PutOuts + RBI + Walks + Runs,\n                   data = baseball)\n  ) |&gt;\n  add_model(tree_spec)\n\nmodel &lt;- fit(wf, baseball)\n\n\n\nrpart.plot(model$fit$fit$fit,\n           roundint = FALSE)"
+  },
+  {
+    "objectID": "slides/18-decision-tree-plot.html#rpart.plot-2",
+    "href": "slides/18-decision-tree-plot.html#rpart.plot-2",
+    "title": "Plotting Decision trees",
+    "section": "rpart.plot",
+    "text": "rpart.plot\n\nrpart.plot(model$fit$fit$fit, \n           roundint = FALSE)"
+  },
+  {
+    "objectID": "slides/18-decision-tree-plot.html#application-exercise",
+    "href": "slides/18-decision-tree-plot.html#application-exercise",
+    "title": "Plotting Decision trees",
+    "section": " Application Exercise",
+    "text": "Application Exercise\n\nOpen your application exercise\nInstall rpart.plot\nCreate a plot from your final decision tree\n\n\n\n\n−+\n10:00"
   },
   {
     "objectID": "syllabus.html",
