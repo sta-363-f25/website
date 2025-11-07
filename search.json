@@ -12,6 +12,83 @@
     ]
   },
   {
+    "objectID": "slides/19-random-forest.html#random-forests",
+    "href": "slides/19-random-forest.html#random-forests",
+    "title": "Random Forests",
+    "section": "Random forests",
+    "text": "Random forests\nDo you ❤️ all of the tree puns?\n\nRandom forests provide an improvement over bagged trees by way of a small tweak that decorrelates the trees\nBy decorrelating the trees, this reduces the variance even more when we average the trees!"
+  },
+  {
+    "objectID": "slides/19-random-forest.html#random-forest-process",
+    "href": "slides/19-random-forest.html#random-forest-process",
+    "title": "Random Forests",
+    "section": "Random Forest process",
+    "text": "Random Forest process\n\nLike bagging, build a number of decision trees on bootstrapped training samples\nEach time the tree is split, instead of considering all predictors (like bagging), a random selection of \\(m\\) predictors is chosen as split candidates from the full set of \\(p\\) predictors\nThe split is allowed to use only one of those \\(m\\) predictors\nA fresh selection of \\(m\\) predictors is taken at each split\ntypically we choose \\(m \\approx \\sqrt{p}\\)"
+  },
+  {
+    "objectID": "slides/19-random-forest.html#choosing-m-for-random-forest",
+    "href": "slides/19-random-forest.html#choosing-m-for-random-forest",
+    "title": "Random Forests",
+    "section": " Choosing m for Random Forest",
+    "text": "Choosing m for Random Forest\nLet’s say you have a dataset with 100 observations and 9 variables, if you were fitting a random forest, what would a good \\(m\\) be?\n\n\n\n−+\n01:00"
+  },
+  {
+    "objectID": "slides/19-random-forest.html#randomly-divide-the-data-in-half-149-training-observations-148-testing",
+    "href": "slides/19-random-forest.html#randomly-divide-the-data-in-half-149-training-observations-148-testing",
+    "title": "Random Forests",
+    "section": "1. Randomly divide the data in half, 149 training observations, 148 testing",
+    "text": "1. Randomly divide the data in half, 149 training observations, 148 testing\n\nset.seed(77)\nheart_split &lt;- initial_split(heart, prop = 0.5)\nheart_train &lt;- training(heart_split)"
+  },
+  {
+    "objectID": "slides/19-random-forest.html#create-model-specification",
+    "href": "slides/19-random-forest.html#create-model-specification",
+    "title": "Random Forests",
+    "section": "2. Create model specification",
+    "text": "2. Create model specification\n\nmodel_spec &lt;- rand_forest(\n  mode = \"classification\",\n  mtry = ---\n) |&gt; \n  set_engine(\"ranger\")\n\n\n\nmtry here is m. If we are doing bagging what do you think we set this to?"
+  },
+  {
+    "objectID": "slides/19-random-forest.html#create-bagging-specification",
+    "href": "slides/19-random-forest.html#create-bagging-specification",
+    "title": "Random Forests",
+    "section": "2. Create bagging specification",
+    "text": "2. Create bagging specification\n\nbagging_spec &lt;- rand_forest(\n  mode = \"classification\",\n  mtry = 13 #&lt;&lt;\n) |&gt; \n  set_engine(\"ranger\")\n\n\nWhat would we change mtry to if we are doing a random forest?"
+  },
+  {
+    "objectID": "slides/19-random-forest.html#create-random-forest-specification",
+    "href": "slides/19-random-forest.html#create-random-forest-specification",
+    "title": "Random Forests",
+    "section": "2. Create Random Forest specification",
+    "text": "2. Create Random Forest specification\n\nrf_spec &lt;- rand_forest(\n  mode = \"classification\",\n  mtry = 3 #&lt;&lt;\n) |&gt; \n  set_engine(\"ranger\")\n\n\nThe default for rand_forest is floor(sqrt(# predictors)) (so 3 in this case)"
+  },
+  {
+    "objectID": "slides/19-random-forest.html#create-the-workflow",
+    "href": "slides/19-random-forest.html#create-the-workflow",
+    "title": "Random Forests",
+    "section": "3. Create the workflow",
+    "text": "3. Create the workflow\n\nwf &lt;- workflow() |&gt;\n  add_recipe(\n    recipe(\n      HD ~ Age + Sex + ChestPain + RestBP + Chol + Fbs + \n               RestECG + MaxHR + ExAng + Oldpeak + Slope + Ca + Thal,\n             data = heart_train\n    )\n  ) |&gt;\n  add_model(rf_spec)"
+  },
+  {
+    "objectID": "slides/19-random-forest.html#fit-the-model",
+    "href": "slides/19-random-forest.html#fit-the-model",
+    "title": "Random Forests",
+    "section": "4. Fit the model",
+    "text": "4. Fit the model\n\nmodel &lt;- fit(wf, data = heart_train)"
+  },
+  {
+    "objectID": "slides/19-random-forest.html#examine-how-it-looks-in-the-test-data",
+    "href": "slides/19-random-forest.html#examine-how-it-looks-in-the-test-data",
+    "title": "Random Forests",
+    "section": "5. Examine how it looks in the test data",
+    "text": "5. Examine how it looks in the test data\n\nheart_test &lt;- testing(heart_split)\nmodel |&gt;\n  predict(new_data = heart_test) |&gt;\n  bind_cols(heart_test) |&gt;\n  conf_mat(truth = HD, estimate = .pred_class) |&gt;\n  autoplot(type = \"heatmap\")"
+  },
+  {
+    "objectID": "slides/19-random-forest.html#application-exercise",
+    "href": "slides/19-random-forest.html#application-exercise",
+    "title": "Random Forests",
+    "section": " Application Exercise",
+    "text": "Application Exercise\n\nOpen your last application exercise\nRefit your model as a random forest\n\n\n\n\n−+\n10:00"
+  },
+  {
     "objectID": "slides/18-decision-trees-classification.html#classification-trees",
     "href": "slides/18-decision-trees-classification.html#classification-trees",
     "title": "Decision trees - Classification trees",
@@ -5238,6 +5315,76 @@
     "title": "Plotting Decision trees",
     "section": " Application Exercise",
     "text": "Application Exercise\n\nOpen your application exercise\nInstall rpart.plot\nCreate a plot from your final decision tree\n\n\n\n\n−+\n10:00"
+  },
+  {
+    "objectID": "slides/19-bagging.html#decision-trees",
+    "href": "slides/19-bagging.html#decision-trees",
+    "title": "Bagging Decision Trees",
+    "section": "Decision trees",
+    "text": "Decision trees\n\n\nPros\n\nsimple\neasy to interpret\n\n\nCons\n\nnot often competitive in terms of predictive accuracy\nwe will discuss how to combine multiple trees to improve accuracy\nEnsemble methods"
+  },
+  {
+    "objectID": "slides/19-bagging.html#bagging",
+    "href": "slides/19-bagging.html#bagging",
+    "title": "Bagging Decision Trees",
+    "section": "Bagging",
+    "text": "Bagging\n\nbagging is a general-purpose procedure for reducing the variance of a statistical learning method (outside of just trees)\nIt is particularly useful and frequently used in the context of decision trees\nAlso called bootstrap aggregation"
+  },
+  {
+    "objectID": "slides/19-bagging.html#bagging-1",
+    "href": "slides/19-bagging.html#bagging-1",
+    "title": "Bagging Decision Trees",
+    "section": "Bagging",
+    "text": "Bagging\n\nMathematically, why does this work? Let’s go back to intro to stat!\nIf you have a set of \\(n\\) independent observations: \\(Z_1, \\dots, Z_n\\), each with a variance of \\(\\sigma^2\\), what would the variance of the mean, \\(\\bar{Z}\\) be?\nThe variance of \\(\\bar{Z}\\) is \\(\\sigma^2/n\\)\nIn other words, averaging a set of observations reduces the variance.\nThis is generally not practical because we generally do not have multiple training sets"
+  },
+  {
+    "objectID": "slides/19-bagging.html#bagging-2",
+    "href": "slides/19-bagging.html#bagging-2",
+    "title": "Bagging Decision Trees",
+    "section": "Bagging",
+    "text": "Bagging\nAveraging a set of observations reduces the variance. This is generally not practical because we generally do not have multiple training sets.\n\nWhat can we do?\n\n\nBootstrap! We can take repeated samples from the single training data set."
+  },
+  {
+    "objectID": "slides/19-bagging.html#bagging-process",
+    "href": "slides/19-bagging.html#bagging-process",
+    "title": "Bagging Decision Trees",
+    "section": "Bagging process",
+    "text": "Bagging process\n\ngenerate \\(B\\) different bootstrapped training sets\nTrain our method on the \\(b\\)th bootstrapped training set to get \\(\\hat{f}^{*b}(x)\\), the prediction at point \\(x\\)\nAverage all predictions to get: \\(\\hat{f}_{bag}(x)=\\frac{1}{B}\\sum_{b=1}^B\\hat{f}^{*b}(x)\\)\nThis is bagging!"
+  },
+  {
+    "objectID": "slides/19-bagging.html#bagging-regression-trees",
+    "href": "slides/19-bagging.html#bagging-regression-trees",
+    "title": "Bagging Decision Trees",
+    "section": "Bagging regression trees",
+    "text": "Bagging regression trees\n\ngenerate \\(B\\) different bootstrapped training sets\nFit a regression tree on the \\(b\\)th bootstrapped training set to get \\(\\hat{f}^{*b}(x)\\), the prediction at point \\(x\\)\nAverage all predictions to get: \\(\\hat{f}_{bag}(x)=\\frac{1}{B}\\sum_{b=1}^B\\hat{f}^{*b}(x)\\)"
+  },
+  {
+    "objectID": "slides/19-bagging.html#bagging-classification-trees",
+    "href": "slides/19-bagging.html#bagging-classification-trees",
+    "title": "Bagging Decision Trees",
+    "section": "Bagging classification trees",
+    "text": "Bagging classification trees\n\nfor each test observation, record the class predicted by the \\(B\\) trees\nTake a majority vote - the overall prediction is the most commonly occuring class among the \\(B\\) predictions"
+  },
+  {
+    "objectID": "slides/19-bagging.html#out-of-bag-error-estimation",
+    "href": "slides/19-bagging.html#out-of-bag-error-estimation",
+    "title": "Bagging Decision Trees",
+    "section": "Out-of-bag Error Estimation",
+    "text": "Out-of-bag Error Estimation\n\nYou can estimate the test error of a bagged model\nThe key to bagging is that trees are repeatedly fit to bootstrapped subsets of the observations\nOn average, each bagged tree makes use of about 2/3 of the observations (you can prove this if you’d like!, not required for this course though)\nThe remaining 1/3 of observations not used to fit a given bagged tree are the out-of-bag (OOB) observations"
+  },
+  {
+    "objectID": "slides/19-bagging.html#out-of-bag-error-estimation-1",
+    "href": "slides/19-bagging.html#out-of-bag-error-estimation-1",
+    "title": "Bagging Decision Trees",
+    "section": "Out-of-bag Error Estimation",
+    "text": "Out-of-bag Error Estimation\nYou can predict the response for the \\(i\\)th observation using each of the trees in which that observation was OOB\n\nHow many predictions do you think this will yield for the \\(i\\)th observation?\n\n\nThis will yield \\(B/3\\) predictions for the \\(i\\)th observations. We can average this!\nThis estimate is essentially the LOOCV error for bagging as long as \\(B\\) is large 🎉"
+  },
+  {
+    "objectID": "slides/19-bagging.html#describing-bagging",
+    "href": "slides/19-bagging.html#describing-bagging",
+    "title": "Bagging Decision Trees",
+    "section": " Describing Bagging",
+    "text": "Describing Bagging\nSee if you can draw a diagram to describe the bagging process to someone who has never heard of this before.\n\n\n\n−+\n05:00"
   },
   {
     "objectID": "syllabus.html",
